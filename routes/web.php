@@ -21,9 +21,11 @@ Route::get('/wishlist', function () {
     return view('wishlist');
 })->name('wishlist');
 
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::fallback(fn() => view('404'));
 
 require __DIR__.'/auth.php';
