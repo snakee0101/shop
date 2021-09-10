@@ -54,25 +54,6 @@
                 <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title"><a href="{{ route('index-2') }}"
                                                              class="mobile-links__item-link">Home</a>
-                        <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
-                            <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="mobile-links__item-sub-links" data-collapse-content>
-                        <ul class="mobile-links mobile-links--level--1">
-                            <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="{{ route('index-2') }}"
-                                                                         class="mobile-links__item-link">Home 1</a>
-                                </div>
-                            </li>
-                            <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="index-2.html"
-                                                                         class="mobile-links__item-link">Home 2</a>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </li>
                 <li class="mobile-links__item" data-collapse-item>
@@ -1006,14 +987,7 @@
                             <div class="nav-panel__nav-links nav-links">
                                 <ul class="nav-links__list">
                                     <li class="nav-links__item nav-links__item--with-submenu"><a
-                                            href="{{ route('index-2') }}"><span>Home <svg class="nav-links__arrow"
-                                                                                          width="9px" height="6px"><use
-                                                        xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
-                                        <div class="nav-links__menu"><!-- .menu -->
-                                            <ul class="menu menu--layout--classic">
-                                                <li><a href="{{ route('index-2') }}">Home 1</a></li>
-                                                <li><a href="index-2.html">Home 2</a></li>
-                                            </ul><!-- .menu / end --></div>
+                                            href="{{ route('index-2') }}"><span>Home</span></a>
                                     </li>
                                     <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Megamenu <svg
                                                     class="nav-links__arrow" width="9px" height="6px"><use
