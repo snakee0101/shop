@@ -519,7 +519,7 @@
                             <div class="nav-links__menu"><!-- .menu -->
                                 <ul class="menu menu--layout--classic">
                                     <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
+                                    <li><a href="{{ route('contacts') }}">Contact Us</a></li>
                                     <li><a href="contact-us-alt.html">Contact Us Alt</a></li>
                                     <li><a href="404.html">404</a></li>
                                     <li><a href="terms-and-conditions.html">Terms And Conditions</a></li>
@@ -528,7 +528,7 @@
                                     <li><a href="typography.html">Typography</a></li>
                                 </ul><!-- .menu / end --></div>
                         </li>
-                        <li class="nav-links__item"><a href="contact-us.html"><span>Contact Us</span></a>
+                        <li class="nav-links__item"><a href="{{ route('contacts') }}"><span>Contact Us</span></a>
                         </li>
                         <li class="nav-links__item"><a
                                 href="https://themeforest.net/user/kos9/portfolio"><span>Buy Theme</span></a>

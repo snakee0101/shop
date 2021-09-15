@@ -336,7 +336,7 @@
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="contact-us.html"
+                                <div class="mobile-links__item-title"><a href="{{ route('contacts') }}"
                                                                          class="mobile-links__item-link">Contact Us</a>
                                 </div>
                             </li>
@@ -520,7 +520,7 @@
                     <div class="topbar__row">
                         <div class="topbar__item topbar__item--link"><a class="topbar-link" href="about-us.html">About
                                 Us</a></div>
-                        <div class="topbar__item topbar__item--link"><a class="topbar-link" href="contact-us.html">Contacts</a>
+                        <div class="topbar__item topbar__item--link"><a class="topbar-link" href="{{ route('contacts') }}">Contacts</a>
                         </div>
                         <div class="topbar__item topbar__item--link"><a class="topbar-link" href="#">Store Location</a>
                         </div>
@@ -1158,7 +1158,7 @@
                                         <div class="nav-links__menu"><!-- .menu -->
                                             <ul class="menu menu--layout--classic">
                                                 <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="contact-us.html">Contact Us</a></li>
+                                                <li><a href="{{ route('contacts') }}">Contact Us</a></li>
                                                 <li><a href="contact-us-alt.html">Contact Us Alt</a></li>
                                                 <li><a href="404.html">404</a></li>
                                                 <li><a href="terms-and-conditions.html">Terms And Conditions</a></li>
@@ -1167,7 +1167,7 @@
                                                 <li><a href="typography.html">Typography</a></li>
                                             </ul><!-- .menu / end --></div>
                                     </li>
-                                    <li class="nav-links__item"><a href="contact-us.html"><span>Contact Us</span></a>
+                                    <li class="nav-links__item"><a href="{{ route('contacts') }}"><span>Contact Us</span></a>
                                     </li>
                                     <li class="nav-links__item"><a
                                             href="https://themeforest.net/user/kos9/portfolio"><span>Buy Theme</span></a>

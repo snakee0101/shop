@@ -317,7 +317,7 @@
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="contact-us.html"
+                                <div class="mobile-links__item-title"><a href="{{ route('contacts') }}"
                                                                          class="mobile-links__item-link">Contact Us</a>
                                 </div>
                             </li>
@@ -501,7 +501,7 @@
                     <div class="topbar__row">
                         <div class="topbar__item topbar__item--link"><a class="topbar-link" href="about-us.html">About
                                 Us</a></div>
-                        <div class="topbar__item topbar__item--link"><a class="topbar-link" href="contact-us.html">Contacts</a>
+                        <div class="topbar__item topbar__item--link"><a class="topbar-link" href="{{ route('contacts') }}">Contacts</a>
                         </div>
                         <div class="topbar__item topbar__item--link"><a class="topbar-link" href="#">Store Location</a>
                         </div>
