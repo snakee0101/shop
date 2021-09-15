@@ -22,6 +22,7 @@ Route::get('/wishlist', function () {
 })->name('wishlist');
 
 Route::view('/cart', 'cart')->name('cart.index');
+Route::view('/checkout', 'checkout')->name('checkout');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

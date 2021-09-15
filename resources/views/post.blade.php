@@ -249,7 +249,7 @@
                                                                          class="mobile-links__item-link">Cart</a></div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="checkout.html"
+                                <div class="mobile-links__item-title"><a href="{{ route('checkout') }}"
                                                                          class="mobile-links__item-link">Checkout</a>
                                 </div>
                             </li>
@@ -1120,7 +1120,7 @@
                                                         </ul><!-- .menu / end --></div>
                                                 </li>
                                                 <li><a href="{{ route('cart.index') }}">Cart</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                                 <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                 <li><a href="compare.html">Compare</a></li>
                                                 <li><a href="account.html">My Account</a></li>
@@ -1257,7 +1257,7 @@
                                             </div>
                                             <div class="dropcart__buttons"><a class="btn btn-secondary"
                                                                               href="{{ route('cart.index') }}">View Cart</a> <a
-                                                    class="btn btn-primary" href="checkout.html">Checkout</a></div>
+                                                    class="btn btn-primary" href="{{ route('checkout') }}">Checkout</a></div>
                                         </div><!-- .dropcart / end --></div>
                                 </div>
                             </div>
