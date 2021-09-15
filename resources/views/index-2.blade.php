@@ -227,7 +227,7 @@
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="cart.html"
+                                <div class="mobile-links__item-title"><a href="{{ route('cart.index') }}"
                                                                          class="mobile-links__item-link">Cart</a></div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
@@ -483,7 +483,7 @@
                                         class="indicator__area"><svg width="20px" height="20px"><use
                                                 xlink:href="images/sprite.svg#heart-20"></use></svg> <span
                                             class="indicator__value">0</span></span></a></div>
-                            <div class="indicator indicator--mobile"><a href="cart.html" class="indicator__button"><span
+                            <div class="indicator indicator--mobile"><a href="{{ route('cart.index') }}" class="indicator__button"><span
                                         class="indicator__area"><svg width="20px" height="20px"><use
                                                 xlink:href="images/sprite.svg#cart-20"></use></svg> <span
                                             class="indicator__value">3</span></span></a></div>
@@ -727,7 +727,7 @@
                                                             <li><a href="product-sidebar.html">Product Sidebar</a></li>
                                                         </ul><!-- .menu / end --></div>
                                                 </li>
-                                                <li><a href="cart.html">Cart</a></li>
+                                                <li><a href="{{ route('cart.index') }}">Cart</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                 <li><a href="compare.html">Compare</a></li>
@@ -801,7 +801,7 @@
                                             class="indicator__area"><svg width="20px" height="20px"><use
                                                     xlink:href="images/sprite.svg#heart-20"></use></svg> <span
                                                 class="indicator__value">0</span></span></a></div>
-                                <div class="indicator indicator--trigger--click"><a href="cart.html"
+                                <div class="indicator indicator--trigger--click"><a href="{{ route('cart.index') }}"
                                                                                     class="indicator__button"><span
                                             class="indicator__area"><svg width="20px" height="20px"><use
                                                     xlink:href="images/sprite.svg#cart-20"></use></svg> <span
@@ -889,7 +889,7 @@
                                                 </table>
                                             </div>
                                             <div class="dropcart__buttons"><a class="btn btn-secondary"
-                                                                              href="cart.html">View Cart</a> <a
+                                                                              href="{{ route('cart.index') }}">View Cart</a> <a
                                                     class="btn btn-primary" href="checkout.html">Checkout</a></div>
                                         </div><!-- .dropcart / end --></div>
                                 </div>

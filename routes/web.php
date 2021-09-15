@@ -21,6 +21,8 @@ Route::get('/wishlist', function () {
     return view('wishlist');
 })->name('wishlist');
 
+Route::view('/cart', 'cart')->name('cart.index');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
