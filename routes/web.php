@@ -24,6 +24,7 @@ Route::get('/wishlist', function () {
 Route::view('/cart', 'cart')->name('cart.index');
 Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
+Route::view('/account', 'account')->name('account');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

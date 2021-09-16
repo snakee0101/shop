@@ -265,7 +265,7 @@
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="account.html"
+                                <div class="mobile-links__item-title"><a href="{{ route('account') }}"
                                                                          class="mobile-links__item-link">My Account</a>
                                 </div>
                             </li>
@@ -538,8 +538,8 @@
                                 </button>
                                 <div class="topbar-dropdown__body"><!-- .menu -->
                                     <ul class="menu menu--layout--topbar">
-                                        <li><a href="account.html">Login</a></li>
-                                        <li><a href="account.html">Register</a></li>
+                                        <li><a href="{{ route('account') }}">Login</a></li>
+                                        <li><a href="{{ route('account') }}">Register</a></li>
                                         <li><a href="#">Orders</a></li>
                                         <li><a href="#">Addresses</a></li>
                                     </ul><!-- .menu / end --></div>
@@ -1134,7 +1134,7 @@
                                                 <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                                 <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                                 <li><a href="compare.html">Compare</a></li>
-                                                <li><a href="account.html">My Account</a></li>
+                                                <li><a href="{{ route('account') }}">My Account</a></li>
                                                 <li><a href="track-order.html">Track Order</a></li>
                                             </ul><!-- .menu / end --></div>
                                     </li>

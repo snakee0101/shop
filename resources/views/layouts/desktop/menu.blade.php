@@ -495,7 +495,7 @@
                                     <li><a href="{{ route('checkout') }}">Checkout</a></li>
                                     <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
                                     <li><a href="compare.html">Compare</a></li>
-                                    <li><a href="account.html">My Account</a></li>
+                                    <li><a href="{{ route('account') }}">My Account</a></li>
                                     <li><a href="track-order.html">Track Order</a></li>
                                 </ul><!-- .menu / end --></div>
                         </li>
