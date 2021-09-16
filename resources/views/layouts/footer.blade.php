@@ -101,11 +101,6 @@
                     </div>
                 </div>
             </div>
-            <div class="site-footer__bottom">
-                <div class="site-footer__copyright"><a target="_blank" href="https://www.templateshub.net">Templates
-                        Hub</a></div>
-                <div class="site-footer__payments"><img src="images/payments.png" alt=""></div>
-            </div>
         </div>
     </div>
 </footer>
