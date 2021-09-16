@@ -14,18 +14,8 @@
             <div class="topbar__spring"></div>
             <div class="topbar__item">
                 <div class="topbar-dropdown">
-                    <button class="topbar-dropdown__btn" type="button">My Account
-                        <svg width="7px" height="5px">
-                            <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
-                        </svg>
+                    <button class="topbar-dropdown__btn pr-2" type="button"><a href="{{ route('account') }}">My Account</a>
                     </button>
-                    <div class="topbar-dropdown__body"><!-- .menu -->
-                        <ul class="menu menu--layout--topbar">
-                            <li><a href="{{ route('account') }}">Login</a></li>
-                            <li><a href="{{ route('account') }}">Register</a></li>
-                            <li><a href="#">Orders</a></li>
-                            <li><a href="#">Addresses</a></li>
-                        </ul><!-- .menu / end --></div>
                 </div>
             </div>
             <div class="topbar__item">
