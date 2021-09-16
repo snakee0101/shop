@@ -377,6 +377,11 @@
                         </ul>
                     </div>
                 </li>
+                <li class="mobile-links__item" data-collapse-item>
+                    <div class="mobile-links__item-title"><a href="{{ route('account') }}"
+                                                             class="mobile-links__item-link">My Account</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
