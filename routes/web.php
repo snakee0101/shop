@@ -26,6 +26,8 @@ Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
 Route::view('/account', 'account')->name('account');
 
+Route::view('/catalog', 'catalog')->name('category.index');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

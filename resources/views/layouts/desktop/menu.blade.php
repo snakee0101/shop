@@ -377,6 +377,9 @@
                         <li class="nav-links__item nav-links__item--with-submenu"><a
                                 href="{{ route('index-2') }}"><span>Home</span></a>
                         </li>
+                        <li class="nav-links__item nav-links__item--with-submenu"><a
+                                href="{{ route('category.index') }}"><span>Catalog</span></a>
+                        </li>
                         <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Megamenu <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
                                             xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>

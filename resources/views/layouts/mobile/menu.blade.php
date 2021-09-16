@@ -18,6 +18,11 @@
                     </div>
                 </li>
                 <li class="mobile-links__item" data-collapse-item>
+                    <div class="mobile-links__item-title"><a href="{{ route('category.index') }}"
+                                                             class="mobile-links__item-link">Catalog</a>
+                    </div>
+                </li>
+                <li class="mobile-links__item" data-collapse-item>
                     <div class="mobile-links__item-title"><a href="#" class="mobile-links__item-link">Categories</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
