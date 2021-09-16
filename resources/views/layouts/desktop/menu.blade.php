@@ -530,9 +530,6 @@
                         </li>
                         <li class="nav-links__item"><a href="{{ route('contacts') }}"><span>Contact Us</span></a>
                         </li>
-                        <li class="nav-links__item"><a
-                                href="https://themeforest.net/user/kos9/portfolio"><span>Buy Theme</span></a>
-                        </li>
                     </ul>
                 </div><!-- .nav-links / end -->
                 <div class="nav-panel__indicators">
