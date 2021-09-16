@@ -499,37 +499,6 @@
                                     <li><a href="track-order.html">Track Order</a></li>
                                 </ul><!-- .menu / end --></div>
                         </li>
-                        <li class="nav-links__item nav-links__item--with-submenu"><a
-                                href="blog-classic.html"><span>Blog <svg class="nav-links__arrow"
-                                                                         width="9px" height="6px"><use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
-                            <div class="nav-links__menu"><!-- .menu -->
-                                <ul class="menu menu--layout--classic">
-                                    <li><a href="blog-classic.html">Blog Classic</a></li>
-                                    <li><a href="blog-grid.html">Blog Grid</a></li>
-                                    <li><a href="blog-list.html">Blog List</a></li>
-                                    <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
-                                    <li><a href="post.html">Post Page</a></li>
-                                    <li><a href="post-without-sidebar.html">Post Without Sidebar</a></li>
-                                </ul><!-- .menu / end --></div>
-                        </li>
-                        <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Pages <svg
-                                        class="nav-links__arrow" width="9px" height="6px"><use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
-                            <div class="nav-links__menu"><!-- .menu -->
-                                <ul class="menu menu--layout--classic">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="{{ route('contacts') }}">Contact Us</a></li>
-                                    <li><a href="contact-us-alt.html">Contact Us Alt</a></li>
-                                    <li><a href="404.html">404</a></li>
-                                    <li><a href="terms-and-conditions.html">Terms And Conditions</a></li>
-                                    <li><a href="faq.html">FAQ</a></li>
-                                    <li><a href="components.html">Components</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                </ul><!-- .menu / end --></div>
-                        </li>
-                        <li class="nav-links__item"><a href="{{ route('contacts') }}"><span>Contact Us</span></a>
-                        </li>
                     </ul>
                 </div><!-- .nav-links / end -->
                 <div class="nav-panel__indicators">
