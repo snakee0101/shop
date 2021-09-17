@@ -118,6 +118,7 @@
         <header class="site__header d-lg-block d-none">
             <div class="site-header">
                 @include('layouts.desktop.topbar')
+                @include('layouts.desktop.customer_service')
                 @include('layouts.desktop.menu')
             </div>
         </header>
