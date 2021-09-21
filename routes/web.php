@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,8 @@ Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
 Route::view('/account', 'account')->name('account');
 
-Route::view('/catalog', 'catalog')->name('category.index');
+Route::resource('category', CategoryController::class);
+Route::redirect('/catalog', route('category.index'));
 
 Route::get('/dashboard', function () {
     return view('dashboard');
