@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    public function subCategories()
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function parentCategory()
+    {
+        return $this->belongsTo(self::class, 'parent_id', 'id');
+    }
+
+    public function hasSubCategories() : bool
+    {
+        return $this->subCategories()->count();
+    }
 }

@@ -24,7 +24,8 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        //
+        //if category has subcategories - show their list
+        //if not - go to the shop
     }
 
 
