@@ -1,12 +1,7 @@
 <div class="block-products-carousel__column">
     <div class="block-products-carousel__cell">
         <div class="product-card">
-            <button class="product-card__quickview wishlist_toggle" type="button">
-                <svg width="16px" height="16px">
-                    <use xlink:href="images/sprite.svg#wishlist-16"></use>
-                </svg>
-                <span class="fake-svg-icon"></span>
-            </button>
+            <favorite-button-component></favorite-button-component>
             <div class="product-card__badges-list">
                 <div class="product-card__badge product-card__badge--hot">Badge</div>
             </div>
