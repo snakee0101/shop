@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Product;
 use Tests\TestCase;
 use App\Models\Category;
 
@@ -34,5 +35,16 @@ class CategoryTest extends TestCase
 
         $category2 = Category::factory()->create();
         $this->assertFalse($category2->hasSubCategories());
+    }
+
+    public function test_a_product_belongs_to_one_category()
+    {
+        $product = Product::factory()->create();
+        $this->assertInstanceOf(Category::class, $product->category);
+    }
+
+    public function test_a_category_has_many_products()
+    {
+
     }
 }
