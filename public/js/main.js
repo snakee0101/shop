@@ -291,7 +291,7 @@
             items: 1,
             nav: false,
             dots: true,
-            loop: true
+            loop: false
         });
     });
 
@@ -303,7 +303,7 @@
         $('.block-brands__slider .owl-carousel').owlCarousel({
             nav: false,
             dots: false,
-            loop: true,
+            loop: false,
             responsive: {
                 1200: {items: 6},
                 992: {items: 5},
@@ -325,7 +325,7 @@
                 margin: 30,
                 nav: false,
                 dots: false,
-                loop: true
+                loop: false
             };
             const layoutOptions = {
                 'grid-nl': {
@@ -453,7 +453,7 @@
                 margin: 14,
                 nav: false,
                 dots: false,
-                loop: true,
+                loop: false,
                 stagePadding: 1
             };
             const layoutOptions = {
