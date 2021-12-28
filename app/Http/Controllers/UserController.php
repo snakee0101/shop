@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
             'last_name' => request('last_name'),
             'phone' => request('phone'),
             'email' => request('email'),
-            'password' => request('password')
+            'password' => Hash::make(request('password'))
         ]);
 
         auth()->login($user);
