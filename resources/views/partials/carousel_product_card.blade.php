@@ -129,13 +129,7 @@
                         class="text-success">In Stock</span></div>
                 <div class="product-card__prices">${{ $product->price }}</div>
                 <div class="product-card__buttons">
-                    <button class="btn btn-primary product-card__addtocart" type="button">Add To
-                        Cart
-                    </button>
-                    <button
-                        class="btn btn-secondary product-card__addtocart product-card__addtocart--list"
-                        type="button">Add To Cart
-                    </button>
+                    <cart-button-component></cart-button-component>
                     <button
                         class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
                         type="button">

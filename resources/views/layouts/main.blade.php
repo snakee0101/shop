@@ -30,9 +30,8 @@
 
         gtag('js', new Date());
         gtag('config', 'UA-97489509-6');
-
-
     </script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body><!-- quickview-modal -->
     <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -41,7 +40,7 @@
         </div>
     </div><!-- quickview-modal / end --><!-- mobilemenu -->
     @include('layouts.mobile.menu')<!-- mobilemenu / end --><!-- site -->
-    <div class="site"><!-- mobile site__header -->
+    <div class="site" id="app"><!-- mobile site__header -->
         <header class="site__header d-lg-none">
             <div class="mobile-header mobile-header--sticky mobile-header--stuck">
                 <div class="mobile-header__panel">
