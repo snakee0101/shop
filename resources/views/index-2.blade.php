@@ -175,22 +175,8 @@
         </div><!-- .block-categories / end --><!-- .block-products-carousel -->
         <div class="block block-products-carousel" data-layout="grid-5">
             <div class="container">
-                <div class="block-header"><h3 class="block-header__title">New Arrivals</h3>
+                <div class="block-header"><h3 class="block-header__title">Filter group 1</h3>
                     <div class="block-header__divider"></div>
-                    <ul class="block-header__groups-list">
-                        <li>
-                            <button type="button" class="block-header__group block-header__group--active">All</button>
-                        </li>
-                        <li>
-                            <button type="button" class="block-header__group">Power Tools</button>
-                        </li>
-                        <li>
-                            <button type="button" class="block-header__group">Hand Tools</button>
-                        </li>
-                        <li>
-                            <button type="button" class="block-header__group">Plumbing</button>
-                        </li>
-                    </ul>
                     <div class="block-header__arrows-list">
                         <button class="block-header__arrow block-header__arrow--left" type="button">
                             <svg width="7px" height="11px">
