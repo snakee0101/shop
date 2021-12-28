@@ -45,6 +45,10 @@ class CategoryTest extends TestCase
 
     public function test_a_category_has_many_products()
     {
+        $category = Category::factory()->has(Product::factory()->count(3))
+                                       ->create();
 
+        $this->assertCount(3, $category->products);
+        $this->assertInstanceOf(Product::class, $category->products[0]);
     }
 }
