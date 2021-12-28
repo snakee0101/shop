@@ -372,24 +372,6 @@
         });
     });
 
-
-    $(function () {
-        const modal = $('#quickview-modal');
-
-        modal.on('shown.bs.modal', function() {
-            modal.find('.product').each(function () {
-                const gallery = $(this).find('.product-gallery');
-
-                if (gallery.length > 0) {
-                    initProductGallery(gallery[0], $(this).data('layout'));
-                }
-            });
-
-            $('.input-number', modal).customNumber();
-        });
-    });
-
-
     /*
     // products carousel
     */
