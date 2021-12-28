@@ -372,54 +372,6 @@
         });
     });
 
-    /*
-    // quickview
-    */
-    const quickview = {
-        cancelPreviousModal: function() {},
-        clickHandler: function() {
-            const modal = $('#quickview-modal');
-            const button = $(this);
-            const doubleClick = button.is('.product-card__quickview--preload');
-
-            quickview.cancelPreviousModal();
-
-            if (doubleClick) {
-                return;
-            }
-
-            button.addClass('product-card__quickview--preload');
-
-            let xhr = null;
-            // timeout ONLY_FOR_DEMO!
-            const timeout = setTimeout(function() {
-                xhr = $.ajax({
-                    url: 'quickview.html',
-                    success: function(data) {
-                        quickview.cancelPreviousModal = function() {};
-                        button.removeClass('product-card__quickview--preload');
-
-                        modal.find('.modal-content').html(data);
-                        modal.find('.quickview__close').on('click', function() {
-                            modal.modal('hide');
-                        });
-                        modal.modal('show');
-                    }
-                });
-            }, 1000);
-
-            quickview.cancelPreviousModal = function() {
-                button.removeClass('product-card__quickview--preload');
-
-                if (xhr) {
-                    xhr.abort();
-                }
-
-                // timeout ONLY_FOR_DEMO!
-                clearTimeout(timeout);
-            };
-        }
-    };
 
     $(function () {
         const modal = $('#quickview-modal');
@@ -434,10 +386,6 @@
             });
 
             $('.input-number', modal).customNumber();
-        });
-
-        $('.product-card__quickview').on('click', function() {
-            quickview.clickHandler.apply(this, arguments);
         });
     });
 
