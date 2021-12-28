@@ -16,7 +16,11 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    return view('index-2');
+    $filtering_group_1_products = [1,2,3];
+
+    return view('index-2', [
+        'filtering_group_1_products' => $filtering_group_1_products
+    ]);
 })->name('index-2');
 
 Route::get('/wishlist', function () {
