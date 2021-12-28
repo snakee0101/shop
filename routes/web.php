@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Http\Controllers\CategoryController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', function () {
-    $filtering_group_1_products = [1,2,3];
+    $filtering_group_1_products = Product::limit(10)->get();
 
     return view('index-2', [
         'filtering_group_1_products' => $filtering_group_1_products
