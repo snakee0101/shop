@@ -58,15 +58,34 @@
                     <div class="col-md-6 d-flex mt-4 mt-md-0">
                         <div class="card flex-grow-1 mb-0">
                             <div class="card-body"><h3 class="card-title">Register</h3>
-                                <form>
+                                <form method="post" action="{{ route('register-user') }}">
+                                    @csrf
+                                    <div class="form-group"><label>First name</label> <input type="text"
+                                                                                             name="first_name"
+                                                                                            class="form-control"
+                                                                                            placeholder="Enter your first name">
+                                    </div>
+                                    <div class="form-group"><label>Last name</label> <input type="text"
+                                                                                            name="last_name"
+                                                                                            class="form-control"
+                                                                                            placeholder="Enter your last name">
+                                    </div>
+                                    <div class="form-group"><label>Phone</label> <input type="tel"
+                                                                                        name="phone"
+                                                                                            class="form-control"
+                                                                                            placeholder="Enter your phone">
+                                    </div>
                                     <div class="form-group"><label>Email address</label> <input type="email"
+                                                                                                name="email"
                                                                                                 class="form-control"
                                                                                                 placeholder="Enter email">
                                     </div>
                                     <div class="form-group"><label>Password</label> <input type="password"
+                                                                                           name="password"
                                                                                            class="form-control"
                                                                                            placeholder="Password"></div>
                                     <div class="form-group"><label>Repeat Password</label> <input type="password"
+                                                                                                  name="password_confirmation"
                                                                                                   class="form-control"
                                                                                                   placeholder="Password">
                                     </div>

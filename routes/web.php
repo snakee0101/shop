@@ -40,8 +40,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/register-user', [\App\Http\Controllers\UserController::class, 'register']);
-Route::post('/login-user', [\App\Http\Controllers\UserController::class, 'login']);
+Route::post('/register-user', [\App\Http\Controllers\UserController::class, 'register'])->name('register-user');
+Route::post('/login-user', [\App\Http\Controllers\UserController::class, 'login'])->name('login-user');
 
 Route::fallback(fn() => view('404'));
 
