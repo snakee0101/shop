@@ -26,106 +26,111 @@
         </div>
         <div class="block">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 d-flex">
-                        <div class="card flex-grow-1 mb-md-0">
-                            <div class="card-body"><h3 class="card-title">Login</h3>
-                                <form action="{{ route('login-user') }}" method="post">
-                                    @csrf
-                                    <div class="form-group"><label>Email address</label> <input name="login_email"
-                                                                                                type="email"
-                                                                                                class="form-control"
-                                                                                                placeholder="Enter email"
-                                                                                                value="{{ old('login_email') }}">
-                                        @if($errors->login->first('login_email'))
-                                            <p class="tw-text-red-700">User with this email is not registered or empty email is entered</p>
-                                        @endif
-                                    </div>
-                                    <div class="form-group"><label>Password</label> <input name="login_password"
-                                                                                           type="password"
-                                                                                           class="form-control"
-                                                                                           placeholder="Password">
-                                        <small class="form-text text-muted"><a href="#">Forgotten Password</a></small>
-                                        @if($errors->login->first('login_password'))
-                                            <p class="tw-text-red-700">User with this email-password combination is not registered</p>
-                                        @endif
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-check"><span class="form-check-input input-check"><span
-                                                    class="input-check__body"><input class="input-check__input"
-                                                                                     type="checkbox"
-                                                                                     id="login-remember"><span
-                                                        class="input-check__box"></span> <svg class="input-check__icon"
-                                                                                              width="9px" height="7px"><use
-                                                            xlink:href="images/sprite.svg#check-9x7"></use></svg> </span></span><label
-                                                class="form-check-label" for="login-remember">Remember Me</label></div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Login</button>
-                                </form>
+                @guest
+                    <div class="row">
+                        <div class="col-md-6 d-flex">
+                            <div class="card flex-grow-1 mb-md-0">
+                                <div class="card-body"><h3 class="card-title">Login</h3>
+                                    <form action="{{ route('login-user') }}" method="post">
+                                        @csrf
+                                        <div class="form-group"><label>Email address</label> <input name="login_email"
+                                                                                                    type="email"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Enter email"
+                                                                                                    value="{{ old('login_email') }}">
+                                            @if($errors->login->first('login_email'))
+                                                <p class="tw-text-red-700">User with this email is not registered or empty email is entered</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group"><label>Password</label> <input name="login_password"
+                                                                                               type="password"
+                                                                                               class="form-control"
+                                                                                               placeholder="Password">
+                                            <small class="form-text text-muted"><a href="#">Forgotten Password</a></small>
+                                            @if($errors->login->first('login_password'))
+                                                <p class="tw-text-red-700">User with this email-password combination is not registered</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check"><span class="form-check-input input-check"><span
+                                                        class="input-check__body"><input class="input-check__input"
+                                                                                         type="checkbox"
+                                                                                         id="login-remember"><span
+                                                            class="input-check__box"></span> <svg class="input-check__icon"
+                                                                                                  width="9px" height="7px"><use
+                                                                xlink:href="images/sprite.svg#check-9x7"></use></svg> </span></span><label
+                                                    class="form-check-label" for="login-remember">Remember Me</label></div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-4">Login</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 d-flex mt-4 mt-md-0">
-                        <div class="card flex-grow-1 mb-0">
-                            <div class="card-body"><h3 class="card-title">Register</h3>
-                                <form method="post" action="{{ route('register-user') }}">
-                                    @csrf
-                                    <div class="form-group"><label>First name</label> <input type="text"
-                                                                                             name="first_name"
-                                                                                            class="form-control"
-                                                                                            placeholder="Enter your first name"
-                                                                                            value="{{ old('first_name') }}">
-                                        @if($errors->register->first('first_name'))
-                                            <p class="tw-text-red-700">First name must contain only letters</p>
-                                        @endif
-                                    </div>
-                                    <div class="form-group"><label>Last name</label> <input type="text"
-                                                                                            name="last_name"
-                                                                                            class="form-control"
-                                                                                            placeholder="Enter your last name"
-                                                                                            value="{{ old('last_name') }}">
-                                        @if($errors->register->first('last_name'))
-                                            <p class="tw-text-red-700">Last name must contain only letters</p>
-                                        @endif
-                                    </div>
-                                    <div class="form-group"><label>Phone</label> <input type="tel"
-                                                                                        name="phone"
+                        <div class="col-md-6 d-flex mt-4 mt-md-0">
+                            <div class="card flex-grow-1 mb-0">
+                                <div class="card-body"><h3 class="card-title">Register</h3>
+                                    <form method="post" action="{{ route('register-user') }}">
+                                        @csrf
+                                        <div class="form-group"><label>First name</label> <input type="text"
+                                                                                                 name="first_name"
+                                                                                                 class="form-control"
+                                                                                                 placeholder="Enter your first name"
+                                                                                                 value="{{ old('first_name') }}">
+                                            @if($errors->register->first('first_name'))
+                                                <p class="tw-text-red-700">First name must contain only letters</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group"><label>Last name</label> <input type="text"
+                                                                                                name="last_name"
+                                                                                                class="form-control"
+                                                                                                placeholder="Enter your last name"
+                                                                                                value="{{ old('last_name') }}">
+                                            @if($errors->register->first('last_name'))
+                                                <p class="tw-text-red-700">Last name must contain only letters</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group"><label>Phone</label> <input type="tel"
+                                                                                            name="phone"
                                                                                             class="form-control"
                                                                                             placeholder="Enter your phone"
                                                                                             value="{{ old('phone') }}">
-                                        @if($errors->register->first('phone'))
-                                            <p class="tw-text-red-700">Phone must be in international format</p>
-                                        @endif
-                                    </div>
-                                    <div class="form-group"><label>Email address</label> <input type="email"
-                                                                                                name="email"
-                                                                                                class="form-control"
-                                                                                                placeholder="Enter email"
-                                                                                                value="{{ old('email') }}">
-                                        @if($errors->register->first('email'))
-                                            <p class="tw-text-red-700">Email is invalid</p>
-                                        @endif
-                                    </div>
-                                    <div class="form-group"><label>Password</label> <input type="password"
-                                                                                           name="password"
-                                                                                           class="form-control"
-                                                                                           placeholder="Password"
-                                                                                           value="{{ old('password') }}"></div>
-                                    <div class="form-group"><label>Repeat Password</label> <input type="password"
-                                                                                                  name="password_confirmation"
-                                                                                                  class="form-control"
-                                                                                                  placeholder="Password"
-                                                                                                  value="{{ old('password') }}">
-                                        @if($errors->register->first('password'))
-                                            <p class="tw-text-red-700">Passwords don't match</p>
-                                        @endif
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Register</button>
-                                </form>
+                                            @if($errors->register->first('phone'))
+                                                <p class="tw-text-red-700">Phone must be in international format</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group"><label>Email address</label> <input type="email"
+                                                                                                    name="email"
+                                                                                                    class="form-control"
+                                                                                                    placeholder="Enter email"
+                                                                                                    value="{{ old('email') }}">
+                                            @if($errors->register->first('email'))
+                                                <p class="tw-text-red-700">Email is invalid</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group"><label>Password</label> <input type="password"
+                                                                                               name="password"
+                                                                                               class="form-control"
+                                                                                               placeholder="Password"
+                                                                                               value="{{ old('password') }}"></div>
+                                        <div class="form-group"><label>Repeat Password</label> <input type="password"
+                                                                                                      name="password_confirmation"
+                                                                                                      class="form-control"
+                                                                                                      placeholder="Password"
+                                                                                                      value="{{ old('password') }}">
+                                            @if($errors->register->first('password'))
+                                                <p class="tw-text-red-700">Passwords don't match</p>
+                                            @endif
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-4">Register</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <p>Account control panel</p>
+                @endguest
+
             </div>
         </div>
     </div>
