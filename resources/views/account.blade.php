@@ -67,7 +67,7 @@
                                                                                                  placeholder="Enter your first name"
                                                                                                  value="{{ old('first_name') }}">
                                             @if($errors->register->first('first_name'))
-                                                <p class="tw-text-red-700">First name must contain only letters</p>
+                                                <p class="text-danger">First name must contain only letters</p>
                                             @endif
                                         </div>
                                         <div class="form-group"><label>Last name</label> <input type="text"
@@ -76,7 +76,7 @@
                                                                                                 placeholder="Enter your last name"
                                                                                                 value="{{ old('last_name') }}">
                                             @if($errors->register->first('last_name'))
-                                                <p class="tw-text-red-700">Last name must contain only letters</p>
+                                                <p class="text-danger">Last name must contain only letters</p>
                                             @endif
                                         </div>
                                         <div class="form-group"><label>Phone</label> <input type="tel"
@@ -85,7 +85,7 @@
                                                                                             placeholder="Enter your phone"
                                                                                             value="{{ old('phone') }}">
                                             @if($errors->register->first('phone'))
-                                                <p class="tw-text-red-700">Phone must be in international format</p>
+                                                <p class="text-danger">Phone must be in international format</p>
                                             @endif
                                         </div>
                                         <div class="form-group"><label>Email address</label> <input type="email"
@@ -94,7 +94,7 @@
                                                                                                     placeholder="Enter email"
                                                                                                     value="{{ old('email') }}">
                                             @if($errors->register->first('email'))
-                                                <p class="tw-text-red-700">Email is invalid</p>
+                                                <p class="text-danger">Email is invalid</p>
                                             @endif
                                         </div>
                                         <div class="form-group"><label>Password</label> <input type="password"
@@ -108,7 +108,7 @@
                                                                                                       placeholder="Password"
                                                                                                       value="{{ old('password') }}">
                                             @if($errors->register->first('password'))
-                                                <p class="tw-text-red-700">Passwords don't match</p>
+                                                <p class="text-danger">Passwords don't match</p>
                                             @endif
                                         </div>
                                         <button type="submit" class="btn btn-primary mt-4">Register</button>
