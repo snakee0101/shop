@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
@@ -89,6 +87,16 @@ class RegistrationTest extends TestCase
         $data_invalid_email['email'] = 'abc572075';
         $this->post('/register-user', $data_invalid_email)
             ->assertSessionHasErrorsIn('register','email');
+    }
+
+    public function test_password_is_required_on_registration()
+    {
+        $data_missing_password = $this->data;
+        $data_missing_password['password'] = '';
+        $data_missing_password['password_confirmation'] = '';
+
+        $this->post('/register-user', $data_missing_password)
+            ->assertSessionHasErrorsIn('register','password');
     }
 
     public function test_password_is_confirmed_on_registration()

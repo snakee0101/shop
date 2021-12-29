@@ -15,7 +15,7 @@ class RegisterRequest extends FormRequest
             'last_name' => 'alpha',
             'phone' => 'unique:users,phone|regex:/\+\d{12}/',
             'email' => 'email|unique:users,email',
-            'password' => 'confirmed'
+            'password' => 'required|confirmed'
         ];
     }
 }
