@@ -51,16 +51,6 @@
                                                 <p class="tw-text-red-700">User with this email-password combination is not registered</p>
                                             @endif
                                         </div>
-                                        <div class="form-group">
-                                            <div class="form-check"><span class="form-check-input input-check"><span
-                                                        class="input-check__body"><input class="input-check__input"
-                                                                                         type="checkbox"
-                                                                                         id="login-remember"><span
-                                                            class="input-check__box"></span> <svg class="input-check__icon"
-                                                                                                  width="9px" height="7px"><use
-                                                                xlink:href="images/sprite.svg#check-9x7"></use></svg> </span></span><label
-                                                    class="form-check-label" for="login-remember">Remember Me</label></div>
-                                        </div>
                                         <button type="submit" class="btn btn-primary mt-4">Login</button>
                                     </form>
                                 </div>
