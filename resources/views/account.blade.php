@@ -63,7 +63,8 @@
                                     <div class="form-group"><label>First name</label> <input type="text"
                                                                                              name="first_name"
                                                                                             class="form-control"
-                                                                                            placeholder="Enter your first name">
+                                                                                            placeholder="Enter your first name"
+                                                                                            value="{{ old('first_name') }}">
                                         @if($errors->register->first('first_name'))
                                             <p class="tw-text-red-700">First name must contain only letters</p>
                                         @endif
@@ -71,7 +72,8 @@
                                     <div class="form-group"><label>Last name</label> <input type="text"
                                                                                             name="last_name"
                                                                                             class="form-control"
-                                                                                            placeholder="Enter your last name">
+                                                                                            placeholder="Enter your last name"
+                                                                                            value="{{ old('last_name') }}">
                                         @if($errors->register->first('last_name'))
                                             <p class="tw-text-red-700">Last name must contain only letters</p>
                                         @endif
@@ -79,7 +81,8 @@
                                     <div class="form-group"><label>Phone</label> <input type="tel"
                                                                                         name="phone"
                                                                                             class="form-control"
-                                                                                            placeholder="Enter your phone">
+                                                                                            placeholder="Enter your phone"
+                                                                                            value="{{ old('phone') }}">
                                         @if($errors->register->first('phone'))
                                             <p class="tw-text-red-700">Phone must be in international format</p>
                                         @endif
@@ -87,7 +90,8 @@
                                     <div class="form-group"><label>Email address</label> <input type="email"
                                                                                                 name="email"
                                                                                                 class="form-control"
-                                                                                                placeholder="Enter email">
+                                                                                                placeholder="Enter email"
+                                                                                                value="{{ old('email') }}">
                                         @if($errors->register->first('email'))
                                             <p class="tw-text-red-700">Email is invalid</p>
                                         @endif
@@ -95,11 +99,13 @@
                                     <div class="form-group"><label>Password</label> <input type="password"
                                                                                            name="password"
                                                                                            class="form-control"
-                                                                                           placeholder="Password"></div>
+                                                                                           placeholder="Password"
+                                                                                           value="{{ old('password') }}"></div>
                                     <div class="form-group"><label>Repeat Password</label> <input type="password"
                                                                                                   name="password_confirmation"
                                                                                                   class="form-control"
-                                                                                                  placeholder="Password">
+                                                                                                  placeholder="Password"
+                                                                                                  value="{{ old('password') }}">
                                         @if($errors->register->first('password'))
                                             <p class="tw-text-red-700">Passwords don't match</p>
                                         @endif
