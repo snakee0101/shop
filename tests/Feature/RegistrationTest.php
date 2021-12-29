@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
-    use RefreshDatabase;
     public array $data;
 
     protected function setUp(): void
@@ -152,14 +151,6 @@ class RegistrationTest extends TestCase
         ])->assertRedirect( route('account') );
 
         $this->assertAuthenticated();
-    }
-
-    public function test_when_the_user_is_logged_in_it_is_checked_for_existence()
-    {
-        $this->post('/login-user', [
-            'login_email' => 'doesnt_exist@mail.com',
-            'login_password' => 'password',
-        ])->assertSessionHasErrorsIn('login', 'login_email');
     }
 
     public function test_a_user_can_log_in_only_with_valid_password()
