@@ -53,10 +53,6 @@ class RegistrationTest extends TestCase
         $data_invalid_first_name['first_name'] = 'abc d';
         $this->post('/register-user', $data_invalid_first_name)
             ->assertSessionHasErrorsIn('register','first_name');
-
-        $data_invalid_first_name['first_name'] = 'Test';
-        $this->post('/register-user', $data_invalid_first_name)
-            ->assertSessionHasNoErrors();
     }
 
     public function test_last_name_is_validated_on_registration()
@@ -73,10 +69,6 @@ class RegistrationTest extends TestCase
         $data_invalid_last_name['last_name'] = 'abc d';
         $this->post('/register-user', $data_invalid_last_name)
             ->assertSessionHasErrorsIn('register','last_name');
-
-        $data_invalid_last_name['last_name'] = 'Test';
-        $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasNoErrors();
     }
 
     public function test_phone_is_validated_on_registration()
