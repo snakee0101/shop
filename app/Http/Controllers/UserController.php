@@ -47,5 +47,7 @@ class UserController extends Controller
     {
         $user = User::firstWhere('email', request('email'));
         auth()->login($user);
+
+        return redirect()->route('account');
     }
 }

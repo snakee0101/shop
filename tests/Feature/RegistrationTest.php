@@ -149,7 +149,7 @@ class RegistrationTest extends TestCase
         $this->post('/login-user', [
             'email' => $user->email,
             'password' => 'password',
-        ]);
+        ])->assertRedirect( route('account') );
 
         $this->assertAuthenticated();
     }
