@@ -46,8 +46,8 @@ class UserController extends Controller
     public function login()
     {
         $validator = Validator::make(request()->all(), [
-            'email' => 'exists:users,email',
-            'password' => new \App\Rules\PasswordHash( request('email') )
+            'login_email' => 'required|exists:users,email',
+            'login_password' => ['required', new \App\Rules\PasswordHash( request('login_email') )]
         ]);
 
         if($validator->fails()){
@@ -56,7 +56,7 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        $user = User::firstWhere('email', request('email'));
+        $user = User::firstWhere('email', request('login_email'));
         auth()->login($user);
 
         return redirect()->route('account');

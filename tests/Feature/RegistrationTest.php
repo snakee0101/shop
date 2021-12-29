@@ -147,8 +147,8 @@ class RegistrationTest extends TestCase
         $user = User::factory()->create();
 
         $this->post('/login-user', [
-            'email' => $user->email,
-            'password' => 'password',
+            'login_email' => $user->email,
+            'login_password' => 'password',
         ])->assertRedirect( route('account') );
 
         $this->assertAuthenticated();
@@ -157,22 +157,22 @@ class RegistrationTest extends TestCase
     public function test_when_the_user_is_logged_in_it_is_checked_for_existence()
     {
         $this->post('/login-user', [
-            'email' => 'doesnt_exist@mail.com',
-            'password' => 'password',
-        ])->assertSessionHasErrorsIn('login', 'email');
+            'login_email' => 'doesnt_exist@mail.com',
+            'login_password' => 'password',
+        ])->assertSessionHasErrorsIn('login', 'login_email');
     }
 
     public function test_a_user_can_log_in_only_with_valid_password()
     {
         $user = User::factory()->create();
         $this->post('/login-user', [
-            'email' => $user->email,
-            'password' => 'invalid password',
-        ])->assertSessionHasErrorsIn('login', 'password');
+            'login_email' => $user->email,
+            'login_password' => 'invalid password',
+        ])->assertSessionHasErrorsIn('login', 'login_password');
 
         $this->post('/login-user', [
-            'email' => $user->email,
-            'password' => 'password',
+            'login_email' => $user->email,
+            'login_password' => 'password',
         ])->assertSessionHasNoErrors();
     }
 }
