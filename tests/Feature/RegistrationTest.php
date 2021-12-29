@@ -141,4 +141,16 @@ class RegistrationTest extends TestCase
         $this->post('/register-user', $other_data_is_unique_except_phone)
             ->assertSessionHasErrorsIn('register','phone');
     }
+
+    public function test_a_user_can_log_in()
+    {
+        $user = User::factory()->create();
+
+        $this->post('/login-user', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+    }
 }

@@ -45,6 +45,7 @@ class UserController extends Controller
 
     public function login()
     {
-
+        $user = User::firstWhere('email', request('email'));
+        auth()->login($user);
     }
 }
