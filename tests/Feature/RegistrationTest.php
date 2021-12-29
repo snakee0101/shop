@@ -45,15 +45,15 @@ class RegistrationTest extends TestCase
         $data_invalid_first_name = $this->data;
         $data_invalid_first_name['first_name'] = 'abcd0';
         $this->post('/register-user', $data_invalid_first_name)
-             ->assertSessionHasErrors('first_name');
+             ->assertSessionHasErrorsIn('register', 'first_name');
 
         $data_invalid_first_name['first_name'] = 'abcd_';
         $this->post('/register-user', $data_invalid_first_name)
-            ->assertSessionHasErrors('first_name');
+            ->assertSessionHasErrorsIn('register','first_name');
 
         $data_invalid_first_name['first_name'] = 'abc d';
         $this->post('/register-user', $data_invalid_first_name)
-            ->assertSessionHasErrors('first_name');
+            ->assertSessionHasErrorsIn('register','first_name');
 
         $data_invalid_first_name['first_name'] = 'Test';
         $this->post('/register-user', $data_invalid_first_name)
@@ -65,15 +65,15 @@ class RegistrationTest extends TestCase
         $data_invalid_last_name = $this->data;
         $data_invalid_last_name['last_name'] = 'abcd0';
         $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasErrors('last_name');
+            ->assertSessionHasErrorsIn('register','last_name');
 
         $data_invalid_last_name['last_name'] = 'abcd_';
         $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasErrors('last_name');
+            ->assertSessionHasErrorsIn('register','last_name');
 
         $data_invalid_last_name['last_name'] = 'abc d';
         $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasErrors('last_name');
+            ->assertSessionHasErrorsIn('register','last_name');
 
         $data_invalid_last_name['last_name'] = 'Test';
         $this->post('/register-user', $data_invalid_last_name)
@@ -85,11 +85,11 @@ class RegistrationTest extends TestCase
         $data_invalid_phone = $this->data;
         $data_invalid_phone['phone'] = '+38060814374';
         $this->post('/register-user', $data_invalid_phone)
-            ->assertSessionHasErrors('phone');
+            ->assertSessionHasErrorsIn('register','phone');
 
         $data_invalid_phone['phone'] = '380608143744';
         $this->post('/register-user', $data_invalid_phone)
-            ->assertSessionHasErrors('phone');
+            ->assertSessionHasErrorsIn('register','phone');
     }
 
     public function test_email_is_validated_on_registration()
@@ -97,7 +97,7 @@ class RegistrationTest extends TestCase
         $data_invalid_email = $this->data;
         $data_invalid_email['email'] = 'abc572075';
         $this->post('/register-user', $data_invalid_email)
-            ->assertSessionHasErrors('email');
+            ->assertSessionHasErrorsIn('register','email');
     }
 
     public function test_password_is_confirmed_on_registration()
@@ -105,7 +105,7 @@ class RegistrationTest extends TestCase
         $data_invalid_password = $this->data;
         $data_invalid_password['password_confirmation'] = 'wrong password';
         $this->post('/register-user', $data_invalid_password)
-            ->assertSessionHasErrors('password');
+            ->assertSessionHasErrorsIn('register','password');
     }
 
     public function test_email_must_be_unique()
@@ -122,7 +122,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password'
         ];
         $this->post('/register-user', $other_data_is_unique_except_email)
-             ->assertSessionHasErrors('email');
+             ->assertSessionHasErrorsIn('register','email');
     }
 
     public function test_phone_must_be_unique()
@@ -139,6 +139,6 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password'
         ];
         $this->post('/register-user', $other_data_is_unique_except_phone)
-            ->assertSessionHasErrors('phone');
+            ->assertSessionHasErrorsIn('register','phone');
     }
 }

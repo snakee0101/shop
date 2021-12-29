@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -17,13 +18,18 @@ class UserController extends Controller
          * - Email - it is a valid email,
          * - Password - must be confirmed
          **/
-        request()->validate([
+        $validator = Validator::make(request()->all(), [
             'first_name' => 'alpha',
             'last_name' => 'alpha',
             'phone' => 'unique:users,phone|regex:/\+\d{12}/',
             'email' => 'email|unique:users,email',
             'password' => 'confirmed'
         ]);
+        if($validator->fails()){
+            return redirect()->route('account')
+                             ->withErrors($validator,'register')
+                             ->withInput();
+        }
 
         $user = User::create([
             'first_name' => request('first_name'),
