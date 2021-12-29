@@ -64,22 +64,33 @@
                                                                                              name="first_name"
                                                                                             class="form-control"
                                                                                             placeholder="Enter your first name">
-                                    <p class="tw-text-red-700">First name must contain only letters</p>
+                                        @if($errors->register->first('first_name'))
+                                            <p class="tw-text-red-700">First name must contain only letters</p>
+                                        @endif
                                     </div>
                                     <div class="form-group"><label>Last name</label> <input type="text"
                                                                                             name="last_name"
                                                                                             class="form-control"
                                                                                             placeholder="Enter your last name">
+                                        @if($errors->register->first('last_name'))
+                                            <p class="tw-text-red-700">Last name must contain only letters</p>
+                                        @endif
                                     </div>
                                     <div class="form-group"><label>Phone</label> <input type="tel"
                                                                                         name="phone"
                                                                                             class="form-control"
                                                                                             placeholder="Enter your phone">
+                                        @if($errors->register->first('phone'))
+                                            <p class="tw-text-red-700">Phone must be in international format</p>
+                                        @endif
                                     </div>
                                     <div class="form-group"><label>Email address</label> <input type="email"
                                                                                                 name="email"
                                                                                                 class="form-control"
                                                                                                 placeholder="Enter email">
+                                        @if($errors->register->first('email'))
+                                            <p class="tw-text-red-700">Email is invalid</p>
+                                        @endif
                                     </div>
                                     <div class="form-group"><label>Password</label> <input type="password"
                                                                                            name="password"
@@ -89,6 +100,9 @@
                                                                                                   name="password_confirmation"
                                                                                                   class="form-control"
                                                                                                   placeholder="Password">
+                                        @if($errors->register->first('password'))
+                                            <p class="tw-text-red-700">Passwords don't match</p>
+                                        @endif
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Register</button>
                                 </form>
