@@ -31,7 +31,9 @@
         gtag('js', new Date());
         gtag('config', 'UA-97489509-6');
     </script>
+
     <script src="{{ asset('js/app.js') }}"></script>
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 <body><!-- quickview-modal -->
     <div id="quickview-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">

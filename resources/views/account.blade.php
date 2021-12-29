@@ -64,6 +64,7 @@
                                                                                              name="first_name"
                                                                                             class="form-control"
                                                                                             placeholder="Enter your first name">
+                                    <p class="tw-text-red-700">First name must contain only letters</p>
                                     </div>
                                     <div class="form-group"><label>Last name</label> <input type="text"
                                                                                             name="last_name"
