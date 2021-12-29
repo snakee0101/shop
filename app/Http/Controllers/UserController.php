@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -24,21 +23,11 @@ class UserController extends Controller
         return redirect()->route('account');
     }
 
-    public function login()
+    public function login(LoginRequest $request)
     {
-        $validator = Validator::make(request()->all(), [
-            'login_email' => 'required|exists:users,email',
-            'login_password' => ['required', new \App\Rules\PasswordHash( request('login_email') )]
-        ]);
-
-        if($validator->fails()){
-            return redirect()->route('account')
-                ->withErrors($validator,'login')
-                ->withInput();
-        }
-
-        $user = User::firstWhere('email', request('login_email'));
-        auth()->login($user);
+        auth()->login(
+            User::firstWhere('email', $request->login_email)
+        );
 
         return redirect()->route('account');
     }
