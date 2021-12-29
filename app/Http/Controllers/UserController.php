@@ -10,6 +10,21 @@ class UserController extends Controller
 {
     public function register()
     {
+        /**
+         * Notes on validation
+         * - First and last name - contains only letters, starts with capital letter,
+         * - Phone - it is a regular expression of valid phone number given in international format, (for example: +380775427430)
+         * - Email - it is a valid email,
+         * - Password - must be confirmed
+         **/
+        request()->validate([
+            'first_name' => 'alpha',
+            'last_name' => 'alpha',
+            'phone' => 'unique:users,phone|regex:/\+\d{12}/',
+            'email' => 'email|unique:users,email',
+            'password' => 'confirmed'
+        ]);
+
         $user = User::create([
             'first_name' => request('first_name'),
             'last_name' => request('last_name'),
