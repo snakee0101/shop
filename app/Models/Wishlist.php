@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Wishlist extends Model
 {
     use HasFactory;
+
+    protected $appends = ['products_json'];
     public $timestamps = false;
 
     public function owner()
@@ -19,5 +21,10 @@ class Wishlist extends Model
     {
         return $this->belongsToMany(Product::class)
                     ->withTimestamps();
+    }
+
+    public function getProductsJsonAttribute()
+    {
+        return $this->products;
     }
 }

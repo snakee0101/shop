@@ -57,4 +57,18 @@ class WishlistTest extends TestCase
 
         $this->assertNotNull(DB::table('product_wishlist')->get()->first()->created_at);
     }
+
+    public function test_wishlist_products_appear_in_json()
+    {
+        $products = Product::factory()->count(3)->create();
+        $wishlist = Wishlist::factory()->create();
+
+        $wishlist->products()->attach($products);
+        $wishlist->refresh();
+
+        $wishlist_json = $wishlist->toJson();
+        $wishlist_json_object = json_decode($wishlist_json);
+
+        $this->assertEquals($products[0]->description, $wishlist_json_object->products_json[0]->description);
+    }
 }
