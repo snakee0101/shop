@@ -35,6 +35,7 @@
                                         :key="product.id"
                                         :user="JSON.stringify(user_object)"
                                         :product="JSON.stringify(product)"
+                                        :in-favorites="true"
                                         class="m-2">
 
                 </product-card-component>

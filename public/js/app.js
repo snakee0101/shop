@@ -4225,14 +4225,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ProductCardComponent",
-  props: ['product', 'user'],
+  props: ['product', 'user', 'InFavorites'],
   data: function data() {
     return {
       product_object: JSON.parse(this.product),
       user_object: JSON.parse(this.user)
     };
+  },
+  methods: {
+    removeFromFavorites: function removeFromFavorites() {
+      alert('123');
+    }
   }
 });
 
@@ -4249,6 +4263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -22183,7 +22198,56 @@ var render = function () {
         "div",
         { staticClass: "product-card" },
         [
-          _c("favorite-button-component", { attrs: { user: _vm.user_object } }),
+          _vm.InFavorites
+            ? _c("div", { staticClass: "form-check" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "product-card__quickview wishlist_toggle",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.removeFromFavorites()
+                      },
+                    },
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "bi bi-x-lg",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          width: "16",
+                          height: "16",
+                          fill: "currentColor",
+                          viewBox: "0 0 16 16",
+                        },
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d: "M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z",
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d: "M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z",
+                          },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { attrs: { className: "fake-svg-icon" } }),
+                  ]
+                ),
+              ])
+            : _c("favorite-button-component", {
+                attrs: { user: _vm.user_object },
+              }),
           _vm._v(" "),
           _vm._m(0),
           _vm._v(" "),
@@ -22560,6 +22624,7 @@ var render = function () {
             attrs: {
               user: JSON.stringify(_vm.user_object),
               product: JSON.stringify(product),
+              "in-favorites": true,
             },
           })
         }),
