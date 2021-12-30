@@ -4107,6 +4107,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "WishlistComponent"
 });
@@ -21908,25 +21932,88 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mb-4" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("\n        My wishlist\n    "),
+    return _c("div", { staticClass: "card mb-5" }, [
+      _c("div", { staticClass: "card-header d-flex align-content-center" }, [
+        _c("p", { staticClass: "d-inline-block m-0 pt-2 mr-auto" }, [
+          _vm._v("My wishlist"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-inline-block" }, [
+          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Rename")]),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-info" }, [
+            _vm._v("Set as default"),
+          ]),
+        ]),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("blockquote", { staticClass: "blockquote mb-0" }, [
-          _c("p", [
-            _vm._v(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."
-            ),
+      _c("div", { staticClass: "card-body py-4" }, [
+        _c("div", { staticClass: "d-flex align-content-center mb-3" }, [
+          _c("div", { staticClass: "d-inline-block flex-grow-1" }, [
+            _c("button", { staticClass: "btn btn-success" }, [
+              _vm._v("Select All"),
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
           ]),
           _vm._v(" "),
-          _c("footer", { staticClass: "blockquote-footer" }, [
-            _vm._v("Someone famous in "),
-            _c("cite", { attrs: { title: "Source Title" } }, [
-              _vm._v("Source Title"),
+          _c("div", [
+            _c("div", { staticClass: "btn-group" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary dropdown-toggle",
+                  attrs: {
+                    type: "button",
+                    "data-toggle": "dropdown",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false",
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n                        Sort by\n                    "
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("Date added")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("Expensive first")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("Cheap first")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "dropdown-item", attrs: { href: "#" } },
+                  [_vm._v("With discount only")]
+                ),
+              ]),
             ]),
           ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex" }, [
+          _c("p", [_vm._v("here must be a product card")]),
         ]),
       ]),
     ])
