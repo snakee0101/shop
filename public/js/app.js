@@ -4062,9 +4062,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "FavoriteButtonComponent",
+  props: ['user'],
+  data: function data() {
+    return {
+      logged_in_user: this.user ? JSON.parse(this.user) : {}
+    };
+  },
   methods: {
     toggleFavorite: function toggleFavorite() {
-      alert('toggle favorite');
+      if (this.user) {
+        alert('toggle favorite');
+      } else {
+        alert('The user is not logged in');
+      }
     }
   }
 });

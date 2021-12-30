@@ -1,7 +1,7 @@
 <div class="block-products-carousel__column">
     <div class="block-products-carousel__cell">
         <div class="product-card">
-            <favorite-button-component></favorite-button-component>
+            <favorite-button-component user="{{ auth()->user() }}"></favorite-button-component>
             <div class="product-card__badges-list">
                 <div class="product-card__badge product-card__badge--hot">Badge</div>
             </div>
