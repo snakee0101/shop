@@ -13,7 +13,7 @@ export default {
     props: ['user'],
     data() {
         return {
-            logged_in_user: this.user ? JSON.parse(this.user) : {}
+            logged_in_user: this.user ? this.user : {}
         }
     },
     methods: {

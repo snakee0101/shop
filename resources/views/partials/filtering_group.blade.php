@@ -19,7 +19,10 @@
             <div class="block-products-carousel__preloader"></div>
             <div class="owl-carousel">
                 @foreach($filtering_group_1_products as $product)
-                    @include('partials.carousel_product_card', ['product' => $product])
+                    <product-card-component product="{{ $product }}"
+                                            user="{{ auth()->user() }}">
+
+                    </product-card-component>
                 @endforeach
             </div>
         </div>
