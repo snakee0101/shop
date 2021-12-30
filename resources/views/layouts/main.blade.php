@@ -100,7 +100,7 @@
                                                                                                          height="20px"><use
                                                     xlink:href="images/sprite.svg#search-20"></use></svg></span></button>
                                 </div>
-                                <div class="indicator indicator--mobile d-sm-flex d-none"><a href="{{ route('wishlist') }}"
+                                <div class="indicator indicator--mobile d-sm-flex d-none"><a href="{{ route('wishlist.index') }}"
                                                                                              class="indicator__button"><span
                                             class="indicator__area"><svg width="20px" height="20px"><use
                                                     xlink:href="images/sprite.svg#heart-20"></use></svg> <span

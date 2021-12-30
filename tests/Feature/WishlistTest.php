@@ -11,11 +11,11 @@ class WishlistTest extends TestCase
 {
     public function test_wishlist_could_be_viewed_only_by_authenticated_users()
     {
-        $this->get( route('wishlist') )
+        $this->get( route('wishlist.index') )
              ->assertRedirect( route('account') );
 
         $this->actingAs( User::factory()->create() );
-        $this->get( route('wishlist') )
+        $this->get( route('wishlist.index') )
             ->assertOk();
     }
 }

@@ -24,9 +24,7 @@ Route::get('/', function () {
     ]);
 })->name('index-2');
 
-Route::get('/wishlist', function () {
-    return view('wishlist');
-})->middleware('authenticated')->name('wishlist');
+Route::resource('wishlist', \App\Http\Controllers\WishlistController::class)->middleware('authenticated');
 
 Route::view('/cart', 'cart')->name('cart.index');
 Route::view('/checkout', 'checkout')->name('checkout');

@@ -202,7 +202,7 @@
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="{{ route('wishlist') }}"
+                                <div class="mobile-links__item-title"><a href="{{ route('wishlist.index') }}"
                                                                          class="mobile-links__item-link">Wishlist</a>
                                 </div>
                             </li>

@@ -254,7 +254,7 @@
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title"><a href="{{ route('wishlist') }}"
+                                <div class="mobile-links__item-title"><a href="{{ route('wishlist.index') }}"
                                                                          class="mobile-links__item-link">Wishlist</a>
                                 </div>
                             </li>
@@ -496,7 +496,7 @@
                                                                                                      height="20px"><use
                                         xlink:href="images/sprite.svg#search-20"></use></svg></span></button>
                             </div>
-                            <div class="indicator indicator--mobile d-sm-flex d-none"><a href="{{ route('wishlist') }}"
+                            <div class="indicator indicator--mobile d-sm-flex d-none"><a href="{{ route('wishlist.index') }}"
                                                                                          class="indicator__button"><span
                                     class="indicator__area"><svg width="20px" height="20px"><use
                                     xlink:href="images/sprite.svg#heart-20"></use></svg> <span class="indicator__value">0</span></span></a>
@@ -1121,7 +1121,7 @@
                                                 </li>
                                                 <li><a href="{{ route('cart.index') }}">Cart</a></li>
                                                 <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                                                <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                                                <li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
                                                 <li><a href="compare.html">Compare</a></li>
                                                 <li><a href="{{ route('account') }}">My Account</a></li>
                                                 <li><a href="track-order.html">Track Order</a></li>
@@ -1164,7 +1164,7 @@
                                 </ul>
                             </div><!-- .nav-links / end -->
                             <div class="nav-panel__indicators">
-                                <div class="indicator"><a href="{{ route('wishlist') }}" class="indicator__button"><span
+                                <div class="indicator"><a href="{{ route('wishlist.index') }}" class="indicator__button"><span
                                         class="indicator__area"><svg width="20px" height="20px"><use
                                         xlink:href="images/sprite.svg#heart-20"></use></svg> <span
                                         class="indicator__value">0</span></span></a></div>

@@ -496,7 +496,7 @@
                                     </li>
                                     <li><a href="{{ route('cart.index') }}">Cart</a></li>
                                     <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                                    <li><a href="{{ route('wishlist') }}">Wishlist</a></li>
+                                    <li><a href="{{ route('wishlist.index') }}">Wishlist</a></li>
                                     <li><a href="compare.html">Compare</a></li>
                                     <li><a href="{{ route('account') }}">My Account</a></li>
                                     <li><a href="track-order.html">Track Order</a></li>
@@ -530,7 +530,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="indicator"><a href="{{ route('wishlist') }}" class="indicator__button"><span
+                    <div class="indicator"><a href="{{ route('wishlist.index') }}" class="indicator__button"><span
                                 class="indicator__area"><svg width="20px" height="20px"><use
                                         xlink:href="images/sprite.svg#heart-20"></use></svg> <span
                                     class="indicator__value">0</span></span></a></div>
