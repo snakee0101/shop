@@ -20,7 +20,8 @@
             <div class="owl-carousel">
                 @foreach($filtering_group_1_products as $product)
                     <product-card-component product="{{ $product }}"
-                                            user="{{ auth()->user() }}">
+                                            user="{{ auth()->user() }}"
+                                            :key="{{ $product->id }}">
 
                     </product-card-component>
                 @endforeach

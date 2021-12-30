@@ -32,6 +32,7 @@
             </div>
             <div class="d-flex p-4">
                 <product-card-component v-for="product in wishlist.products_json"
+                                        :key="product.id"
                                         :user="JSON.stringify(user_object)"
                                         :product="JSON.stringify(product)"
                                         class="m-2">

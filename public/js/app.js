@@ -4302,6 +4302,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "WishlistComponent",
   props: ['wishlist', 'user'],
@@ -22554,6 +22555,7 @@ var render = function () {
         { staticClass: "d-flex p-4" },
         _vm._l(_vm.wishlist.products_json, function (product) {
           return _c("product-card-component", {
+            key: product.id,
             staticClass: "m-2",
             attrs: {
               user: JSON.stringify(_vm.user_object),
