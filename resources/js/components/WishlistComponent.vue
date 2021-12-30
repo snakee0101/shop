@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="d-flex p-4">
-                <product-card-component v-for="product in wishlist.products_json"
+                <product-card-component v-for="product in wishlist_object.products_json"
                                         :key="product.id"
                                         :user="JSON.stringify(user_object)"
                                         :product="JSON.stringify(product)"
@@ -58,11 +58,20 @@
 export default {
     name: "WishlistComponent",
     props: ['wishlist', 'user'],
+    created() {
+        window.events.$on('removed_product_from_wishlist', this.remove_from_wishlist);
+    },
     data() {
         return {
           'wishlist_object' : this.wishlist,
           'user_object' : this.user
         };
+    },
+    methods: {
+       remove_from_wishlist(wishlist_id, product_id) {
+           let products_without_deleted = this.wishlist_object.products_json.filter( product => product.id !== product_id );
+           this.wishlist_object.products_json = products_without_deleted;
+       }
     }
 }
 </script>

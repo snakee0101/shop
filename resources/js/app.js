@@ -7,6 +7,8 @@ Vue.component('favorite-button-component', require('./components/FavoriteButtonC
 Vue.component('wishlist-component', require('./components/WishlistComponent').default);
 Vue.component('product-card-component', require('./components/ProductCardComponent').default);
 
+window.events = new Vue();
+
 window.onload = function(){
     const app = new Vue({
         el: '#app',

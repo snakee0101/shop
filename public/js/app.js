@@ -4246,6 +4246,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     removeFromFavorites: function removeFromFavorites() {
       axios.post("/wishlist/".concat(this.wishlist_object.id, "/").concat(this.product_object.id));
+      window.events.$emit('removed_product_from_wishlist', this.wishlist_object.id, this.product_object.id);
     }
   }
 });
@@ -4322,11 +4323,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "WishlistComponent",
   props: ['wishlist', 'user'],
+  created: function created() {
+    window.events.$on('removed_product_from_wishlist', this.remove_from_wishlist);
+  },
   data: function data() {
     return {
       'wishlist_object': this.wishlist,
       'user_object': this.user
     };
+  },
+  methods: {
+    remove_from_wishlist: function remove_from_wishlist(wishlist_id, product_id) {
+      var products_without_deleted = this.wishlist_object.products_json.filter(function (product) {
+        return product.id !== product_id;
+      });
+      this.wishlist_object.products_json = products_without_deleted;
+    }
   }
 });
 
@@ -4350,6 +4362,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('cart-button-component', (
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('favorite-button-component', (__webpack_require__(/*! ./components/FavoriteButtonComponent */ "./resources/js/components/FavoriteButtonComponent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('wishlist-component', (__webpack_require__(/*! ./components/WishlistComponent */ "./resources/js/components/WishlistComponent.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].component('product-card-component', (__webpack_require__(/*! ./components/ProductCardComponent */ "./resources/js/components/ProductCardComponent.vue")["default"]));
+window.events = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
 window.onload = function () {
   var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -22618,7 +22631,7 @@ var render = function () {
       _c(
         "div",
         { staticClass: "d-flex p-4" },
-        _vm._l(_vm.wishlist.products_json, function (product) {
+        _vm._l(_vm.wishlist_object.products_json, function (product) {
           return _c("product-card-component", {
             key: product.id,
             staticClass: "m-2",
