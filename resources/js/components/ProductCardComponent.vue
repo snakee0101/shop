@@ -112,18 +112,9 @@
                         </div>
                         <div class="product-card__rating-legend">0 Reviews</div>
                     </div>
-                    <ul class="product-card__features-list">
-                        <li>Speed: 750 RPM</li>
-                        <li>Power Source: Cordless-Electric</li>
-                        <li>Battery Cell Type: Lithium</li>
-                        <li>Voltage: 20 Volts</li>
-                        <li>Battery Capacity: 2 Ah</li>
-                    </ul>
                 </div>
                 <div class="product-card__actions">
-                    <div class="product-card__availability">Availability: <span
-                        class="text-success">In Stock</span></div>
-                    <div class="product-card__prices">{{ product_object.price }}</div>
+                    <div class="product-card__prices">${{ product_object.price }}</div>
                     <div class="product-card__buttons">
                         <cart-button-component></cart-button-component>
                         <button

@@ -4225,15 +4225,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ProductCardComponent",
   props: ['product', 'user'],
@@ -4306,12 +4297,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "WishlistComponent",
-  props: ['wishlist'],
+  props: ['wishlist', 'user'],
   data: function data() {
     return {
-      'wishlist_object': this.wishlist
+      'wishlist_object': this.wishlist,
+      'user_object': this.user
     };
   }
 });
@@ -22347,15 +22344,11 @@ var render = function () {
                 _vm._v("0 Reviews"),
               ]),
             ]),
-            _vm._v(" "),
-            _vm._m(7),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "product-card__actions" }, [
-            _vm._m(8),
-            _vm._v(" "),
             _c("div", { staticClass: "product-card__prices" }, [
-              _vm._v(_vm._s(_vm.product_object.price)),
+              _vm._v("$" + _vm._s(_vm.product_object.price)),
             ]),
             _vm._v(" "),
             _c(
@@ -22521,31 +22514,6 @@ var staticRenderFns = [
       ]
     )
   },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "product-card__features-list" }, [
-      _c("li", [_vm._v("Speed: 750 RPM")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Power Source: Cordless-Electric")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Battery Cell Type: Lithium")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Voltage: 20 Volts")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Battery Capacity: 2 Ah")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product-card__availability" }, [
-      _vm._v("Availability: "),
-      _c("span", { staticClass: "text-success" }, [_vm._v("In Stock")]),
-    ])
-  },
 ]
 render._withStripped = true
 
@@ -22578,7 +22546,26 @@ var render = function () {
       _vm._m(0),
     ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "card-body p-0" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "d-flex p-4" },
+        _vm._l(_vm.wishlist.products_json, function (product) {
+          return _c("product-card-component", {
+            staticClass: "m-2",
+            attrs: {
+              user: JSON.stringify(_vm.user_object),
+              product: JSON.stringify(product),
+            },
+          })
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _vm._m(2),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -22598,66 +22585,64 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body p-0" }, [
-      _c("div", { staticClass: "d-flex align-content-center mb-3 p-4" }, [
-        _c("div", { staticClass: "d-inline-block flex-grow-1" }, [
-          _c("button", { staticClass: "btn btn-success" }, [
-            _vm._v("Select All"),
-          ]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
+    return _c("div", { staticClass: "d-flex align-content-center mb-3 p-4" }, [
+      _c("div", { staticClass: "d-inline-block flex-grow-1" }, [
+        _c("button", { staticClass: "btn btn-success" }, [
+          _vm._v("Select All"),
         ]),
         _vm._v(" "),
-        _c("div", [
-          _c("div", { staticClass: "btn-group" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary dropdown-toggle",
-                attrs: {
-                  type: "button",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false",
-                },
+        _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c("div", { staticClass: "btn-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary dropdown-toggle",
+              attrs: {
+                type: "button",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "false",
               },
-              [
-                _vm._v(
-                  "\n                        Sort by\n                    "
-                ),
-              ]
-            ),
+            },
+            [_vm._v("\n                        Sort by\n                    ")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "dropdown-menu" }, [
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("Date added"),
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "dropdown-menu" }, [
-              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-                _vm._v("Date added"),
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-                _vm._v("Expensive first"),
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-                _vm._v("Cheap first"),
-              ]),
-              _vm._v(" "),
-              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-                _vm._v("With discount only"),
-              ]),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("Expensive first"),
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("Cheap first"),
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+              _vm._v("With discount only"),
             ]),
           ]),
         ]),
       ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex p-4" }, [
-        _c("p", [_vm._v("here must be a product card")]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer d-flex flex-row-reverse py-2" }, [
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-footer d-flex flex-row-reverse py-2" },
+      [
         _c("button", { staticClass: "btn btn-success align-self-center" }, [
           _vm._v("\n                Add To Cart\n            "),
         ]),
@@ -22674,8 +22659,8 @@ var staticRenderFns = [
             [_vm._v("500$")]
           ),
         ]),
-      ]),
-    ])
+      ]
+    )
   },
 ]
 render._withStripped = true

@@ -31,7 +31,12 @@
                 </div>
             </div>
             <div class="d-flex p-4">
-                <p>here must be a product card</p>
+                <product-card-component v-for="product in wishlist.products_json"
+                                        :user="JSON.stringify(user_object)"
+                                        :product="JSON.stringify(product)"
+                                        class="m-2">
+
+                </product-card-component>
             </div>
             <div class="card-footer d-flex flex-row-reverse py-2">
                 <button class="btn btn-success align-self-center">
@@ -49,10 +54,11 @@
 <script>
 export default {
     name: "WishlistComponent",
-    props: ['wishlist'],
+    props: ['wishlist', 'user'],
     data() {
         return {
-          'wishlist_object' : this.wishlist
+          'wishlist_object' : this.wishlist,
+          'user_object' : this.user
         };
     }
 }

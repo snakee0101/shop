@@ -27,7 +27,7 @@
         <div class="block">
             <div class="container">
                 @foreach($wishlists as $wishlist)
-                    <wishlist-component :wishlist="{{ $wishlist }}">
+                    <wishlist-component :wishlist="{{ $wishlist }}" :user="{{ auth()->user() }}">
 
                     </wishlist-component>
                 @endforeach
