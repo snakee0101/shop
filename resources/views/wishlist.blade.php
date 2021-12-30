@@ -26,8 +26,8 @@
         </div>
         <div class="block">
             <div class="container">
-                @foreach([1,2,3] as $wishlist)
-                    <wishlist-component>
+                @foreach($wishlists as $wishlist)
+                    <wishlist-component :wishlist="{{ $wishlist }}">
 
                     </wishlist-component>
                 @endforeach
