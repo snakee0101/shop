@@ -46,4 +46,15 @@ class WishlistTest extends TestCase
         $this->assertCount(2, $wishlist->products);
         $this->assertInstanceOf(Product::class, $wishlist->products[0]);
     }
+
+    public function test_wishlist_product_relation_stores_a_timestamp_when_it_was_created()
+    {
+        $product = Product::factory()->create();
+        $wishlist = Wishlist::factory()->create();
+
+        $wishlist->products()->attach($product);
+        $wishlist->refresh();
+
+        $this->assertNotNull(DB::table('product_wishlist')->get()->first()->created_at);
+    }
 }
