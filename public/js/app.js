@@ -4334,10 +4334,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     remove_from_wishlist: function remove_from_wishlist(wishlist_id, product_id) {
-      var products_without_deleted = this.wishlist_object.products_json.filter(function (product) {
-        return product.id !== product_id;
-      });
-      this.wishlist_object.products_json = products_without_deleted;
+      if (wishlist_id == this.wishlist_object.id) {
+        var products_without_deleted = this.wishlist_object.products_json.filter(function (product) {
+          return product.id !== product_id;
+        });
+        this.wishlist_object.products_json = products_without_deleted;
+      }
     }
   }
 });
