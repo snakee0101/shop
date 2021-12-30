@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class WishlistController extends Controller
 
     public function store(Request $request)
     {
-        //
+
     }
 
     public function show(Wishlist $wishlist)
@@ -36,7 +37,7 @@ class WishlistController extends Controller
 
     public function update(Request $request, Wishlist $wishlist)
     {
-        //
+
     }
 
     public function destroy(Wishlist $wishlist)
