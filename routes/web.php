@@ -25,7 +25,7 @@ Route::get('/', function () {
 })->name('index-2');
 
 Route::resource('wishlist', \App\Http\Controllers\WishlistController::class)->middleware('authenticated');
-Route::delete('/wishlist/{wishlist}/{product}', [\App\Http\Controllers\WishlistProductController::class, 'destroy'])->name('wishlist_product.destroy');
+Route::post('/wishlist/{wishlist}/{product}', [\App\Http\Controllers\WishlistProductController::class, 'toggle'])->name('wishlist_product.toggle');
 
 Route::view('/cart', 'cart')->name('cart.index');
 Route::view('/checkout', 'checkout')->name('checkout');

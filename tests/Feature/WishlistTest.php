@@ -21,7 +21,7 @@ class WishlistTest extends TestCase
             ->assertOk();
     }
 
-    public function test_a_product_could_be_removed_from_wishlist()
+    public function test_a_product_could_be_toggled_from_wishlist()
     {
         $product = Product::factory()->create();
         $wishlist = Wishlist::factory()->create();
@@ -30,10 +30,15 @@ class WishlistTest extends TestCase
         $this->assertNotEmpty( $wishlist->fresh()->products );
 
         $this->actingAs($wishlist->owner);
-        $this->delete( route('wishlist_product.destroy', [$wishlist, $product]) );
 
+        $this->post( route('wishlist_product.toggle', [$wishlist, $product]) );
         $wishlist->refresh();
         $this->assertEmpty( $wishlist->products );
+
+
+        $this->post( route('wishlist_product.toggle', [$wishlist, $product]) );
+        $wishlist->refresh();
+        $this->assertNotEmpty( $wishlist->products );
     }
 
     public function test_a_product_could_be_added_in_a_default_wishlist()
