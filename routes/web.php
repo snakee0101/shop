@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/wishlist', function () {
     return view('wishlist');
-})->name('wishlist');
+})->middleware('authenticated')->name('wishlist');
 
 Route::view('/cart', 'cart')->name('cart.index');
 Route::view('/checkout', 'checkout')->name('checkout');
