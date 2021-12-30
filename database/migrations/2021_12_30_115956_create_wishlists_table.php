@@ -15,7 +15,12 @@ class CreateWishlistsTable extends Migration
     {
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->foreignId('user_id')
+                  ->references('id')
+                  ->on('users');
+            $table->string('access_token');  //token is used in wishlist URL as an ID
+            $table->boolean('is_active');
         });
     }
 
