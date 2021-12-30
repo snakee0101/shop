@@ -4236,7 +4236,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ProductCardComponent",
-  props: ['product', 'user', 'InFavorites'],
+  props: ['product', 'user', 'InFavorites', 'wishlist_object'],
   data: function data() {
     return {
       product_object: JSON.parse(this.product),
@@ -4245,7 +4245,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     removeFromFavorites: function removeFromFavorites() {
-      alert('123');
+      axios.post("/wishlist/".concat(this.wishlist_object.id, "/").concat(this.product_object.id));
     }
   }
 });
@@ -4263,6 +4263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -22624,6 +22625,7 @@ var render = function () {
             attrs: {
               user: JSON.stringify(_vm.user_object),
               product: JSON.stringify(product),
+              wishlist_object: _vm.wishlist,
               "in-favorites": true,
             },
           })

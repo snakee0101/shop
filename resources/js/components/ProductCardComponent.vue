@@ -143,7 +143,7 @@
 <script>
     export default {
         name: "ProductCardComponent",
-        props: ['product', 'user', 'InFavorites'],
+        props: ['product', 'user', 'InFavorites', 'wishlist_object'],
         data() {
             return {
                 product_object: JSON.parse(this.product),
@@ -152,7 +152,7 @@
         },
         methods: {
             removeFromFavorites() {
-                alert('123');
+                axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
             }
         }
 }
