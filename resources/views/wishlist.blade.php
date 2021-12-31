@@ -21,7 +21,10 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="page-header__title"><h1>Wish List</h1></div>
+                <div class="page-header__title d-flex flex-col">
+                    <h1 class="flex-grow-1">Wish List</h1>
+                    <new-wishlist-component></new-wishlist-component>
+                </div>
             </div>
         </div>
         <div class="block">
