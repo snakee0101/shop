@@ -156,7 +156,7 @@
             };
         },
         created() {
-            window.events.$on('select_all_products_in_a_wishlist', this.selectAll);
+            window.events.$on('toggle_select_all_products_in_a_wishlist', this.toggleSelectAll);
         },
         methods: {
             toggleSelect()
@@ -164,10 +164,14 @@
                 this.selected = !this.selected;
                 window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id, this.selected);
             },
-            selectAll(wishlist_id)
+            toggleSelectAll(wishlist_id, selected_product_ids)
             {
-                if(wishlist_id == this.wishlist_object.id)
-                    this.selected = true;
+                if(wishlist_id == this.wishlist_object.id) {
+                    if(selected_product_ids.length === 0)
+                        this.selected = false;
+                    else
+                        this.selected = true;
+                }
             }
             /*removeFromFavorites() {
                 axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);

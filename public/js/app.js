@@ -4249,15 +4249,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    window.events.$on('select_all_products_in_a_wishlist', this.selectAll);
+    window.events.$on('toggle_select_all_products_in_a_wishlist', this.toggleSelectAll);
   },
   methods: {
     toggleSelect: function toggleSelect() {
       this.selected = !this.selected;
       window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id, this.selected);
     },
-    selectAll: function selectAll(wishlist_id) {
-      if (wishlist_id == this.wishlist_object.id) this.selected = true;
+    toggleSelectAll: function toggleSelectAll(wishlist_id, selected_product_ids) {
+      if (wishlist_id == this.wishlist_object.id) {
+        if (selected_product_ids.length === 0) this.selected = false;else this.selected = true;
+      }
     }
     /*removeFromFavorites() {
         axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
@@ -4347,7 +4349,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       'wishlist_object': this.wishlist,
       'user_object': this.user,
-      'selected_product_ids': []
+      'selected_product_ids': [],
+      'all_selected': false
     };
   },
   methods: {
@@ -4365,8 +4368,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     selectAll: function selectAll() {
-      this.selected_product_ids = [1, 2];
-      window.events.$emit('select_all_products_in_a_wishlist', this.wishlist_object.id);
+      this.all_selected = !this.all_selected;
+      if (this.all_selected) this.selected_product_ids = this.wishlist_object.products_json.map(function (product) {
+        return product.id;
+      });else this.selected_product_ids = [];
+      window.events.$emit('toggle_select_all_products_in_a_wishlist', this.wishlist_object.id, this.selected_product_ids);
     }
   }
 });
@@ -22678,18 +22684,19 @@ var render = function () {
     _c("div", { staticClass: "card-body p-0" }, [
       _c("div", { staticClass: "d-flex align-content-center mb-3 p-4" }, [
         _c("div", { staticClass: "d-inline-block flex-grow-1" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-success",
-              on: {
-                click: function ($event) {
-                  return _vm.selectAll()
-                },
+          _c("button", {
+            staticClass: "btn btn-success",
+            domProps: {
+              textContent: _vm._s(
+                _vm.all_selected ? "Deselect All" : "Select All"
+              ),
+            },
+            on: {
+              click: function ($event) {
+                return _vm.selectAll()
               },
             },
-            [_vm._v("Select All")]
-          ),
+          }),
           _vm._v(" "),
           _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
           _vm._v(" "),

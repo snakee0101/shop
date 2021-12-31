@@ -11,7 +11,7 @@
         <div class="card-body p-0">
             <div class="d-flex align-content-center mb-3 p-4">
                 <div class="d-inline-block flex-grow-1">
-                    <button class="btn btn-success" @click="selectAll()">Select All</button>
+                    <button class="btn btn-success" @click="selectAll()" v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
                     <button class="btn btn-warning">Move</button>
                     <button class="btn btn-danger">Delete</button>
                     <button class="btn btn-info">Copy URL</button>
@@ -66,7 +66,8 @@ export default {
         return {
           'wishlist_object' : this.wishlist,
           'user_object' : this.user,
-          'selected_product_ids' : []
+          'selected_product_ids' : [],
+          'all_selected' : false
         };
     },
     methods: {
@@ -88,8 +89,14 @@ export default {
        },
        selectAll()
        {
-           this.selected_product_ids = [1,2];
-           window.events.$emit('select_all_products_in_a_wishlist', this.wishlist_object.id);
+           this.all_selected = !this.all_selected;
+
+           if(this.all_selected)
+               this.selected_product_ids = this.wishlist_object.products_json.map( product => product.id );
+            else
+               this.selected_product_ids = [];
+
+           window.events.$emit('toggle_select_all_products_in_a_wishlist', this.wishlist_object.id, this.selected_product_ids);
        }
     }
 }
