@@ -38,7 +38,12 @@ export default {
     methods: {
         confirm()
         {
-            alert('confirmed');
+            if(this.new_name == '') {
+                alert('wishlist name is required');
+            } else {
+                axios.post('/wishlist', {name: this.new_name});
+                location.reload();
+            }
         }
     }
 }

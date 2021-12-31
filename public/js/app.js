@@ -4130,7 +4130,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     confirm: function confirm() {
-      alert('confirmed');
+      if (this.new_name == '') {
+        alert('wishlist name is required');
+      } else {
+        axios.post('/wishlist', {
+          name: this.new_name
+        });
+        location.reload();
+      }
     }
   }
 });
