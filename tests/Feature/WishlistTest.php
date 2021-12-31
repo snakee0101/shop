@@ -99,6 +99,16 @@ class WishlistTest extends TestCase
         $this->assertFalse( Wishlist::firstWhere('name', 'name 2')->is_active );
     }
 
+    public function test_when_created_wishlist_is_set_to_default_other_wishlists_are_inactivated()
+    {
+        $user = User::factory()->has(Wishlist::factory(), 'wishlists')->create();
+        $this->actingAs($user);
+
+        $this->post( route('wishlist.store'), ['name' => 'new name', 'default' => true] );
+        $this->assertTrue( Wishlist::whereName('new name')->first()->is_active );
+        $this->assertFalse( Wishlist::where('name', '!=', 'new name')->first()->is_active );
+    }
+
     public function test_wishlist_name_must_be_unique() //UNIQUE in database level
     {
 

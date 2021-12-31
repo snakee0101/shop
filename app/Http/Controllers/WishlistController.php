@@ -18,6 +18,9 @@ class WishlistController extends Controller
 
     public function store(Request $request)
     {
+        if($request->default)
+            auth()->user()->wishlists()->update(['is_active' => false]);
+
         auth()->user()->wishlists()->create([
             'name' => $request->name,
             'access_token' => Str::uuid(),
