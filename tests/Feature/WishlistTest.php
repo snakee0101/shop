@@ -89,7 +89,11 @@ class WishlistTest extends TestCase
 
     public function test_wishlist_could_be_set_as_default_when_created()
     {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
+        $this->post( route('wishlist.store'), ['name' => 'new name', 'default' => true] );
+        $this->assertTrue( Wishlist::first()->is_active );
     }
 
     public function test_wishlist_name_must_be_unique() //UNIQUE in database level
