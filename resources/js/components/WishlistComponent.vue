@@ -11,7 +11,7 @@
             </p>
             <div class="d-inline-block">
                 <button class="btn btn-danger">Delete</button>
-                <button class="btn btn-warning" @click="is_renaming = true">Rename</button>
+                <button class="btn btn-warning" @click="start_rename()">Rename</button>
                 <button class="btn btn-info" @click="setDefault()">Set as default</button>
             </div>
         </div>
@@ -125,6 +125,11 @@ export default {
        {
            axios.get(`/wishlist/${this.wishlist_object.id}/set_default`)
                 .then( () => location.reload() );
+       },
+       start_rename()
+       {
+           this.new_name = this.wishlist_object.name;
+           this.is_renaming = true;
        },
        confirm_rename()
        {

@@ -4402,6 +4402,10 @@ __webpack_require__.r(__webpack_exports__);
         return location.reload();
       });
     },
+    start_rename: function start_rename() {
+      this.new_name = this.wishlist_object.name;
+      this.is_renaming = true;
+    },
     confirm_rename: function confirm_rename() {
       axios.put("/wishlist/".concat(this.wishlist_object.id), {
         'name': this.new_name
@@ -22782,7 +22786,7 @@ var render = function () {
               staticClass: "btn btn-warning",
               on: {
                 click: function ($event) {
-                  _vm.is_renaming = true
+                  return _vm.start_rename()
                 },
               },
             },
