@@ -4353,6 +4353,23 @@ __webpack_require__.r(__webpack_exports__);
       'all_selected': false
     };
   },
+  computed: {
+    total: function total() {
+      var _this = this;
+
+      if (this.selected_product_ids.length === 0) return this.wishlist_object.products_json.map(function (product) {
+        return product.price;
+      }).reduce(function (prev_price, current_price) {
+        return prev_price + current_price;
+      }, 0);else return this.wishlist_object.products_json.filter(function (product) {
+        return _this.selected_product_ids.indexOf(product.id) !== -1;
+      }).map(function (product) {
+        return product.price;
+      }).reduce(function (prev_price, current_price) {
+        return prev_price + current_price;
+      }, 0);
+    }
+  },
   methods: {
     remove_from_wishlist: function remove_from_wishlist(wishlist_id, product_id) {
       if (wishlist_id == this.wishlist_object.id) {
@@ -22726,7 +22743,24 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm._m(2),
+      _c("div", { staticClass: "card-footer d-flex flex-row-reverse py-2" }, [
+        _c("button", { staticClass: "btn btn-success align-self-center" }, [
+          _vm._v("\n                Add To Cart\n            "),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mr-4" }, [
+          _c("p", { staticClass: "m-0" }, [_vm._v("Total")]),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              staticClass: "m-0 font-weight-bold",
+              staticStyle: { "font-size": "1.5em" },
+            },
+            [_vm._v("$" + _vm._s(_vm.total))]
+          ),
+        ]),
+      ]),
     ]),
   ])
 }
@@ -22782,33 +22816,6 @@ var staticRenderFns = [
         ]),
       ]),
     ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "card-footer d-flex flex-row-reverse py-2" },
-      [
-        _c("button", { staticClass: "btn btn-success align-self-center" }, [
-          _vm._v("\n                Add To Cart\n            "),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "mr-4" }, [
-          _c("p", { staticClass: "m-0" }, [_vm._v("Total")]),
-          _vm._v(" "),
-          _c(
-            "p",
-            {
-              staticClass: "m-0 font-weight-bold",
-              staticStyle: { "font-size": "1.5em" },
-            },
-            [_vm._v("500$")]
-          ),
-        ]),
-      ]
-    )
   },
 ]
 render._withStripped = true

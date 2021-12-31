@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'price' => 'float'
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
