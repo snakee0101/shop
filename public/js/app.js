@@ -4143,8 +4143,11 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/wishlist', {
           name: this.new_name,
           "default": this.is_default
+        }).then(function () {
+          return location.reload();
+        })["catch"](function (error) {
+          return alert('wishlist with this name is already exists');
         });
-        location.reload();
       }
     }
   }

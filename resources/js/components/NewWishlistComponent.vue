@@ -51,9 +51,10 @@ export default {
                 axios.post('/wishlist', {
                     name: this.new_name,
                     default: this.is_default
-                });
-
-                location.reload();
+                }).then(() => location.reload())
+                  .catch(
+                    error => alert('wishlist with this name is already exists')
+                );
             }
         }
     }
