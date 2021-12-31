@@ -4248,10 +4248,16 @@ __webpack_require__.r(__webpack_exports__);
       selected: false
     };
   },
+  created: function created() {
+    window.events.$on('select_all_products_in_a_wishlist', this.selectAll);
+  },
   methods: {
     toggleSelect: function toggleSelect() {
       this.selected = !this.selected;
       window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id, this.selected);
+    },
+    selectAll: function selectAll(wishlist_id) {
+      if (wishlist_id == this.wishlist_object.id) this.selected = true;
     }
     /*removeFromFavorites() {
         axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
@@ -4357,6 +4363,10 @@ __webpack_require__.r(__webpack_exports__);
       if (wishlist_id == this.wishlist_object.id) {
         if (selected) this.selected_product_ids.push(product_id);else this.selected_product_ids.splice(this.selected_product_ids.indexOf(product_id), 1);
       }
+    },
+    selectAll: function selectAll() {
+      this.selected_product_ids = [1, 2];
+      window.events.$emit('select_all_products_in_a_wishlist', this.wishlist_object.id);
     }
   }
 });
@@ -22666,7 +22676,30 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0" }, [
-      _vm._m(1),
+      _c("div", { staticClass: "d-flex align-content-center mb-3 p-4" }, [
+        _c("div", { staticClass: "d-inline-block flex-grow-1" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              on: {
+                click: function ($event) {
+                  return _vm.selectAll()
+                },
+              },
+            },
+            [_vm._v("Select All")]
+          ),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -22707,51 +22740,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex align-content-center mb-3 p-4" }, [
-      _c("div", { staticClass: "d-inline-block flex-grow-1" }, [
-        _c("button", { staticClass: "btn btn-success" }, [
-          _vm._v("Select All"),
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("div", { staticClass: "btn-group" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary dropdown-toggle",
-              attrs: {
-                type: "button",
-                "data-toggle": "dropdown",
-                "aria-haspopup": "true",
-                "aria-expanded": "false",
-              },
+    return _c("div", [
+      _c("div", { staticClass: "btn-group" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary dropdown-toggle",
+            attrs: {
+              type: "button",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false",
             },
-            [_vm._v("\n                        Sort by\n                    ")]
-          ),
+          },
+          [_vm._v("\n                        Sort by\n                    ")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown-menu" }, [
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("Date added"),
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "dropdown-menu" }, [
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("Date added"),
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("Expensive first"),
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("Cheap first"),
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-              _vm._v("With discount only"),
-            ]),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("Expensive first"),
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("Cheap first"),
+          ]),
+          _vm._v(" "),
+          _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+            _vm._v("With discount only"),
           ]),
         ]),
       ]),

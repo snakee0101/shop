@@ -155,11 +155,19 @@
                 selected: false
             };
         },
+        created() {
+            window.events.$on('select_all_products_in_a_wishlist', this.selectAll);
+        },
         methods: {
             toggleSelect()
             {
                 this.selected = !this.selected;
                 window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id, this.selected);
+            },
+            selectAll(wishlist_id)
+            {
+                if(wishlist_id == this.wishlist_object.id)
+                    this.selected = true;
             }
             /*removeFromFavorites() {
                 axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
