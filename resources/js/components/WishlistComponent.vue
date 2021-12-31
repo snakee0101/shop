@@ -128,6 +128,11 @@ export default {
        },
        confirm_rename()
        {
+           axios.put(`/wishlist/${this.wishlist_object.id}`, {
+               'name' : this.new_name
+           });
+
+           this.wishlist_object.name = this.new_name;
            this.is_renaming = false;
        }
     }

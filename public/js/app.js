@@ -4403,6 +4403,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     confirm_rename: function confirm_rename() {
+      axios.put("/wishlist/".concat(this.wishlist_object.id), {
+        'name': this.new_name
+      });
+      this.wishlist_object.name = this.new_name;
       this.is_renaming = false;
     }
   }
