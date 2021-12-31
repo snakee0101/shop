@@ -4387,6 +4387,11 @@ __webpack_require__.r(__webpack_exports__);
         return product.id;
       });else this.selected_product_ids = [];
       window.events.$emit('toggle_select_all_products_in_a_wishlist', this.wishlist_object.id, this.selected_product_ids);
+    },
+    setDefault: function setDefault() {
+      axios.get("/wishlist/".concat(this.wishlist_object.id, "/set_default")).then(function () {
+        return location.reload();
+      });
     }
   }
 });
@@ -22703,7 +22708,24 @@ var render = function () {
             : _vm._e(),
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _c("div", { staticClass: "d-inline-block" }, [
+          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
+          _vm._v(" "),
+          _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Rename")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-info",
+              on: {
+                click: function ($event) {
+                  return _vm.setDefault()
+                },
+              },
+            },
+            [_vm._v("Set as default")]
+          ),
+        ]),
       ]
     ),
     _vm._v(" "),
@@ -22742,7 +22764,7 @@ var render = function () {
           _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
       ]),
       _vm._v(" "),
       _c(
@@ -22785,18 +22807,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-inline-block" }, [
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Rename")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-info" }, [_vm._v("Set as default")]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

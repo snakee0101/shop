@@ -5,7 +5,7 @@
             <div class="d-inline-block">
                 <button class="btn btn-danger">Delete</button>
                 <button class="btn btn-warning">Rename</button>
-                <button class="btn btn-info">Set as default</button>
+                <button class="btn btn-info" @click="setDefault()">Set as default</button>
             </div>
         </div>
         <div class="card-body p-0">
@@ -111,6 +111,11 @@ export default {
                this.selected_product_ids = [];
 
            window.events.$emit('toggle_select_all_products_in_a_wishlist', this.wishlist_object.id, this.selected_product_ids);
+       },
+       setDefault()
+       {
+           axios.get(`/wishlist/${this.wishlist_object.id}/set_default`)
+                .then( () => location.reload() );
        }
     }
 }
