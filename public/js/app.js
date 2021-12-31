@@ -4333,6 +4333,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "WishlistComponent",
   props: ['wishlist', 'user'],
@@ -4345,7 +4352,9 @@ __webpack_require__.r(__webpack_exports__);
       'wishlist_object': this.wishlist,
       'user_object': this.user,
       'selected_product_ids': [],
-      'all_selected': false
+      'all_selected': false,
+      'is_renaming': false,
+      'new_name': this.wishlist.name
     };
   },
   computed: {
@@ -4392,6 +4401,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/wishlist/".concat(this.wishlist_object.id, "/set_default")).then(function () {
         return location.reload();
       });
+    },
+    confirm_rename: function confirm_rename() {
+      this.is_renaming = false;
     }
   }
 });
@@ -22701,17 +22713,77 @@ var render = function () {
           : "",
       },
       [
-        _c("p", { staticClass: "d-inline-block m-0 pt-2 mr-auto" }, [
-          _vm._v(_vm._s(_vm.wishlist.name) + " "),
-          _vm.wishlist.is_active
-            ? _c("span", [_vm._v(" (Default)")])
-            : _vm._e(),
-        ]),
+        _vm.is_renaming
+          ? _c("p", { staticClass: "d-inline-block m-0 pt-2 mr-auto" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.new_name,
+                    expression: "new_name",
+                  },
+                ],
+                attrs: { type: "text" },
+                domProps: { value: _vm.new_name },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.new_name = $event.target.value
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success btn-sm",
+                  on: {
+                    click: function ($event) {
+                      return _vm.confirm_rename()
+                    },
+                  },
+                },
+                [_vm._v("Ok")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-sm",
+                  on: {
+                    click: function ($event) {
+                      _vm.is_renaming = false
+                    },
+                  },
+                },
+                [_vm._v("Cancel")]
+              ),
+            ])
+          : _c("p", { staticClass: "d-inline-block m-0 pt-2 mr-auto" }, [
+              _vm._v("\n            " + _vm._s(_vm.wishlist.name) + " "),
+              _vm.wishlist.is_active
+                ? _c("span", [_vm._v(" (Default)")])
+                : _vm._e(),
+            ]),
         _vm._v(" "),
         _c("div", { staticClass: "d-inline-block" }, [
           _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
           _vm._v(" "),
-          _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Rename")]),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-warning",
+              on: {
+                click: function ($event) {
+                  _vm.is_renaming = true
+                },
+              },
+            },
+            [_vm._v("Rename")]
+          ),
           _vm._v(" "),
           _c(
             "button",

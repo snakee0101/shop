@@ -1,10 +1,17 @@
 <template>
     <div class="card mb-5">
         <div class="card-header d-flex align-content-center" :class="wishlist.is_active ? 'bg-dark text-white font-weight-bold' : ''">
-            <p class="d-inline-block m-0 pt-2 mr-auto">{{ wishlist.name }} <span v-if="wishlist.is_active"> (Default)</span></p>
+            <p class="d-inline-block m-0 pt-2 mr-auto" v-if="is_renaming">
+                <input type="text" v-model="new_name">
+                <button class="btn btn-success btn-sm" @click="confirm_rename()">Ok</button>
+                <button class="btn btn-danger btn-sm" @click="is_renaming = false">Cancel</button>
+            </p>
+            <p class="d-inline-block m-0 pt-2 mr-auto" v-else>
+                {{ wishlist.name }} <span v-if="wishlist.is_active"> (Default)</span>
+            </p>
             <div class="d-inline-block">
                 <button class="btn btn-danger">Delete</button>
-                <button class="btn btn-warning">Rename</button>
+                <button class="btn btn-warning" @click="is_renaming = true">Rename</button>
                 <button class="btn btn-info" @click="setDefault()">Set as default</button>
             </div>
         </div>
@@ -67,7 +74,9 @@ export default {
           'wishlist_object' : this.wishlist,
           'user_object' : this.user,
           'selected_product_ids' : [],
-          'all_selected' : false
+          'all_selected' : false,
+          'is_renaming' : false,
+          'new_name' : this.wishlist.name
         };
     },
     computed: {
@@ -116,6 +125,10 @@ export default {
        {
            axios.get(`/wishlist/${this.wishlist_object.id}/set_default`)
                 .then( () => location.reload() );
+       },
+       confirm_rename()
+       {
+           this.is_renaming = false;
        }
     }
 }
