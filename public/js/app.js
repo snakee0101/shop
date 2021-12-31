@@ -4234,20 +4234,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ProductCardComponent",
   props: ['product', 'user', 'InFavorites', 'wishlist_object'],
   data: function data() {
     return {
       product_object: JSON.parse(this.product),
-      user_object: JSON.parse(this.user)
+      user_object: JSON.parse(this.user),
+      selected: false
     };
   },
   methods: {
-    removeFromFavorites: function removeFromFavorites() {
-      axios.post("/wishlist/".concat(this.wishlist_object.id, "/").concat(this.product_object.id));
-      window.events.$emit('removed_product_from_wishlist', this.wishlist_object.id, this.product_object.id);
+    toggleSelect: function toggleSelect() {
+      this.selected = !this.selected;
     }
+    /*removeFromFavorites() {
+        axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
+        window.events.$emit('removed_product_from_wishlist', this.wishlist_object.id, this.product_object.id);
+    }*/
+
   }
 });
 
@@ -22223,41 +22232,62 @@ var render = function () {
                     attrs: { type: "button" },
                     on: {
                       click: function ($event) {
-                        return _vm.removeFromFavorites()
+                        return _vm.toggleSelect()
                       },
                     },
                   },
                   [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "bi bi-x-lg",
-                        attrs: {
-                          xmlns: "http://www.w3.org/2000/svg",
-                          width: "16",
-                          height: "16",
-                          fill: "currentColor",
-                          viewBox: "0 0 16 16",
-                        },
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            d: "M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z",
+                    _vm.selected
+                      ? _c(
+                          "svg",
+                          {
+                            staticClass: "bi bi-check-square",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "16",
+                              height: "16",
+                              fill: "currentColor",
+                              stroke: "#000",
+                              viewBox: "0 0 16 16",
+                            },
                           },
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            d: "M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z",
+                          [
+                            _c("path", {
+                              attrs: {
+                                d: "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z",
+                              },
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                d: "M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.235.235 0 0 1 .02-.022z",
+                              },
+                            }),
+                          ]
+                        )
+                      : _c(
+                          "svg",
+                          {
+                            staticClass: "bi bi-square",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "16",
+                              height: "16",
+                              fill: "currentColor",
+                              stroke: "#000",
+                              viewBox: "0 0 16 16",
+                            },
                           },
-                        }),
-                      ]
-                    ),
+                          [
+                            _c("path", {
+                              attrs: {
+                                d: "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z",
+                              },
+                            }),
+                          ]
+                        ),
                     _vm._v(" "),
-                    _c("span", { attrs: { className: "fake-svg-icon" } }),
+                    _c("span", { staticClass: "fake-svg-icon" }),
                   ]
                 ),
               ])
