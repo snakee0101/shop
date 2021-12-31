@@ -109,11 +109,6 @@ class WishlistTest extends TestCase
         $this->assertFalse( Wishlist::where('name', '!=', 'new name')->first()->is_active );
     }
 
-    public function test_wishlist_name_must_be_unique() //UNIQUE in database level
-    {
-
-    }
-
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 

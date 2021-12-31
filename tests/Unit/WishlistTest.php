@@ -71,4 +71,12 @@ class WishlistTest extends TestCase
 
         $this->assertEquals($products[0]->description, $wishlist_json_object->products_json[0]->description);
     }
+
+    public function test_wishlist_name_must_be_unique()
+    {
+        $this->expectExceptionMessage('UNIQUE constraint failed');
+
+        Wishlist::factory()->create(['name' => 'name 1']);
+        Wishlist::factory()->create(['name' => 'name 1']);
+    }
 }
