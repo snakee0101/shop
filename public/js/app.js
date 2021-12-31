@@ -4098,11 +4098,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "NewWishlistComponent",
+  data: function data() {
+    return {
+      'new_name': ''
+    };
+  },
   methods: {
-    showDialog: function showDialog() {
-      alert('new dialog');
+    confirm: function confirm() {
+      alert('confirmed');
     }
   }
 });
@@ -22387,20 +22415,122 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "new_wishlist_modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "wishlist_name" } }, [
+                    _vm._v("Name of new wishlist"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.new_name,
+                        expression: "new_name",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", id: "wishlist_name" },
+                    domProps: { value: _vm.new_name },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.new_name = $event.target.value
+                      },
+                    },
+                  }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.confirm()
+                      },
+                    },
+                  },
+                  [_vm._v("Confirm")]
+                ),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
+    _vm._v(" "),
+    _c(
       "button",
       {
         staticClass: "btn btn-primary",
-        on: {
-          click: function ($event) {
-            return _vm.showDialog()
-          },
-        },
+        attrs: { "data-toggle": "modal", "data-target": "#new_wishlist_modal" },
       },
       [_vm._v("+ Create Wishlist")]
     ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("New wishlist")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close",
+          },
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
