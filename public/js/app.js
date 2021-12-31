@@ -4486,10 +4486,14 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         axios.put("/wishlist/".concat(this.wishlist_object.id), {
           'name': this.new_name
+        }).then(this.rename_wishlist)["catch"](function (error) {
+          return alert('wishlist with this name is already exists');
         });
-        this.wishlist_object.name = this.new_name;
-        this.is_renaming = false;
       }
+    },
+    rename_wishlist: function rename_wishlist() {
+      this.wishlist_object.name = this.new_name;
+      this.is_renaming = false;
     }
   }
 });
