@@ -12,4 +12,9 @@ class WishlistProductController extends Controller
     {
         $wishlist->products()->toggle($product);
     }
+
+    public function set_default(Request $request, Wishlist $wishlist)
+    {
+        $wishlist->update(['is_active' => true]);
+    }
 }

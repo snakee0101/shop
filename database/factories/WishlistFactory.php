@@ -22,4 +22,11 @@ class WishlistFactory extends Factory
             'access_token' => $this->faker->word
         ];
     }
+
+    public function inactive()
+    {
+        return $this->state([
+            'is_active' => false,
+        ]);
+    }
 }

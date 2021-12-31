@@ -11,6 +11,10 @@ class Wishlist extends Model
 
     protected $appends = ['products_json'];
     public $timestamps = false;
+    protected $guarded = [];
+    protected $casts = [
+      'is_active' => 'boolean'
+    ];
 
     public function owner()
     {

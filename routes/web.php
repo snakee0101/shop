@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 Route::resource('wishlist', \App\Http\Controllers\WishlistController::class)->except(['create', 'show', 'edit'])->middleware('authenticated');
 Route::post('/wishlist/{wishlist}/{product}', [\App\Http\Controllers\WishlistProductController::class, 'toggle'])->name('wishlist_product.toggle');
+Route::get('/wishlist/{wishlist}/set_default', [\App\Http\Controllers\WishlistProductController::class, 'set_default'])->name('wishlist.set_default');
 
 Route::view('/cart', 'cart')->name('cart.index');
 Route::view('/checkout', 'checkout')->name('checkout');
