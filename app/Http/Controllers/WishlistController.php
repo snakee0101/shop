@@ -22,7 +22,7 @@ class WishlistController extends Controller
 
     public function update(Request $request, Wishlist $wishlist)
     {
-
+        $wishlist->update( ['name' => $request->name] );
     }
 
     public function destroy(Wishlist $wishlist)

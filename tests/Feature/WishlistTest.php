@@ -68,6 +68,16 @@ class WishlistTest extends TestCase
         $this->assertTrue( $user->fresh()->wishlists[2]->is_active );
     }
 
+    public function test_wishlist_could_be_renamed()
+    {
+        $user = User::factory()->has(Wishlist::factory(), 'wishlists')->create();
+
+        $this->actingAs($user);
+
+        $this->put( route('wishlist.update', $user->wishlists[0]->id), ['name' => 'new name'] );
+        $this->assertEquals('new name', Wishlist::first()->name);
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 
