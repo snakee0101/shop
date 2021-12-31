@@ -159,7 +159,7 @@
             toggleSelect()
             {
                 this.selected = !this.selected;
-                window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id);
+                window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id, this.selected);
             }
             /*removeFromFavorites() {
                 axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);

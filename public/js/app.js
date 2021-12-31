@@ -4251,7 +4251,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     toggleSelect: function toggleSelect() {
       this.selected = !this.selected;
-      window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id);
+      window.events.$emit('toggled_product_wishlist_selection', this.wishlist_object.id, this.product_object.id, this.selected);
     }
     /*removeFromFavorites() {
         axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
@@ -4340,7 +4340,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       'wishlist_object': this.wishlist,
-      'user_object': this.user
+      'user_object': this.user,
+      'selected_product_ids': []
     };
   },
   methods: {
@@ -4352,9 +4353,9 @@ __webpack_require__.r(__webpack_exports__);
         this.wishlist_object.products_json = products_without_deleted;
       }
     },
-    save_selection: function save_selection(wishlist_id, product_id) {
+    save_selection: function save_selection(wishlist_id, product_id, selected) {
       if (wishlist_id == this.wishlist_object.id) {
-        console.log(wishlist_id, product_id);
+        if (selected) this.selected_product_ids.push(product_id);else this.selected_product_ids.splice(this.selected_product_ids.indexOf(product_id), 1);
       }
     }
   }

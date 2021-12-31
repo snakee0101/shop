@@ -65,7 +65,8 @@ export default {
     data() {
         return {
           'wishlist_object' : this.wishlist,
-          'user_object' : this.user
+          'user_object' : this.user,
+          'selected_product_ids' : []
         };
     },
     methods: {
@@ -76,10 +77,13 @@ export default {
                this.wishlist_object.products_json = products_without_deleted;
            }
        },
-       save_selection(wishlist_id, product_id)
+       save_selection(wishlist_id, product_id, selected)
        {
            if(wishlist_id == this.wishlist_object.id) {
-                console.log(wishlist_id, product_id);
+                if(selected)
+                    this.selected_product_ids.push(product_id);
+                else
+                    this.selected_product_ids.splice(this.selected_product_ids.indexOf(product_id), 1);
            }
        }
     }
