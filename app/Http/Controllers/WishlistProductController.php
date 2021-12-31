@@ -16,5 +16,9 @@ class WishlistProductController extends Controller
     public function set_default(Request $request, Wishlist $wishlist)
     {
         $wishlist->update(['is_active' => true]);
+
+        auth()->user()->wishlists()     //inactivate other wishlists
+                      ->where('id', '!=', $wishlist->id)
+                      ->update(['is_active' => false]);
     }
 }

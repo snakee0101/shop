@@ -53,6 +53,21 @@ class WishlistTest extends TestCase
         $this->assertTrue( $users[0]->wishlists[0]->fresh()->is_active );
     }
 
+    public function test_when_wishlist_is_set_as_default_other_wishlists_inactivated()
+    {
+        $user = User::factory()->has(Wishlist::factory()
+                                             ->count(3)
+                                             ->inactive(), 'wishlists')->create();
+        $user->wishlists[0]->update(['is_active' => true]);
+
+        $this->actingAs($user);
+        $this->get("/wishlist/{$user->wishlists[2]->id}/set_default");
+
+        $this->assertFalse( $user->fresh()->wishlists[0]->is_active );
+        $this->assertFalse( $user->fresh()->wishlists[1]->is_active );
+        $this->assertTrue( $user->fresh()->wishlists[2]->is_active );
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 
