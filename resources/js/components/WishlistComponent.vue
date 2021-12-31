@@ -13,7 +13,7 @@
                 <div class="d-inline-block flex-grow-1">
                     <button class="btn btn-success" @click="selectAll()" v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
                     <button class="btn btn-warning">Move</button>
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger" @click="remove_from_wishlist()">Delete</button>
                     <button class="btn btn-info">Copy URL</button>
                 </div>
                 <div>
@@ -82,12 +82,15 @@ export default {
         }
     },
     methods: {
-       remove_from_wishlist(wishlist_id, product_id)
+       remove_from_wishlist()
        {
-           if(wishlist_id == this.wishlist_object.id) {
-               let products_without_deleted = this.wishlist_object.products_json.filter( product => product.id !== product_id );
-               this.wishlist_object.products_json = products_without_deleted;
-           }
+           this.selected_product_ids.forEach(this.remove_from_wishlist_callback);
+           this.selected_product_ids.splice(0, this.selected_product_ids.length);
+       },
+       remove_from_wishlist_callback(product_id)
+       {
+           axios.post(`/wishlist/${this.wishlist_object.id}/${product_id}`);
+           this.wishlist_object.products_json = this.wishlist_object.products_json.filter( product => product.id !== product_id );
        },
        save_selection(wishlist_id, product_id, selected)
        {

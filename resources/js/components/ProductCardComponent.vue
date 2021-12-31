@@ -173,10 +173,6 @@
                         this.selected = true;
                 }
             }
-            /*removeFromFavorites() {
-                axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
-                window.events.$emit('removed_product_from_wishlist', this.wishlist_object.id, this.product_object.id);
-            }*/
         }
 }
 </script>

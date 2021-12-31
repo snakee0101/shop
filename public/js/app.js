@@ -4261,11 +4261,6 @@ __webpack_require__.r(__webpack_exports__);
         if (selected_product_ids.length === 0) this.selected = false;else this.selected = true;
       }
     }
-    /*removeFromFavorites() {
-        axios.post(`/wishlist/${this.wishlist_object.id}/${this.product_object.id}`);
-        window.events.$emit('removed_product_from_wishlist', this.wishlist_object.id, this.product_object.id);
-    }*/
-
   }
 });
 
@@ -4371,13 +4366,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    remove_from_wishlist: function remove_from_wishlist(wishlist_id, product_id) {
-      if (wishlist_id == this.wishlist_object.id) {
-        var products_without_deleted = this.wishlist_object.products_json.filter(function (product) {
-          return product.id !== product_id;
-        });
-        this.wishlist_object.products_json = products_without_deleted;
-      }
+    remove_from_wishlist: function remove_from_wishlist() {
+      this.selected_product_ids.forEach(this.remove_from_wishlist_callback);
+      this.selected_product_ids.splice(0, this.selected_product_ids.length);
+    },
+    remove_from_wishlist_callback: function remove_from_wishlist_callback(product_id) {
+      axios.post("/wishlist/".concat(this.wishlist_object.id, "/").concat(product_id));
+      this.wishlist_object.products_json = this.wishlist_object.products_json.filter(function (product) {
+        return product.id !== product_id;
+      });
     },
     save_selection: function save_selection(wishlist_id, product_id, selected) {
       if (wishlist_id == this.wishlist_object.id) {
@@ -22717,7 +22714,18 @@ var render = function () {
           _vm._v(" "),
           _c("button", { staticClass: "btn btn-warning" }, [_vm._v("Move")]),
           _vm._v(" "),
-          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function ($event) {
+                  return _vm.remove_from_wishlist()
+                },
+              },
+            },
+            [_vm._v("Delete")]
+          ),
           _vm._v(" "),
           _c("button", { staticClass: "btn btn-info" }, [_vm._v("Copy URL")]),
         ]),
