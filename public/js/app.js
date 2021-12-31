@@ -4121,11 +4121,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "NewWishlistComponent",
   data: function data() {
     return {
-      'new_name': ''
+      'new_name': '',
+      'is_default': false
     };
   },
   methods: {
@@ -4134,7 +4141,8 @@ __webpack_require__.r(__webpack_exports__);
         alert('wishlist name is required');
       } else {
         axios.post('/wishlist', {
-          name: this.new_name
+          name: this.new_name,
+          "default": this.is_default
         });
         location.reload();
       }
@@ -22468,6 +22476,60 @@ var render = function () {
                       },
                     },
                   }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.is_default,
+                        expression: "is_default",
+                      },
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: { type: "checkbox", id: "set_as_default_checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.is_default)
+                        ? _vm._i(_vm.is_default, null) > -1
+                        : _vm.is_default,
+                    },
+                    on: {
+                      change: function ($event) {
+                        var $$a = _vm.is_default,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.is_default = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.is_default = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.is_default = $$c
+                        }
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-check-label",
+                      attrs: { for: "set_as_default_checkbox" },
+                    },
+                    [
+                      _vm._v(
+                        "\n                            Set as default\n                        "
+                      ),
+                    ]
+                  ),
                 ]),
               ]),
               _vm._v(" "),

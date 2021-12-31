@@ -14,6 +14,12 @@
                             <label for="wishlist_name">Name of new wishlist</label>
                             <input type="text" class="form-control" id="wishlist_name" v-model="new_name">
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" v-model="is_default" id="set_as_default_checkbox">
+                            <label class="form-check-label" for="set_as_default_checkbox">
+                                Set as default
+                            </label>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -32,7 +38,8 @@ export default {
     name: "NewWishlistComponent",
     data: function() {
         return {
-            'new_name' : ''
+            'new_name' : '',
+            'is_default' : false
         };
     },
     methods: {
@@ -41,7 +48,11 @@ export default {
             if(this.new_name == '') {
                 alert('wishlist name is required');
             } else {
-                axios.post('/wishlist', {name: this.new_name});
+                axios.post('/wishlist', {
+                    name: this.new_name,
+                    default: this.is_default
+                });
+
                 location.reload();
             }
         }

@@ -94,6 +94,9 @@ class WishlistTest extends TestCase
 
         $this->post( route('wishlist.store'), ['name' => 'new name', 'default' => true] );
         $this->assertTrue( Wishlist::first()->is_active );
+
+        $this->post( route('wishlist.store'), ['name' => 'name 2', 'default' => false] );
+        $this->assertFalse( Wishlist::firstWhere('name', 'name 2')->is_active );
     }
 
     public function test_wishlist_name_must_be_unique() //UNIQUE in database level
