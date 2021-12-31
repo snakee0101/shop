@@ -1,7 +1,7 @@
 <template>
     <div class="card mb-5">
-        <div class="card-header d-flex align-content-center">
-            <p class="d-inline-block m-0 pt-2 mr-auto">{{ wishlist.name }}</p>
+        <div class="card-header d-flex align-content-center" :class="wishlist.is_active ? 'bg-dark text-white font-weight-bold' : ''">
+            <p class="d-inline-block m-0 pt-2 mr-auto">{{ wishlist.name }} <span v-if="wishlist.is_active"> (Default)</span></p>
             <div class="d-inline-block">
                 <button class="btn btn-danger">Delete</button>
                 <button class="btn btn-warning">Rename</button>

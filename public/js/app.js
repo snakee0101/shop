@@ -22687,13 +22687,25 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card mb-5" }, [
-    _c("div", { staticClass: "card-header d-flex align-content-center" }, [
-      _c("p", { staticClass: "d-inline-block m-0 pt-2 mr-auto" }, [
-        _vm._v(_vm._s(_vm.wishlist.name)),
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-    ]),
+    _c(
+      "div",
+      {
+        staticClass: "card-header d-flex align-content-center",
+        class: _vm.wishlist.is_active
+          ? "bg-dark text-white font-weight-bold"
+          : "",
+      },
+      [
+        _c("p", { staticClass: "d-inline-block m-0 pt-2 mr-auto" }, [
+          _vm._v(_vm._s(_vm.wishlist.name) + " "),
+          _vm.wishlist.is_active
+            ? _c("span", [_vm._v(" (Default)")])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "card-body p-0" }, [
       _c("div", { staticClass: "d-flex align-content-center mb-3 p-4" }, [
