@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class WishlistController extends Controller
 {
@@ -17,7 +18,11 @@ class WishlistController extends Controller
 
     public function store(Request $request)
     {
-
+        auth()->user()->wishlists()->create([
+            'name' => $request->name,
+            'access_token' => Str::uuid(),
+            'is_active' => false
+        ]);
     }
 
     public function update(Request $request, Wishlist $wishlist)

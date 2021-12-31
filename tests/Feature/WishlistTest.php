@@ -78,6 +78,25 @@ class WishlistTest extends TestCase
         $this->assertEquals('new name', Wishlist::first()->name);
     }
 
+    public function test_wishlist_could_be_created()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $this->post( route('wishlist.store'), ['name' => 'new name'] );
+        $this->assertDatabaseCount('wishlists', 1);
+    }
+
+    public function test_wishlist_could_be_set_as_default_when_created()
+    {
+
+    }
+
+    public function test_wishlist_name_must_be_unique() //UNIQUE in database level
+    {
+
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 
