@@ -60,6 +60,7 @@ export default {
     props: ['wishlist', 'user'],
     created() {
         window.events.$on('removed_product_from_wishlist', this.remove_from_wishlist);
+        window.events.$on('toggled_product_wishlist_selection', this.save_selection);
     },
     data() {
         return {
@@ -68,10 +69,17 @@ export default {
         };
     },
     methods: {
-       remove_from_wishlist(wishlist_id, product_id) {
+       remove_from_wishlist(wishlist_id, product_id)
+       {
            if(wishlist_id == this.wishlist_object.id) {
                let products_without_deleted = this.wishlist_object.products_json.filter( product => product.id !== product_id );
                this.wishlist_object.products_json = products_without_deleted;
+           }
+       },
+       save_selection(wishlist_id, product_id)
+       {
+           if(wishlist_id == this.wishlist_object.id) {
+                console.log(wishlist_id, product_id);
            }
        }
     }
