@@ -79,4 +79,16 @@ class WishlistTest extends TestCase
         Wishlist::factory()->create(['name' => 'name 1']);
         Wishlist::factory()->create(['name' => 'name 1']);
     }
+
+    public function test_when_wishlist_is_deleted_attached_products_are_also_removed_from_pivot_table()
+    {
+        $products = Product::factory()->count(3)->create();
+        $wishlist = Wishlist::factory()->create();
+        $wishlist->products()->attach($products);
+
+        $this->assertDatabaseCount('product_wishlist', 3);
+
+        $wishlist->delete();
+        $this->assertDatabaseCount('product_wishlist', 0);
+    }
 }
