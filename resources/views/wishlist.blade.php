@@ -23,7 +23,7 @@
                 </div>
                 <div class="page-header__title d-flex flex-col">
                     <h1 class="flex-grow-1">Wish List</h1>
-                    <new-wishlist-component></new-wishlist-component>
+                    <new-wishlist-component :user="{{ auth()->user() ?: '{}' }}"></new-wishlist-component>
                 </div>
             </div>
         </div>

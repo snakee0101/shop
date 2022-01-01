@@ -29,13 +29,14 @@
             </div>
         </div>
 
-        <button class="btn btn-primary" data-toggle="modal" data-target="#new_wishlist_modal">+ Create Wishlist</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#new_wishlist_modal" v-if="user.id">+ Create Wishlist</button>
     </div>
 </template>
 
 <script>
 export default {
     name: "NewWishlistComponent",
+    props: ['user'],
     data: function() {
         return {
             'new_name' : '',
