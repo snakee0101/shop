@@ -10,7 +10,7 @@
                 {{ wishlist.name }} <span v-if="wishlist.is_active"> (Default)</span>
             </p>
             <div class="d-inline-block">
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger" @click="delete_wishlist()">Delete</button>
                 <button class="btn btn-warning" @click="start_rename()">Rename</button>
                 <button class="btn btn-info" @click="setDefault()">Set as default</button>
             </div>
@@ -148,6 +148,11 @@ export default {
        {
            this.wishlist_object.name = this.new_name;
            this.is_renaming = false;
+       },
+       delete_wishlist()
+       {
+           axios.delete(`/wishlist/${this.wishlist_object.id}`)
+                .then(() => location.reload());
        }
     }
 }
