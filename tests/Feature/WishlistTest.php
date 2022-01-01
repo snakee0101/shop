@@ -162,6 +162,26 @@ class WishlistTest extends TestCase
              ->assertViewHas('wishlists');
     }
 
+    public function test_product_could_be_moved_to_another_wishlist()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->has(Wishlist::factory()->count(2), 'wishlists')->create();
+        $product = Product::factory()->create();
+        $user->wishlists[0]->products()->attach($product);
+
+        $this->assertCount(1, $user->fresh()->wishlists[0]->products);
+        $this->assertCount(0, $user->fresh()->wishlists[1]->products);
+
+        $this->actingAs($user);
+        $this->post( route('wishlist.move', [$user->wishlists[0], $product]), [
+            'move_to' => $user->wishlists[1]->id,
+        ] );
+
+        $this->assertCount(1, $user->fresh()->wishlists[1]->products);
+        $this->assertCount(0, $user->fresh()->wishlists[0]->products);
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 

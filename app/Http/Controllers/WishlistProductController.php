@@ -21,4 +21,12 @@ class WishlistProductController extends Controller
                       ->where('id', '!=', $wishlist->id)
                       ->update(['is_active' => false]);
     }
+
+    public function move(Request $request, Wishlist $wishlist, Product $product)
+    {
+        $wishlist->products()->detach( $product );
+
+        Wishlist::find( request('move_to') )
+                ->products()->attach( $product );
+    }
 }
