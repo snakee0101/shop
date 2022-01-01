@@ -12,8 +12,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="wishlist_name">Name of new wishlist</label><br>
-                            <select class="form-control form-select" id="wishlist_name">
-                                <option v-for="w in other_wishlists">{{ w.name }}</option>
+                            <select class="form-control form-select" id="wishlist_name" v-model="wishlist_id_to_move_to">
+                                <option v-for="w in other_wishlists" :value="w.id">{{ w.name }}</option>
                             </select>
                         </div>
                     </div>
@@ -106,7 +106,8 @@ export default {
           'all_selected' : false,
           'is_renaming' : false,
           'new_name' : this.wishlist.name,
-          'other_wishlists' : {}
+          'other_wishlists' : {},
+          'wishlist_id_to_move_to' : 0
         };
     },
     computed: {
@@ -123,7 +124,21 @@ export default {
     methods: {
        move_to_wishlist()
        {
-
+           if(this.wishlist_id_to_move_to === 0) {
+               alert('No wishlist is selected');
+           } else {
+               if(this.selected_product_ids.length === 0) {
+                   alert('No products are selected');
+               } else {
+                   this.selected_product_ids.map(this.move_to_wishlist_callback);
+               }
+           }
+       },
+       move_to_wishlist_callback(product_id)
+       {
+           axios.post(`wishlist/${this.wishlist_object.id}/${product_id}/move`, {
+               'move_to' : this.wishlist_id_to_move_to
+           });
        },
        remove_from_wishlist()
        {
