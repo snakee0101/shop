@@ -1,5 +1,29 @@
 <template>
     <div class="card mb-5">
+        <div class="modal fade" id="move_wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Move selected products to another wishlist</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="wishlist_name">Name of new wishlist</label>
+                            <p>here will be the name input</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" @click="move_to_wishlist()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="card-header d-flex align-content-center" :class="wishlist.is_active ? 'bg-dark text-white font-weight-bold' : ''">
             <p class="d-inline-block m-0 pt-2 mr-auto" v-if="is_renaming">
                 <input type="text" v-model="new_name">
@@ -19,7 +43,7 @@
             <div class="d-flex align-content-center mb-3 p-4">
                 <div class="d-inline-block flex-grow-1" v-if="user_object.id">
                     <button class="btn btn-success" @click="selectAll()" v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
-                    <button class="btn btn-warning">Move</button>
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#move_wishlist_modal">Move</button>
                     <button class="btn btn-danger" @click="remove_from_wishlist()">Delete</button>
                     <button class="btn btn-info" @click="copyURL()">Copy URL</button>
                 </div>
@@ -91,6 +115,10 @@ export default {
         }
     },
     methods: {
+       move_to_wishlist()
+       {
+
+       },
        remove_from_wishlist()
        {
            this.selected_product_ids.forEach(this.remove_from_wishlist_callback);
