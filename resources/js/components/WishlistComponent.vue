@@ -131,10 +131,9 @@ export default {
                    alert('No products are selected');
                } else {
                    this.selected_product_ids.map(this.move_to_wishlist_callback);
+                   location.reload();
                }
            }
-
-           this.$refs['close_' + this.wishlist_object.id].click();
        },
        move_to_wishlist_callback(product_id)
        {
