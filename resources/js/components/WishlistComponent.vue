@@ -21,7 +21,7 @@
                     <button class="btn btn-success" @click="selectAll()" v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
                     <button class="btn btn-warning">Move</button>
                     <button class="btn btn-danger" @click="remove_from_wishlist()">Delete</button>
-                    <button class="btn btn-info">Copy URL</button>
+                    <button class="btn btn-info" @click="copyURL()">Copy URL</button>
                 </div>
                 <div>
                     <div class="btn-group">
@@ -64,7 +64,7 @@
 <script>
 export default {
     name: "WishlistComponent",
-    props: ['wishlist', 'user'],
+    props: ['wishlist', 'user', 'url'],
     created() {
         window.events.$on('removed_product_from_wishlist', this.remove_from_wishlist);
         window.events.$on('toggled_product_wishlist_selection', this.save_selection);
@@ -153,6 +153,11 @@ export default {
        {
            axios.delete(`/wishlist/${this.wishlist_object.id}`)
                 .then(() => location.reload());
+       },
+       copyURL()
+       {
+           navigator.clipboard.writeText( this.url )
+                              .then( () => alert('wishlist URL was successfully copied') );
        }
     }
 }

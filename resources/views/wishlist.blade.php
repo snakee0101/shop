@@ -30,7 +30,9 @@
         <div class="block">
             <div class="container">
                 @foreach($wishlists as $wishlist)
-                    <wishlist-component :wishlist="{{ $wishlist }}" :user="{{ auth()->user() ?: '{}' }}">
+                    <wishlist-component :wishlist="{{ $wishlist }}"
+                                        :user="{{ auth()->user() ?: '{}' }}"
+                                        url="{{ route('wishlist.show_guest', $wishlist->access_token)  }}">
 
                     </wishlist-component>
                 @endforeach
