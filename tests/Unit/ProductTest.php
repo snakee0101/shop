@@ -20,4 +20,21 @@ class ProductTest extends TestCase
         $this->assertTrue( $product->fresh()->inWishlist($wishlist) );
         $this->assertFalse( $product2->inWishlist($wishlist) );
     }
+
+    public function test_product_can_determine_whether_it_is_in_a_default_wishlist()
+    {
+        $user = User::factory()->create();
+
+        $default_wishlist = Wishlist::factory()->create(['user_id' => $user]);
+        $wishlist2 = Wishlist::factory()->inactive()->create(['user_id' => $user]);
+        $product = Product::factory()->create();
+
+        $this->actingAs( $user );
+        $default_wishlist->products()->attach($product);
+        $this->assertTrue( $product->fresh()->inDefaultWishlist );
+
+        $default_wishlist->products()->detach($product);
+        $this->assertFalse( $product->fresh()->inDefaultWishlist );
+
+    }
 }

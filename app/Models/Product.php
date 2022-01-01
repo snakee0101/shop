@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $appends = ['inDefaultWishlist'];
 
     protected $casts = [
         'price' => 'float'
@@ -23,5 +24,10 @@ class Product extends Model
         return $wishlist->products()
                         ->where('products.id', $this->id)
                         ->exists();
+    }
+
+    public function getInDefaultWishlistAttribute()
+    {
+        return $this->inWishlist( auth()->user()->wishlists()->firstWhere('is_active', true) );
     }
 }
