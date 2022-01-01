@@ -119,6 +119,26 @@ class WishlistTest extends TestCase
         $this->assertDatabaseCount('wishlists', 0);
     }
 
+    public function test_when_user_is_registered_default_wishlist_is_created()
+    {
+        $data = [
+            'first_name' => 'Test',
+            'last_name' => 'Test',
+            'phone' => '+380608143743',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password'
+        ];
+
+        $this->post('/register-user', $data);
+        $this->assertAuthenticated();
+
+        $this->assertDatabaseHas('wishlists', [
+            'user_id' => auth()->id(),
+            'is_active' => true
+        ]);
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 

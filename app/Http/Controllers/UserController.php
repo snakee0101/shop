@@ -6,6 +6,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -20,6 +21,13 @@ class UserController extends Controller
         ]);
 
         auth()->login($user);
+
+        $user->wishlists()->create([
+            'name' => 'My wishlist',
+            'access_token' => Str::uuid(),
+            'is_active' => true
+        ]);
+
         return redirect()->route('account');
     }
 
