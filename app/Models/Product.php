@@ -17,4 +17,11 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function inWishlist(Wishlist $wishlist) :bool
+    {
+        return $wishlist->products()
+                        ->where('products.id', $this->id)
+                        ->exists();
+    }
 }

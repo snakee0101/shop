@@ -3,7 +3,7 @@
         <svg width="16px" height="16px">
             <use xlink:href="images/sprite.svg#wishlist-16"></use>
         </svg>
-        <span className="fake-svg-icon"></span>
+        <span class="fake-svg-icon"></span>
     </button>
 </template>
 
