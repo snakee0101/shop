@@ -64,7 +64,7 @@
 <script>
 export default {
     name: "WishlistComponent",
-    props: ['wishlist', 'user', 'url'],
+    props: ['wishlist', 'wishlists', 'user', 'url'],
     created() {
         window.events.$on('removed_product_from_wishlist', this.remove_from_wishlist);
         window.events.$on('toggled_product_wishlist_selection', this.save_selection);
