@@ -28,6 +28,13 @@ class WishlistController extends Controller
         ]);
     }
 
+    public function show($wishlist_access_token)
+    {
+        return view('wishlist', [  //TODO: return another view
+            'wishlists' => Wishlist::where('access_token', $wishlist_access_token)->get()
+        ]);
+    }
+
     public function update(Request $request, Wishlist $wishlist)
     {
         $wishlist->update( ['name' => $request->name] );

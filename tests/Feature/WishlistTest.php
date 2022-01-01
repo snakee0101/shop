@@ -153,6 +153,15 @@ class WishlistTest extends TestCase
         $this->assertTrue($user->wishlists[0]->is_active || $user->wishlists[1]->is_active);
     }
 
+    public function test_wishlist_could_be_shown_to_any_user_who_knows_access_token()
+    {
+        $wishlist = Wishlist::factory()->create();
+        $this->assertDatabaseCount('wishlists', 1);
+
+        $this->get( route('wishlist.show_guest', $wishlist->access_token) )
+             ->assertViewHas('wishlists');
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 
