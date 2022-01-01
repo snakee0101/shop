@@ -15,7 +15,7 @@
                         <span class="fake-svg-icon"></span>
                     </button>
                 </div>
-                <favorite-button-component :user="user_object" v-else></favorite-button-component>
+                <favorite-button-component :user="user_object" :product="product_object" v-else></favorite-button-component>
                 <div class="product-card__badges-list">
                     <div class="product-card__badge product-card__badge--hot">Badge</div>
                 </div>

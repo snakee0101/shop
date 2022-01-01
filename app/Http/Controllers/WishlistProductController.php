@@ -13,6 +13,14 @@ class WishlistProductController extends Controller
         $wishlist->products()->toggle($product);
     }
 
+    public function toggle_default(Request $request, Product $product)
+    {
+        auth()->user()->wishlists()
+                         ->firstWhere('is_active', true)
+                         ->products()
+                         ->toggle($product);
+    }
+
     public function set_default(Request $request, Wishlist $wishlist)
     {
         $wishlist->update(['is_active' => true]);

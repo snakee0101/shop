@@ -10,7 +10,7 @@
 <script>
 export default {
     name: "FavoriteButtonComponent",
-    props: ['user'],
+    props: ['user', 'product'],
     data() {
         return {
             logged_in_user: this.user ? this.user : {}
@@ -19,7 +19,7 @@ export default {
     methods: {
         toggleFavorite() {
             if(this.user) {
-                alert('toggle favorite');
+                axios.get(`/wishlist/toggle/${this.product.id}`);
             } else {
                 alert('The user is not logged in');
             }

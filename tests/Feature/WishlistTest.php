@@ -184,6 +184,17 @@ class WishlistTest extends TestCase
 
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
+        $user = User::factory()->has(Wishlist::factory()->inactive()->count(2), 'wishlists')->create();
+        $product = Product::factory()->create();
 
+        $default_wishlist = Wishlist::first();
+        $default_wishlist->update(['is_active' => true]);
+
+        $this->actingAs($user);
+        $r = $this->get( route('wishlist_product.toggle_default', $product) );
+       // dd( $r->content() );
+
+        $this->assertNotEmpty( $default_wishlist->fresh()->products );
+        $this->assertEmpty( Wishlist::all()->get(1)->fresh()->products );
     }
 }
