@@ -1,6 +1,6 @@
 <template>
     <div class="card mb-5">
-        <div class="modal fade" id="move_wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" :id="'move_wishlist_modal_' + wishlist_object.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -11,8 +11,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="wishlist_name">Name of new wishlist</label>
-                            <p>here will be the name input</p>
+                            <label for="wishlist_name">Name of new wishlist</label><br>
+                            <select class="form-control form-select" id="wishlist_name">
+                                <option v-for="w in other_wishlists">{{ w.name }}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -43,7 +45,7 @@
             <div class="d-flex align-content-center mb-3 p-4">
                 <div class="d-inline-block flex-grow-1" v-if="user_object.id">
                     <button class="btn btn-success" @click="selectAll()" v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
-                    <button class="btn btn-warning" data-toggle="modal" data-target="#move_wishlist_modal">Move</button>
+                    <button class="btn btn-warning" data-toggle="modal" :data-target="'#move_wishlist_modal_' + wishlist_object.id">Move</button>
                     <button class="btn btn-danger" @click="remove_from_wishlist()">Delete</button>
                     <button class="btn btn-info" @click="copyURL()">Copy URL</button>
                 </div>
@@ -93,6 +95,9 @@ export default {
         window.events.$on('removed_product_from_wishlist', this.remove_from_wishlist);
         window.events.$on('toggled_product_wishlist_selection', this.save_selection);
     },
+    mounted() {
+        this.other_wishlists = this.wishlists.filter( wishlist => wishlist.id !== this.wishlist_object.id );
+    },
     data() {
         return {
           'wishlist_object' : this.wishlist,
@@ -100,7 +105,8 @@ export default {
           'selected_product_ids' : [],
           'all_selected' : false,
           'is_renaming' : false,
-          'new_name' : this.wishlist.name
+          'new_name' : this.wishlist.name,
+          'other_wishlists' : {}
         };
     },
     computed: {
