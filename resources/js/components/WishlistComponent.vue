@@ -9,7 +9,7 @@
             <p class="d-inline-block m-0 pt-2 mr-auto" v-else>
                 {{ wishlist.name }} <span v-if="wishlist.is_active"> (Default)</span>
             </p>
-            <div class="d-inline-block">
+            <div class="d-inline-block" v-if="user_object.id">
                 <button class="btn btn-danger" @click="delete_wishlist()">Delete</button>
                 <button class="btn btn-warning" @click="start_rename()">Rename</button>
                 <button class="btn btn-info" @click="setDefault()">Set as default</button>
@@ -17,7 +17,7 @@
         </div>
         <div class="card-body p-0">
             <div class="d-flex align-content-center mb-3 p-4">
-                <div class="d-inline-block flex-grow-1">
+                <div class="d-inline-block flex-grow-1" v-if="user_object.id">
                     <button class="btn btn-success" @click="selectAll()" v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
                     <button class="btn btn-warning">Move</button>
                     <button class="btn btn-danger" @click="remove_from_wishlist()">Delete</button>
