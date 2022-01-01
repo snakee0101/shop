@@ -35,6 +35,6 @@ class WishlistController extends Controller
 
     public function destroy(Wishlist $wishlist)
     {
-        //
+        $wishlist->delete();
     }
 }

@@ -109,6 +109,16 @@ class WishlistTest extends TestCase
         $this->assertFalse( Wishlist::where('name', '!=', 'new name')->first()->is_active );
     }
 
+    public function test_wishlist_could_be_deleted()
+    {
+        $wishlist = Wishlist::factory()->create();
+        $this->assertDatabaseCount('wishlists', 1);
+        $this->actingAs($wishlist->owner);
+
+        $this->delete( route('wishlist.destroy', $wishlist->id) );
+        $this->assertDatabaseCount('wishlists', 0);
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 
