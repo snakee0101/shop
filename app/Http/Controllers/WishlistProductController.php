@@ -11,7 +11,6 @@ class WishlistProductController extends Controller
     public function toggle(Request $request, Wishlist $wishlist, Product $product)
     {
         $wishlist->products()->toggle($product);
-        return $product->fresh()->inDefaultWishlist;
     }
 
     public function toggle_default(Request $request, Product $product)
@@ -20,6 +19,8 @@ class WishlistProductController extends Controller
                          ->firstWhere('is_active', true)
                          ->products()
                          ->toggle($product);
+
+        return $product->fresh()->inDefaultWishlist;
     }
 
     public function set_default(Request $request, Wishlist $wishlist)
