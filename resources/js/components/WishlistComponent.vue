@@ -5,7 +5,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Move selected products to another wishlist</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" :ref="'close_' + wishlist_object.id">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -133,6 +133,8 @@ export default {
                    this.selected_product_ids.map(this.move_to_wishlist_callback);
                }
            }
+
+           this.$refs['close_' + this.wishlist_object.id].click();
        },
        move_to_wishlist_callback(product_id)
        {
