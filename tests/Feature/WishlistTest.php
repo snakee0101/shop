@@ -139,6 +139,20 @@ class WishlistTest extends TestCase
         ]);
     }
 
+    public function test_when_default_wishlist_is_deleted_other_random_wishlist_becomes_default()
+    {
+        $user = User::factory()->has(Wishlist::factory()->inactive()->count(3), 'wishlists')->create();
+        $this->actingAs($user);
+
+        $user->wishlists[0]->update(['is_active' => true]);
+
+        $this->delete( route('wishlist.destroy', $user->wishlists[0]->id) )
+             ->assertOk();
+
+        $user->refresh();
+        $this->assertTrue($user->wishlists[0]->is_active || $user->wishlists[1]->is_active);
+    }
+
     public function test_a_product_could_be_added_in_a_default_wishlist()
     {
 

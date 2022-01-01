@@ -35,6 +35,12 @@ class WishlistController extends Controller
 
     public function destroy(Wishlist $wishlist)
     {
+        if($wishlist->is_active)
+            Wishlist::firstWhere([
+                ['id', '!=', $wishlist->id],
+                ['user_id', auth()->id()]
+            ])->update(['is_active' => true]);
+
         $wishlist->delete();
     }
 }
