@@ -41,7 +41,7 @@
                     @foreach($items as $item)
                         <tr class="cart-table__row">
                             <td class="cart-table__column cart-table__column--image"><a href="#"><img
-                                        src="images/products/product-1.jpg" alt=""></a></td>
+                                        src="/images/products/product-1.jpg" alt=""></a></td>
                             <td class="cart-table__column cart-table__column--product"><a href="#"
                                                                                           class="cart-table__product-name">{{ $item['name'] }}</a>
                                 <ul class="cart-table__options">

@@ -129,7 +129,7 @@
                 <div class="product-card__actions">
                     <div class="product-card__prices">${{ product_object.price }}</div>
                     <div class="product-card__buttons">
-                        <cart-button-component></cart-button-component>
+                        <cart-button-component :product="product_object"></cart-button-component>
                         <button
                             class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
                             type="button">
