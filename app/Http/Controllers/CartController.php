@@ -25,6 +25,8 @@ class CartController extends Controller
 
     public function show()
     {
-        return view('cart');
+        return view('cart', [
+            'items' => \Cart::getContent()
+        ]);
     }
 }
