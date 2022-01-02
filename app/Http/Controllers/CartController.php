@@ -30,7 +30,7 @@ class CartController extends Controller
     public function show()
     {
         return view('cart', [
-            'items' => \Cart::getContent()
+            'items' => \Cart::getContent()->sortBy('name')
         ]);
     }
 
