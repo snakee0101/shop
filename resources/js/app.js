@@ -8,6 +8,7 @@ Vue.component('wishlist-component', require('./components/WishlistComponent').de
 Vue.component('product-card-component', require('./components/ProductCardComponent').default);
 Vue.component('new-wishlist-component', require('./components/NewWishlistComponent').default);
 Vue.component('product-cart-table-component', require('./components/ProductCartTableComponent').default);
+Vue.component('cart-totals-component', require('./components/CartTotalsComponent').default);
 
 window.events = new Vue();
 
