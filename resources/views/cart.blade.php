@@ -34,9 +34,6 @@
                         <input type="text" class="form-control" id="input-coupon-code" placeholder="Coupon Code">
                         <button type="submit" class="btn btn-primary">Apply Coupon</button>
                     </form>
-                    <div class="cart__buttons"><a href="{{ route('index-2') }}" class="btn btn-light">Continue
-                            Shopping</a> <a
-                            href="#" class="btn btn-primary cart__update-button">Update Cart</a></div>
                 </div>
                 <div class="row justify-content-end pt-5">
                     <div class="col-12 col-md-7 col-lg-6 col-xl-5">
