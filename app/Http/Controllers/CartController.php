@@ -34,12 +34,9 @@ class CartController extends Controller
         ]);
     }
 
-    public function destroy(Product $product)
+    public function destroy($cart_row_id)
     {
-        $item_row_id = \Cart::getContent()->search( function($item, $key) use ($product) {
-            return $item->associatedModel->id == $product->id;
-        } );
-
-        \Cart::remove($item_row_id);
+        \Cart::remove($cart_row_id);
+        return redirect()->route('cart.index');
     }
 }

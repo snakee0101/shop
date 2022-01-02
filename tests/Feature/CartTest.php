@@ -32,7 +32,7 @@ class CartTest extends TestCase
         $this->assertEquals(1, \Cart::getContent()->count() );
     }
 
-    public function test_item_could_be_deleted_from_cart_by_product_id()
+    public function test_item_could_be_deleted_from_cart_by_cart_row_id()
     {
         $product = Product::factory()->create();
         $product2 = Product::factory()->create();
@@ -57,7 +57,7 @@ class CartTest extends TestCase
 
         $this->assertTrue( $product->fresh()->in_cart );
 
-        $this->delete( route('cart.destroy', $product->id) );
+        $this->delete( route('cart.destroy', 1010101) );
         $this->assertFalse( $product->fresh()->in_cart );
         $this->assertTrue( $product2->fresh()->in_cart );
     }
