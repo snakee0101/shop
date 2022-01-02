@@ -74,6 +74,9 @@ export default {
             });
 
             this.$set(this.items[cart_row_id], 'quantity', initial_quantity + amount);
+
+            let observer_to_object = JSON.parse(JSON.stringify(this.items));
+            window.events.$emit('update_cart_total', observer_to_object);
         }
     }
 }

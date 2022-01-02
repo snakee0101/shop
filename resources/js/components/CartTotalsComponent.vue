@@ -35,7 +35,23 @@
 <script>
 export default {
     name: "CartTotalsComponent",
-    props: ['checkout_route', 'total']
+    props: ['checkout_route', 'initial_total'],
+    data() {
+        return {
+            'total': this.initial_total
+        };
+    },
+    mounted() {
+        window.events.$on('update_cart_total', this.update_total);
+    },
+    methods: {
+        update_total(cart_items_object)
+        {
+            this.total = Object.values(cart_items_object)
+                               .map( item => item.price * item.quantity )
+                               .reduce( (price_1, price_2) => price_1 + price_2 );
+        }
+    }
 }
 </script>
 

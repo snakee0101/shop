@@ -39,7 +39,7 @@
                     <div class="col-12 col-md-7 col-lg-6 col-xl-5">
                         <div class="card">
                             <cart-totals-component checkout_route="{{ route('checkout') }}"
-                                                   :total="{{ \Cart::getTotal() }}">
+                                                   :initial_total="{{ \Cart::getTotal() }}">
 
                             </cart-totals-component>
                         </div>
