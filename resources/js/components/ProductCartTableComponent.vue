@@ -27,8 +27,8 @@
             <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                 <div class="input-number"><input class="form-control input-number__input" type="number"
                                                  min="1" :value="item.quantity">
-                    <div class="input-number__add"></div>
-                    <div class="input-number__sub"></div>
+                    <div class="input-number__add" @click="update_quantity(+1, row_id, item)"></div>
+                    <div class="input-number__sub" @click="update_quantity(-1, row_id, item)"></div>
                 </div>
             </td>
             <td class="cart-table__column cart-table__column--total" data-title="Total">${{
@@ -52,9 +52,17 @@ export default {
     name: "ProductCartRowComponent",
     props: ['destroy_path', 'items'],
     methods: {
-        delete_item(cart_row_id) {
+        delete_item(cart_row_id)
+        {
             axios.delete(`/cart/delete/${cart_row_id}`)
                 .finally(() => location.reload());
+        },
+        update_quantity(amount, cart_row_id, item)
+        {
+            axios.post(`/cart/update_quantity/${cart_row_id}`, {
+                'amount' : amount
+            });
+            item.quantity += amount;
         }
     }
 }
