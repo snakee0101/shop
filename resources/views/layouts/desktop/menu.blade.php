@@ -532,13 +532,11 @@
                     </div>
                     <div class="indicator"><a href="{{ route('wishlist.index') }}" class="indicator__button"><span
                                 class="indicator__area"><svg width="20px" height="20px"><use
-                                        xlink:href="images/sprite.svg#heart-20"></use></svg> <span
-                                    class="indicator__value">0</span></span></a></div>
+                                        xlink:href="images/sprite.svg#heart-20"></use></svg></span></a></div>
                     <div class="indicator"><a href="{{ route('cart.index') }}"
                                                                         class="indicator__button"><span
                                 class="indicator__area"><svg width="20px" height="20px"><use
-                                        xlink:href="images/sprite.svg#cart-20"></use></svg> <span
-                                    class="indicator__value">3</span></span></a>
+                                        xlink:href="images/sprite.svg#cart-20"></use></svg></span></a>
                     </div>
                 </div>
             </div>
