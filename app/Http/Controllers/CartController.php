@@ -12,15 +12,18 @@ class CartController extends Controller
     public function add(Product $product, $quantity)
     {
         $unique_micro_timestamp = intval(\microtime(true)*10000); //it is unique cart id
+        $product_ids = \Cart::getContent()->map( fn($item) => $item->associatedModel->id );
 
-        \Cart::add(array(
-            'id' => $unique_micro_timestamp,
-            'name' => $product->name,
-            'price' => $product->price,
-            'quantity' => $quantity,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
+        if( !$product_ids->contains($product->id) ) { //item could be added to cart only once
+            \Cart::add(array(
+                'id' => $unique_micro_timestamp,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $quantity,
+                'attributes' => array(),
+                'associatedModel' => $product
+            ));
+        }
     }
 
     public function show()

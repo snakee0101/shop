@@ -19,4 +19,16 @@ class CartTest extends TestCase
 
         $this->assertFalse( \Cart::getContent()->isEmpty() );
     }
+
+    public function test_items_could_not_be_duplicated_when_added()
+    {
+        $this->assertTrue( \Cart::getContent()->isEmpty() );
+
+        $product = Product::factory()->create();
+
+        $this->get( route('cart.add', [$product->id, 1]) );
+        $this->get( route('cart.add', [$product->id, 3]) );
+
+        $this->assertEquals(1, \Cart::getContent()->count() );
+    }
 }
