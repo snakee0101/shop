@@ -22,4 +22,9 @@ class CartController extends Controller
             'associatedModel' => $product
         ));
     }
+
+    public function show()
+    {
+        return view('cart');
+    }
 }
