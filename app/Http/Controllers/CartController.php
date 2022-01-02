@@ -33,4 +33,13 @@ class CartController extends Controller
             'items' => \Cart::getContent()
         ]);
     }
+
+    public function destroy(Product $product)
+    {
+        $item_row_id = \Cart::getContent()->search( function($item, $key) use ($product) {
+            return $item->associatedModel->id == $product->id;
+        } );
+
+        \Cart::remove($item_row_id);
+    }
 }

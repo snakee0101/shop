@@ -31,4 +31,34 @@ class CartTest extends TestCase
 
         $this->assertEquals(1, \Cart::getContent()->count() );
     }
+
+    public function test_item_could_be_deleted_from_cart_by_product_id()
+    {
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        \Cart::add(array(
+            'id' => 1010101,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
+
+        \Cart::add(array(
+            'id' => 1001,
+            'name' => $product2->name,
+            'price' => $product2->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product2
+        ));
+
+        $this->assertTrue( $product->fresh()->in_cart );
+
+        $this->delete( route('cart.destroy', $product->id) );
+        $this->assertFalse( $product->fresh()->in_cart );
+        $this->assertTrue( $product2->fresh()->in_cart );
+    }
 }
