@@ -9,12 +9,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('index-2') }}">Home</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item"><a href="#">Breadcrumb</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
@@ -61,7 +61,7 @@
                             <td class="cart-table__column cart-table__column--remove">
                                 <button type="button" class="btn btn-light btn-sm btn-svg-icon">
                                     <svg width="12px" height="12px">
-                                        <use xlink:href="images/sprite.svg#cross-12"></use>
+                                        <use xlink:href="/images/sprite.svg#cross-12"></use>
                                     </svg>
                                 </button>
                             </td>
