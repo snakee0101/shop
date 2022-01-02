@@ -26,53 +26,9 @@
         </div>
         <div class="cart block">
             <div class="container">
-                <table class="cart__table cart-table">
-                    <thead class="cart-table__head">
-                    <tr class="cart-table__row">
-                        <th class="cart-table__column cart-table__column--image">Image</th>
-                        <th class="cart-table__column cart-table__column--product">Product</th>
-                        <th class="cart-table__column cart-table__column--price">Price</th>
-                        <th class="cart-table__column cart-table__column--quantity">Quantity</th>
-                        <th class="cart-table__column cart-table__column--total">Total</th>
-                        <th class="cart-table__column cart-table__column--remove"></th>
-                    </tr>
-                    </thead>
-                    <tbody class="cart-table__body">
-                    @foreach($items as $item)
-                        <tr class="cart-table__row">
-                            <td class="cart-table__column cart-table__column--image"><a href="#"><img
-                                        src="/images/products/product-1.jpg" alt=""></a></td>
-                            <td class="cart-table__column cart-table__column--product"><a href="#"
-                                                                                          class="cart-table__product-name">{{ $item['name'] }}</a>
-                                <ul class="cart-table__options">
-                                    <li>Color: Yellow</li>
-                                    <li>Material: Aluminium</li>
-                                </ul>
-                            </td>
-                            <td class="cart-table__column cart-table__column--price" data-title="Price">${{ $item['price'] }}</td>
-                            <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
-                                <div class="input-number"><input class="form-control input-number__input" type="number"
-                                                                 min="1" value="{{ $item['quantity'] }}">
-                                    <div class="input-number__add"></div>
-                                    <div class="input-number__sub"></div>
-                                </div>
-                            </td>
-                            <td class="cart-table__column cart-table__column--total" data-title="Total">${{ $item['price']*$item['quantity'] }}</td>
-                            <td class="cart-table__column cart-table__column--remove">
-                                <form action="{{ route('cart.destroy', $item['id']) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-light btn-sm btn-svg-icon">
-                                        <svg width="12px" height="12px">
-                                            <use xlink:href="/images/sprite.svg#cross-12"></use>
-                                        </svg>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <product-cart-table-component :items="{{ $items }}">
+
+                </product-cart-table-component>
                 <div class="cart__actions">
                     <form class="cart__coupon-form"><label for="input-coupon-code" class="sr-only">Password</label>
                         <input type="text" class="form-control" id="input-coupon-code" placeholder="Coupon Code">
@@ -90,13 +46,13 @@
                                     <thead class="cart__totals-header">
                                     <tr>
                                         <th>Subtotal</th>
-                                        <td>$5,877.00</td>
+                                        <td>$0.00</td>
                                     </tr>
                                     </thead>
                                     <tbody class="cart__totals-body">
                                     <tr>
                                         <th>Shipping</th>
-                                        <td>$25.00
+                                        <td>$0.00
                                             <div class="cart__calc-shipping"><a href="#">Calculate Shipping</a></div>
                                         </td>
                                     </tr>
@@ -108,7 +64,7 @@
                                     <tfoot class="cart__totals-footer">
                                     <tr>
                                         <th>Total</th>
-                                        <td>$5,902.00</td>
+                                        <td>$0.00</td>
                                     </tr>
                                     </tfoot>
                                 </table>

@@ -7,6 +7,7 @@ Vue.component('favorite-button-component', require('./components/FavoriteButtonC
 Vue.component('wishlist-component', require('./components/WishlistComponent').default);
 Vue.component('product-card-component', require('./components/ProductCardComponent').default);
 Vue.component('new-wishlist-component', require('./components/NewWishlistComponent').default);
+Vue.component('product-cart-table-component', require('./components/ProductCartTableComponent').default);
 
 window.events = new Vue();
 
