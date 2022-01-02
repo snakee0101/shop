@@ -43,22 +43,21 @@
                             <td class="cart-table__column cart-table__column--image"><a href="#"><img
                                         src="images/products/product-1.jpg" alt=""></a></td>
                             <td class="cart-table__column cart-table__column--product"><a href="#"
-                                                                                          class="cart-table__product-name">Electric
-                                    Planer Brandix KL370090G 300 Watts</a>
+                                                                                          class="cart-table__product-name">{{ $item['name'] }}</a>
                                 <ul class="cart-table__options">
                                     <li>Color: Yellow</li>
                                     <li>Material: Aluminium</li>
                                 </ul>
                             </td>
-                            <td class="cart-table__column cart-table__column--price" data-title="Price">$699.00</td>
+                            <td class="cart-table__column cart-table__column--price" data-title="Price">${{ $item['price'] }}</td>
                             <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                                 <div class="input-number"><input class="form-control input-number__input" type="number"
-                                                                 min="1" value="2">
+                                                                 min="1" value="{{ $item['quantity'] }}">
                                     <div class="input-number__add"></div>
                                     <div class="input-number__sub"></div>
                                 </div>
                             </td>
-                            <td class="cart-table__column cart-table__column--total" data-title="Total">$1,398.00</td>
+                            <td class="cart-table__column cart-table__column--total" data-title="Total">${{ $item['price']*$item['quantity'] }}</td>
                             <td class="cart-table__column cart-table__column--remove">
                                 <button type="button" class="btn btn-light btn-sm btn-svg-icon">
                                     <svg width="12px" height="12px">
