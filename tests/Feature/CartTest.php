@@ -61,4 +61,26 @@ class CartTest extends TestCase
         $this->assertFalse( $product->fresh()->in_cart );
         $this->assertTrue( $product2->fresh()->in_cart );
     }
+
+    public function test_quantity_of_a_product_could_be_updated()
+    {
+        $product = Product::factory()->create();
+
+        \Cart::add(array(
+            'id' => 1010101,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'attributes' => array(),
+            'associatedModel' => $product
+        ));
+
+        $this->assertTrue( $product->fresh()->in_cart );
+
+        $this->post( route('cart.update_quantity', 1010101), ['amount' => +1] );
+        $this->assertEquals(2, \Cart::getContent()->first()['quantity']);
+
+        $this->post( route('cart.update_quantity', 1010101), ['amount' => -1] );
+        $this->assertEquals(1, \Cart::getContent()->first()['quantity']);
+    }
 }

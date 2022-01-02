@@ -34,6 +34,13 @@ class CartController extends Controller
         ]);
     }
 
+    public function update_quantity($cart_row_id)
+    {
+        \Cart::update($cart_row_id, [
+            'quantity' => request('amount'),
+        ]);
+    }
+
     public function destroy($cart_row_id)
     {
         \Cart::remove($cart_row_id);

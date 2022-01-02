@@ -35,6 +35,7 @@ Route::post('/wishlist/{wishlist}/{product}/move', [\App\Http\Controllers\Wishli
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show'])->name('cart.index');
 Route::get('/cart/add/{product}/{quantity}', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/delete/{cart_row_id}', [\App\Http\Controllers\CartController::class, 'destroy'])->name('cart.destroy');
+Route::post('/cart/update_quantity/{cart_row_id}', [\App\Http\Controllers\CartController::class, 'update_quantity'])->name('cart.update_quantity');
 
 Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
