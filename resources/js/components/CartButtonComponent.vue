@@ -13,7 +13,7 @@ export default {
     props: ['product'],
     data() {
         return {
-            'in_cart' : false
+            'in_cart' : this.product.inCart
         };
     },
     methods: {
