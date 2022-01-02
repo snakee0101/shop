@@ -28,6 +28,9 @@ class Product extends Model
 
     public function getInDefaultWishlistAttribute()
     {
-        return $this->inWishlist( auth()->user()->wishlists()->firstWhere('is_active', true) );
+        if(auth()->user())
+            return $this->inWishlist( auth()->user()->wishlists()->firstWhere('is_active', true) );
+
+        return false;
     }
 }

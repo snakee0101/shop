@@ -150,8 +150,8 @@
         props: ['product', 'user', 'InFavorites', 'wishlist_object'],
         data() {
             return {
-                product_object: JSON.parse(this.product),
-                user_object: JSON.parse(this.user),
+                product_object: this.product ? JSON.parse(this.product) : {},
+                user_object: this.user ? JSON.parse(this.user) : {},
                 selected: false
             };
         },
