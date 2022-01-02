@@ -11,7 +11,8 @@ class Product extends Model
     protected $appends = ['inDefaultWishlist', 'inCart'];
 
     protected $casts = [
-        'price' => 'float'
+        'price' => 'float',
+        'quantity' => 'integer'
     ];
 
     public function category()

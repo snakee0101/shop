@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody class="cart-table__body">
-        <tr class="cart-table__row" v-for="(item, row_id) in items">
+        <tr class="cart-table__row" v-for="(item, row_id) in items_object">
             <td class="cart-table__column cart-table__column--image"><a href="#"><img
                 src="/images/products/product-1.jpg" alt=""></a></td>
             <td class="cart-table__column cart-table__column--product"><a href="#"
@@ -51,6 +51,11 @@
 export default {
     name: "ProductCartRowComponent",
     props: ['destroy_path', 'items'],
+    data() {
+        return {
+            'items_object' : this.items
+        }
+    },
     methods: {
         delete_item(cart_row_id)
         {
@@ -59,10 +64,16 @@ export default {
         },
         update_quantity(amount, cart_row_id, item)
         {
+            let initial_quantity = this.items[cart_row_id].quantity;
+
+            if(initial_quantity + amount < 1) //check against 0
+                return;
+
             axios.post(`/cart/update_quantity/${cart_row_id}`, {
                 'amount' : amount
             });
-            item.quantity += amount;
+
+            this.$set(this.items[cart_row_id], 'quantity', initial_quantity + amount);
         }
     }
 }
