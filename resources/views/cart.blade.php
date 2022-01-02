@@ -22,6 +22,7 @@
                     </nav>
                 </div>
                 <div class="page-header__title"><h1>Shopping Cart</h1></div>
+                {{ dd( \Cart::getContent() ) }}
             </div>
         </div>
         <div class="cart block">

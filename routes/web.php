@@ -33,6 +33,8 @@ Route::post('/wishlist/{wishlist}/{product}/move', [\App\Http\Controllers\Wishli
 
 
 Route::view('/cart', 'cart')->name('cart.index');
+Route::get('/cart/add/{product}/{quantity}', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+
 Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
 
