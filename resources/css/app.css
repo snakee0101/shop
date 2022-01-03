@@ -4,3 +4,7 @@
 .product-tabs .product-tabs__content {
     padding: 40px 40px!important;
 }
+
+.wishlist_toggle:hover svg {
+    stroke: #fff!important;
+}

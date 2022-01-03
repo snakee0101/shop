@@ -126,12 +126,7 @@
 
                                         </cart-button-quantity-component>
                                         <div class="product__actions-item product__actions-item--wishlist">
-                                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
-                                                    data-toggle="tooltip" title="Wishlist">
-                                                <svg width="16px" height="16px">
-                                                    <use xlink:href="/images/sprite.svg#wishlist-16"></use>
-                                                </svg>
-                                            </button>
+                                            <favorite-button-component :user="{{ auth()->user() }}" :product="{{ $product }}" :big-sized="true"></favorite-button-component>
                                         </div>
                                         <div class="product__actions-item product__actions-item--compare">
                                             <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
