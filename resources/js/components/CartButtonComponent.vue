@@ -1,8 +1,8 @@
 <template>
-    <button @click="addToCart()" disabled class="btn btn-dark product-card__addtocart" type="button" v-if="in_cart">
+    <button disabled class="btn btn-dark btn-lg product-card__addtocart" type="button" v-if="in_cart">
         In Cart
     </button>
-    <button @click="addToCart()" class="btn btn-primary product-card__addtocart" type="button" v-else>
+    <button @click="addToCart()" class="btn btn-primary btn-lg product-card__addtocart" type="button" v-else>
         Add To Cart
     </button>
 </template>

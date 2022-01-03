@@ -132,7 +132,7 @@
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
-                                            <button class="btn btn-primary btn-lg">Add to cart</button>
+                                            <cart-button-component :product="{{ $product }}"></cart-button-component>
                                         </div>
                                         <div class="product__actions-item product__actions-item--wishlist">
                                             <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
