@@ -122,18 +122,9 @@
                                 <div class="form-group product__option"><label class="product__option-label"
                                                                                for="product-quantity">Quantity</label>
                                     <div class="product__actions">
-                                        <div class="product__actions-item">
-                                            <div class="input-number product__quantity"><input id="product-quantity"
-                                                                                               class="input-number__input form-control form-control-lg"
-                                                                                               type="number" min="1"
-                                                                                               value="1">
-                                                <div class="input-number__add"></div>
-                                                <div class="input-number__sub"></div>
-                                            </div>
-                                        </div>
-                                        <div class="product__actions-item product__actions-item--addtocart">
-                                            <cart-button-component :product="{{ $product }}"></cart-button-component>
-                                        </div>
+                                        <cart-button-quantity-component :product="{{ $product }}">
+
+                                        </cart-button-quantity-component>
                                         <div class="product__actions-item product__actions-item--wishlist">
                                             <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
                                                     data-toggle="tooltip" title="Wishlist">
