@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <title>Stroyka</title>
-    <link rel="icon" type="image/png" href="images/favicon.png"><!-- fonts -->
+    <link rel="icon" type="image/png" href="/images/favicon.png"><!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i"><!-- css -->
     <link rel="stylesheet" href="vendor/bootstrap-4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/owl-carousel-2.3.4/assets/owl.carousel.min.css">
@@ -39,7 +39,7 @@
             <div class="mobilemenu__title">Menu</div>
             <button type="button" class="mobilemenu__close">
                 <svg width="20px" height="20px">
-                    <use xlink:href="images/sprite.svg#cross-20"></use>
+                    <use xlink:href="/images/sprite.svg#cross-20"></use>
                 </svg>
             </button>
         </div>
@@ -51,7 +51,7 @@
                                                              class="mobile-links__item-link">Home</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -74,7 +74,7 @@
                     <div class="mobile-links__item-title"><a href="#" class="mobile-links__item-link">Categories</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -85,7 +85,7 @@
                                         Tools</a>
                                     <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                         <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                                         </svg>
                                     </button>
                                 </div>
@@ -119,7 +119,7 @@
                                         Tools</a>
                                     <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                         <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                                         </svg>
                                     </button>
                                 </div>
@@ -166,7 +166,7 @@
                                                              class="mobile-links__item-link">Shop</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -177,7 +177,7 @@
                                                                          class="mobile-links__item-link">Shop Grid</a>
                                     <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                         <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                                         </svg>
                                     </button>
                                 </div>
@@ -216,7 +216,7 @@
                                                                          class="mobile-links__item-link">Product</a>
                                     <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                         <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                            <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                                         </svg>
                                     </button>
                                 </div>
@@ -276,7 +276,7 @@
                     <div class="mobile-links__item-title"><a href="blog-classic.html" class="mobile-links__item-link">Blog</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -319,7 +319,7 @@
                     <div class="mobile-links__item-title"><a href="#" class="mobile-links__item-link">Pages</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -370,7 +370,7 @@
                     <div class="mobile-links__item-title"><a data-collapse-trigger class="mobile-links__item-link">Currency</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -399,7 +399,7 @@
                     <div class="mobile-links__item-title"><a data-collapse-trigger class="mobile-links__item-link">Language</a>
                         <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                             <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-12x7"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-12x7"></use>
                             </svg>
                         </button>
                     </div>
@@ -442,7 +442,7 @@
                     <div class="mobile-header__body">
                         <button class="mobile-header__menu-button">
                             <svg width="18px" height="14px">
-                                <use xlink:href="images/sprite.svg#menu-18x14"></use>
+                                <use xlink:href="/images/sprite.svg#menu-18x14"></use>
                             </svg>
                         </button>
                         <a class="mobile-header__logo" href="{{ route('index-2') }}">
@@ -474,13 +474,13 @@
                                 <button class="mobile-header__search-button mobile-header__search-button--submit"
                                         type="submit">
                                     <svg width="20px" height="20px">
-                                        <use xlink:href="images/sprite.svg#search-20"></use>
+                                        <use xlink:href="/images/sprite.svg#search-20"></use>
                                     </svg>
                                 </button>
                                 <button class="mobile-header__search-button mobile-header__search-button--close"
                                         type="button">
                                     <svg width="20px" height="20px">
-                                        <use xlink:href="images/sprite.svg#cross-20"></use>
+                                        <use xlink:href="/images/sprite.svg#cross-20"></use>
                                     </svg>
                                 </button>
                                 <div class="mobile-header__search-body"></div>
@@ -490,17 +490,17 @@
                             <div class="indicator indicator--mobile-search indicator--mobile d-sm-none">
                                 <button class="indicator__button"><span class="indicator__area"><svg width="20px"
                                                                                                      height="20px"><use
-                                                xlink:href="images/sprite.svg#search-20"></use></svg></span></button>
+                                                xlink:href="/images/sprite.svg#search-20"></use></svg></span></button>
                             </div>
                             <div class="indicator indicator--mobile d-sm-flex d-none"><a href="{{ route('wishlist.index') }}"
                                                                                          class="indicator__button"><span
                                         class="indicator__area"><svg width="20px" height="20px"><use
-                                                xlink:href="images/sprite.svg#heart-20"></use></svg> <span
+                                                xlink:href="/images/sprite.svg#heart-20"></use></svg> <span
                                             class="indicator__value">0</span></span></a></div>
                             <div class="indicator indicator--mobile"><a href="{{ route('cart.index') }}"
                                                                         class="indicator__button"><span
                                         class="indicator__area"><svg width="20px" height="20px"><use
-                                                xlink:href="images/sprite.svg#cart-20"></use></svg> <span
+                                                xlink:href="/images/sprite.svg#cart-20"></use></svg> <span
                                             class="indicator__value">3</span></span></a></div>
                         </div>
                     </div>
@@ -529,7 +529,7 @@
                             <div class="topbar-dropdown">
                                 <button class="topbar-dropdown__btn" type="button">My Account
                                     <svg width="7px" height="5px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                        <use xlink:href="/images/sprite.svg#arrow-rounded-down-7x5"></use>
                                     </svg>
                                 </button>
                                 <div class="topbar-dropdown__body"><!-- .menu -->
@@ -546,7 +546,7 @@
                                 <button class="topbar-dropdown__btn" type="button">Currency: <span
                                         class="topbar__item-value">USD</span>
                                     <svg width="7px" height="5px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                        <use xlink:href="/images/sprite.svg#arrow-rounded-down-7x5"></use>
                                     </svg>
                                 </button>
                                 <div class="topbar-dropdown__body"><!-- .menu -->
@@ -563,35 +563,35 @@
                                 <button class="topbar-dropdown__btn" type="button">Language: <span
                                         class="topbar__item-value">EN</span>
                                     <svg width="7px" height="5px">
-                                        <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                                        <use xlink:href="/images/sprite.svg#arrow-rounded-down-7x5"></use>
                                     </svg>
                                 </button>
                                 <div class="topbar-dropdown__body"><!-- .menu -->
                                     <ul class="menu menu--layout--topbar menu--with-icons">
                                         <li><a href="#">
                                                 <div class="menu__icon"><img
-                                                        srcset="images/languages/language-1.png, images/languages/language-1@2x.png 2x"
-                                                        src="images/languages/language-1.png" alt=""></div>
+                                                        srcset="/images/languages/language-1.png, images/languages/language-1@2x.png 2x"
+                                                        src="/images/languages/language-1.png" alt=""></div>
                                                 English</a></li>
                                         <li><a href="#">
                                                 <div class="menu__icon"><img
-                                                        srcset="images/languages/language-2.png, images/languages/language-2@2x.png 2x"
-                                                        src="images/languages/language-2.png" alt=""></div>
+                                                        srcset="/images/languages/language-2.png, images/languages/language-2@2x.png 2x"
+                                                        src="/images/languages/language-2.png" alt=""></div>
                                                 French</a></li>
                                         <li><a href="#">
                                                 <div class="menu__icon"><img
-                                                        srcset="images/languages/language-3.png, images/languages/language-3@2x.png 2x"
-                                                        src="images/languages/language-3.png" alt=""></div>
+                                                        srcset="/images/languages/language-3.png, images/languages/language-3@2x.png 2x"
+                                                        src="/images/languages/language-3.png" alt=""></div>
                                                 German</a></li>
                                         <li><a href="#">
                                                 <div class="menu__icon"><img
-                                                        srcset="images/languages/language-4.png, images/languages/language-4@2x.png 2x"
-                                                        src="images/languages/language-4.png" alt=""></div>
+                                                        srcset="/images/languages/language-4.png, images/languages/language-4@2x.png 2x"
+                                                        src="/images/languages/language-4.png" alt=""></div>
                                                 Russian</a></li>
                                         <li><a href="#">
                                                 <div class="menu__icon"><img
-                                                        srcset="images/languages/language-5.png, images/languages/language-5@2x.png 2x"
-                                                        src="images/languages/language-5.png" alt=""></div>
+                                                        srcset="/images/languages/language-5.png, images/languages/language-5@2x.png 2x"
+                                                        src="/images/languages/language-5.png" alt=""></div>
                                                 Italian</a></li>
                                     </ul><!-- .menu / end --></div>
                             </div>
@@ -614,7 +614,7 @@
                                                                      autocomplete="off">
                             <button class="search__button" type="submit">
                                 <svg width="20px" height="20px">
-                                    <use xlink:href="images/sprite.svg#search-20"></use>
+                                    <use xlink:href="/images/sprite.svg#search-20"></use>
                                 </svg>
                             </button>
                             <div class="search__border"></div>
@@ -638,7 +638,7 @@
                                                 <li class="departments__item"><a href="#">Power Tools
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="departments__megamenu departments__megamenu--xl">
@@ -755,7 +755,7 @@
                                                 <li class="departments__item"><a href="#">Hand Tools
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="departments__megamenu departments__megamenu--lg">
@@ -841,7 +841,7 @@
                                                 <li class="departments__item"><a href="#">Machine Tools
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="departments__megamenu departments__megamenu--nl">
@@ -906,7 +906,7 @@
                                                 <li class="departments__item"><a href="#">Building Supplies
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="departments__megamenu departments__megamenu--sm">
@@ -953,7 +953,7 @@
                                                 <li class="departments__item departments__item--menu"><a href="#">Electrical
                                                         <svg class="departments__link-arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="departments__menu"><!-- .menu -->
@@ -961,7 +961,7 @@
                                                             <li><a href="#">Soldering Equipment
                                                                     <svg class="menu__arrow" width="6px" height="9px">
                                                                         <use
-                                                                            xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                            xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                                     </svg>
                                                                 </a>
                                                                 <div class="menu__submenu"><!-- .menu -->
@@ -992,11 +992,11 @@
                                     </div>
                                     <button class="departments__button">
                                         <svg class="departments__button-icon" width="18px" height="14px">
-                                            <use xlink:href="images/sprite.svg#menu-18x14"></use>
+                                            <use xlink:href="/images/sprite.svg#menu-18x14"></use>
                                         </svg>
                                         Shop By Category
                                         <svg class="departments__button-arrow" width="9px" height="6px">
-                                            <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                                            <use xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use>
                                         </svg>
                                     </button>
                                 </div><!-- .departments / end --></div><!-- .nav-links -->
@@ -1005,7 +1005,7 @@
                                     <li class="nav-links__item nav-links__item--with-submenu"><a
                                             href="{{ route('index-2') }}"><span>Home <svg class="nav-links__arrow"
                                                                                           width="9px" height="6px"><use
-                                                        xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                                        xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                                         <div class="nav-links__menu"><!-- .menu -->
                                             <ul class="menu menu--layout--classic">
                                                 <li><a href="{{ route('index-2') }}">Home 1</a></li>
@@ -1014,7 +1014,7 @@
                                     </li>
                                     <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Megamenu <svg
                                                     class="nav-links__arrow" width="9px" height="6px"><use
-                                                        xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                                        xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                                         <div class="nav-links__megamenu nav-links__megamenu--size--nl">
                                             <!-- .megamenu -->
                                             <div class="megamenu">
@@ -1092,13 +1092,13 @@
                                     <li class="nav-links__item nav-links__item--with-submenu"><a
                                             href="shop-grid-3-columns-sidebar.html"><span>Shop <svg
                                                     class="nav-links__arrow" width="9px" height="6px"><use
-                                                        xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                                        xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                                         <div class="nav-links__menu"><!-- .menu -->
                                             <ul class="menu menu--layout--classic">
                                                 <li><a href="shop-grid-3-columns-sidebar.html">Shop Grid
                                                         <svg class="menu__arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="menu__submenu"><!-- .menu -->
@@ -1116,7 +1116,7 @@
                                                 <li><a href="product.html">Product
                                                         <svg class="menu__arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="menu__submenu"><!-- .menu -->
@@ -1137,7 +1137,7 @@
                                     <li class="nav-links__item nav-links__item--with-submenu"><a
                                             href="blog-classic.html"><span>Blog <svg class="nav-links__arrow"
                                                                                      width="9px" height="6px"><use
-                                                        xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                                        xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                                         <div class="nav-links__menu"><!-- .menu -->
                                             <ul class="menu menu--layout--classic">
                                                 <li><a href="blog-classic.html">Blog Classic</a></li>
@@ -1150,7 +1150,7 @@
                                     </li>
                                     <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Pages <svg
                                                     class="nav-links__arrow" width="9px" height="6px"><use
-                                                        xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                                        xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                                         <div class="nav-links__menu"><!-- .menu -->
                                             <ul class="menu menu--layout--classic">
                                                 <li><a href="about-us.html">About Us</a></li>
@@ -1173,19 +1173,19 @@
                             <div class="nav-panel__indicators">
                                 <div class="indicator"><a href="{{ route('wishlist.index') }}" class="indicator__button"><span
                                             class="indicator__area"><svg width="20px" height="20px"><use
-                                                    xlink:href="images/sprite.svg#heart-20"></use></svg> <span
+                                                    xlink:href="/images/sprite.svg#heart-20"></use></svg> <span
                                                 class="indicator__value">0</span></span></a></div>
                                 <div class="indicator indicator--trigger--click"><a href="{{ route('cart.index') }}"
                                                                                     class="indicator__button"><span
                                             class="indicator__area"><svg width="20px" height="20px"><use
-                                                    xlink:href="images/sprite.svg#cart-20"></use></svg> <span
+                                                    xlink:href="/images/sprite.svg#cart-20"></use></svg> <span
                                                 class="indicator__value">3</span></span></a>
                                     <div class="indicator__dropdown"><!-- .dropcart -->
                                         <div class="dropcart">
                                             <div class="dropcart__products-list">
                                                 <div class="dropcart__product">
                                                     <div class="dropcart__product-image"><a href="product.html"><img
-                                                                src="images/products/product-1.jpg" alt=""></a></div>
+                                                                src="/images/products/product-1.jpg" alt=""></a></div>
                                                     <div class="dropcart__product-info">
                                                         <div class="dropcart__product-name"><a href="product.html">Electric
                                                                 Planer Brandix KL370090G 300 Watts</a></div>
@@ -1200,13 +1200,13 @@
                                                     <button type="button"
                                                             class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                         <svg width="10px" height="10px">
-                                                            <use xlink:href="images/sprite.svg#cross-10"></use>
+                                                            <use xlink:href="/images/sprite.svg#cross-10"></use>
                                                         </svg>
                                                     </button>
                                                 </div>
                                                 <div class="dropcart__product">
                                                     <div class="dropcart__product-image"><a href="product.html"><img
-                                                                src="images/products/product-2.jpg" alt=""></a></div>
+                                                                src="/images/products/product-2.jpg" alt=""></a></div>
                                                     <div class="dropcart__product-info">
                                                         <div class="dropcart__product-name"><a href="product.html">Undefined
                                                                 Tool IRadix DPS3000SY 2700 watts</a></div>
@@ -1217,13 +1217,13 @@
                                                     <button type="button"
                                                             class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                         <svg width="10px" height="10px">
-                                                            <use xlink:href="images/sprite.svg#cross-10"></use>
+                                                            <use xlink:href="/images/sprite.svg#cross-10"></use>
                                                         </svg>
                                                     </button>
                                                 </div>
                                                 <div class="dropcart__product">
                                                     <div class="dropcart__product-image"><a href="product.html"><img
-                                                                src="images/products/product-5.jpg" alt=""></a></div>
+                                                                src="/images/products/product-5.jpg" alt=""></a></div>
                                                     <div class="dropcart__product-info">
                                                         <div class="dropcart__product-name"><a href="product.html">Brandix
                                                                 Router Power Tool 2017ERXPK</a></div>
@@ -1237,7 +1237,7 @@
                                                     <button type="button"
                                                             class="dropcart__product-remove btn btn-light btn-sm btn-svg-icon">
                                                         <svg width="10px" height="10px">
-                                                            <use xlink:href="images/sprite.svg#cross-10"></use>
+                                                            <use xlink:href="/images/sprite.svg#cross-10"></use>
                                                         </svg>
                                                     </button>
                                                 </div>
@@ -1283,12 +1283,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('index-2') }}">Home</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item"><a href="#">Breadcrumb</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Post</li>
@@ -1310,7 +1310,7 @@
                                 <div class="post-header__meta-item"><a href="#">4 Comments</a></div>
                             </div>
                         </div>
-                        <div class="post__featured"><a href="#"><img src="images/posts/post-featured.jpg" alt=""></a>
+                        <div class="post__featured"><a href="#"><img src="/images/posts/post-featured.jpg" alt=""></a>
                         </div>
                         <div class="post__content typography typography--expanded"><p>Vestibulum sagittis justo sit amet
                                 nisl semper, et pulvinar elit maximus. Morbi interdum velit quis magna placerat lobortis
@@ -1334,7 +1334,7 @@
                             <p>Vestibulum sagittis justo sit amet nisl semper, et pulvinar elit maximus. Morbi interdum
                                 velit quis magna placerat lobortis eget pharetra magna.</p>
                             <p><strong>Nulla fringilla:</strong> <a href="#">Donec aliquet at felis et dignissim</a></p>
-                            <figure><a href="#"><img src="images/posts/post-featured.jpg" alt=""></a>
+                            <figure><a href="#"><img src="/images/posts/post-featured.jpg" alt=""></a>
                                 <figcaption>Nunc viverra, dui nec commodo dignissim, libero arcu.</figcaption>
                             </figure>
                             <p>Vestibulum non varius lectus. Cras vel elit id ligula laoreet imperdiet. Mauris quis
@@ -1384,7 +1384,7 @@
                                 </div>
                             </div>
                             <div class="post-author">
-                                <div class="post-author__avatar"><a href="#"><img src="images/avatars/avatar-1.jpg"
+                                <div class="post-author__avatar"><a href="#"><img src="/images/avatars/avatar-1.jpg"
                                                                                   alt=""></a></div>
                                 <div class="post-author__info">
                                     <div class="post-author__name"><a href="#">Jessica Moore</a></div>
@@ -1399,7 +1399,7 @@
                             <div class="related-posts">
                                 <div class="related-posts__list">
                                     <div class="related-posts__item post-card post-card--layout--related">
-                                        <div class="post-card__image"><a href="#"><img src="images/posts/post-1.jpg"
+                                        <div class="post-card__image"><a href="#"><img src="/images/posts/post-1.jpg"
                                                                                        alt=""></a></div>
                                         <div class="post-card__info">
                                             <div class="post-card__name"><a href="#">Philosophy That Addresses Topics
@@ -1408,7 +1408,7 @@
                                         </div>
                                     </div>
                                     <div class="related-posts__item post-card post-card--layout--related">
-                                        <div class="post-card__image"><a href="#"><img src="images/posts/post-2.jpg"
+                                        <div class="post-card__image"><a href="#"><img src="/images/posts/post-2.jpg"
                                                                                        alt=""></a></div>
                                         <div class="post-card__info">
                                             <div class="post-card__name"><a href="#">Logic Is The Study Of Reasoning And
@@ -1423,7 +1423,7 @@
                             <ol class="comments-list comments-list--level--0">
                                 <li class="comments-list__item">
                                     <div class="comment">
-                                        <div class="comment__avatar"><a href="#"><img src="images/avatars/avatar-1.jpg"
+                                        <div class="comment__avatar"><a href="#"><img src="/images/avatars/avatar-1.jpg"
                                                                                       alt=""></a></div>
                                         <div class="comment__content">
                                             <div class="comment__header">
@@ -1444,7 +1444,7 @@
                                             <li class="comments-list__item">
                                                 <div class="comment">
                                                     <div class="comment__avatar"><a href="#"><img
-                                                                src="images/avatars/avatar-2.jpg" alt=""></a></div>
+                                                                src="/images/avatars/avatar-2.jpg" alt=""></a></div>
                                                     <div class="comment__content">
                                                         <div class="comment__header">
                                                             <div class="comment__author"><a href="#">Adam Taylor</a>
@@ -1467,7 +1467,7 @@
                                             <li class="comments-list__item">
                                                 <div class="comment">
                                                     <div class="comment__avatar"><a href="#"><img
-                                                                src="images/avatars/avatar-3.jpg" alt=""></a></div>
+                                                                src="/images/avatars/avatar-3.jpg" alt=""></a></div>
                                                     <div class="comment__content">
                                                         <div class="comment__header">
                                                             <div class="comment__author"><a href="#">Helena Garcia</a>
@@ -1492,7 +1492,7 @@
                                 </li>
                                 <li class="comments-list__item">
                                     <div class="comment">
-                                        <div class="comment__avatar"><a href="#"><img src="images/avatars/avatar-4.jpg"
+                                        <div class="comment__avatar"><a href="#"><img src="/images/avatars/avatar-4.jpg"
                                                                                       alt=""></a></div>
                                         <div class="comment__content">
                                             <div class="comment__header">
@@ -1641,7 +1641,7 @@
                 <div class="site-footer__bottom">
                     <div class="site-footer__copyright"><a target="_blank" href="https://www.templateshub.net">Templates
                             Hub</a></div>
-                    <div class="site-footer__payments"><img src="images/payments.png" alt=""></div>
+                    <div class="site-footer__payments"><img src="/images/payments.png" alt=""></div>
                 </div>
             </div>
         </div>

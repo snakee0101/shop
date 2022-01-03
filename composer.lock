@@ -1900,7 +1900,7 @@
                 "array",
                 "core",
                 "datetime",
-                "images",
+                "/images",
                 "json",
                 "nette",
                 "paginator",

@@ -10,7 +10,7 @@
                                     <li class="departments__item"><a href="#">Power Tools
                                             <svg class="departments__link-arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="departments__megamenu departments__megamenu--xl">
@@ -127,7 +127,7 @@
                                     <li class="departments__item"><a href="#">Hand Tools
                                             <svg class="departments__link-arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="departments__megamenu departments__megamenu--lg">
@@ -213,7 +213,7 @@
                                     <li class="departments__item"><a href="#">Machine Tools
                                             <svg class="departments__link-arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="departments__megamenu departments__megamenu--nl">
@@ -278,7 +278,7 @@
                                     <li class="departments__item"><a href="#">Building Supplies
                                             <svg class="departments__link-arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="departments__megamenu departments__megamenu--sm">
@@ -325,7 +325,7 @@
                                     <li class="departments__item departments__item--menu"><a href="#">Electrical
                                             <svg class="departments__link-arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="departments__menu"><!-- .menu -->
@@ -333,7 +333,7 @@
                                                 <li><a href="#">Soldering Equipment
                                                         <svg class="menu__arrow" width="6px" height="9px">
                                                             <use
-                                                                xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                                xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                                         </svg>
                                                     </a>
                                                     <div class="menu__submenu"><!-- .menu -->
@@ -364,11 +364,11 @@
                         </div>
                         <button class="departments__button">
                             <svg class="departments__button-icon" width="18px" height="14px">
-                                <use xlink:href="images/sprite.svg#menu-18x14"></use>
+                                <use xlink:href="/images/sprite.svg#menu-18x14"></use>
                             </svg>
                             Shop By Category
                             <svg class="departments__button-arrow" width="9px" height="6px">
-                                <use xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use>
+                                <use xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use>
                             </svg>
                         </button>
                     </div><!-- .departments / end --></div>
@@ -382,7 +382,7 @@
                         </li>
                         <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Megamenu <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                            xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                             <div class="nav-links__megamenu nav-links__megamenu--size--nl">
                                 <!-- .megamenu -->
                                 <div class="megamenu">
@@ -460,13 +460,13 @@
                         <li class="nav-links__item nav-links__item--with-submenu"><a
                                 href="shop-grid-3-columns-sidebar.html"><span>Shop <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
-                                            xlink:href="images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
+                                            xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                             <div class="nav-links__menu"><!-- .menu -->
                                 <ul class="menu menu--layout--classic">
                                     <li><a href="shop-grid-3-columns-sidebar.html">Shop Grid
                                             <svg class="menu__arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="menu__submenu"><!-- .menu -->
@@ -484,7 +484,7 @@
                                     <li><a href="product.html">Product
                                             <svg class="menu__arrow" width="6px" height="9px">
                                                 <use
-                                                    xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                             </svg>
                                         </a>
                                         <div class="menu__submenu"><!-- .menu -->
@@ -508,9 +508,9 @@
                     <div class="indicator indicator--trigger--click">
                         <button type="button" class="indicator__button"><span class="indicator__area"><svg
                                     class="indicator__icon" width="20px" height="20px"><use
-                                        xlink:href="images/sprite.svg#search-20"></use></svg> <svg
+                                        xlink:href="/images/sprite.svg#search-20"></use></svg> <svg
                                     class="indicator__icon indicator__icon--open" width="20px"
-                                    height="20px"><use xlink:href="images/sprite.svg#cross-20"></use></svg></span>
+                                    height="20px"><use xlink:href="/images/sprite.svg#cross-20"></use></svg></span>
                         </button>
                         <div class="indicator__dropdown">
                             <div class="drop-search">
@@ -523,7 +523,7 @@
                                     <button class="drop-search__button drop-search__button--submit"
                                             type="submit">
                                         <svg width="20px" height="20px">
-                                            <use xlink:href="images/sprite.svg#search-20"></use>
+                                            <use xlink:href="/images/sprite.svg#search-20"></use>
                                         </svg>
                                     </button>
                                 </form>
@@ -532,11 +532,11 @@
                     </div>
                     <div class="indicator"><a href="{{ route('wishlist.index') }}" class="indicator__button"><span
                                 class="indicator__area"><svg width="20px" height="20px"><use
-                                        xlink:href="images/sprite.svg#heart-20"></use></svg></span></a></div>
+                                        xlink:href="/images/sprite.svg#heart-20"></use></svg></span></a></div>
                     <div class="indicator"><a href="{{ route('cart.index') }}"
                                                                         class="indicator__button"><span
                                 class="indicator__area"><svg width="20px" height="20px"><use
-                                        xlink:href="images/sprite.svg#cart-20"></use></svg></span></a>
+                                        xlink:href="/images/sprite.svg#cart-20"></use></svg></span></a>
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@
             <div class="block-categories__list">
                 <div class="block-categories__item category-card category-card--layout--compact">
                     <div class="category-card__body">
-                        <div class="category-card__image"><a href="#"><img src="images/categories/category-1.jpg"
+                        <div class="category-card__image"><a href="#"><img src="/images/categories/category-1.jpg"
                                                                            alt=""></a></div>
                         <div class="category-card__content">
                             <div class="category-card__name"><a href="#">Power Tools</a></div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="block-categories__item category-card category-card--layout--compact">
                     <div class="category-card__body">
-                        <div class="category-card__image"><a href="#"><img src="images/categories/category-2.jpg"
+                        <div class="category-card__image"><a href="#"><img src="/images/categories/category-2.jpg"
                                                                            alt=""></a></div>
                         <div class="category-card__content">
                             <div class="category-card__name"><a href="#">Hand Tools</a></div>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="block-categories__item category-card category-card--layout--compact">
                     <div class="category-card__body">
-                        <div class="category-card__image"><a href="#"><img src="images/categories/category-4.jpg"
+                        <div class="category-card__image"><a href="#"><img src="/images/categories/category-4.jpg"
                                                                            alt=""></a></div>
                         <div class="category-card__content">
                             <div class="category-card__name"><a href="#">Machine Tools</a></div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="block-categories__item category-card category-card--layout--compact">
                     <div class="category-card__body">
-                        <div class="category-card__image"><a href="#"><img src="images/categories/category-3.jpg"
+                        <div class="category-card__image"><a href="#"><img src="/images/categories/category-3.jpg"
                                                                            alt=""></a></div>
                         <div class="category-card__content">
                             <div class="category-card__name"><a href="#">Power Machinery</a></div>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="block-categories__item category-card category-card--layout--compact">
                     <div class="category-card__body">
-                        <div class="category-card__image"><a href="#"><img src="images/categories/category-5.jpg"
+                        <div class="category-card__image"><a href="#"><img src="/images/categories/category-5.jpg"
                                                                            alt=""></a></div>
                         <div class="category-card__content">
                             <div class="category-card__name"><a href="#">Measurement</a></div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="block-categories__item category-card category-card--layout--compact">
                     <div class="category-card__body">
-                        <div class="category-card__image"><a href="#"><img src="images/categories/category-6.jpg"
+                        <div class="category-card__image"><a href="#"><img src="/images/categories/category-6.jpg"
                                                                            alt=""></a></div>
                         <div class="category-card__content">
                             <div class="category-card__name"><a href="#">Clothes and PPE</a></div>

@@ -5,12 +5,12 @@
             <div class="block-header__arrows-list">
                 <button class="block-header__arrow block-header__arrow--left" type="button">
                     <svg width="7px" height="11px">
-                        <use xlink:href="images/sprite.svg#arrow-rounded-left-7x11"></use>
+                        <use xlink:href="/images/sprite.svg#arrow-rounded-left-7x11"></use>
                     </svg>
                 </button>
                 <button class="block-header__arrow block-header__arrow--right" type="button">
                     <svg width="7px" height="11px">
-                        <use xlink:href="images/sprite.svg#arrow-rounded-right-7x11"></use>
+                        <use xlink:href="/images/sprite.svg#arrow-rounded-right-7x11"></use>
                     </svg>
                 </button>
             </div>

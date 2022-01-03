@@ -19,7 +19,7 @@
                     <button class="topbar-dropdown__btn" type="button">Currency: <span
                             class="topbar__item-value">USD</span>
                         <svg width="7px" height="5px">
-                            <use xlink:href="images/sprite.svg#arrow-rounded-down-7x5"></use>
+                            <use xlink:href="/images/sprite.svg#arrow-rounded-down-7x5"></use>
                         </svg>
                     </button>
                     <div class="topbar-dropdown__body"><!-- .menu -->

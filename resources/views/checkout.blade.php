@@ -9,12 +9,12 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('index-2') }}">Home</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item"><a href="#">Breadcrumb</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Checkout</li>
@@ -88,7 +88,7 @@
                                                                                  id="checkout-create-account"> <span
                                                     class="input-check__box"></span> <svg class="input-check__icon"
                                                                                           width="9px" height="7px"><use
-                                                        xlink:href="images/sprite.svg#check-9x7"></use></svg> </span></span><label
+                                                        xlink:href="/images/sprite.svg#check-9x7"></use></svg> </span></span><label
                                             class="form-check-label" for="checkout-create-account">Create an
                                             account?</label></div>
                                 </div>
@@ -102,7 +102,7 @@
                                                                                  id="checkout-different-address"> <span
                                                     class="input-check__box"></span> <svg class="input-check__icon"
                                                                                           width="9px" height="7px"><use
-                                                        xlink:href="images/sprite.svg#check-9x7"></use></svg> </span></span><label
+                                                        xlink:href="/images/sprite.svg#check-9x7"></use></svg> </span></span><label
                                             class="form-check-label" for="checkout-different-address">Ship to a
                                             different address?</label></div>
                                 </div>
@@ -230,7 +230,7 @@
                                                                                  id="checkout-terms"> <span
                                                     class="input-check__box"></span> <svg class="input-check__icon"
                                                                                           width="9px" height="7px"><use
-                                                        xlink:href="images/sprite.svg#check-9x7"></use></svg> </span></span><label
+                                                        xlink:href="/images/sprite.svg#check-9x7"></use></svg> </span></span><label
                                             class="form-check-label" for="checkout-terms">I have read and agree to the
                                             website <a target="_blank" href="terms-and-conditions.html">terms and
                                                 conditions</a>*</label></div>
