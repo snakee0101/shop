@@ -2,17 +2,13 @@
 
 namespace Tests\Unit;
 
+use App\Models\Characteristic;
 use Tests\TestCase;
 
 class CharacteristicTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
     public function test_example()
     {
-        $this->assertTrue(true);
+        dd( Characteristic::factory()->create() );
     }
 }
