@@ -157,8 +157,14 @@
         },
         created() {
             window.events.$on('toggle_select_all_products_in_a_wishlist', this.toggleSelectAll);
+            window.events.$on('add_all_to_cart', this.addToCart);
         },
         methods: {
+            addToCart(wishlist_id)
+            {
+                if(wishlist_id == this.wishlist_object.id)
+                    console.log(wishlist_id, this.wishlist_object.id);
+            },
             toggleSelect()
             {
                 this.selected = !this.selected;

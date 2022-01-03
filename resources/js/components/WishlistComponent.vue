@@ -75,7 +75,7 @@
                 </product-card-component>
             </div>
             <div class="card-footer d-flex flex-row-reverse py-2">
-                <button class="btn btn-success align-self-center">
+                <button class="btn btn-success align-self-center" @click="add_all_to_cart()">
                     Add To Cart
                 </button>
                 <div class="mr-4">
@@ -122,6 +122,10 @@ export default {
         }
     },
     methods: {
+       add_all_to_cart()
+       {
+            window.events.$emit('add_all_to_cart', this.wishlist_object.id);
+       },
        move_to_wishlist()
        {
            if(this.wishlist_id_to_move_to === 0) {
