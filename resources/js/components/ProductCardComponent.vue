@@ -19,10 +19,10 @@
                 <div class="product-card__badges-list">
                     <div class="product-card__badge product-card__badge--hot">Badge</div>
                 </div>
-                <div class="product-card__image"><a href="product.html"><img
+                <div class="product-card__image"><a :href=" '/product/' + product_object.id "><img
                     src="/images/products/product-2.jpg" alt=""></a></div>
                 <div class="product-card__info">
-                    <div class="product-card__name"><a href="product.html">{{ product_object.name}}</a></div>
+                    <div class="product-card__name"><a :href=" '/product/' + product_object.id ">{{ product_object.name}}</a></div>
                     <div class="product-card__rating">
                         <div class="rating">
                             <div class="rating__body">
