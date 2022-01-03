@@ -16,8 +16,18 @@ export default {
             'in_cart' : this.product.inCart
         };
     },
+    mounted()
+    {
+        window.events.$on('add_to_cart_remote', this.addToCartRemote);
+    },
     methods: {
-        addToCart() {
+        addToCartRemote(product_id)
+        {
+            if(product_id === this.product.id)
+                this.addToCart();
+        },
+        addToCart()
+        {
             axios.get(`/cart/add/${this.product.id}/1`);
             this.in_cart = true;
         }

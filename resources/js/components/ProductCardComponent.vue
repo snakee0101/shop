@@ -163,7 +163,7 @@
             addToCart(wishlist_id)
             {
                 if(wishlist_id == this.wishlist_object.id)
-                    console.log(wishlist_id, this.wishlist_object.id);
+                    window.events.$emit('add_to_cart_remote', this.product_object.id);
             },
             toggleSelect()
             {
