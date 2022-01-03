@@ -73,7 +73,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <h1 class="product__name">Brandix Screwdriver SCREW1500ACC</h1>
+                            <h1 class="product__name">{{ $product->name }}</h1>
                             <ul class="product__features">
                                 <li>Speed: 750 RPM</li>
                                 <li>Power Source: Cordless-Electric</li>
@@ -82,13 +82,13 @@
                                 <li>Battery Capacity: 2 Ah</li>
                             </ul>
                             <ul class="product__meta">
-                                <li>ID: 83690/32</li>
+                                <li>ID: {{ $product->id }}</li>
                             </ul>
                         </div>
                         <div class="product__sidebar">
                             <div class="product__availability">Availability: <span class="text-success">In Stock</span>
                             </div>
-                            <div class="product__prices">$1,499.00</div>
+                            <div class="product__prices">${{ $product->price }}</div>
                             <form class="product__options">
                                 <div class="form-group product__option"><label
                                         class="product__option-label">Color</label>
