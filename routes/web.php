@@ -41,6 +41,15 @@ Route::view('/checkout', 'checkout')->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
 
 
+Route::get('/product/{product}', [\App\Http\Controllers\ProductController::class, 'description'])->name('product.description');
+Route::get('/product/{product}/characteristics', [\App\Http\Controllers\ProductController::class, 'characteristics'])->name('product.characteristics');
+Route::get('/product/{product}/reviews', [\App\Http\Controllers\ProductController::class, 'reviews'])->name('product.reviews');
+Route::get('/product/{product}/questions', [\App\Http\Controllers\ProductController::class, 'questions'])->name('product.questions');
+Route::get('/product/{product}/videos', [\App\Http\Controllers\ProductController::class, 'videos'])->name('product.videos');
+Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductController::class, 'buy_together'])->name('product.buy_together');
+
+
+
 Route::prefix('account')->group(function () {
     Route::view('/', 'account')->name('account');
 });
