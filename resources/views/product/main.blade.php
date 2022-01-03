@@ -126,7 +126,7 @@
 
                                         </cart-button-quantity-component>
                                         <div class="product__actions-item product__actions-item--wishlist">
-                                            <favorite-button-component :user="{{ auth()->user() }}" :product="{{ $product }}" :big-sized="true"></favorite-button-component>
+                                            <favorite-button-component :user="{{ auth()->user() ?? "{}" }}" :product="{{ $product }}" :big-sized="true"></favorite-button-component>
                                         </div>
                                         <div class="product__actions-item product__actions-item--compare">
                                             <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
