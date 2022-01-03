@@ -5,289 +5,210 @@
         <div class="container">
             <div class="product product--layout--standard" data-layout="standard">
                 <div>
-                <div class="product__content">
-                    <div class="product__gallery">
-                        <div class="product-gallery">
-                            <div class="product-gallery__featured">
-                                <div class="owl-carousel" id="product-image"><a
-                                        href="/images/products/product-16.html" target="_blank"><img
-                                            src="/images/products/product-16.jpg" alt=""> </a><a
-                                        href="/images/products/product-16-1.html" target="_blank"><img
-                                            src="/images/products/product-16-1.jpg" alt=""> </a><a
-                                        href="/images/products/product-16-2.html" target="_blank"><img
-                                            src="/images/products/product-16-2.jpg" alt=""> </a><a
-                                        href="/images/products/product-16-3.html" target="_blank"><img
-                                            src="/images/products/product-16-3.jpg" alt=""> </a><a
-                                        href="/images/products/product-16-4.html" target="_blank"><img
-                                            src="/images/products/product-16-4.jpg" alt=""></a></div>
-                            </div>
-                            <div class="product-gallery__carousel">
-                                <div class="owl-carousel" id="product-carousel"><a href="#"
-                                                                                   class="product-gallery__carousel-item"><img
-                                            class="product-gallery__carousel-image"
-                                            src="/images/products/product-16.jpg" alt=""> </a><a href="#"
-                                                                                                class="product-gallery__carousel-item"><img
-                                            class="product-gallery__carousel-image"
-                                            src="/images/products/product-16-1.jpg" alt=""> </a><a href="#"
-                                                                                                  class="product-gallery__carousel-item"><img
-                                            class="product-gallery__carousel-image"
-                                            src="/images/products/product-16-2.jpg" alt=""> </a><a href="#"
-                                                                                                  class="product-gallery__carousel-item"><img
-                                            class="product-gallery__carousel-image"
-                                            src="/images/products/product-16-3.jpg" alt=""> </a><a href="#"
-                                                                                                  class="product-gallery__carousel-item"><img
-                                            class="product-gallery__carousel-image"
-                                            src="/images/products/product-16-4.jpg" alt=""></a></div>
-                            </div>
-                        </div>
+                    <div class="page-header__breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('index-2') }}">Category 1</a>
+                                    <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                        <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    </svg>
+                                </li>
+                                <li class="breadcrumb-item"><a href="#">Category 2</a>
+                                    <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                        <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    </svg>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Category 3</li>
+                            </ol>
+                        </nav>
                     </div>
-                    <div class="product__info">
-                        <div class="product__wishlist-compare">
-                            <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
-                                    data-placement="right" title="Wishlist">
-                                <svg width="16px" height="16px">
-                                    <use xlink:href="/images/sprite.svg#wishlist-16"></use>
-                                </svg>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
-                                    data-placement="right" title="Compare">
-                                <svg width="16px" height="16px">
-                                    <use xlink:href="/images/sprite.svg#compare-16"></use>
-                                </svg>
-                            </button>
-                        </div>
-                        <h1 class="product__name">Brandix Screwdriver SCREW1500ACC</h1>
-                        <div class="product__rating">
-                            <div class="product__rating-stars">
-                                <div class="rating">
-                                    <div class="rating__body">
-                                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                            <g class="rating__fill">
-                                                <use xlink:href="/images/sprite.svg#star-normal"></use>
-                                            </g>
-                                            <g class="rating__stroke">
-                                                <use xlink:href="/images/sprite.svg#star-normal-stroke"></use>
-                                            </g>
-                                        </svg>
-                                        <div class="rating__star rating__star--only-edge rating__star--active">
-                                            <div class="rating__fill">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                            <div class="rating__stroke">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                        </div>
-                                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                            <g class="rating__fill">
-                                                <use xlink:href="/images/sprite.svg#star-normal"></use>
-                                            </g>
-                                            <g class="rating__stroke">
-                                                <use xlink:href="/images/sprite.svg#star-normal-stroke"></use>
-                                            </g>
-                                        </svg>
-                                        <div class="rating__star rating__star--only-edge rating__star--active">
-                                            <div class="rating__fill">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                            <div class="rating__stroke">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                        </div>
-                                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                            <g class="rating__fill">
-                                                <use xlink:href="/images/sprite.svg#star-normal"></use>
-                                            </g>
-                                            <g class="rating__stroke">
-                                                <use xlink:href="/images/sprite.svg#star-normal-stroke"></use>
-                                            </g>
-                                        </svg>
-                                        <div class="rating__star rating__star--only-edge rating__star--active">
-                                            <div class="rating__fill">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                            <div class="rating__stroke">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                        </div>
-                                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                            <g class="rating__fill">
-                                                <use xlink:href="/images/sprite.svg#star-normal"></use>
-                                            </g>
-                                            <g class="rating__stroke">
-                                                <use xlink:href="/images/sprite.svg#star-normal-stroke"></use>
-                                            </g>
-                                        </svg>
-                                        <div class="rating__star rating__star--only-edge rating__star--active">
-                                            <div class="rating__fill">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                            <div class="rating__stroke">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                        </div>
-                                        <svg class="rating__star rating__star--active" width="13px" height="12px">
-                                            <g class="rating__fill">
-                                                <use xlink:href="/images/sprite.svg#star-normal"></use>
-                                            </g>
-                                            <g class="rating__stroke">
-                                                <use xlink:href="/images/sprite.svg#star-normal-stroke"></use>
-                                            </g>
-                                        </svg>
-                                        <div class="rating__star rating__star--only-edge rating__star--active">
-                                            <div class="rating__fill">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                            <div class="rating__stroke">
-                                                <div class="fake-svg-icon"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="product__content">
+                        <div class="product__gallery">
+                            <div class="product-gallery">
+                                <div class="product-gallery__featured">
+                                    <div class="owl-carousel" id="product-image"><a
+                                            href="/images/products/product-16.html" target="_blank"><img
+                                                src="/images/products/product-16.jpg" alt=""> </a><a
+                                            href="/images/products/product-16-1.html" target="_blank"><img
+                                                src="/images/products/product-16-1.jpg" alt=""> </a><a
+                                            href="/images/products/product-16-2.html" target="_blank"><img
+                                                src="/images/products/product-16-2.jpg" alt=""> </a><a
+                                            href="/images/products/product-16-3.html" target="_blank"><img
+                                                src="/images/products/product-16-3.jpg" alt=""> </a><a
+                                            href="/images/products/product-16-4.html" target="_blank"><img
+                                                src="/images/products/product-16-4.jpg" alt=""></a></div>
+                                </div>
+                                <div class="product-gallery__carousel">
+                                    <div class="owl-carousel" id="product-carousel"><a href="#"
+                                                                                       class="product-gallery__carousel-item"><img
+                                                class="product-gallery__carousel-image"
+                                                src="/images/products/product-16.jpg" alt=""> </a><a href="#"
+                                                                                                     class="product-gallery__carousel-item"><img
+                                                class="product-gallery__carousel-image"
+                                                src="/images/products/product-16-1.jpg" alt=""> </a><a href="#"
+                                                                                                       class="product-gallery__carousel-item"><img
+                                                class="product-gallery__carousel-image"
+                                                src="/images/products/product-16-2.jpg" alt=""> </a><a href="#"
+                                                                                                       class="product-gallery__carousel-item"><img
+                                                class="product-gallery__carousel-image"
+                                                src="/images/products/product-16-3.jpg" alt=""> </a><a href="#"
+                                                                                                       class="product-gallery__carousel-item"><img
+                                                class="product-gallery__carousel-image"
+                                                src="/images/products/product-16-4.jpg" alt=""></a></div>
                                 </div>
                             </div>
-                            <div class="product__rating-legend"><a href="#">7 Reviews</a><span>/</span><a href="#">Write
-                                    A Review</a></div>
                         </div>
-                        <div class="product__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Curabitur ornare, mi in ornare elementum, libero nibh lacinia urna, quis convallis lorem
-                            erat at purus. Maecenas eu varius nisi.
-                        </div>
-                        <ul class="product__features">
-                            <li>Speed: 750 RPM</li>
-                            <li>Power Source: Cordless-Electric</li>
-                            <li>Battery Cell Type: Lithium</li>
-                            <li>Voltage: 20 Volts</li>
-                            <li>Battery Capacity: 2 Ah</li>
-                        </ul>
-                        <ul class="product__meta">
-                            <li class="product__meta-availability">Availability: <span
-                                    class="text-success">In Stock</span></li>
-                            <li>Brand: <a href="#">Wakita</a></li>
-                            <li>SKU: 83690/32</li>
-                        </ul>
-                    </div>
-                    <div class="product__sidebar">
-                        <div class="product__availability">Availability: <span class="text-success">In Stock</span>
-                        </div>
-                        <div class="product__prices">$1,499.00</div>
-                        <form class="product__options">
-                            <div class="form-group product__option"><label
-                                    class="product__option-label">Color</label>
-                                <div class="input-radio-color">
-                                    <div class="input-radio-color__list"><label
-                                            class="input-radio-color__item input-radio-color__item--white"
-                                            style="color: #fff;" data-toggle="tooltip" title="White"><input
-                                                type="radio" name="color"> <span></span></label> <label
-                                            class="input-radio-color__item" style="color: #ffd333;"
-                                            data-toggle="tooltip" title="Yellow"><input type="radio" name="color">
-                                            <span></span></label> <label class="input-radio-color__item"
-                                                                         style="color: #ff4040;"
-                                                                         data-toggle="tooltip" title="Red"><input
-                                                type="radio" name="color"> <span></span></label> <label
-                                            class="input-radio-color__item input-radio-color__item--disabled"
-                                            style="color: #4080ff;" data-toggle="tooltip" title="Blue"><input
-                                                type="radio" name="color" disabled="disabled"> <span></span></label>
-                                    </div>
-                                </div>
+                        <div class="product__info">
+                            <div class="product__wishlist-compare">
+                                <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
+                                        data-placement="right" title="Wishlist">
+                                    <svg width="16px" height="16px">
+                                        <use xlink:href="/images/sprite.svg#wishlist-16"></use>
+                                    </svg>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
+                                        data-placement="right" title="Compare">
+                                    <svg width="16px" height="16px">
+                                        <use xlink:href="/images/sprite.svg#compare-16"></use>
+                                    </svg>
+                                </button>
                             </div>
-                            <div class="form-group product__option"><label
-                                    class="product__option-label">Material</label>
-                                <div class="input-radio-label">
-                                    <div class="input-radio-label__list"><label><input type="radio" name="material">
-                                            <span>Metal</span></label> <label><input type="radio" name="material">
-                                            <span>Wood</span></label> <label><input type="radio" name="material"
-                                                                                    disabled="disabled"> <span>Plastic</span></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group product__option"><label class="product__option-label"
-                                                                           for="product-quantity">Quantity</label>
-                                <div class="product__actions">
-                                    <div class="product__actions-item">
-                                        <div class="input-number product__quantity"><input id="product-quantity"
-                                                                                           class="input-number__input form-control form-control-lg"
-                                                                                           type="number" min="1"
-                                                                                           value="1">
-                                            <div class="input-number__add"></div>
-                                            <div class="input-number__sub"></div>
-                                        </div>
-                                    </div>
-                                    <div class="product__actions-item product__actions-item--addtocart">
-                                        <button class="btn btn-primary btn-lg">Add to cart</button>
-                                    </div>
-                                    <div class="product__actions-item product__actions-item--wishlist">
-                                        <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
-                                                data-toggle="tooltip" title="Wishlist">
-                                            <svg width="16px" height="16px">
-                                                <use xlink:href="/images/sprite.svg#wishlist-16"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="product__actions-item product__actions-item--compare">
-                                        <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
-                                                data-toggle="tooltip" title="Compare">
-                                            <svg width="16px" height="16px">
-                                                <use xlink:href="/images/sprite.svg#compare-16"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    <div class="product__footer">
-                        <div class="product__tags tags">
-                            <div class="tags__list"><a href="#">Mounts</a> <a href="#">Electrodes</a> <a href="#">Chainsaws</a>
-                            </div>
-                        </div>
-                        <div class="product__share-links share-links">
-                            <ul class="share-links__list">
-                                <li class="share-links__item share-links__item--type--like"><a href="#">Like</a>
-                                </li>
-                                <li class="share-links__item share-links__item--type--tweet"><a href="#">Tweet</a>
-                                </li>
-                                <li class="share-links__item share-links__item--type--pin"><a href="#">Pin It</a>
-                                </li>
-                                <li class="share-links__item share-links__item--type--counter"><a href="#">4K</a>
-                                </li>
+                            <h1 class="product__name">Brandix Screwdriver SCREW1500ACC</h1>
+                            <ul class="product__features">
+                                <li>Speed: 750 RPM</li>
+                                <li>Power Source: Cordless-Electric</li>
+                                <li>Battery Cell Type: Lithium</li>
+                                <li>Voltage: 20 Volts</li>
+                                <li>Battery Capacity: 2 Ah</li>
+                            </ul>
+                            <ul class="product__meta">
+                                <li>ID: 83690/32</li>
                             </ul>
                         </div>
+                        <div class="product__sidebar">
+                            <div class="product__availability">Availability: <span class="text-success">In Stock</span>
+                            </div>
+                            <div class="product__prices">$1,499.00</div>
+                            <form class="product__options">
+                                <div class="form-group product__option"><label
+                                        class="product__option-label">Color</label>
+                                    <div class="input-radio-color">
+                                        <div class="input-radio-color__list"><label
+                                                class="input-radio-color__item input-radio-color__item--white"
+                                                style="color: #fff;" data-toggle="tooltip" title="White"><input
+                                                    type="radio" name="color"> <span></span></label> <label
+                                                class="input-radio-color__item" style="color: #ffd333;"
+                                                data-toggle="tooltip" title="Yellow"><input type="radio" name="color">
+                                                <span></span></label> <label class="input-radio-color__item"
+                                                                             style="color: #ff4040;"
+                                                                             data-toggle="tooltip" title="Red"><input
+                                                    type="radio" name="color"> <span></span></label> <label
+                                                class="input-radio-color__item input-radio-color__item--disabled"
+                                                style="color: #4080ff;" data-toggle="tooltip" title="Blue"><input
+                                                    type="radio" name="color" disabled="disabled"> <span></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group product__option"><label
+                                        class="product__option-label">Material</label>
+                                    <div class="input-radio-label">
+                                        <div class="input-radio-label__list"><label><input type="radio" name="material">
+                                                <span>Metal</span></label> <label><input type="radio" name="material">
+                                                <span>Wood</span></label> <label><input type="radio" name="material"
+                                                                                        disabled="disabled"> <span>Plastic</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group product__option"><label class="product__option-label"
+                                                                               for="product-quantity">Quantity</label>
+                                    <div class="product__actions">
+                                        <div class="product__actions-item">
+                                            <div class="input-number product__quantity"><input id="product-quantity"
+                                                                                               class="input-number__input form-control form-control-lg"
+                                                                                               type="number" min="1"
+                                                                                               value="1">
+                                                <div class="input-number__add"></div>
+                                                <div class="input-number__sub"></div>
+                                            </div>
+                                        </div>
+                                        <div class="product__actions-item product__actions-item--addtocart">
+                                            <button class="btn btn-primary btn-lg">Add to cart</button>
+                                        </div>
+                                        <div class="product__actions-item product__actions-item--wishlist">
+                                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
+                                                    data-toggle="tooltip" title="Wishlist">
+                                                <svg width="16px" height="16px">
+                                                    <use xlink:href="/images/sprite.svg#wishlist-16"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="product__actions-item product__actions-item--compare">
+                                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
+                                                    data-toggle="tooltip" title="Compare">
+                                                <svg width="16px" height="16px">
+                                                    <use xlink:href="/images/sprite.svg#compare-16"></use>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="product-tabs">
+                        <div class="product-tabs__list" id="product_tabs">
+                            <a href="{{ route('product.description', $product) . '#product_tabs' }}"
+                               class="product-tabs__item {{ is_route_active('product.description') ? 'product-tabs__item--active' : '' }}">Description</a>
+                            <a href="{{ route('product.characteristics', $product) . '#product_tabs' }}"
+                               class="product-tabs__item {{ is_route_active('product.characteristics') ? 'product-tabs__item--active' : '' }}">Specification</a>
+                            <a href="{{ route('product.reviews', $product) . '#product_tabs' }}"
+                               class="product-tabs__item {{ is_route_active('product.reviews') ? 'product-tabs__item--active' : '' }}">Reviews</a>
+                            <a href="{{ route('product.questions', $product) . '#product_tabs' }}"
+                               class="product-tabs__item {{ is_route_active('product.questions') ? 'product-tabs__item--active' : '' }}">Questions</a>
+                            <a href="{{ route('product.videos', $product) . '#product_tabs' }}"
+                               class="product-tabs__item {{ is_route_active('product.videos') ? 'product-tabs__item--active' : '' }}">Videos</a>
+                            <a href="{{ route('product.buy_together', $product) . '#product_tabs' }}"
+                               class="product-tabs__item {{ is_route_active('product.buy_together') ? 'product-tabs__item--active' : '' }}">Bought
+                                together</a>
+                        </div>
+                        <div class="product-tabs__content mx-5">
+                            <div
+                                class="product-tabs__pane {{ is_route_active('product.description') ? 'product-tabs__pane--active' : '' }}"
+                                id="tab-description">
+                                @yield('description')
+                            </div>
+                            <div
+                                class="product-tabs__pane {{ is_route_active('product.characteristics') ? 'product-tabs__pane--active' : '' }}"
+                                id="tab-specification">
+                                @yield('characteristics')
+                            </div>
+                            <div
+                                class="product-tabs__pane {{ is_route_active('product.reviews') ? 'product-tabs__pane--active' : '' }}"
+                                id="tab-reviews">
+                                @yield('reviews')
+                            </div>
+                            <div
+                                class="product-tabs__pane {{ is_route_active('product.questions') ? 'product-tabs__pane--active' : '' }}"
+                                id="tab-questions">
+                                @yield('questions')
+                            </div>
+                            <div
+                                class="product-tabs__pane {{ is_route_active('product.videos') ? 'product-tabs__pane--active' : '' }}"
+                                id="tab-videos">
+                                @yield('videos')
+                            </div>
+                            <div
+                                class="product-tabs__pane {{ is_route_active('product.buy_together') ? 'product-tabs__pane--active' : '' }}"
+                                id="tab-bought-together">
+                                @yield('buy_together')
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="product-tabs">
-                <div class="product-tabs__list" id="product_tabs">
-                    <a href="{{ route('product.description', $product) . '#product_tabs' }}" class="product-tabs__item {{ is_route_active('product.description') ? 'product-tabs__item--active' : '' }}">Description</a>
-                    <a href="{{ route('product.characteristics', $product) . '#product_tabs' }}" class="product-tabs__item {{ is_route_active('product.characteristics') ? 'product-tabs__item--active' : '' }}">Specification</a>
-                    <a href="{{ route('product.reviews', $product) . '#product_tabs' }}" class="product-tabs__item {{ is_route_active('product.reviews') ? 'product-tabs__item--active' : '' }}">Reviews</a>
-                    <a href="{{ route('product.questions', $product) . '#product_tabs' }}" class="product-tabs__item {{ is_route_active('product.questions') ? 'product-tabs__item--active' : '' }}">Questions</a>
-                    <a href="{{ route('product.videos', $product) . '#product_tabs' }}" class="product-tabs__item {{ is_route_active('product.videos') ? 'product-tabs__item--active' : '' }}">Videos</a>
-                    <a href="{{ route('product.buy_together', $product) . '#product_tabs' }}" class="product-tabs__item {{ is_route_active('product.buy_together') ? 'product-tabs__item--active' : '' }}">Bought together</a>
-                </div>
-                <div class="product-tabs__content mx-5">
-                    <div class="product-tabs__pane {{ is_route_active('product.description') ? 'product-tabs__pane--active' : '' }}" id="tab-description">
-                        @yield('description')
-                    </div>
-                    <div class="product-tabs__pane {{ is_route_active('product.characteristics') ? 'product-tabs__pane--active' : '' }}" id="tab-specification">
-                        @yield('characteristics')
-                    </div>
-                    <div class="product-tabs__pane {{ is_route_active('product.reviews') ? 'product-tabs__pane--active' : '' }}" id="tab-reviews">
-                        @yield('reviews')
-                    </div>
-                    <div class="product-tabs__pane {{ is_route_active('product.questions') ? 'product-tabs__pane--active' : '' }}" id="tab-questions">
-                        @yield('questions')
-                    </div>
-                    <div class="product-tabs__pane {{ is_route_active('product.videos') ? 'product-tabs__pane--active' : '' }}" id="tab-videos">
-                        @yield('videos')
-                    </div>
-                    <div class="product-tabs__pane {{ is_route_active('product.buy_together') ? 'product-tabs__pane--active' : '' }}" id="tab-bought-together">
-                        @yield('buy_together')
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
+        @endsection
 
-<!--
+        <!--
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
