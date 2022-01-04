@@ -48,7 +48,7 @@ Route::get('/product/{product}/questions', [\App\Http\Controllers\ProductControl
 Route::get('/product/{product}/videos', [\App\Http\Controllers\ProductController::class, 'videos'])->name('product.videos');
 Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductController::class, 'buy_together'])->name('product.buy_together');
 
-
+Route::resource('review', \App\Http\Controllers\ReviewController::class);
 
 Route::prefix('account')->group(function () {
     Route::view('/', 'account')->name('account');
