@@ -24,7 +24,8 @@ class ProductController extends Controller
     public function reviews(Product $product)
     {
         return view('product.reviews', [
-            'product' => $product
+            'product' => $product,
+            'reviews' => $product->reviews()->paginate(40)
         ]);
     }
 

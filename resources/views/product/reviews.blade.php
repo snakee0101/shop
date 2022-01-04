@@ -61,10 +61,10 @@
             </details>
         </form>
 
-        <div class="reviews-view__list"><h3 class="reviews-view__header">Customer Reviews</h3>
+        <div class="reviews-view__list" id="reviews"><h3 class="reviews-view__header">Customer Reviews</h3>
             <div class="reviews-list">
                 <ol class="reviews-list__content">
-                    @foreach($product->reviews as $review)
+                    @foreach($reviews as $review)
                         <li class="reviews-list__item">
                             <div class="review">
                                 <div class="review__avatar"><img src="/images/avatars/avatar-1.jpg"
@@ -87,7 +87,8 @@
                                                                 xlink:href="/images/sprite.svg#star-normal-stroke"></use>
                                                         </g>
                                                     </svg>
-                                                    <div class="rating__star rating__star--only-edge rating__star--active">
+                                                    <div
+                                                        class="rating__star rating__star--only-edge rating__star--active">
                                                         <div class="rating__fill">
                                                             <div class="fake-svg-icon"></div>
                                                         </div>
@@ -128,27 +129,26 @@
                 </ol>
                 <div class="reviews-list__pagination">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item disabled"><a
-                                class="page-link page-link--with-arrow" href="#"
-                                aria-label="Previous">
-                                <svg class="page-link__arrow page-link__arrow--left"
-                                     aria-hidden="true" width="8px" height="13px">
-                                    <use
-                                        xlink:href="/images/sprite.svg#arrow-rounded-left-8x13"></use>
+                        <li class="page-item {{ ($reviews->currentPage() == 1) ? 'disabled' : '' }}">
+                            <a class="page-link page-link--with-arrow" href="{{ $reviews->url( $reviews->currentPage() - 1 ) . '#reviews' }}" aria-label="Previous">
+                                <svg class="page-link__arrow page-link__arrow--left" aria-hidden="true" width="8px"
+                                     height="13px">
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-left-8x13"></use>
                                 </svg>
-                            </a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2 <span
-                                    class="sr-only">(current)</span></a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link page-link--with-arrow"
-                                                 href="#" aria-label="Next">
-                                <svg class="page-link__arrow page-link__arrow--right"
-                                     aria-hidden="true" width="8px" height="13px">
-                                    <use
-                                        xlink:href="/images/sprite.svg#arrow-rounded-right-8x13"></use>
+                            </a>
+                        </li>
+                        @for($page = 1; $page < $reviews->lastPage() + 1; $page++)
+                            <li class="page-item {{ ($page == $reviews->currentPage()) ? 'active' : '' }}">
+                                <a class="page-link" href="{{ ($page == $reviews->currentPage()) ? '#reviews' : $reviews->url($page) . '#reviews' }}">{{ $page }}</a>
+                            </li>
+                        @endfor
+                        <li class="page-item {{ ($reviews->currentPage() == $reviews->lastPage()) ? 'disabled' : '' }}">
+                            <a class="page-link page-link--with-arrow" href="{{ $reviews->url( $reviews->currentPage() + 1 ) . '#reviews' }}" aria-label="Next">
+                                <svg class="page-link__arrow page-link__arrow--right" aria-hidden="true" width="8px" height="13px">
+                                    <use xlink:href="/images/sprite.svg#arrow-rounded-right-8x13"></use>
                                 </svg>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
