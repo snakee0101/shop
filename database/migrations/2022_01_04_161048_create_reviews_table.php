@@ -18,6 +18,9 @@ class CreateReviewsTable extends Migration
             $table->foreignId('user_id')
                   ->references('id')
                   ->on('users');
+            $table->foreignId('product_id')
+                  ->references('id')
+                  ->on('products');
             $table->smallInteger('rating');  //5-star rating system: 1 - 5
             $table->text('comment');
             $table->foreignId('parent_id')->nullable()
