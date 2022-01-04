@@ -46,4 +46,9 @@ class Product extends Model
         return $this->belongsToMany(Characteristic::class)
                     ->withPivot('value');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

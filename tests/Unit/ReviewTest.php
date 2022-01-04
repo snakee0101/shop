@@ -2,17 +2,20 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Product;
+use App\Models\Review;
+use Tests\TestCase;
 
 class ReviewTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_a_product_has_reviews()
     {
-        $this->assertTrue(true);
+       $product = Product::factory()->create();
+
+       Review::factory()->create([
+           'product_id' => $product
+       ]);
+
+       $this->assertInstanceOf(Review::class, $product->fresh()->reviews[0]);
     }
 }
