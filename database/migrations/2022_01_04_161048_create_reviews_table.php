@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
                   ->on('users');
             $table->smallInteger('rating');  //5-star rating system: 1 - 5
             $table->text('comment');
-            $table->foreignId('parent_id')
+            $table->foreignId('parent_id')->nullable()
                   ->references('id')
                   ->on('reviews');
             $table->text('advantages');
