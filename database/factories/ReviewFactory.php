@@ -3,26 +3,35 @@
 namespace Database\Factories;
 
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class ReviewFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
+    use WithFaker;
+
     protected $model = Review::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         return [
-            //
+         'user_id' => User::factory(),
+         'rating' => $this->faker->numberBetween(1,5),
+         'comment' => $this->faker->sentence,
+         'parent_id' => null,
+         'advantages' => $this->faker->sentence,
+         'disadvantages' => $this->faker->sentence,
+         'notify_on_reply' => false,
         ];
+    }
+
+    public function withParent(Review $review)
+    {
+        return $this->state(function (array $attributes) use ($review) {
+            return [
+                'parent_id' => $review->id
+            ];
+        });
     }
 }
