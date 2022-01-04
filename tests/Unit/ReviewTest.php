@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\User;
 use Tests\TestCase;
 
 class ReviewTest extends TestCase
@@ -17,5 +18,11 @@ class ReviewTest extends TestCase
        ]);
 
        $this->assertInstanceOf(Review::class, $product->fresh()->reviews[0]);
+    }
+
+    public function test_a_review_has_an_author()
+    {
+        $review = Review::factory()->create();
+        $this->assertInstanceOf(User::class, $review->author);
     }
 }
