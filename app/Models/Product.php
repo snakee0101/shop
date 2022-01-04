@@ -40,4 +40,9 @@ class Product extends Model
         return \Cart::getContent()->map( fn($item) => $item->associatedModel->id )
                                   ->contains($this->id);
     }
+
+    public function characteristics()
+    {
+        return $this->belongsToMany(Characteristic::class);
+    }
 }
