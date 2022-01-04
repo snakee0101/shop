@@ -15,6 +15,17 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                  ->references('id')
+                  ->on('users');
+            $table->smallInteger('rating');  //5-star rating system: 1 - 5
+            $table->text('comment');
+            $table->foreignId('parent_id')
+                  ->references('id')
+                  ->on('reviews');
+            $table->text('advantages');
+            $table->text('disadvantages');
+            $table->boolean('notify_on_reply');
             $table->timestamps();
         });
     }
