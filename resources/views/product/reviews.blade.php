@@ -2,6 +2,43 @@
 
 @section('reviews')
     <div class="reviews-view">
+        <form class="reviews-view__form mt-0 pt-0 mb-5">
+            <details>
+                <summary class="h2 mb-4">
+                    Write A Review
+                </summary>
+                <div class="row">
+                    <div class="col-12 col-lg-9 col-xl-8">
+                        <div class="form-row">
+                            <div class="form-group col-md-4"><label for="review-stars">Review
+                                    Stars</label> <select id="review-stars" class="form-control">
+                                    <option>5 Stars Rating</option>
+                                    <option>4 Stars Rating</option>
+                                    <option>3 Stars Rating</option>
+                                    <option>2 Stars Rating</option>
+                                    <option>1 Stars Rating</option>
+                                </select></div>
+                            <div class="form-group col-md-4"><label for="review-author">Your
+                                    Name</label> <input type="text" class="form-control"
+                                                        id="review-author" placeholder="Your Name">
+                            </div>
+                            <div class="form-group col-md-4"><label for="review-email">Email
+                                    Address</label> <input type="text" class="form-control"
+                                                           id="review-email"
+                                                           placeholder="Email Address"></div>
+                        </div>
+                        <div class="form-group"><label for="review-text">Your Review</label>
+                            <textarea class="form-control" id="review-text" rows="6"></textarea>
+                        </div>
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary btn-lg">Post Your Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </form>
+
         <div class="reviews-view__list"><h3 class="reviews-view__header">Customer Reviews</h3>
             <div class="reviews-list">
                 <ol class="reviews-list__content">
@@ -394,36 +431,5 @@
                 </div>
             </div>
         </div>
-        <form class="reviews-view__form"><h3 class="reviews-view__header">Write A Review</h3>
-            <div class="row">
-                <div class="col-12 col-lg-9 col-xl-8">
-                    <div class="form-row">
-                        <div class="form-group col-md-4"><label for="review-stars">Review
-                                Stars</label> <select id="review-stars" class="form-control">
-                                <option>5 Stars Rating</option>
-                                <option>4 Stars Rating</option>
-                                <option>3 Stars Rating</option>
-                                <option>2 Stars Rating</option>
-                                <option>1 Stars Rating</option>
-                            </select></div>
-                        <div class="form-group col-md-4"><label for="review-author">Your
-                                Name</label> <input type="text" class="form-control"
-                                                    id="review-author" placeholder="Your Name">
-                        </div>
-                        <div class="form-group col-md-4"><label for="review-email">Email
-                                Address</label> <input type="text" class="form-control"
-                                                       id="review-email"
-                                                       placeholder="Email Address"></div>
-                    </div>
-                    <div class="form-group"><label for="review-text">Your Review</label>
-                        <textarea class="form-control" id="review-text" rows="6"></textarea>
-                    </div>
-                    <div class="form-group mb-0">
-                        <button type="submit" class="btn btn-primary btn-lg">Post Your Review
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
 @endsection
