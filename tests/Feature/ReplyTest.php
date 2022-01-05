@@ -2,21 +2,29 @@
 
 namespace Tests\Feature;
 
+use App\Models\Product;
+use App\Models\Reply;
+use App\Models\Review;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_user_can_leave_a_reply_on_review()
     {
-        $response = $this->get('/');
+        $review = Review::factory()->create([
+            'product_id' => Product::factory()
+        ]);
 
-        $response->assertStatus(200);
+        $reply = Reply::factory()->make([
+            'object_type' => $review::class,
+            'object_id' => $review->id,
+        ]);
+
+        $this->actingAs( $review->author );
+        $this->post( route('reply.store'), $reply->toArray() );
+
+        $this->assertInstanceOf(Reply::class, Reply::first());
     }
 }
