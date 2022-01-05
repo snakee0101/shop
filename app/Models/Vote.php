@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vote extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
+    protected $guarded = [];
 }

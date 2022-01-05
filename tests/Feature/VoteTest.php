@@ -12,6 +12,19 @@ class VoteTest extends TestCase
 {
     public function test_example()
     {
-        dd( Vote::factory()->withObject( Review::factory()->create() )->create() );
+        $review = Review::factory()->create();
+
+        $this->actingAs( $review->author );
+        $this->post( route('vote.store'), [
+            'object_id' => $review->id,
+            'object_type' => $review::class,
+            'value' => -1
+        ]);
+
+        $this->assertDatabaseHas('votes', [
+            'object_id' => $review->id,
+            'object_type' => $review::class,
+            'value' => -1
+        ]);
     }
 }
