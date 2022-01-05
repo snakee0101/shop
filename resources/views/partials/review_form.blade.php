@@ -27,14 +27,17 @@
                                                    placeholder="Email Address"></div>--}}
                 </div>
                 <div class="form-group"><label for="review-advantages">Advantages</label>
-                    <textarea class="form-control" id="review-advantages" rows="1" name="advantages"></textarea>
+                    <textarea class="form-control" id="review-advantages" rows="1" name="advantages">{{ old('advantages') }}</textarea>
                 </div>
                 <div class="form-group"><label for="review-disadvantages">Disadvantages</label>
-                    <textarea class="form-control" id="review-disadvantages" rows="1" name="disadvantages"></textarea>
+                    <textarea class="form-control" id="review-disadvantages" rows="1" name="disadvantages">{{ old('disadvantages') }}</textarea>
                     <p class="text-muted">required if advantages are stated</p>
                 </div>
                 <div class="form-group"><label for="review-text">Your Review</label>
-                    <textarea class="form-control" id="review-text" rows="6" name="comment"></textarea>
+                    <textarea class="form-control" id="review-text" rows="6" name="comment">{{ old('comment') }}</textarea>
+                    @error('comment')
+                        <p class="text-danger">Review text is required</p>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="review-video">Link to Youtube video</label>

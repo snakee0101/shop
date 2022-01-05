@@ -20,4 +20,16 @@ class ReviewTest extends TestCase
             'comment' => $review->comment
         ]);
     }
+
+    public function test_review_comment_is_required()
+    {
+        $review = Review::factory()->make();
+        auth()->login( $review->author );
+
+        $revie_array = $review->toArray();
+        $revie_array['comment'] = '';
+
+        $this->post( route('review.store'),  $revie_array)
+             ->assertSessionHasErrors('comment');
+    }
 }
