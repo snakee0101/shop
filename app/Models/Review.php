@@ -14,4 +14,9 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function replies()
+    {
+        return $this->morphMany(Reply::class, 'repliable', 'object_type', 'object_id');
+    }
 }
