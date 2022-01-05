@@ -17,6 +17,6 @@ class Review extends Model
 
     public function replies()
     {
-        return $this->morphMany(Reply::class, 'repliable', 'object_type', 'object_id');
+        return $this->morphMany(Reply::class, 'replies', 'object_type', 'object_id');
     }
 }
