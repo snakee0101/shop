@@ -1,19 +1,21 @@
-<form class="reviews-view__form mt-0 pt-0 mb-5">
+<form class="reviews-view__form mt-0 pt-0 mb-5" method="post" action="{{ route('review.store') }}">
+    @csrf
     <details>
         <summary class="h2 mb-4">
             Write A Review
         </summary>
         <div class="row">
             <div class="col-12 col-lg-9 col-xl-8">
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="review-stars">Review Stars</label>
-                        <select id="review-stars" class="form-control">
-                            <option>5 Stars Rating</option>
-                            <option>4 Stars Rating</option>
-                            <option>3 Stars Rating</option>
-                            <option>2 Stars Rating</option>
-                            <option>1 Stars Rating</option>
+                        <select id="review-stars" class="form-control" name="rating">
+                            <option value="5">5 Stars Rating</option>
+                            <option value="4">4 Stars Rating</option>
+                            <option value="3">3 Stars Rating</option>
+                            <option value="2">2 Stars Rating</option>
+                            <option value="1">1 Stars Rating</option>
                         </select></div>
                     {{--<div class="form-group col-md-4"><label for="review-author">Your
                             Name</label> <input type="text" class="form-control"
@@ -25,13 +27,13 @@
                                                    placeholder="Email Address"></div>--}}
                 </div>
                 <div class="form-group"><label for="review-advantages">Advantages</label>
-                    <textarea class="form-control" id="review-advantages" rows="1"></textarea>
+                    <textarea class="form-control" id="review-advantages" rows="1" name="advantages"></textarea>
                 </div>
                 <div class="form-group"><label for="review-disadvantages">Disadvantages</label>
-                    <textarea class="form-control" id="review-disadvantages" rows="1"></textarea>
+                    <textarea class="form-control" id="review-disadvantages" rows="1" name="disadvantages"></textarea>
                 </div>
                 <div class="form-group"><label for="review-text">Your Review</label>
-                    <textarea class="form-control" id="review-text" rows="6"></textarea>
+                    <textarea class="form-control" id="review-text" rows="6" name="comment"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="review-video">Link to Youtube video</label>
@@ -45,7 +47,7 @@
                     <button type="button" class="btn btn-success">Add Photos</button>
                 </div>
                 <div class="custom-control custom-checkbox mb-4">
-                    <input type="checkbox" class="custom-control-input" id="notify_on_reply">
+                    <input type="checkbox" class="custom-control-input" id="notify_on_reply" name="notify_on_reply">
                     <label class="custom-control-label" for="notify_on_reply">Email me on replies</label>
                 </div>
 
