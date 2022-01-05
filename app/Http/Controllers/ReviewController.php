@@ -20,7 +20,9 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'comment' => 'required'
+            'comment' => 'required',
+            'advantages' => 'required_with:disadvantages',
+            'disadvantages' => 'required_with:advantages',
         ]);
 
         Review::create([

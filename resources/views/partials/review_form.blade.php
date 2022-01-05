@@ -28,10 +28,15 @@
                 </div>
                 <div class="form-group"><label for="review-advantages">Advantages</label>
                     <textarea class="form-control" id="review-advantages" rows="1" name="advantages">{{ old('advantages') }}</textarea>
+                    @error('advantages')
+                        <p class="text-danger">Required if disadvantages are stated</p>
+                    @enderror
                 </div>
                 <div class="form-group"><label for="review-disadvantages">Disadvantages</label>
                     <textarea class="form-control" id="review-disadvantages" rows="1" name="disadvantages">{{ old('disadvantages') }}</textarea>
-                    <p class="text-muted">required if advantages are stated</p>
+                    @error('disadvantages')
+                        <p class="text-danger">Required if advantages are stated</p>
+                    @enderror
                 </div>
                 <div class="form-group"><label for="review-text">Your Review</label>
                     <textarea class="form-control" id="review-text" rows="6" name="comment">{{ old('comment') }}</textarea>

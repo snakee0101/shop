@@ -26,10 +26,38 @@ class ReviewTest extends TestCase
         $review = Review::factory()->make();
         auth()->login( $review->author );
 
-        $revie_array = $review->toArray();
-        $revie_array['comment'] = '';
+        $review_array = $review->toArray();
+        $review_array['comment'] = '';
 
-        $this->post( route('review.store'),  $revie_array)
+        $this->post( route('review.store'),  $review_array)
              ->assertSessionHasErrors('comment');
+    }
+
+    public function test_advantages_and_disadvantages_are_required_together()
+    {
+        $review = Review::factory()->make();
+        auth()->login( $review->author );
+
+        $review_array = $review->toArray();
+
+        $this->post( route('review.store'),  $review_array)
+            ->assertSessionHasNoErrors();
+
+        $review_array['advantages'] = '';
+
+        $this->post( route('review.store'),  $review_array)
+            ->assertSessionHasErrors('advantages');
+
+        $review_array = $review->toArray();
+        $review_array['disadvantages'] = '';
+
+        $this->post( route('review.store'),  $review_array)
+            ->assertSessionHasErrors('disadvantages');
+
+        $review_array = $review->toArray();
+        $review_array['advantages'] = '';
+        $review_array['disadvantages'] = '';
+        $this->post( route('review.store'),  $review_array)
+            ->assertSessionHasNoErrors();
     }
 }
