@@ -23,11 +23,12 @@ class ReplyController extends Controller
             'text' => 'required'
         ]);
 
-        Reply::create(
-            array_merge([ 'user_id' => auth()->id() ], request([
-                'text', 'object_id', 'object_type'
-            ]))
-        );
+        Reply::create([
+            'user_id' => auth()->id(),
+            'text' => nl2br( request('text') ),
+            'object_id' => request('object_id'),
+            'object_type' => request('object_type')
+        ]);
 
         return back();
     }
