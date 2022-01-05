@@ -41,6 +41,9 @@ class VoteController extends Controller
             'object_type' => $request->object_type,
             'value' => $request->input('value')
         ]);
+
+        return $request->object_type::find($request->object_id)
+                       ->vote_statistics;
     }
 
     /**
