@@ -2,17 +2,21 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Review;
+use App\Models\Vote;
+use Tests\TestCase;
 
 class VoteTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_review_has_many_votes()
     {
-        $this->assertTrue(true);
+        $review = Review::factory()->create();
+
+        Vote::factory()->count(2)
+                       ->withObject($review)
+                       ->create();
+
+        $this->assertInstanceOf(Vote::class, $review->fresh()->votes()->first());
+        $this->assertCount(2, $review->fresh()->votes);
     }
 }

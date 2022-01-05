@@ -19,4 +19,9 @@ class Review extends Model
     {
         return $this->morphMany(Reply::class, 'replies', 'object_type', 'object_id');
     }
+
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votes', 'object_type', 'object_id');
+    }
 }
