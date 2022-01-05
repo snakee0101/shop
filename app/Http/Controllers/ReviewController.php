@@ -30,7 +30,6 @@ class ReviewController extends Controller
             'product_id' => request('product_id'),
             'rating' => request('rating'),
             'comment' => request('comment'),
-            'parent_id' => request('parent_id'),
             'advantages' => request('advantages'),
             'disadvantages' => request('disadvantages'),
             'notify_on_reply' => request()->has('notify_on_reply'),

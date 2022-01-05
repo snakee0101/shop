@@ -21,19 +21,9 @@ class ReviewFactory extends Factory
          'product_id' => Product::factory(),
          'rating' => $this->faker->numberBetween(1,5),
          'comment' => $this->faker->sentence,
-         'parent_id' => null,
          'advantages' => $this->faker->sentence,
          'disadvantages' => $this->faker->sentence,
          'notify_on_reply' => false,
         ];
-    }
-
-    public function withParent(Review $review)
-    {
-        return $this->state(function (array $attributes) use ($review) {
-            return [
-                'parent_id' => $review->id
-            ];
-        });
     }
 }

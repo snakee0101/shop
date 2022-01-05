@@ -23,9 +23,6 @@ class CreateReviewsTable extends Migration
                   ->on('products');
             $table->smallInteger('rating');  //5-star rating system: 1 - 5
             $table->text('comment');
-            $table->foreignId('parent_id')->nullable()
-                  ->references('id')
-                  ->on('reviews');
             $table->text('advantages')->nullable();
             $table->text('disadvantages')->nullable();
             $table->boolean('notify_on_reply');
