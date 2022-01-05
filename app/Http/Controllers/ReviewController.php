@@ -19,7 +19,18 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Review::create([
+            'user_id' => auth()->id(),
+            'product_id' => request('product_id'),
+            'rating' => request('rating'),
+            'comment' => request('comment'),
+            'parent_id' => request('parent_id'),
+            'advantages' => request('advantages'),
+            'disadvantages' => request('disadvantages'),
+            'notify_on_reply' => request()->has('notify_on_reply'),
+        ]);
+
+        return back();
     }
 
     public function show(Review $review)
