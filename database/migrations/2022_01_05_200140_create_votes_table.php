@@ -15,7 +15,13 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')
+                  ->references('id')
+                  ->on('users');
+            $table->morphs('object');
+            $table->smallInteger('value');
+
+            $table->unique(['user_id', 'object_id', 'object_type']);
         });
     }
 
