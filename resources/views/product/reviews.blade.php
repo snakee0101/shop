@@ -2,7 +2,13 @@
 
 @section('reviews')
     <div class="reviews-view">
-        @include('partials.review_form')
+        @auth
+             @include('partials.review_form')
+        @else
+            <form class="alert alert-danger">
+                Log In to post a review
+            </form>
+        @endauth
 
         <div class="reviews-view__list" id="reviews"><h3 class="reviews-view__header">Customer Reviews</h3>
             <div class="reviews-list">
