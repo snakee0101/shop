@@ -1,4 +1,4 @@
-<li class="reviews-list__item">
+<li class="reviews-list__item pb-3">
     <div class="review">
         <div class="review__avatar"><img src="/images/avatars/avatar-1.jpg"
                                          alt=""></div>
@@ -59,11 +59,11 @@
             @if($review->advantages)
                 <div class="review__text">
                     <h6>Advantages:</h6>
-                    <p>{{ $review->advantages }}</p>
+                    <p class="m-0">{{ $review->advantages }}</p>
                 </div>
                 <div class="review__text">
                     <h6>Disadvantages:</h6>
-                    <p>{{ $review->disadvantages }}</p>
+                    <p class="m-0">{{ $review->disadvantages }}</p>
                 </div>
             @endif
         </div>
