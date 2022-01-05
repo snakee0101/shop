@@ -31,6 +31,7 @@
                 </div>
                 <div class="form-group"><label for="review-disadvantages">Disadvantages</label>
                     <textarea class="form-control" id="review-disadvantages" rows="1" name="disadvantages"></textarea>
+                    <p class="text-muted">required if advantages are stated</p>
                 </div>
                 <div class="form-group"><label for="review-text">Your Review</label>
                     <textarea class="form-control" id="review-text" rows="6" name="comment"></textarea>

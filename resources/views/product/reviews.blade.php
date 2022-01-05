@@ -70,6 +70,16 @@
                                         </div>
                                     </div>
                                     <div class="review__text">{{ $review->comment }}</div>
+                                    @if($review->advantages)
+                                        <div class="review__text">
+                                            <h6>Advantages:</h6>
+                                            <p>{{ $review->advantages }}</p>
+                                        </div>
+                                        <div class="review__text">
+                                            <h6>Disadvantages:</h6>
+                                            <p>{{ $review->disadvantages }}</p>
+                                        </div>
+                                    @endif
                                     <div class="review__date">{{ $review->created_at->format('d F, Y') }}</div>
                                 </div>
                             </div>
