@@ -9,6 +9,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $appends = ['is_voted'];
 
     public function author()
     {
@@ -31,5 +32,12 @@ class Review extends Model
             'for_count' => $this->votes()->where('value', +1)->count(),
             'against_count' => $this->votes()->where('value', -1)->count()
         ];
+    }
+
+    public function getIsVotedAttribute()
+    {
+        return $this->votes()
+                    ->where('user_id', auth()->id())
+                    ->exists();
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Review;
+use App\Models\User;
 use App\Models\Vote;
 use Tests\TestCase;
 
@@ -36,5 +37,18 @@ class VoteTest extends TestCase
             'for_count' => 3,
             'against_count' => 2
         ], $review->fresh()->vote_statistics);
+    }
+
+    public function test_review_knows_whether_is_it_voted()
+    {
+        $review = Review::factory()->create();
+        $this->actingAs($user = User::factory()->create());
+
+        $this->assertFalse( $review->fresh()->is_voted );
+
+        Vote::factory()->withObject($review)
+            ->create(['user_id' => $user->id]);
+
+        $this->assertTrue( $review->fresh()->is_voted );
     }
 }
