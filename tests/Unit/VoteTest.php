@@ -51,4 +51,25 @@ class VoteTest extends TestCase
 
         $this->assertTrue( $review->fresh()->is_voted );
     }
+
+    public function test_review_knows_its_vote()
+    {
+        $review = Review::factory()->create();
+        $this->actingAs($user = User::factory()->create());
+
+        $this->assertFalse( $review->fresh()->is_voted );
+
+        $vote = Vote::factory()->withObject($review)
+            ->create(['user_id' => $user->id, 'value' => -1]);
+
+        $this->assertEquals(-1, $review->fresh()->vote);
+
+        Vote::destroy($vote->id);
+
+        Vote::factory()->withObject($review)
+            ->create(['user_id' => $user->id, 'value' => +1]);
+
+        $this->assertEquals(+1, $review->fresh()->vote);
+
+    }
 }

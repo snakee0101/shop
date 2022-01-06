@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $appends = ['is_voted'];
+    protected $appends = ['is_voted', 'vote'];
 
     public function author()
     {
@@ -39,5 +39,10 @@ class Review extends Model
         return $this->votes()
                     ->where('user_id', auth()->id())
                     ->exists();
+    }
+
+    public function getVoteAttribute()
+    {
+        return $this->votes()->firstWhere('user_id', auth()->id())->value;
     }
 }
