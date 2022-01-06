@@ -43,6 +43,7 @@ class Review extends Model
 
     public function getVoteAttribute()
     {
-        return $this->votes()->firstWhere('user_id', auth()->id())->value;
+        return ($this->is_voted) ? $this->votes()->firstWhere('user_id', auth()->id())->value
+                                 : 0;
     }
 }
