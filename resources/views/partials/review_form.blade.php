@@ -1,4 +1,4 @@
-<form class="reviews-view__form mt-0 pt-0 mb-5" method="post" action="{{ route('review.store') }}">
+<form class="reviews-view__form mt-0 pt-0 mb-5" method="post" action="{{ route('review.store') }}" enctype="multipart/form-data">
     @csrf
     <details>
         <summary class="h2 mb-4">

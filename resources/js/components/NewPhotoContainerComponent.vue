@@ -18,8 +18,9 @@
         <button type="button" class="btn btn-success" @click="selectImage()">Add Photos</button>
         <input type="file" ref="image" class="d-none" accept="image/jpeg,image/png,image/gif"
                @change="handleFiles()">
-    </div>
 
+        <input type="hidden" v-for="(image, index) in encoded_images" :name="'image-' + index" :value="image">
+    </div>
 </template>
 
 <script>
