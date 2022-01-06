@@ -11,6 +11,7 @@ Vue.component('new-wishlist-component', require('./components/NewWishlistCompone
 Vue.component('product-cart-table-component', require('./components/ProductCartTableComponent').default);
 Vue.component('cart-totals-component', require('./components/CartTotalsComponent').default);
 Vue.component('vote-controls-component', require('./components/VoteControlsComponent').default);
+Vue.component('new-photo-container-component', require('./components/NewPhotoContainerComponent').default);
 
 window.events = new Vue();
 

@@ -51,10 +51,9 @@
                         <button type="button" class="btn btn-success">Add</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Photos</label><br>
-                    <button type="button" class="btn btn-success">Add Photos</button>
-                </div>
+                <new-photo-container-component>
+
+                </new-photo-container-component>
                 <div class="custom-control custom-checkbox mb-4">
                     <input type="checkbox" class="custom-control-input" id="notify_on_reply" name="notify_on_reply">
                     <label class="custom-control-label" for="notify_on_reply">Email me on replies</label>
