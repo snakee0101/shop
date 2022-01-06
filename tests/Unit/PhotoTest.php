@@ -4,14 +4,17 @@ namespace Tests\Unit;
 
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Review;
 use Tests\TestCase;
 
 class PhotoTest extends TestCase
 {
     public function test_review_has_photos()
     {
-//        $obj = Product::factory()->create();
-//        dd( Photo::factory()->withObject($obj)->make() );
+        $review = Review::factory()->create();
+        $photo = Photo::factory()->withObject($review)->create();
+
+        $this->assertInstanceOf(Photo::class, $review->fresh()->photos()->first());
     }
 
     public function test_product_has_photos()

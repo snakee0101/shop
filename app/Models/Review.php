@@ -26,6 +26,11 @@ class Review extends Model
         return $this->morphMany(Vote::class, 'votes', 'object_type', 'object_id');
     }
 
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'photos', 'object_type', 'object_id');
+    }
+
     public function getVoteStatisticsAttribute()
     {
         return [
