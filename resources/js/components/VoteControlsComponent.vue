@@ -34,13 +34,21 @@ export default {
             if(this.object.is_voted)
                 alert('You have already voted');
             else
-                alert('Vote');
+                axios.post('/vote', {
+                    'object_id' : this.object.id,
+                    'object_type' : this.object_type,
+                    'value' : +1
+                });
         },
         dislike() {
             if(this.object.is_voted)
                 alert('You have already voted');
             else
-                alert('Vote');
+                axios.post('/vote', {
+                    'object_id' : this.object.id,
+                    'object_type' : this.object_type,
+                    'value' : -1
+                });
         }
     }
 }
