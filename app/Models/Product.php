@@ -51,4 +51,9 @@ class Product extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function photos()
+    {
+        return $this->morphMany(Photo::class, 'photos', 'object_type', 'object_id');
+    }
 }
