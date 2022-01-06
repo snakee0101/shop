@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $appends = ['is_voted', 'vote'];
+    protected $appends = ['is_voted', 'vote', 'vote_statistics'];
 
     public function author()
     {

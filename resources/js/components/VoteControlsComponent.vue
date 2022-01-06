@@ -28,8 +28,8 @@ export default {
         return {
             'object_var' : this.object,
             'indicators' : {
-                'for_count' : 0,
-                'against_count' : 0
+                'for_count' : this.object.vote_statistics.for_count,
+                'against_count' : this.object.vote_statistics.against_count
             }
         };
     },
