@@ -75,8 +75,8 @@
                 </div>
             @endif
             <div class="review__text">
-                <vote-controls-component :object_id="{{ $review->id }}"
-                                         object_type="{{ $review::class }}">
+                <vote-controls-component object_type="{{ $review::class }}"
+                                         :object="{{ $review }}">
 
                 </vote-controls-component>
             </div>
