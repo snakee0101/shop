@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Photo;
 use App\Models\Review;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -22,7 +23,7 @@ class ReviewTest extends TestCase
         ]);
     }
 
-    public function test_when_review_is_created_attached_images_are_saved()
+    public function test_when_review_is_created_attached_images_are_saved_to_the_filesystem()
     {
         $review = Review::factory()->make();
         auth()->login( $review->author );
@@ -37,6 +38,23 @@ class ReviewTest extends TestCase
         $file_url = Storage::files('/images')[0];
 
         $this->assertEquals('test string', Storage::get($file_url));
+    }
+
+    public function test_when_review_is_created_attached_images_are_saved_as_model()
+    {
+        $review = Review::factory()->make();
+        auth()->login( $review->author );
+
+        Storage::fake();
+
+        $data = array_merge($review->toArray(), [
+            'image-1' => base64_encode('test string') //base64 encoded image
+        ]);
+
+        $this->post( route('review.store'), $data );
+
+        $this->assertInstanceOf(Photo::class, Photo::first());
+        $this->assertInstanceOf(Photo::class, Review::first()->photos[0]);
     }
 
     public function test_review_comment_is_required()

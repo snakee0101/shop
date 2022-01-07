@@ -28,7 +28,7 @@ class ReviewController extends Controller
             'disadvantages' => 'required_with:advantages',
         ]);
 
-        Review::create([
+        $review = Review::create([
             'user_id' => auth()->id(),
             'product_id' => request('product_id'),
             'rating' => request('rating'),
@@ -43,6 +43,10 @@ class ReviewController extends Controller
             if(str_contains($key, 'image')) { //filter through image fields only
                 $unique_name = now()->timestamp . Str::uuid() . '.jpg';
                 Storage::put( '/images/' . $unique_name, base64_decode($encoded_image) );
+
+                $review->photos()->create([
+                    'url' => Storage::url('/images/' . $unique_name)
+                ]);
             }
         }
 
