@@ -70,38 +70,6 @@
 
 
     /*
-    // product tabs
-    */
-    $(function () {
-        $('.product-tabs').each(function (i, element) {
-            $('.product-tabs__list', element).on('click', '.product-tabs__item', function (event) {
-                event.preventDefault();
-
-                const tab = $(this);
-                const content = $('.product-tabs__pane' + $(this).attr('href'), element);
-
-                if (content.length) {
-                    $('.product-tabs__item').removeClass('product-tabs__item--active');
-                    tab.addClass('product-tabs__item--active');
-
-                    $('.product-tabs__pane').removeClass('product-tabs__pane--active');
-                    content.addClass('product-tabs__pane--active');
-                }
-            });
-
-            const currentTab = $('.product-tabs__item--active', element);
-            const firstTab = $('.product-tabs__item:first', element);
-
-            if (currentTab.length) {
-                currentTab.trigger('click');
-            } else {
-                firstTab.trigger('click');
-            }
-        });
-    });
-
-
-    /*
     // megamenu position
     */
     $(function() {
