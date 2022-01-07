@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ReviewController extends Controller
 {
@@ -20,13 +22,13 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'comment' => 'required',
             'advantages' => 'required_with:disadvantages',
             'disadvantages' => 'required_with:advantages',
-        ]);*/
+        ]);
 
-        /*Review::create([
+        Review::create([
             'user_id' => auth()->id(),
             'product_id' => request('product_id'),
             'rating' => request('rating'),
@@ -34,16 +36,17 @@ class ReviewController extends Controller
             'advantages' => request('advantages'),
             'disadvantages' => request('disadvantages'),
             'notify_on_reply' => request()->has('notify_on_reply'),
-        ]);*/
+        ]);
 
         //Decode and save images
         foreach($request->all() as $key => $encoded_image) {
             if(str_contains($key, 'image')) { //filter through image fields only
-                dump($key ."____". $encoded_image);
+                $unique_name = now()->timestamp . Str::uuid() . '.jpg';
+                Storage::put( '/images/' . $unique_name, base64_decode($encoded_image) );
             }
         }
 
-//        return back();
+        return back();
     }
 
     public function show(Review $review)
