@@ -12,10 +12,4 @@ class Photo extends Model
 
     public $timestamps = false;
     protected $guarded = [];
-    protected $appends = ['storage_url'];
-
-    public function getStorageUrlAttribute()
-    {
-        return Storage::url($this->url);
-    }
 }

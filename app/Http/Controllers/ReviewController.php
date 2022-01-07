@@ -41,11 +41,16 @@ class ReviewController extends Controller
         //Decode and save images
         foreach($request->all() as $key => $encoded_image) {
             if(str_contains($key, 'image')) { //filter through image fields only
-                $unique_name = now()->timestamp . Str::uuid() . '.jpg';
-                Storage::put( '/images/' . $unique_name, base64_decode($encoded_image) );
+                $unique_name = now()->timestamp . Str::uuid();
+
+                $imgData = str_replace(' ','+',$encoded_image);
+                $imgData = substr($imgData,strpos($imgData,",") + 1);
+                $imgData = base64_decode($imgData);
+
+                Storage::put( '/public/images/' . $unique_name . '.png', $imgData);
 
                 $review->photos()->create([
-                    'url' => Storage::url('/images/' . $unique_name)
+                    'url' => '/storage/images/' . $unique_name . '.png'
                 ]);
             }
         }

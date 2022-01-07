@@ -74,11 +74,13 @@
                     <p class="m-0">{{ $review->disadvantages }}</p>
                 </div>
             @endif
+            @if($review->photos)
             <div class="review__text">
-                <gallery-viewer-component>
+                <gallery-viewer-component :photos="{{ $review->photos }}">
 
                 </gallery-viewer-component>
             </div>
+            @endif
             <div class="review__text">
                 <vote-controls-component object_type="{{ $review::class }}"
                                          :object="{{ $review }}">
