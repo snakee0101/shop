@@ -56,4 +56,9 @@ class Product extends Model
     {
         return $this->morphMany(Photo::class, 'photos', 'object_type', 'object_id');
     }
+
+    public function videos()
+    {
+        return $this->morphMany(Video::class, 'videos', 'object_type', 'object_id');
+    }
 }
