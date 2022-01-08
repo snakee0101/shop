@@ -11,7 +11,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string('cause');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->morphs('object');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
