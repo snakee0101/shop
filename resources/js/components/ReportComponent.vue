@@ -5,38 +5,38 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="text-dark">Report a review</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ref="close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-check text-dark">
-                            <input class="form-check-input" type="radio" name="cause" id="customRadio1" value="Insults" v-model="cause">
-                            <label class="form-check-label" for="customRadio1">
+                            <input class="form-check-input" type="radio" name="cause" :id="'customRadio1' + object_id" value="Insults" v-model="cause">
+                            <label class="form-check-label" :for="'customRadio1' + object_id">
                                 Insults
                             </label>
                         </div>
                         <div class="form-check text-dark">
-                            <input class="form-check-input" type="radio" name="cause" id="customRadio2" value="Spam" v-model="cause">
-                            <label class="form-check-label" for="customRadio2">
+                            <input class="form-check-input" type="radio" name="cause" :id="'customRadio2' + object_id" value="Spam" v-model="cause">
+                            <label class="form-check-label" :for="'customRadio2' + object_id">
                                 Spam
                             </label>
                         </div>
                         <div class="form-check text-dark">
-                            <input class="form-check-input" type="radio" name="cause" id="customRadio3" value="Links to illegal sites or programs" v-model="cause">
-                            <label class="form-check-label" for="customRadio3">
+                            <input class="form-check-input" type="radio" name="cause" :id="'customRadio3' + object_id" value="Links to illegal sites or programs" v-model="cause">
+                            <label class="form-check-label" :for="'customRadio3' + object_id">
                                 Links to illegal sites or programs
                             </label>
                         </div>
                         <div class="form-check text-dark">
-                            <input class="form-check-input" type="radio" name="cause" id="customRadio4" value="Does not related to the topic under discussion" v-model="cause">
-                            <label class="form-check-label" for="customRadio4">
+                            <input class="form-check-input" type="radio" name="cause" :id="'customRadio4' + object_id" value="Does not related to the topic under discussion" v-model="cause">
+                            <label class="form-check-label" :for="'customRadio4' + object_id">
                                 Does not related to the topic under discussion
                             </label>
                         </div>
                         <div class="form-check text-dark">
-                            <input class="form-check-input" type="radio" name="cause" id="customRadio5" value="Other cause" v-model="cause" ref="customRadio5">
-                            <label class="form-check-label" for="customRadio5">
+                            <input class="form-check-input" type="radio" name="cause" :id="'customRadio5' + object_id" value="Other cause" v-model="cause" ref="customRadio5">
+                            <label class="form-check-label" :for="'customRadio5' + object_id">
                                 Other cause
                             </label>
                         </div>
@@ -91,7 +91,18 @@ export default {
         },
         sendReport()
         {
-            alert('send a report');
+            if(this.cause === 'Other cause' && this.comment === '') {
+                alert('provide a comment');
+            } else {
+                axios.post('/report', {
+                    'cause' : this.cause,
+                    'comment' : this.comment,
+                    'object_id' : this.object_id,
+                    'object_type' : this.object_type
+                });
+
+                this.$refs['close'].click();
+            }
         }
     }
 }
