@@ -55,6 +55,15 @@ class ReviewController extends Controller
             }
         }
 
+        //save videos
+        foreach($request->all() as $key => $video_url) {
+            if(str_contains($key, 'video')) { //filter through video fields only
+                $review->videos()->create([
+                    'url' => $video_url
+                ]);
+            }
+        }
+
         return back();
     }
 

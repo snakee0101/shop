@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Photo;
 use App\Models\Review;
+use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +56,20 @@ class ReviewTest extends TestCase
 
         $this->assertInstanceOf(Photo::class, Photo::first());
         $this->assertInstanceOf(Photo::class, Review::first()->photos[0]);
+    }
+
+    public function test_when_review_is_created_attached_videos_are_saved()
+    {
+        $review = Review::factory()->make();
+        auth()->login( $review->author );
+
+       $data = array_merge($review->toArray(), [
+            'video-1' => 'test url'
+        ]);
+
+        $this->post( route('review.store'), $data );
+        $this->assertInstanceOf(Video::class, Video::first());
+        $this->assertInstanceOf(Video::class, Review::first()->videos[0]);
     }
 
     public function test_review_comment_is_required()
