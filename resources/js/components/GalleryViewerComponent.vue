@@ -23,9 +23,32 @@
         </div>
 
         <div class="d-inline-block position-relative m-2" v-for="video in videos">
+            <div class="modal fade video-modal" :id="'videoModal_' + video.id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <iframe style="margin: 10px"
+                                    width="640" height="490"
+                                    :src="video.url"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <img :src="get_thumbnail(video.url)"
                  style="height: 120px; width: 120px; cursor: pointer"
-                 data-toggle="modal">
+                 data-toggle="modal" :data-target="'#videoModal_' + video.id">
         </div>
     </div>
 </template>

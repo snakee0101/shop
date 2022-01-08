@@ -9,20 +9,24 @@
     stroke: #fff!important;
 }
 
-.image-modal .modal-dialog {
+.image-modal .modal-dialog,
+.video-modal .modal-dialog {
     max-width: 90%!important;
     width: 90%;
 }
 
-.image-modal .modal-content {
+.image-modal .modal-content,
+.video-modal .modal-content {
     max-width: 100%!important;
     width: 100%;
 }
 
-.image-modal .modal-header {
+.image-modal .modal-header,
+.video-modal .modal-header {
     padding: 0.4rem 1rem;
 }
 
-.image-modal .modal-body {
+.image-modal .modal-body,
+.video-modal .modal-body {
     padding: 0;
 }
