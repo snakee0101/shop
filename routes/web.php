@@ -51,6 +51,7 @@ Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductCont
 Route::resource('review', \App\Http\Controllers\ReviewController::class);
 Route::resource('reply', \App\Http\Controllers\ReplyController::class);
 Route::resource('vote', \App\Http\Controllers\VoteController::class);
+Route::resource('report', \App\Http\Controllers\ReportController::class);
 
 
 Route::prefix('account')->group(function () {

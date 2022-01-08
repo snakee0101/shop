@@ -2,21 +2,32 @@
 
 namespace Tests\Feature;
 
+use App\Models\Report;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ReportTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_report_could_be_created()
     {
-        $response = $this->get('/');
+        $user = User::factory()->create();
+        $review = Review::factory()->create();
 
-        $response->assertStatus(200);
+        $report_data = Report::factory()
+            ->withObject($review)
+            ->make();
+
+        $this->actingAs($user);
+
+        $this->post( route('report.store'), $report_data->toArray() )
+             ->assertOk();
+
+        $this->assertDatabaseHas('reports', [
+            'object_id' => $review->id,
+            'object_type' => $review::class
+        ]);
     }
 }
