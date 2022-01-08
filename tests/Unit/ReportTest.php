@@ -2,17 +2,16 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Report;
+use App\Models\Review;
+use Tests\TestCase;
 
 class ReportTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
     public function test_example()
     {
-        $this->assertTrue(true);
+        $review = Review::factory()->create();
+
+        dd( Report::factory()->withObject($review)->create() );
     }
 }
