@@ -30,4 +30,16 @@ class ReportTest extends TestCase
 
         $this->assertInstanceOf(Review::class, $report->object);
     }
+
+    public function test_report_could_be_posted_only_once_for_specific_object()
+    {
+        $this->expectExceptionMessage('UNIQUE constraint failed');
+
+        $review = Review::factory()->create();
+
+        $user = User::factory()->create();
+
+        Report::factory()->withObject($review)->create(['user_id' => $user]);
+        Report::factory()->withObject($review)->create(['user_id' => $user]);
+    }
 }
