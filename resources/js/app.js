@@ -14,6 +14,8 @@ Vue.component('vote-controls-component', require('./components/VoteControlsCompo
 Vue.component('new-photo-container-component', require('./components/NewPhotoContainerComponent').default);
 Vue.component('new-video-container-component', require('./components/NewVideoContainerComponent').default);
 Vue.component('gallery-viewer-component', require('./components/GalleryViewerComponent').default);
+Vue.component('report-component', require('./components/ReportComponent').default);
+
 
 window.events = new Vue();
 
