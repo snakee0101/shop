@@ -19,4 +19,15 @@ class ReportTest extends TestCase
 
         $this->assertInstanceOf(User::class, $report->author);
     }
+
+    public function test_report_associated_with_object()
+    {
+        $review = Review::factory()->create();
+
+        $report = Report::factory()
+                        ->withObject($review)
+                        ->create();
+
+        $this->assertInstanceOf(Review::class, $report->object);
+    }
 }
