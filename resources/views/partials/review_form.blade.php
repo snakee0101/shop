@@ -44,13 +44,9 @@
                         <p class="text-danger">Review text is required</p>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="review-video">Link to Youtube video</label>
-                    <div class="d-flex flex-row">
-                        <textarea class="form-control mr-2" id="review-video" rows="1"></textarea>
-                        <button type="button" class="btn btn-success">Add</button>
-                    </div>
-                </div>
+                <new-video-container-component>
+
+                </new-video-container-component>
                 <new-photo-container-component>
 
                 </new-photo-container-component>
