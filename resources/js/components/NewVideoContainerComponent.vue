@@ -24,6 +24,7 @@
                         </svg>
                     </button>
                 </p>
+                <input type="hidden" v-for="(video_url, index) in video_urls" :name="'video-' + index" :value="video_url">
             </div>
         </div>
     </div>
