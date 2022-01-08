@@ -99,7 +99,7 @@ export default {
                     'comment' : this.comment,
                     'object_id' : this.object_id,
                     'object_type' : this.object_type
-                });
+                }).catch(error => alert('You have already sent a report'));
 
                 this.$refs['close'].click();
             }
