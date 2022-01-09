@@ -33,7 +33,8 @@ class CategoryController extends Controller
             ]);
         } else {//if not - go to the shop
             return view('shop', [
-                'category' => $category
+                'category' => $category,
+                'products' => $category->products()->paginate(10)
             ]);
         }
     }
