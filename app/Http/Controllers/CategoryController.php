@@ -26,8 +26,14 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        //if category has subcategories - show their list
-        //if not - go to the shop
+        if($category->hasSubCategories()) {//if category has subcategories - show their list
+            return view('catalog', [
+                'categories' => $category->subCategories()->get(),
+                'is_subcategories_page' => true
+            ]);
+        } else {//if not - go to the shop
+            return 'go to the shop';
+        }
     }
 
 
