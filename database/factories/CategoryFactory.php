@@ -18,4 +18,13 @@ class CategoryFactory extends Factory
             'name' => $this->faker->sentence
         ];
     }
+
+    public function withParent(Category $category)
+    {
+        return $this->state(function (array $attributes) use ($category) {
+            return [
+                'parent_id' => $category->id,
+            ];
+        });
+    }
 }
