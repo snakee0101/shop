@@ -47,4 +47,24 @@ class ProductTest extends TestCase
 
         $this->assertEquals(4, $product->fresh()->reviews_count);
     }
+
+    public function test_product_counts_average_rounded_number_of_review_stars()
+    {
+        $product = Product::factory()->create();
+
+        Review::factory()->create(['product_id' => $product, 'rating' => 3]);
+        Review::factory()->create(['product_id' => $product, 'rating' => 4]);
+        Review::factory()->create(['product_id' => $product, 'rating' => 4]);
+
+        $this->assertEquals(4, $product->fresh()->review_stars_average);
+
+
+        $product2 = Product::factory()->create();
+
+        Review::factory()->create(['product_id' => $product2, 'rating' => 3]);
+        Review::factory()->create(['product_id' => $product2, 'rating' => 3]);
+        Review::factory()->create(['product_id' => $product2, 'rating' => 4]);
+
+        $this->assertEquals(3, $product2->fresh()->review_stars_average);
+    }
 }

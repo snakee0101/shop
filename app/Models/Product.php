@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $appends = ['inDefaultWishlist', 'inCart'];
+    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
 
@@ -52,6 +52,11 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getReviewStarsAverageAttribute()
+    {
+        return round( $this->reviews()->avg('rating') );
     }
 
     public function photos()
