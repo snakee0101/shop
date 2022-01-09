@@ -10,10 +10,15 @@
                 @foreach($categories as $category)
                     <div class="block-categories__item category-card category-card--layout--compact">
                         <div class="category-card__body">
-                            <div class="category-card__image"><a href="#"><img src="/images/categories/category-1.jpg"
-                                                                               alt=""></a></div>
+                            <div class="category-card__image">
+                                <a href="{{ route('category.show', $category->id) }}">
+                                    <img src="/images/categories/category-1.jpg">
+                                </a>
+                            </div>
                             <div class="category-card__content">
-                                <div class="category-card__name"><a href="#">{{ $category->name }}</a></div>
+                                <div class="category-card__name">
+                                    <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
+                                </div>
                                 <div class="category-card__products">000 Products</div>
                             </div>
                         </div>
