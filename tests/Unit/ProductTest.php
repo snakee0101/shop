@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\User;
 use App\Models\Wishlist;
 use Tests\TestCase;
@@ -35,6 +36,15 @@ class ProductTest extends TestCase
 
         $default_wishlist->products()->detach($product);
         $this->assertFalse( $product->fresh()->inDefaultWishlist );
+    }
 
+    public function test_product_knows_reviews_count()
+    {
+        $product = Product::factory()->create();
+        Review::factory()->count(4)->create([
+            'product_id' => $product
+        ]);
+
+        $this->assertEquals(4, $product->fresh()->reviews_count);
     }
 }

@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
     protected $appends = ['inDefaultWishlist', 'inCart'];
     protected $perPage = 48;
+    protected $withCount = ['reviews'];
 
     protected $casts = [
         'price' => 'float',
