@@ -70,7 +70,11 @@
                                 </template>
                             </div>
                         </div>
-                        <div class="product-card__rating-legend">{{product_object.reviews_count }} Reviews</div>
+                        <div class="product-card__rating-legend">
+                            <a :href="'/product/' + product_object.id + '/reviews#reviews'">
+                                {{ product_object.reviews_count }} Reviews
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="product-card__actions">
