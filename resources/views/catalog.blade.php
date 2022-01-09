@@ -14,11 +14,11 @@
                                 <div class="category-card__image">
                                     @if($category->hasSubCategories())
                                         <a>
-                                            <img src="/images/categories/category-1.jpg">
+                                            <img src="{{ $category->image_url }}">
                                         </a>
                                     @else
                                         <a href="{{ route('category.show', $category->id) }}">
-                                            <img src="/images/categories/category-1.jpg">
+                                            <img src="{{ $category->image_url }}">
                                         </a>
                                     @endif
                                 </div>
@@ -45,7 +45,7 @@
                             <div class="category-card__body">
                                 <div class="category-card__image">
                                     <a href="{{ route('category.show', $category->id) }}">
-                                        <img src="/images/categories/category-1.jpg">
+                                        <img src="{{ $category->image_url }}">
                                     </a>
                                 </div>
                                 <div class="category-card__content">
