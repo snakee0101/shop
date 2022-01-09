@@ -51,4 +51,12 @@ class CategoryTest extends TestCase
         $this->assertCount(3, $category->products);
         $this->assertInstanceOf(Product::class, $category->products[0]);
     }
+
+    public function test_top_level_categories_list_could_be_retrieved()
+    {
+        $top_level_category = Category::factory()->create();
+        $category = Category::factory()->withParent($top_level_category)->create();
+
+        $this->assertEquals( Category::topLevelCategories()->get()->first()->id, $top_level_category->id );
+    }
 }
