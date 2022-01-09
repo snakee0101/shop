@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product-card__rating-legend">0 Reviews</div>
+                        <div class="product-card__rating-legend">{{product_object.reviews_count }} Reviews</div>
                     </div>
                 </div>
                 <div class="product-card__actions">
