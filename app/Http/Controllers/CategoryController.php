@@ -32,7 +32,9 @@ class CategoryController extends Controller
                 'is_subcategories_page' => true
             ]);
         } else {//if not - go to the shop
-            return 'go to the shop';
+            return view('shop', [
+                'category' => $category
+            ]);
         }
     }
 
