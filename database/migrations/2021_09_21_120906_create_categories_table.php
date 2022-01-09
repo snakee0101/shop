@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration
                   ->references('id')
                   ->on('categories')
                   ->cascadeOnDelete();
+            $table->string('image_url');
         });
     }
 
