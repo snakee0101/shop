@@ -560,45 +560,15 @@
                     <div class="products-view">
                         <div class="products-view__options">
                             <div class="view-options">
-                                <div class="view-options__layout">
-                                    <div class="layout-switcher">
-                                        <div class="layout-switcher__list">
-                                            <button data-layout="grid-3-sidebar" data-with-features="false"
-                                                    title="Grid" type="button"
-                                                    class="layout-switcher__button layout-switcher__button--active">
-                                                <svg width="16px" height="16px">
-                                                    <use xlink:href="/images/sprite.svg#layout-grid-16x16"></use>
-                                                </svg>
-                                            </button>
-                                            <button data-layout="grid-3-sidebar" data-with-features="true"
-                                                    title="Grid With Features" type="button"
-                                                    class="layout-switcher__button">
-                                                <svg width="16px" height="16px">
-                                                    <use
-                                                        xlink:href="/images/sprite.svg#layout-grid-with-details-16x16"></use>
-                                                </svg>
-                                            </button>
-                                            <button data-layout="list" data-with-features="false" title="List"
-                                                    type="button" class="layout-switcher__button">
-                                                <svg width="16px" height="16px">
-                                                    <use xlink:href="/images/sprite.svg#layout-list-16x16"></use>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="view-options__legend">Showing 6 of 98 products</div>
                                 <div class="view-options__divider"></div>
                                 <div class="view-options__control"><label for="">Sort By</label>
                                     <div><select class="form-control form-control-sm" name="" id="">
-                                            <option value="">Default</option>
-                                            <option value="">Name (A-Z)</option>
-                                        </select></div>
-                                </div>
-                                <div class="view-options__control"><label for="">Show</label>
-                                    <div><select class="form-control form-control-sm" name="" id="">
-                                            <option value="">12</option>
-                                            <option value="">24</option>
+                                            <option value="">Cheap to expensive</option>
+                                            <option value="">Expensive to cheap</option>
+                                            <option value="">Popular</option>
+                                            <option value="">New</option>
+                                            <option value="">Sale</option>
+                                            <option value="">Rating</option>
                                         </select></div>
                                 </div>
                             </div>
