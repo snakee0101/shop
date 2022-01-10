@@ -27,32 +27,33 @@
         <div class="checkout block">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="alert alert-lg alert-primary">Returning customer? <a href="#">Click here to
-                                login</a></div>
-                    </div>
                     <div class="col-12 col-lg-6 col-xl-7">
-                        <div class="card mb-lg-0">
-                            <div class="card-body"><h3 class="card-title">Contact details</h3>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6"><label for="checkout-first-name">First Name</label>
-                                        <input type="text" class="form-control" id="checkout-first-name"
-                                               placeholder="First Name"></div>
-                                    <div class="form-group col-md-6"><label for="checkout-last-name">Last Name</label>
-                                        <input type="text" class="form-control" id="checkout-last-name"
-                                               placeholder="Last Name"></div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6"><label for="checkout-phone">Phone</label> <input
-                                            type="text" class="form-control" id="checkout-phone" placeholder="Phone">
+                        @guest
+                            <div class="card mb-lg-0">
+                                <div class="card-body"><h3 class="card-title">Contact details</h3>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6"><label for="checkout-first-name">First Name</label>
+                                            <input type="text" class="form-control" id="checkout-first-name"
+                                                   placeholder="First Name"></div>
+                                        <div class="form-group col-md-6"><label for="checkout-last-name">Last Name</label>
+                                            <input type="text" class="form-control" id="checkout-last-name"
+                                                   placeholder="Last Name"></div>
                                     </div>
-                                    <div class="form-group col-md-6"><label for="checkout-email">Email</label> <input
-                                            type="text" class="form-control" id="checkout-email" placeholder="Email">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6"><label for="checkout-phone">Phone</label> <input
+                                                type="text" class="form-control" id="checkout-phone" placeholder="Phone">
+                                        </div>
+                                        <div class="form-group col-md-6"><label for="checkout-email">Email</label> <input
+                                                type="text" class="form-control" id="checkout-email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="w-100 mb-3">
+                                        <div class="alert alert-lg alert-primary">Returning customer? <a href="{{ route('account') }}">Click here to
+                                                login</a></div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        @endguest
 
                         <div class="card mb-lg-0">
                             <div class="card-body"><h3 class="card-title">Billing details</h3>
