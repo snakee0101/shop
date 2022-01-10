@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Question;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Vote;
@@ -19,6 +20,18 @@ class VoteTest extends TestCase
 
         $this->assertInstanceOf(Vote::class, $review->fresh()->votes()->first());
         $this->assertCount(2, $review->fresh()->votes);
+    }
+
+    public function test_question_has_many_votes()
+    {
+        $question = Question::factory()->create();
+
+        Vote::factory()->count(2)
+                       ->withObject($question)
+                       ->create();
+
+        $this->assertInstanceOf(Vote::class, $question->fresh()->votes()->first());
+        $this->assertCount(2, $question->fresh()->votes);
     }
 
     public function test_review_knows_its_votes_statistics()

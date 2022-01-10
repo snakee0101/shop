@@ -22,12 +22,12 @@ class Question extends Model
         return $this->morphMany(Reply::class, 'replies', 'object_type', 'object_id');
     }
 
-    /*public function votes()
+    public function votes()
     {
         return $this->morphMany(Vote::class, 'votes', 'object_type', 'object_id');
     }
 
-    public function photos()
+    /*public function photos()
     {
         return $this->morphMany(Photo::class, 'photos', 'object_type', 'object_id');
     }
