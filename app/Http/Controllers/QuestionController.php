@@ -36,7 +36,12 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $review = Question::create([
+            'user_id' => auth()->id(),
+            'product_id' => request('product_id'),
+            'comment' => request('comment'),
+            'notify_on_reply' => request()->has('notify_on_reply'),
+        ]);
     }
 
     public function show(Question $question)
