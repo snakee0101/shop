@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -38,15 +39,12 @@ class QuestionController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
     public function show(Question $question)
     {
-        //
+        return view('product.specific_question', [
+            'question' => $question,
+            'product' => Product::find($question->product_id)
+        ]);
     }
 
     /**

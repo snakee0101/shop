@@ -4,7 +4,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="text-dark">Report a review</h4>
+                        <h4 class="text-dark">Report</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close" ref="close">
                             <span aria-hidden="true">&times;</span>
                         </button>

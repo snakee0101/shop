@@ -150,7 +150,7 @@
                             <a href="{{ route('product.reviews', $product) . '#product_tabs' }}"
                                class="product-tabs__item {{ is_route_active('product.reviews') || is_route_active('review.show') ? 'product-tabs__item--active' : '' }}">Reviews</a>
                             <a href="{{ route('product.questions', $product) . '#product_tabs' }}"
-                               class="product-tabs__item {{ is_route_active('product.questions') ? 'product-tabs__item--active' : '' }}">Questions</a>
+                               class="product-tabs__item {{ is_route_active('product.questions') || is_route_active('question.show') ? 'product-tabs__item--active' : '' }}">Questions</a>
                             <a href="{{ route('product.videos', $product) . '#product_tabs' }}"
                                class="product-tabs__item {{ is_route_active('product.videos') ? 'product-tabs__item--active' : '' }}">Videos</a>
                             <a href="{{ route('product.buy_together', $product) . '#product_tabs' }}"
@@ -174,7 +174,7 @@
                                 @yield('reviews')
                             </div>
                             <div
-                                class="product-tabs__pane {{ is_route_active('product.questions') ? 'product-tabs__pane--active' : '' }}"
+                                class="product-tabs__pane {{ is_route_active('product.questions') || is_route_active('question.show') ? 'product-tabs__pane--active' : '' }}"
                                 id="tab-questions">
                                 @yield('questions')
                             </div>
