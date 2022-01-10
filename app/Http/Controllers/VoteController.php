@@ -35,11 +35,8 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        Vote::create([
-            'user_id' => auth()->id(),
-            'object_id' => $request->object_id,
-            'object_type' => $request->object_type,
-            'value' => $request->input('value')
+        Vote::create(request(['object_id', 'object_type', 'value']) + [
+            'user_id' => auth()->id()
         ]);
 
         return $request->object_type::find($request->object_id)
