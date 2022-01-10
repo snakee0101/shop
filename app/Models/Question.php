@@ -37,7 +37,7 @@ class Question extends Model
         return $this->morphMany(Video::class, 'videos', 'object_type', 'object_id');
     }
 
-    /*public function getVoteStatisticsAttribute()
+    public function getVoteStatisticsAttribute()
     {
         return [
             'for_count' => $this->votes()->where('value', +1)->count(),
@@ -45,7 +45,7 @@ class Question extends Model
         ];
     }
 
-    public function getIsVotedAttribute()
+    /*public function getIsVotedAttribute()
     {
         return $this->votes()
             ->where('user_id', auth()->id())
