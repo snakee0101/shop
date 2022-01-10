@@ -42,6 +42,18 @@ class WishlistTest extends TestCase
         $this->assertEquals($default_wishlist->id, $user->default_wishlist->id);
     }
 
+    public function test_default_wishlist_for_a_specific_user_could_be_created()
+    {
+        $user = User::factory()->create();
+
+        Wishlist::createDefault($user);
+
+        $this->assertDatabaseHas('wishlists', [
+            'user_id' => $user->id,
+            'is_active' => true
+        ]);
+    }
+
     public function test_wishlist_has_many_products()
     {
         $products = Product::factory()->count(2)->create();
