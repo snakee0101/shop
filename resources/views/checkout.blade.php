@@ -43,8 +43,11 @@
                                                placeholder="Last Name"></div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col"><label for="checkout-phone">Phone</label> <input
+                                    <div class="form-group col-md-6"><label for="checkout-phone">Phone</label> <input
                                             type="text" class="form-control" id="checkout-phone" placeholder="Phone">
+                                    </div>
+                                    <div class="form-group col-md-6"><label for="checkout-email">Email</label> <input
+                                            type="text" class="form-control" id="checkout-email" placeholder="Email">
                                     </div>
                                 </div>
                             </div>
