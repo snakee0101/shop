@@ -17,12 +17,12 @@ class Question extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /*public function replies()
+    public function replies()
     {
         return $this->morphMany(Reply::class, 'replies', 'object_type', 'object_id');
     }
 
-    public function votes()
+    /*public function votes()
     {
         return $this->morphMany(Vote::class, 'votes', 'object_type', 'object_id');
     }

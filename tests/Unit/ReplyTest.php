@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Question;
 use App\Models\Reply;
 use App\Models\Review;
 use App\Models\User;
@@ -16,6 +17,15 @@ class ReplyTest extends TestCase
 
         $this->assertInstanceOf(Reply::class, $review->fresh()->replies[0]);
         $this->assertCount(2, $review->fresh()->replies);
+
+
+    }public function test_question_has_many_replies()
+    {
+        $question = Question::factory()->create();
+        $replies = Reply::factory()->withObject($question)->count(2)->create();
+
+        $this->assertInstanceOf(Reply::class, $question->fresh()->replies[0]);
+        $this->assertCount(2, $question->fresh()->replies);
     }
 
     public function test_reply_has_an_author()
