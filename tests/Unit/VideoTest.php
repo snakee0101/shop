@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Question;
 use App\Models\Video;
 use App\Models\Product;
 use App\Models\Review;
@@ -15,6 +16,14 @@ class VideoTest extends TestCase
         $video = Video::factory()->withObject($review)->create();
 
         $this->assertInstanceOf(Video::class, $review->fresh()->videos()->first());
+    }
+
+    public function test_question_has_videos()
+    {
+        $question = Question::factory()->create();
+        $video = Video::factory()->withObject($question)->create();
+
+        $this->assertInstanceOf(Video::class, $question->fresh()->videos()->first());
     }
 
     public function test_product_has_videos()

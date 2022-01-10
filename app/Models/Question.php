@@ -32,12 +32,12 @@ class Question extends Model
         return $this->morphMany(Photo::class, 'photos', 'object_type', 'object_id');
     }
 
-    /*public function videos()
+    public function videos()
     {
         return $this->morphMany(Video::class, 'videos', 'object_type', 'object_id');
     }
 
-    public function getVoteStatisticsAttribute()
+    /*public function getVoteStatisticsAttribute()
     {
         return [
             'for_count' => $this->votes()->where('value', +1)->count(),
