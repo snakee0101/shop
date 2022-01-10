@@ -31,13 +31,8 @@ class ReviewController extends Controller
 
         $review = Review::create([
             'user_id' => auth()->id(),
-            'product_id' => request('product_id'),
-            'rating' => request('rating'),
-            'comment' => request('comment'),
-            'advantages' => request('advantages'),
-            'disadvantages' => request('disadvantages'),
             'notify_on_reply' => request()->has('notify_on_reply'),
-        ]);
+        ] + request(['product_id', 'rating', 'comment', 'advantages', 'disadvantages']));
 
         //Decode and save images
         foreach($request->all() as $key => $encoded_image) {
