@@ -31,10 +31,7 @@ class Product extends Model
 
     public function getInDefaultWishlistAttribute()
     {
-        if(auth()->user())
-            return $this->inWishlist( auth()->user()->wishlists()->firstWhere('is_active', true) );
-
-        return false;
+        return auth()->check() && $this->inWishlist( auth()->user()->default_wishlist );
     }
 
     public function getInCartAttribute() :bool
