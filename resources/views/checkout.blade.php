@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-12 col-lg-6 col-xl-7">
                         <div class="card mb-lg-0">
-                            <div class="card-body"><h3 class="card-title">Billing details</h3>
+                            <div class="card-body"><h3 class="card-title">Contact details</h3>
                                 <div class="form-row">
                                     <div class="form-group col-md-6"><label for="checkout-first-name">First Name</label>
                                         <input type="text" class="form-control" id="checkout-first-name"
@@ -42,6 +42,17 @@
                                         <input type="text" class="form-control" id="checkout-last-name"
                                                placeholder="Last Name"></div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="form-group col"><label for="checkout-phone">Phone</label> <input
+                                            type="text" class="form-control" id="checkout-phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card mb-lg-0">
+                            <div class="card-body"><h3 class="card-title">Billing details</h3>
                                 <div class="form-group"><label for="checkout-company-name">Company Name <span
                                             class="text-muted">(Optional)</span></label> <input type="text"
                                                                                                 class="form-control"
@@ -73,25 +84,6 @@
                                         type="text" class="form-control" id="checkout-state"></div>
                                 <div class="form-group"><label for="checkout-postcode">Postcode / ZIP</label> <input
                                         type="text" class="form-control" id="checkout-postcode"></div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6"><label for="checkout-email">Email address</label>
-                                        <input type="email" class="form-control" id="checkout-email"
-                                               placeholder="Email address"></div>
-                                    <div class="form-group col-md-6"><label for="checkout-phone">Phone</label> <input
-                                            type="text" class="form-control" id="checkout-phone" placeholder="Phone">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check"><span class="form-check-input input-check"><span
-                                                class="input-check__body"><input class="input-check__input"
-                                                                                 type="checkbox"
-                                                                                 id="checkout-create-account"> <span
-                                                    class="input-check__box"></span> <svg class="input-check__icon"
-                                                                                          width="9px" height="7px"><use
-                                                        xlink:href="/images/sprite.svg#check-9x7"></use></svg> </span></span><label
-                                            class="form-check-label" for="checkout-create-account">Create an
-                                            account?</label></div>
-                                </div>
                             </div>
                             <div class="card-divider"></div>
                             <div class="card-body"><h3 class="card-title">Shipping Details</h3>
