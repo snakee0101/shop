@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
@@ -36,12 +38,44 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $review = Question::create([
+        $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $question = Question::create([
             'user_id' => auth()->id(),
             'product_id' => request('product_id'),
             'comment' => request('comment'),
             'notify_on_reply' => request()->has('notify_on_reply'),
         ]);
+
+        //Decode and save images
+        foreach($request->all() as $key => $encoded_image) {
+            if(str_contains($key, 'image')) { //filter through image fields only
+                $unique_name = now()->timestamp . Str::uuid();
+
+                $imgData = str_replace(' ','+',$encoded_image);
+                $imgData = substr($imgData,strpos($imgData,",") + 1);
+                $imgData = base64_decode($imgData);
+
+                Storage::put( '/public/images/' . $unique_name . '.png', $imgData);
+
+                $question->photos()->create([
+                    'url' => '/storage/images/' . $unique_name . '.png'
+                ]);
+            }
+        }
+
+        //save videos
+        foreach($request->all() as $key => $video_url) {
+            if(str_contains($key, 'video')) { //filter through video fields only
+                $question->videos()->create([
+                    'url' => $video_url
+                ]);
+            }
+        }
+
+        return back();
     }
 
     public function show(Question $question)

@@ -36,9 +36,9 @@ class ReviewTest extends TestCase
         ]);
 
         $this->post( route('review.store'), $data );
-        $file_url = Storage::files('/images')[0];
+        $file_url = Storage::files('/public/images')[0];
 
-        $this->assertEquals('test string', Storage::get($file_url));
+        Storage::assertExists($file_url);
     }
 
     public function test_when_review_is_created_attached_images_are_saved_as_model()
