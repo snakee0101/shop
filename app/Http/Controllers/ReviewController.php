@@ -44,10 +44,11 @@ class ReviewController extends Controller
             if(str_contains($key, 'image')) { //filter through image fields only
                 $unique_name = now()->timestamp . Str::uuid();
 
-                Storage::put( '/public/images/' . $unique_name . '.png', Photo::decode($encoded_image));
+                $path = '/public/images/' . $unique_name . '.png';
+                Storage::put( $path, Photo::decode($encoded_image));
 
                 $review->photos()->create([
-                    'url' => '/storage/images/' . $unique_name . '.png'
+                    'url' => $path
                 ]);
             }
         }
