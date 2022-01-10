@@ -24,7 +24,7 @@ class Category extends Model
 
     public function hasSubCategories() : bool
     {
-        return $this->subCategories()->count();
+        return $this->subCategories()->exists();
     }
 
     public function products()
