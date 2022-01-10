@@ -45,14 +45,14 @@ class Question extends Model
         ];
     }
 
-    /*public function getIsVotedAttribute()
+    public function getIsVotedAttribute()
     {
         return $this->votes()
             ->where('user_id', auth()->id())
             ->exists();
     }
 
-    public function getVoteAttribute()
+    /*public function getVoteAttribute()
     {
         return ($this->is_voted) ? $this->votes()->firstWhere('user_id', auth()->id())->value
             : 0;

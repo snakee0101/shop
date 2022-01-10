@@ -83,6 +83,19 @@ class VoteTest extends TestCase
         $this->assertTrue( $review->fresh()->is_voted );
     }
 
+    public function test_question_knows_whether_is_it_voted()
+    {
+        $question = Question::factory()->create();
+        $this->actingAs($user = User::factory()->create());
+
+        $this->assertFalse( $question->fresh()->is_voted );
+
+        Vote::factory()->withObject($question)
+            ->create(['user_id' => $user->id]);
+
+        $this->assertTrue( $question->fresh()->is_voted );
+    }
+
     public function test_review_knows_its_vote()
     {
         $review = Review::factory()->create();
