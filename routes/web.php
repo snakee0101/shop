@@ -49,6 +49,7 @@ Route::get('/product/{product}/videos', [\App\Http\Controllers\ProductController
 Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductController::class, 'buy_together'])->name('product.buy_together');
 
 Route::resource('review', \App\Http\Controllers\ReviewController::class);
+Route::resource('question', \App\Http\Controllers\QuestionController::class);
 Route::resource('reply', \App\Http\Controllers\ReplyController::class);
 Route::resource('vote', \App\Http\Controllers\VoteController::class);
 Route::resource('report', \App\Http\Controllers\ReportController::class);

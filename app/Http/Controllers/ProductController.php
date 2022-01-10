@@ -32,7 +32,8 @@ class ProductController extends Controller
     public function questions(Product $product)
     {
         return view('product.questions', [
-            'product' => $product
+            'product' => $product,
+            'questions' => $product->questions()->latest()->paginate(40)
         ]);
     }
 
