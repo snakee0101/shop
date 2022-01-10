@@ -125,37 +125,27 @@
                                     </tr>
                                     </thead>
                                     <tbody class="checkout__totals-products">
-                                    <tr>
-                                        <td>Electric Planer Brandix KL370090G 300 Watts × 2</td>
-                                        <td>$1,398.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Undefined Tool IRadix DPS3000SY 2700 watts × 1</td>
-                                        <td>$849.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brandix Router Power Tool 2017ERXPK × 3</td>
-                                        <td>$3,630.00</td>
-                                    </tr>
+                                    @foreach($cart_items as $item)
+                                        <tr>
+                                            <td>{{ $item->associatedModel->name }} × {{ $item->quantity }}</td>
+                                            <td>${{ $item->associatedModel->price * $item->quantity }}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                     <tbody class="checkout__totals-subtotals">
                                     <tr>
                                         <th>Subtotal</th>
-                                        <td>$5,877.00</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Store Credit</th>
-                                        <td>$-20.00</td>
+                                        <td>${{ \Cart::getSubTotal() }}</td>
                                     </tr>
                                     <tr>
                                         <th>Shipping</th>
-                                        <td>$25.00</td>
+                                        <td>$0</td>
                                     </tr>
                                     </tbody>
                                     <tfoot class="checkout__totals-footer">
                                     <tr>
                                         <th>Total</th>
-                                        <td>$5,882.00</td>
+                                        <td>${{ \Cart::getTotal() }}</td>
                                     </tr>
                                     </tfoot>
                                 </table>

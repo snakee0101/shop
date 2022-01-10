@@ -8,6 +8,8 @@ class OrderController extends Controller
 {
     public function checkout()
     {
-        return view('checkout');
+        return view('checkout', [
+            'cart_items' => \Cart::getContent()
+        ]);
     }
 }
