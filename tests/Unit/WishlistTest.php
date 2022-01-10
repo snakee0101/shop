@@ -28,6 +28,20 @@ class WishlistTest extends TestCase
         $this->assertCount(2, $user->wishlists);
     }
 
+    public function test_user_can_get_their_default_wishlist()
+    {
+        $user = User::factory()->create();
+        $w1 = Wishlist::factory()->for($user, 'owner')
+                                 ->create(['is_active' => false]);
+
+        $default_wishlist = Wishlist::factory()->for($user, 'owner')
+                                 ->create(['is_active' => true]);
+
+        $user->refresh();
+
+        $this->assertEquals($default_wishlist->id, $user->default_wishlist->id);
+    }
+
     public function test_wishlist_has_many_products()
     {
         $products = Product::factory()->count(2)->create();
