@@ -37,10 +37,11 @@ class Product extends Model
         return false;
     }
 
-    public function getInCartAttribute()
+    public function getInCartAttribute() :bool
     {
-        return \Cart::getContent()->map( fn($item) => $item->associatedModel->id )
-                                  ->contains($this->id);
+        return \Cart::getContent()->contains(
+            fn($item) => $item->associatedModel->id == $this->id
+        );
     }
 
     public function characteristics()
