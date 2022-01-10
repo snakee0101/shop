@@ -27,12 +27,12 @@ class Question extends Model
         return $this->morphMany(Vote::class, 'votes', 'object_type', 'object_id');
     }
 
-    /*public function photos()
+    public function photos()
     {
         return $this->morphMany(Photo::class, 'photos', 'object_type', 'object_id');
     }
 
-    public function videos()
+    /*public function videos()
     {
         return $this->morphMany(Video::class, 'videos', 'object_type', 'object_id');
     }
