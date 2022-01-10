@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -43,11 +44,7 @@ class ReviewController extends Controller
             if(str_contains($key, 'image')) { //filter through image fields only
                 $unique_name = now()->timestamp . Str::uuid();
 
-                $imgData = str_replace(' ','+',$encoded_image);
-                $imgData = substr($imgData,strpos($imgData,",") + 1);
-                $imgData = base64_decode($imgData);
-
-                Storage::put( '/public/images/' . $unique_name . '.png', $imgData);
+                Storage::put( '/public/images/' . $unique_name . '.png', Photo::decode($encoded_image));
 
                 $review->photos()->create([
                     'url' => '/storage/images/' . $unique_name . '.png'

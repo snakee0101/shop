@@ -12,4 +12,11 @@ class Photo extends Model
 
     public $timestamps = false;
     protected $guarded = [];
+
+    public static function decode($data)
+    {
+        $imgData = str_replace(' ','+', $data);
+        $imgData = substr($imgData,strpos($imgData,",") + 1);
+        return base64_decode($imgData);
+    }
 }
