@@ -37,7 +37,10 @@ Route::get('/cart/add/{product}/{quantity}', [\App\Http\Controllers\CartControll
 Route::delete('/cart/delete/{cart_row_id}', [\App\Http\Controllers\CartController::class, 'destroy'])->name('cart.destroy');
 Route::post('/cart/update_quantity/{cart_row_id}', [\App\Http\Controllers\CartController::class, 'update_quantity'])->name('cart.update_quantity');
 
-Route::view('/checkout', 'checkout')->name('checkout');
+
+Route::get('/checkout', [\App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
+
+
 Route::view('/contacts', 'contact-us')->name('contacts');
 
 
