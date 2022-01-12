@@ -31,7 +31,7 @@ class Product extends Model
 
     public function getInComparisonAttribute() :bool
     {
-        return auth()->user()->comparison()
+        return auth()->check() && auth()->user()->comparison()
                     ->where('products.id', $this->id)
                     ->exists();
     }
