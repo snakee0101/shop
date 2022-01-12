@@ -3,7 +3,8 @@
             :class="(bigSized) ? 'btn btn-primary btn-svg-icon btn-lg' : 'btn btn-secondary btn-svg-icon btn-lg'"
             type="button"
             title="Compare"
-            :data-toggle="(bigSized) ? 'tooltip' : 'btn btn-light product-card__compare'">
+            :data-toggle="(bigSized) ? 'tooltip' : 'btn btn-light product-card__compare'"
+            :disabled="is_in_comparison">
         <svg width="16px" height="16px" fill="currentColor" v-if="is_in_comparison">
             <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z"/>
         </svg>
