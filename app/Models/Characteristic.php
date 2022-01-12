@@ -16,6 +16,10 @@ class Characteristic extends Model
     public static function diff($products)
     {
         $all_chars_flatten = $products->flatMap( fn($product) => $product->characteristics ); //all characteristic models with values
+
+        if($products->count() === 1) //if there is only one product - no further processing required
+            return $all_chars_flatten;
+
         $grouped_chars = $all_chars_flatten->groupBy('id'); //all characteristic models grouped by characteristic id as a key
         //[ char_id => [char_model_1, char_model_2, ...], ... ]
 

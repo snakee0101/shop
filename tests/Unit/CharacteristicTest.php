@@ -83,6 +83,19 @@ class CharacteristicTest extends TestCase
         DB::table('characteristic_product')->insert(['product_id' => $product2->id, 'characteristic_id' => $char2->id, 'value' => 'same value' ]);
         DB::table('characteristic_product')->insert(['product_id' => $product3->id, 'characteristic_id' => $char2->id, 'value' => 'same value' ]);
 
-        dd( Characteristic::diff(Product::all()) );
+        $this->assertCount(1,Characteristic::diff(Product::all()) );
+    }
+
+    public function test_characteristics_diff_returns_valid_characteristics_even_for_one_product()
+    {
+        $product1 = Product::factory()->create();
+
+        $char1 = Characteristic::factory()->create(['category_id' => $product1->category_id]);
+        $char2 = Characteristic::factory()->create(['category_id' => $product1->category_id]);
+
+        DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char1->id, 'value' => 'unique' ]);
+        DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char2->id, 'value' => 'same value' ]);
+
+        $this->assertNotEmpty( Characteristic::diff(Product::all()) );
     }
 }
