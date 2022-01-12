@@ -31,7 +31,8 @@ class ComparisonController extends Controller
     public function show(Category $category)
     {
         return view('comparison.category', [
-            'category' => $category
+            'category' => $category,
+            'products' => auth()->user()->comparison->filter( fn($product) => $product->category_id == $category->id )
         ]);
     }
 

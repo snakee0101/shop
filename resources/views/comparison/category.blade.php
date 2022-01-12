@@ -11,6 +11,9 @@
                 Back to all comparisons
             </a>
         </div>
+        <div>
+            {{ $products }}
+        </div>
     </div>
 @endsection
 
