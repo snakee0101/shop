@@ -52,9 +52,11 @@ Route::get('/product/{product}/videos', [\App\Http\Controllers\ProductController
 Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductController::class, 'buy_together'])->name('product.buy_together');
 
 
-Route::get('/comparison', [\App\Http\Controllers\ComparisonController::class, 'index'])->name('comparison.index');
-Route::post('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'store'])->name('comparison.store');
-Route::delete('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'destroy'])->name('comparison.destroy');
+Route::middleware('authenticated')->group(function () {
+    Route::get('/comparison', [\App\Http\Controllers\ComparisonController::class, 'index'])->name('comparison.index');
+    Route::post('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'store'])->name('comparison.store');
+    Route::delete('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'destroy'])->name('comparison.destroy');
+});
 
 
 Route::resource('review', \App\Http\Controllers\ReviewController::class);
