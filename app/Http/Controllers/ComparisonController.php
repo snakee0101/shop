@@ -26,6 +26,8 @@ class ComparisonController extends Controller
     public function store(Product $product)
     {
         auth()->user()->comparison()->attach($product);
+
+        return $product->fresh()->in_comparison;
     }
 
     public function show(Category $category)

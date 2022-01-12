@@ -27,8 +27,8 @@ export default {
     methods: {
         addToCompare() {
             if(this.logged_in_user.id) {
-                /*axios.get(`/wishlist/toggle/${this.product.id}`)
-                     .then( response => this.is_in_wishlist = !!response.data );*/
+                axios.post(`/comparison/${this.product.id}`)
+                     .then( response => this.is_in_comparison = !!response.data );
             } else {
                 alert('The user is not logged in');
             }
