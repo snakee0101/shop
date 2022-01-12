@@ -505,38 +505,33 @@
                     </ul>
                 </div><!-- .nav-links / end -->
                 <div class="nav-panel__indicators">
-                    <div class="indicator indicator--trigger--click">
-                        <button type="button" class="indicator__button"><span class="indicator__area"><svg
-                                    class="indicator__icon" width="20px" height="20px"><use
-                                        xlink:href="/images/sprite.svg#search-20"></use></svg> <svg
-                                    class="indicator__icon indicator__icon--open" width="20px"
-                                    height="20px"><use xlink:href="/images/sprite.svg#cross-20"></use></svg></span>
-                        </button>
-                        <div class="indicator__dropdown">
-                            <div class="drop-search">
-                                <form action="#" class="drop-search__form"><input class="drop-search__input"
-                                                                                  name="search"
-                                                                                  placeholder="Search over 10,000 products"
-                                                                                  aria-label="Site search"
-                                                                                  type="text"
-                                                                                  autocomplete="off">
-                                    <button class="drop-search__button drop-search__button--submit"
-                                            type="submit">
-                                        <svg width="20px" height="20px">
-                                            <use xlink:href="/images/sprite.svg#search-20"></use>
-                                        </svg>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="indicator">
+                        <a href="{{ route('comparison.index') }}" class="indicator__button">
+                            <span class="indicator__area">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                     class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                                    <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"/>
+                                </svg>
+                            </span>
+                        </a>
                     </div>
-                    <div class="indicator"><a href="{{ route('wishlist.index') }}" class="indicator__button"><span
-                                class="indicator__area"><svg width="20px" height="20px"><use
-                                        xlink:href="/images/sprite.svg#heart-20"></use></svg></span></a></div>
-                    <div class="indicator"><a href="{{ route('cart.index') }}"
-                                                                        class="indicator__button"><span
-                                class="indicator__area"><svg width="20px" height="20px"><use
-                                        xlink:href="/images/sprite.svg#cart-20"></use></svg></span></a>
+                    <div class="indicator">
+                        <a href="{{ route('wishlist.index') }}" class="indicator__button">
+                            <span class="indicator__area">
+                                <svg width="20px" height="20px">
+                                    <use xlink:href="/images/sprite.svg#heart-20"></use>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="indicator">
+                        <a href="{{ route('cart.index') }}" class="indicator__button">
+                            <span class="indicator__area">
+                                <svg width="20px" height="20px">
+                                    <use xlink:href="/images/sprite.svg#cart-20"></use>
+                                </svg>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>

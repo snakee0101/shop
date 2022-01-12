@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ComparisonController extends Controller
 {
+    public function index()
+    {
+        return 'comparison index page';
+    }
+
     public function store(Product $product)
     {
         auth()->user()->comparison()->attach($product);
