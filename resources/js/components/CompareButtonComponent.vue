@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         addToCompare() {
-            if(this.user) {
+            if(this.logged_in_user.id) {
                 /*axios.get(`/wishlist/toggle/${this.product.id}`)
                      .then( response => this.is_in_wishlist = !!response.data );*/
             } else {
