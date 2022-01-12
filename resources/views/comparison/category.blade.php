@@ -3,6 +3,7 @@
 @section('body')
     <div class="container mt-3">
         <h2>Comparing {{ $category->name }}</h2>
+        <p class="text-muted">* Characteristics only with unique values across all products are displayed</p>
         <div class="d-flex flex-row-reverse bd-highlight">
             <a href="{{ route('comparison.index') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
@@ -11,7 +12,7 @@
                 Back to all comparisons
             </a>
         </div>
-        <div class="special_specs_block">
+        <div class="special_specs_block mt-2">
             <table class="table">
                 <thead>
                 <tr>
@@ -22,26 +23,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">char name</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Ottyujtyujtyjutyujtyjuyjytyjutujtjujttjtjjtttto</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">char name</th>
-                    <td>Jacob</td>
-                    <td>ThotyrntonThotyrntonThotyrntonThotyrntonThotyrnton</td>
-                    <td>ThotyrntonThotyrntonThotyrntonThotyrntonThotyrntonThotyrnton</td>
-                    <td>Thornton</td>
-                    <td>Thornton</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
+                @foreach(\App\Models\Characteristic::diff($products) as $char)
+                    <tr>
+                        <th scope="row">{{ $char->name }}</th>
+                        @foreach($products as $product)
+                            <td>{{ $product->characteristics()->firstWhere('name', $char->name)->pivot->value }}</td>
+                        @endforeach
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
