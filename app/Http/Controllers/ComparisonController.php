@@ -9,7 +9,7 @@ class ComparisonController extends Controller
 {
     public function index()
     {
-        return 'comparison index page';
+        return view('comparison.index');
     }
 
     public function store(Product $product)
