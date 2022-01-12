@@ -14,6 +14,6 @@ class ComparisonController extends Controller
 
     public function destroy(Product $product)
     {
-
+        auth()->user()->comparison()->detach($product);
     }
 }
