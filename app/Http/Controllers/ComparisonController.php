@@ -30,7 +30,9 @@ class ComparisonController extends Controller
 
     public function show(Category $category)
     {
-        return view('comparison.category');
+        return view('comparison.category', [
+            'category' => $category
+        ]);
     }
 
     public function destroy(Product $product)
