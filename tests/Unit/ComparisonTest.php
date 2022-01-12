@@ -39,4 +39,17 @@ class ComparisonTest extends TestCase
             'user_id' => $user->id
         ]);
     }
+
+    public function test_product_can_determine_whether_it_is_in_compare_list()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+
+        $this->actingAs($user);
+
+        $this->assertFalse( $product->fresh()->inComparison );
+
+        $user->comparison()->attach($product);
+        $this->assertTrue( $product->fresh()->inComparison );
+    }
 }

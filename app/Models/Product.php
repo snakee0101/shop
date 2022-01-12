@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage'];
+    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
 
@@ -28,6 +28,14 @@ class Product extends Model
                         ->where('products.id', $this->id)
                         ->exists();
     }
+
+    public function getInComparisonAttribute() :bool
+    {
+        return auth()->user()->comparison()
+                    ->where('products.id', $this->id)
+                    ->exists();
+    }
+
 
     public function getInDefaultWishlistAttribute()
     {
