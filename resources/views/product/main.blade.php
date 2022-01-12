@@ -129,12 +129,7 @@
                                             <favorite-button-component :user="{{ auth()->user() ?? "{}" }}" :product="{{ $product }}" :big-sized="true"></favorite-button-component>
                                         </div>
                                         <div class="product__actions-item product__actions-item--compare">
-                                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg"
-                                                    data-toggle="tooltip" title="Compare">
-                                                <svg width="16px" height="16px">
-                                                    <use xlink:href="/images/sprite.svg#compare-16"></use>
-                                                </svg>
-                                            </button>
+                                            <compare-button-component :user="{{ auth()->user() ?? "{}" }}" :product="{{ $product }}" :big-sized="true"></compare-button-component>
                                         </div>
                                     </div>
                                 </div>

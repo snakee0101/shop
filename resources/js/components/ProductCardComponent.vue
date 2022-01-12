@@ -81,13 +81,7 @@
                     <div class="product-card__prices">${{ product_object.price }}</div>
                     <div class="product-card__buttons">
                         <cart-button-component :product="product_object"></cart-button-component>
-                        <button
-                            class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare"
-                            type="button">
-                            <svg width="16px" height="16px">
-                                <use xlink:href="/images/sprite.svg#compare-16"></use>
-                            </svg>
-                            <span class="fake-svg-icon fake-svg-icon--compare-16"></span></button>
+                        <compare-button-component :user="user_object" :product="product_object"></compare-button-component>
                     </div>
                 </div>
             </div>
