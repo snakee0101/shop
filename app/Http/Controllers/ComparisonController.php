@@ -9,7 +9,17 @@ class ComparisonController extends Controller
 {
     public function index()
     {
-        return view('comparison.index');
+        /**
+         * Group product count by category.
+         * Output: [
+         *   category_id => number of products
+         * ]
+        */
+
+        return view('comparison.index', [
+            'comparison' => auth()->user()->comparison
+                                          ->countBy( fn($product) => $product->category_id )
+        ]);
     }
 
     public function store(Product $product)
