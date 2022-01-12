@@ -11,8 +11,39 @@
                 Back to all comparisons
             </a>
         </div>
-        <div>
-            {{ $products }}
+        <div class="special_specs_block">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    @foreach($products as $product)
+                        <th scope="col">{{ $product->name }}</th>
+                    @endforeach
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">char name</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Ottyujtyujtyjutyujtyjuyjytyjutujtjujttjtjjtttto</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">char name</th>
+                    <td>Jacob</td>
+                    <td>ThotyrntonThotyrntonThotyrntonThotyrntonThotyrnton</td>
+                    <td>ThotyrntonThotyrntonThotyrntonThotyrntonThotyrntonThotyrnton</td>
+                    <td>Thornton</td>
+                    <td>Thornton</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

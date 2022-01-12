@@ -30,3 +30,13 @@
 .video-modal .modal-body {
     padding: 0;
 }
+
+.special_specs_block {
+    overflow-x: scroll;
+}
+
+.special_specs_block td,
+.special_specs_block th {
+    max-width: 200px!important;
+    word-wrap: break-word;
+}
