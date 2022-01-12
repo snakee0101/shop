@@ -54,6 +54,7 @@ Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductCont
 
 Route::middleware('authenticated')->group(function () {
     Route::get('/comparison', [\App\Http\Controllers\ComparisonController::class, 'index'])->name('comparison.index');
+    Route::get('/comparison/{category}', [\App\Http\Controllers\ComparisonController::class, 'show'])->name('comparison.show');
     Route::post('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'store'])->name('comparison.store');
     Route::delete('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'destroy'])->name('comparison.destroy');
 });
