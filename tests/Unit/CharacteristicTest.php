@@ -64,4 +64,25 @@ class CharacteristicTest extends TestCase
 
         $this->assertEquals(100, $product->characteristics[0]->pivot->value);
     }
+
+    public function test_characteristics_model_could_retrieve_unique_characteristics_data()
+    {
+        $product1 = Product::factory()->create();
+        $product2 = Product::factory()->create();
+        $product3 = Product::factory()->create();
+
+        $char1 = Characteristic::factory()->create(['category_id' => $product1->category_id]);
+        $char2 = Characteristic::factory()->create(['category_id' => $product2->category_id]);
+        $char3 = Characteristic::factory()->create(['category_id' => $product3->category_id]);
+
+        DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char1->id, 'value' => 'unique' ]);
+        DB::table('characteristic_product')->insert(['product_id' => $product2->id, 'characteristic_id' => $char1->id, 'value' => 10 ]);
+        DB::table('characteristic_product')->insert(['product_id' => $product3->id, 'characteristic_id' => $char1->id, 'value' => 0 ]);
+
+        DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char2->id, 'value' => 'same value' ]);
+        DB::table('characteristic_product')->insert(['product_id' => $product2->id, 'characteristic_id' => $char2->id, 'value' => 'same value' ]);
+        DB::table('characteristic_product')->insert(['product_id' => $product3->id, 'characteristic_id' => $char2->id, 'value' => 'same value' ]);
+
+        dd( Characteristic::diff(Product::all()) );
+    }
 }
