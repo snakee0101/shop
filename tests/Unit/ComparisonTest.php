@@ -21,4 +21,22 @@ class ComparisonTest extends TestCase
 
         $this->assertInstanceOf(Product::class, $user->fresh()->comparison[0]);
     }
+
+    public function test_comparison_contains_unique_items()
+    {
+        $this->expectExceptionMessage('UNIQUE constraint failed');
+
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+
+        DB::table('comparison')->insert([
+            'product_id' => $product->id,
+            'user_id' => $user->id
+        ]);
+
+        DB::table('comparison')->insert([
+            'product_id' => $product->id,
+            'user_id' => $user->id
+        ]);
+    }
 }

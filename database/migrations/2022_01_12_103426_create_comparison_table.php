@@ -12,6 +12,8 @@ class CreateComparisonTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('product_id')->references('id')->on('products');
+
+            $table->unique(['user_id', 'product_id']);
         });
     }
 
