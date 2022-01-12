@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->wishlists()->firstWhere('is_active', true);
     }
+
+    public function comparison()
+    {
+        return $this->belongsToMany(Product::class, 'comparison');
+    }
 }
