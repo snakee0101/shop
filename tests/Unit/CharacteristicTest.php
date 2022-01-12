@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,17 @@ class CharacteristicTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Characteristic::class, $product->characteristics[0]);
+    }
+
+    public function test_category_knows_its_characteristics()
+    {
+        $category = Category::factory()->create();
+
+        $chars = Characteristic::factory()->count(2)->create([
+            'category_id' => $category->id
+        ]);
+
+        $this->assertInstanceOf(Characteristic::class, $category->characteristics[0]);
     }
 
     public function test_characteristics_pivot_table_stores_its_value()

@@ -37,4 +37,8 @@ class Category extends Model
         return static::whereNull('parent_id');
     }
 
+    public function characteristics()
+    {
+        return $this->hasMany(Characteristic::class);
+    }
 }
