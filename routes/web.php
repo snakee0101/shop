@@ -51,6 +51,11 @@ Route::get('/product/{product}/questions', [\App\Http\Controllers\ProductControl
 Route::get('/product/{product}/videos', [\App\Http\Controllers\ProductController::class, 'videos'])->name('product.videos');
 Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductController::class, 'buy_together'])->name('product.buy_together');
 
+
+Route::post('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'store'])->name('comparison.store');
+Route::delete('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'destroy'])->name('comparison.destroy');
+
+
 Route::resource('review', \App\Http\Controllers\ReviewController::class);
 Route::resource('question', \App\Http\Controllers\QuestionController::class);
 Route::resource('reply', \App\Http\Controllers\ReplyController::class);
