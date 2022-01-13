@@ -6,24 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductSetsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('product_sets', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('product_sets');
