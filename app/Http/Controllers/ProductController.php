@@ -8,11 +8,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private function get_product_sets($product)
+    {
+        return ProductSet::whereHas('products', function ($query) use ($product) {
+            $query->where('products.id', $product->id);
+        })->get();
+    }
+
     public function description(Product $product)
     {
         return view('product.description', [
             'product' => $product,
-            'product_sets' => ProductSet::all() //TODO: product set containing current product must be present in all product pages
+            'product_sets' => $this->get_product_sets($product)
         ]);
     }
 
@@ -20,7 +27,7 @@ class ProductController extends Controller
     {
         return view('product.characteristics', [
             'product' => $product,
-            'product_sets' => []
+            'product_sets' => $this->get_product_sets($product)
         ]);
     }
 
@@ -29,7 +36,7 @@ class ProductController extends Controller
         return view('product.reviews', [
             'product' => $product,
             'reviews' => $product->reviews()->latest()->paginate(40),
-            'product_sets' => []
+            'product_sets' => $this->get_product_sets($product)
         ]);
     }
 
@@ -38,7 +45,7 @@ class ProductController extends Controller
         return view('product.questions', [
             'product' => $product,
             'questions' => $product->questions()->latest()->paginate(40),
-            'product_sets' => []
+            'product_sets' => $this->get_product_sets($product)
         ]);
     }
 
@@ -46,7 +53,7 @@ class ProductController extends Controller
     {
         return view('product.videos', [
             'product' => $product,
-            'product_sets' => []
+            'product_sets' => $this->get_product_sets($product)
         ]);
     }
 
@@ -54,7 +61,7 @@ class ProductController extends Controller
     {
         return view('product.buy_together', [
             'product' => $product,
-            'product_sets' => []
+            'product_sets' => $this->get_product_sets($product)
         ]);
     }
 }
