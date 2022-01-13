@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ComparisonController extends Controller
@@ -35,6 +36,16 @@ class ComparisonController extends Controller
         return view('comparison.category', [
             'category' => $category,
             'products' => auth()->user()->comparison->filter( fn($product) => $product->category_id == $category->id )
+        ]);
+    }
+
+    public function showPublic($access_token, $category_id)
+    {
+        $comparison_owner = User::firstWhere('comparison_access_token', $access_token);
+
+        return view('comparison.category', [
+            'category' => Category::find($category_id),
+            'products' => $comparison_owner->comparison->filter( fn($product) => $product->category_id == $category_id )
         ]);
     }
 

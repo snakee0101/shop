@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -42,5 +43,24 @@ class ComparisonTest extends TestCase
 
         $this->delete( route('comparison.destroy', $product) );
         $this->assertDatabaseCount('comparison',0);
+    }
+
+    public function test_unregistered_user_can_access_comparison_with_comparison_access_token()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+
+        DB::table('comparison')->insert([
+            'product_id' => $product->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertDatabaseCount('comparison',1);
+
+        $category_name = Category::find($product->category_id)->name;
+
+        $this->get( route('comparison.showPublic', [$user->comparison_access_token, $product->category_id]) )
+             ->assertOk()
+             ->assertSee("Comparing $category_name");
     }
 }

@@ -59,6 +59,8 @@ Route::middleware('authenticated')->group(function () {
     Route::delete('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'destroy'])->name('comparison.destroy');
 });
 
+Route::get('/comparison/public/{access_token}/{category_id}', [\App\Http\Controllers\ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
+
 
 Route::resource('review', \App\Http\Controllers\ReviewController::class);
 Route::resource('question', \App\Http\Controllers\QuestionController::class);
