@@ -52,4 +52,13 @@ class ComparisonTest extends TestCase
         $user->comparison()->attach($product);
         $this->assertTrue( $product->fresh()->inComparison );
     }
+
+    public function test_user_knows_its_comparison_link()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+
+        $this->assertEquals("/comparison/public/{$user->comparison_access_token}/{$product->category_id}",
+                            $user->comparison_link($product->category_id));
+    }
 }

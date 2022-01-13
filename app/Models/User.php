@@ -36,4 +36,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Product::class, 'comparison');
     }
+
+    public function comparison_link($category_id)
+    {
+        return "/comparison/public/{$this->comparison_access_token}/{$category_id}";
+    }
 }
