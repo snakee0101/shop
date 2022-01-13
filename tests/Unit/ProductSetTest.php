@@ -2,17 +2,31 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Product;
+use App\Models\ProductSet;
+use Illuminate\Support\Facades\DB;
+use Tests\TestCase;
 
 class ProductSetTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_product_set_contains_products()
     {
-        $this->assertTrue(true);
+        $product_set = ProductSet::factory()->create();
+
+        $product_1 = Product::factory()->create();
+        $product_2 = Product::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
+        $this->assertInstanceOf(Product::class, $product_set->products[0]);
+        $this->assertCount(2, $product_set->products);
     }
 }
