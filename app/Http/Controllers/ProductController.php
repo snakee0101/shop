@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductSet;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,7 +12,7 @@ class ProductController extends Controller
     {
         return view('product.description', [
             'product' => $product,
-            'product_sets' => [] //TODO: product set containing current product must be present in all product pages
+            'product_sets' => ProductSet::all() //TODO: product set containing current product must be present in all product pages
         ]);
     }
 
