@@ -183,6 +183,11 @@
                                 id="tab-bought-together">
                                 @yield('buy_together')
                             </div>
+                            <div class="mt-5">
+                                @include('partials.product_set_filtering_group', [
+                                    'product_sets' => $product_sets
+                                ])
+                            </div>
                         </div>
                     </div>
                 </div>

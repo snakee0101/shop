@@ -9,6 +9,7 @@ Vue.component('compare-button-component', require('./components/CompareButtonCom
 Vue.component('comparison-public-link-component', require('./components/ComparisonPublicLinkComponent').default);
 Vue.component('wishlist-component', require('./components/WishlistComponent').default);
 Vue.component('product-card-component', require('./components/ProductCardComponent').default);
+Vue.component('product-set-card-component', require('./components/ProductSetCardComponent').default);
 Vue.component('new-wishlist-component', require('./components/NewWishlistComponent').default);
 Vue.component('product-cart-table-component', require('./components/ProductCartTableComponent').default);
 Vue.component('cart-totals-component', require('./components/CartTotalsComponent').default);
