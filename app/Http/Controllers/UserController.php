@@ -14,7 +14,8 @@ class UserController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = User::create(request(['first_name', 'last_name', 'phone', 'email']) + [
-            'password' => Hash::make( $request->password )
+            'password' => Hash::make( $request->password ),
+            'comparison_access_token' => Str::uuid()
         ]);
 
         auth()->login($user);

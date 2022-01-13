@@ -31,6 +31,13 @@ class RegistrationTest extends TestCase
         $response->assertRedirect( route('account') );
     }
 
+    public function test_after_registration_comparison_access_token_is_attached_to_the_user()
+    {
+        $response = $this->post('/register-user', $this->data);
+
+        $this->assertNotNull( User::first()->comparison_access_token );
+    }
+
     public function test_user_password_is_hashed_on_registration()
     {
         $response = $this->post('/register-user', $this->data);
