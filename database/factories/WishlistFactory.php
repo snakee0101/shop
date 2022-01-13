@@ -23,6 +23,13 @@ class WishlistFactory extends Factory
         ];
     }
 
+    public function withUser(User $user)
+    {
+        return $this->state([
+            'user_id' => $user->id,
+        ]);
+    }
+
     public function inactive()
     {
         return $this->state([
