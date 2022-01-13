@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class ComparisonTest extends TestCase
@@ -51,14 +52,5 @@ class ComparisonTest extends TestCase
 
         $user->comparison()->attach($product);
         $this->assertTrue( $product->fresh()->inComparison );
-    }
-
-    public function test_user_knows_its_comparison_link()
-    {
-        $user = User::factory()->create();
-        $product = Product::factory()->create();
-
-        $this->assertEquals("/comparison/public/{$user->comparison_access_token}/{$product->category_id}",
-                            $user->comparison_link($product->category_id));
     }
 }

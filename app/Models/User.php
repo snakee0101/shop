@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function comparison_link($category_id)
     {
-        return "/comparison/public/{$this->comparison_access_token}/{$category_id}";
+        return $_SERVER['HTTP_HOST'] . "/comparison/public/{$this->comparison_access_token}/{$category_id}";
     }
 }
