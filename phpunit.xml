@@ -19,6 +19,7 @@
     </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>
+        <server name="HTTP_HOST" value="127.0.0.1:8000"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="DB_CONNECTION" value="sqlite"/>
