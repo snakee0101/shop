@@ -16,7 +16,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence,
-            'image_url' => $this->faker->url
+            'image_url' => '/images/products/product-1.jpg'
         ];
     }
 
