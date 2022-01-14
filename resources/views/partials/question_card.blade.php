@@ -28,7 +28,8 @@
             </div>
             <div class="review__text">
                 <vote-controls-component object_type="{{ $question::class }}"
-                                         :object="{{ $question }}">
+                                         :object="{{ $question }}"
+                                         :user="{{ auth()->user() ?? '{}' }}">
 
                 </vote-controls-component>
             </div>
