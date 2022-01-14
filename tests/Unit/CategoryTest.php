@@ -59,4 +59,14 @@ class CategoryTest extends TestCase
 
         $this->assertEquals( Category::topLevelCategories()->get()->first()->id, $top_level_category->id );
     }
+
+    public function test_category_has_a_products_counter()
+    {
+        $category = Category::factory()->create();
+        $product = Product::factory()->count(5)->create([
+            'category_id' => $category->id
+        ]);
+
+        $this->assertEquals(5, $category->fresh()->products_count);
+    }
 }
