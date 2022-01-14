@@ -112,11 +112,13 @@ class WishlistTest extends TestCase
     public function test_wishlist_could_be_deleted()
     {
         $wishlist = Wishlist::factory()->create();
-        $this->assertDatabaseCount('wishlists', 1);
+        $wishlist = Wishlist::factory()->create(['is_active' => false]);
+
+        $this->assertDatabaseCount('wishlists', 2);
         $this->actingAs($wishlist->owner);
 
         $this->delete( route('wishlist.destroy', $wishlist->id) );
-        $this->assertDatabaseCount('wishlists', 0);
+        $this->assertDatabaseCount('wishlists', 1);
     }
 
     public function test_when_user_is_registered_default_wishlist_is_created()
