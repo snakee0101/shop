@@ -18,7 +18,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->text,
-            'price' => $this->faker->numberBetween(1,10000) - 0.50,
+            'price' => $this->faker->numberBetween(1,1000) - 0.50,
             'guarantee_info' => $this->faker->sentence,
             'payment_info' => $this->faker->sentence,
             'category_id' => Category::factory()
