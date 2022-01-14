@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
                      WishlistSeeder::class,
                      CategorySeeder::class,
                      CharacteristicsSeeder::class,
-                     ProductSeeder::class]);
+                     ProductSeeder::class,
+                     CharacteristicProductSeeder::class]);
     }
 }
