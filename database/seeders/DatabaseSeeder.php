@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
                      ProductWishlistSeeder::class,
                      ComparisonSeeder::class,
                      ProductSetSeeder::class,
+                     ReviewSeeder::class
         ]);
     }
 }
