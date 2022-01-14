@@ -16,7 +16,7 @@ class PhotoFactory extends Factory
     public function definition()
     {
         return [
-            'url' => $this->faker->url,
+            'url' => '/images/products/product-' . random_int(1,15) . '.jpg',
         ];
     }
 

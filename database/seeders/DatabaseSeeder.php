@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
                      QuestionSeeder::class,
                      ReplySeeder::class,
                      ReportSeeder::class,
-                     VoteSeeder::class
+                     VoteSeeder::class,
+                     PhotoSeeder::class
         ]);
     }
 }
