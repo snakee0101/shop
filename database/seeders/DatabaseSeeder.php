@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
                      ProductSeeder::class,
                      CharacteristicProductSeeder::class,
                      ProductWishlistSeeder::class,
-                     ComparisonSeeder::class
+                     ComparisonSeeder::class,
+                     ProductSetSeeder::class,
         ]);
     }
 }
