@@ -52,7 +52,7 @@
                                     <div class="category-card__name">
                                         <a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a>
                                     </div>
-                                    <div class="category-card__products">000 Products</div>
+                                    <div class="category-card__products">{{ $category->products_count }} Products</div>
                                 </div>
                             </div>
                         </div>
