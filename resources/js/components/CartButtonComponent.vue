@@ -28,7 +28,10 @@ export default {
         },
         addToCart()
         {
-            axios.get(`/cart/add/${this.purchaseable.id}/1`);
+            axios.post('/cart/add/1', {
+                'object_id' : this.purchaseable.id,
+                'object_type' : this.purchaseable.ObjectType
+            });
             this.in_cart = true;
         }
     }
