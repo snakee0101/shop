@@ -23,7 +23,7 @@ export default {
     methods: {
         addToCartRemote(purchaseable_id)
         {
-            if(purchaseable_id === this.purchaseable.id)
+            if((purchaseable_id === this.purchaseable.id) && (this.purchaseable.ObjectType === 'App\\Models\\Product'))
                 this.addToCart();
         },
         addToCart()
