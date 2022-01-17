@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Purchaseable;
-use Illuminate\Http\Request;
 
 class AddToCartController extends Controller
 {
     public $item;
 
-    public function __construct(Purchaseable $item)
+    public function __construct(Purchaseable $item) //The Purchaseable interface is resolved in AppServiceProvider
     {
         $this->item = $item;
     }
