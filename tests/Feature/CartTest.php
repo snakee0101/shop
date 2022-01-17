@@ -7,6 +7,7 @@ use App\Models\ProductSet;
 use Darryldecode\Cart\Cart;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class CartTest extends TestCase
@@ -29,6 +30,20 @@ class CartTest extends TestCase
         $this->assertTrue( \Cart::getContent()->isEmpty() );
 
         $product_set = ProductSet::factory()->create();
+
+        $product_1 = Product::factory()->create(['price' => 50]);
+        $product_2 = Product::factory()->create(['price' => 100]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
         $this->post( route('cart.add', 1), [
             'object_id' => $product_set->id,
             'object_type' => $product_set::class
