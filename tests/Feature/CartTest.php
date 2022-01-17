@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Product;
 use App\Models\ProductSet;
 use Darryldecode\Cart\Cart;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -58,8 +59,15 @@ class CartTest extends TestCase
 
         $product = Product::factory()->create();
 
-        $this->get( route('cart.add', [$product->id, 1]) );
-        $this->get( route('cart.add', [$product->id, 3]) );
+        $this->post( route('cart.add', 1), [
+            'object_id' => $product->id,
+            'object_type' => $product::class
+        ] );
+
+        $this->post( route('cart.add', 3), [
+            'object_id' => $product->id,
+            'object_type' => $product::class
+        ] );
 
         $this->assertEquals(1, \Cart::getContent()->count() );
     }
