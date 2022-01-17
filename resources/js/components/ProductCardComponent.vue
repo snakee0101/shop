@@ -80,7 +80,7 @@
                 <div class="product-card__actions">
                     <div class="product-card__prices">${{ product_object.price }}</div>
                     <div class="product-card__buttons">
-                        <cart-button-component :product="product_object"></cart-button-component>
+                        <cart-button-component :purchaseable="product_object"></cart-button-component>
                         <compare-button-component :user="user_object" :product="product_object"></compare-button-component>
                     </div>
                 </div>

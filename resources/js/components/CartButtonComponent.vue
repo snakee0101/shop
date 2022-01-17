@@ -10,10 +10,10 @@
 <script>
 export default {
     name: 'CartButtonComponent',
-    props: ['product'],
+    props: ['purchaseable'],
     data() {
         return {
-            'in_cart' : this.product.inCart
+            'in_cart' : this.purchaseable.inCart
         };
     },
     mounted()
@@ -21,14 +21,14 @@ export default {
         window.events.$on('add_to_cart_remote', this.addToCartRemote);
     },
     methods: {
-        addToCartRemote(product_id)
+        addToCartRemote(purchaseable_id)
         {
-            if(product_id === this.product.id)
+            if(purchaseable_id === this.purchaseable.id)
                 this.addToCart();
         },
         addToCart()
         {
-            axios.get(`/cart/add/${this.product.id}/1`);
+            axios.get(`/cart/add/${this.purchaseable.id}/1`);
             this.in_cart = true;
         }
     }

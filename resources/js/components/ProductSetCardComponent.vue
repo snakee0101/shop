@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="d-flex flex-row-reverse align-content-center mt-2">
-            <cart-button-component style="width: 200px" :product="product_set_object">
+            <cart-button-component style="width: 200px" :purchaseable="product_set_object">
 
             </cart-button-component>
             <h3 class="mr-3 my-0 mt-1">${{ product_set_object.products_json[0].price + product_set_object.products_json[1].price }}</h3>
