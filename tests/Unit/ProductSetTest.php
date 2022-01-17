@@ -31,7 +31,22 @@ class ProductSetTest extends TestCase
 
     public function test_product_set_has_a_price()
     {
+        $product_set = ProductSet::factory()->create();
 
+        $product_1 = Product::factory()->create(['price' => 50]);
+        $product_2 = Product::factory()->create(['price' => 100]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
+        $this->assertEquals(150, $product_set->fresh()->price);
     }
 
     public function test_product_set_model_contains_its_classname()

@@ -12,11 +12,16 @@ class ProductSet extends Model implements Purchaseable
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['products_json', 'inCart', 'ObjectType'];
+    protected $appends = ['products_json', 'inCart', 'ObjectType', 'price'];
 
     public function getNameAttribute()
     {
         return $this->products->implode('name', ' + ');
+    }
+
+    public function getPriceAttribute()
+    {
+        return $this->products()->sum('price');
     }
 
     public function getObjectTypeAttribute()
