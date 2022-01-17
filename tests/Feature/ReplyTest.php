@@ -35,7 +35,8 @@ class ReplyTest extends TestCase
         Notification::fake();
 
         $review = Review::factory()->create([
-            'product_id' => Product::factory()
+            'product_id' => Product::factory(),
+            'notify_on_reply' => true
         ]);
 
         $reply = Reply::factory()->make([
@@ -47,5 +48,25 @@ class ReplyTest extends TestCase
         $this->post( route('reply.store'), $reply->toArray() );
 
         Notification::assertSentTo($review->author, ReplyNotification::class);
+    }
+
+    public function test_reply_notification_is_not_sent_to_user_that_didnt_agree_to_receive_them()
+    {
+        Notification::fake();
+
+        $review = Review::factory()->create([
+            'product_id' => Product::factory(),
+            'notify_on_reply' => false
+        ]);
+
+        $reply = Reply::factory()->make([
+            'object_type' => $review::class,
+            'object_id' => $review->id,
+        ]);
+
+        $this->actingAs( $review->author );
+        $this->post( route('reply.store'), $reply->toArray() );
+
+        Notification::assertNotSentTo($review->author, ReplyNotification::class);
     }
 }

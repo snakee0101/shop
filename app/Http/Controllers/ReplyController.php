@@ -33,7 +33,8 @@ class ReplyController extends Controller
 
         $object = request('object_type')::find( request('object_id') );
 
-        $object->author->notify( new ReplyNotification($object) );
+        if($object->notify_on_reply)
+            $object->author->notify( new ReplyNotification($object) );
 
         return back();
     }
