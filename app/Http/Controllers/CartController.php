@@ -26,7 +26,7 @@ class CartController extends Controller
 
         \Cart::add(array(
             'id' => $unique_micro_timestamp,
-            'name' => $this->item->name,
+            'name' => $this->item->name, //TODO: ProductSet doesnt have a name
             'price' => $this->item->price,
             'quantity' => $quantity,
             'attributes' => [],

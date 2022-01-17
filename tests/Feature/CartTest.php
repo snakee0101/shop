@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
+use App\Models\ProductSet;
 use Darryldecode\Cart\Cart;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -15,7 +16,7 @@ class CartTest extends TestCase
         $this->assertTrue( \Cart::getContent()->isEmpty() );
 
         $product = Product::factory()->create();
-        $this->get( route('cart.add', 1), [
+        $this->post( route('cart.add', 1), [
             'object_id' => $product->id,
             'object_type' => $product::class
         ] )->assertOk();
@@ -25,7 +26,15 @@ class CartTest extends TestCase
 
     public function test_a_product_set_could_be_added_to_the_cart()
     {
+        $this->assertTrue( \Cart::getContent()->isEmpty() );
 
+        $product_set = ProductSet::factory()->create();
+        $this->post( route('cart.add', 1), [
+            'object_id' => $product_set->id,
+            'object_type' => $product_set::class
+        ] )->assertOk();
+
+        $this->assertFalse( \Cart::getContent()->isEmpty() );
     }
 
     public function test_products_could_not_be_duplicated_when_added()

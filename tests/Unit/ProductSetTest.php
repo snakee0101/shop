@@ -9,6 +9,31 @@ use Tests\TestCase;
 
 class ProductSetTest extends TestCase
 {
+    public function test_product_set_has_a_name()
+    {
+        $product_set = ProductSet::factory()->create();
+
+        $product_1 = Product::factory()->create();
+        $product_2 = Product::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
+        $this->assertEquals($product_1->name . ' + ' . $product_2->name, $product_set->fresh()->name);
+    }
+
+    public function test_product_set_has_a_price()
+    {
+
+    }
+
     public function test_product_set_model_contains_its_classname()
     {
         $product_set = ProductSet::factory()->create();

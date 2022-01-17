@@ -14,6 +14,11 @@ class ProductSet extends Model implements Purchaseable
 
     protected $appends = ['products_json', 'inCart', 'ObjectType'];
 
+    public function getNameAttribute()
+    {
+        return $this->products->implode('name', ' + ');
+    }
+
     public function getObjectTypeAttribute()
     {
         return __CLASS__;
