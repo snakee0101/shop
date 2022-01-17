@@ -10,17 +10,25 @@ use Tests\TestCase;
 
 class CartTest extends TestCase
 {
-    public function test_an_item_could_be_added_to_the_cart()
+    public function test_a_product_could_be_added_to_the_cart()
     {
         $this->assertTrue( \Cart::getContent()->isEmpty() );
 
         $product = Product::factory()->create();
-        $this->get( route('cart.add', [$product->id, 1]) );
+        $this->get( route('cart.add', 1), [
+            'object_id' => $product->id,
+            'object_type' => $product::class
+        ] )->assertOk();
 
         $this->assertFalse( \Cart::getContent()->isEmpty() );
     }
 
-    public function test_items_could_not_be_duplicated_when_added()
+    public function test_a_product_set_could_be_added_to_the_cart()
+    {
+
+    }
+
+    public function test_products_could_not_be_duplicated_when_added()
     {
         $this->assertTrue( \Cart::getContent()->isEmpty() );
 
