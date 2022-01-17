@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\Purchaseable;
+use App\Http\Controllers\AddToCartController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->when(CartController::class)
+        $this->app->when(AddToCartController::class)
                   ->needs(Purchaseable::class)
                   ->give(function () {
                         $id = request('object_id');
