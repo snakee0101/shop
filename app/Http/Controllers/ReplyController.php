@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('authenticated')
+             ->only('store');
+    }
+
     public function index()
     {
         //

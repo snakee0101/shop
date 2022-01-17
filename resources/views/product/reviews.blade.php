@@ -15,7 +15,10 @@
                 <ol class="reviews-list__content">
                     @foreach($reviews as $review)
                         @include('partials.review_card', ['review' => $review])
-                        @include('partials.reply_form', ['review' => $review])
+
+                        @auth
+                            @include('partials.reply_form', ['review' => $review])
+                        @endauth
 
                         @foreach($review->replies as $reply)
                             @include('partials.reply_card', ['reply' => $reply])

@@ -30,6 +30,21 @@ class ReplyTest extends TestCase
         $this->assertInstanceOf(Reply::class, Reply::first());
     }
 
+    public function test_user_that_is_not_logged_in_redirected_to_the_log_in_page()
+    {
+        $review = Review::factory()->create([
+            'product_id' => Product::factory()
+        ]);
+
+        $reply = Reply::factory()->make([
+            'object_type' => $review::class,
+            'object_id' => $review->id,
+        ]);
+
+        $this->post( route('reply.store'), $reply->toArray() )
+             ->assertRedirect( route('account') );
+    }
+
     public function test_when_user_replies_object_owner_is_notified_by_email()
     {
         Notification::fake();
