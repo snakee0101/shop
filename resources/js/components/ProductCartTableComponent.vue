@@ -62,9 +62,9 @@ export default {
             axios.delete(`/cart/delete/${cart_row_id}`)
                 .finally(() => location.reload());
         },
-        update_quantity(amount, cart_row_id, item)
+        update_quantity(amount, cart_row_id)
         {
-            let initial_quantity = this.items[cart_row_id].quantity;
+            let initial_quantity = parseInt(this.items[cart_row_id].quantity);
 
             if(initial_quantity + amount < 1) //check against 0
                 return;
