@@ -9,7 +9,7 @@ class AddToCartController extends Controller
 {
     public $item;
 
-    public function __construct(Purchaseable $item)
+    public function __construct(Purchaseable $item) //The Purchaseable interface is resolved in AppServiceProvider
     {
         $this->item = $item;
     }
