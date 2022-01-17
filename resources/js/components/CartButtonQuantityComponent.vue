@@ -39,7 +39,11 @@ export default {
     methods: {
         addToCart()
         {
-            axios.get(`/cart/add/${this.product.id}/${this.quantity}`);
+            axios.post(`/cart/add/${this.quantity}`, {
+                'object_id' : this.product.id,
+                'object_type' : this.product.ObjectType
+            });
+
             this.in_cart = true;
         }
     }
