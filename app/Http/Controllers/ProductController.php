@@ -10,8 +10,10 @@ class ProductController extends Controller
 {
     private function visit(Product $product)
     {
-        if(auth()->check())
-            @auth()->user()->visited_products()->attach($product);
+        try {
+            if(auth()->check())
+                auth()->user()->visited_products()->attach($product);
+        } catch(\Exception) {}
     }
 
     public function description(Product $product)
