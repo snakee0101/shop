@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $_SERVER['HTTP_HOST'] . "/comparison/public/{$this->comparison_access_token}/{$category_id}";
     }
+
+    public function visited_products()
+    {
+        return $this->belongsToMany(Product::class, 'visited_products');
+    }
 }
