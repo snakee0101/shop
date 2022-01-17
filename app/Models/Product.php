@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Contracts\Purchaseable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends Model implements Purchaseable
 {
     use HasFactory;
     protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison'];

@@ -2,16 +2,22 @@
 
 namespace App\Models;
 
+use App\Contracts\Purchaseable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductSet extends Model
+class ProductSet extends Model implements Purchaseable
 {
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['products_json'];
+    protected $appends = ['products_json', 'inCart'];
+
+    public function getInCartAttribute() :bool
+    {
+        return false;
+    }
 
     public function products()
     {
