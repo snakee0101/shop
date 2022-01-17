@@ -11,7 +11,7 @@ class ProductController extends Controller
     private function visit(Product $product)
     {
         if(auth()->check())
-            auth()->user()->visited_products()->attach($product);
+            @auth()->user()->visited_products()->attach($product);
     }
 
     public function description(Product $product)
