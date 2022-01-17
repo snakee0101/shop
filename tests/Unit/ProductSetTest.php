@@ -9,6 +9,14 @@ use Tests\TestCase;
 
 class ProductSetTest extends TestCase
 {
+    public function test_product_set_model_contains_its_classname()
+    {
+        $product_set = ProductSet::factory()->create();
+        $this->assertEquals(ProductSet::class, $product_set->object_type);
+
+        $this->assertStringContainsString('ObjectType', $product_set->toJson());
+    }
+
     public function test_product_set_contains_products()
     {
         $product_set = ProductSet::factory()->create();

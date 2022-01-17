@@ -12,7 +12,12 @@ class ProductSet extends Model implements Purchaseable
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['products_json', 'inCart'];
+    protected $appends = ['products_json', 'inCart', 'ObjectType'];
+
+    public function getObjectTypeAttribute()
+    {
+        return __CLASS__;
+    }
 
     public function getInCartAttribute() :bool
     {

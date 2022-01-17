@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements Purchaseable
 {
     use HasFactory;
-    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison'];
+    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
 
@@ -17,6 +17,11 @@ class Product extends Model implements Purchaseable
         'price' => 'float',
         'quantity' => 'integer'
     ];
+
+    public function getObjectTypeAttribute()
+    {
+        return __CLASS__;
+    }
 
     public function category()
     {

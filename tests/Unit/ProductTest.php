@@ -10,6 +10,14 @@ use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
+    public function test_product_model_contains_its_classname()
+    {
+        $product = Product::factory()->create();
+        $this->assertEquals(Product::class, $product->object_type);
+
+        $this->assertStringContainsString('ObjectType', $product->toJson());
+    }
+
     public function test_product_can_determine_whether_it_is_in_a_wishlist()
     {
         $wishlist = Wishlist::factory()->create();
