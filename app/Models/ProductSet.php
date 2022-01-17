@@ -21,7 +21,10 @@ class ProductSet extends Model implements Purchaseable
 
     public function getInCartAttribute() :bool
     {
-        return false;
+        return \Cart::getContent()->contains(
+            fn($item) => ($item->associatedModel->id == $this->id) &&
+                         ($this->object_type == $item->associatedModel->object_type)
+        );
     }
 
     public function products()
