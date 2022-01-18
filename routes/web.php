@@ -69,6 +69,7 @@ Route::resource('report', ReportController::class);
 
 Route::prefix('account')->group(function () {
     Route::view('/', 'account')->name('account');
+    Route::view('/visited_products', 'account')->name('account.visited_products');
 });
 
 

@@ -123,16 +123,18 @@
                             <aside class="col-auto">
                                 <div class="card mb-3">
                                     <ul class="nav flex-sm-column justify-content-center">
-                                        <a href="#" class="nav-link bg-warning">My Orders</a>
-                                        <a href="#" class="nav-link">Viewed products</a>
-                                        <a href="#" class="nav-link">Notifications</a>
-                                        <a href="#" class="nav-link">My Reviews</a>
-                                        <a href="#" class="nav-link">My Correspondence</a>
+                                        <a href="{{ route('account') }}" class="nav-link {{ is_route_active('account') ? 'bg-warning' : ''}}">My Orders</a>
+                                        <a href="{{ route('account.visited_products') }}" class="nav-link {{ is_route_active('account.visited_products') ? 'bg-warning' : ''}}">Visited products</a>
+                                        <a href="#" class="nav-link {{ false ? 'bg-warning' : ''}}">Notifications</a>
+                                        <a href="#" class="nav-link {{ false ? 'bg-warning' : ''}}">My Reviews</a>
+                                        <a href="#" class="nav-link {{ false ? 'bg-warning' : ''}}">My Correspondence</a>
                                     </ul>
                                 </div>
                             </aside>
                             <main class="col">
-                                {{--@include(Illuminate\Support\Facades\Route::currentRouteName())--}}
+                                @if(is_route_active('account.visited_products'))
+                                    @include('account.visited_products')
+                                @endif
                             </main>
                         </div>
                     </div>
