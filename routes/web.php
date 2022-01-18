@@ -50,11 +50,12 @@ Route::get('/product/{product}/videos', [ProductController::class, 'videos'])->n
 Route::get('/product/{product}/buy_together', [ProductController::class, 'buy_together'])->name('product.buy_together');
 
 
-Route::middleware('authenticated')->group(function () {
-    Route::get('/comparison', [ComparisonController::class, 'index'])->name('comparison.index');
-    Route::get('/comparison/{category}', [ComparisonController::class, 'show'])->name('comparison.show');
-    Route::post('/comparison/{product}', [ComparisonController::class, 'store'])->name('comparison.store');
-    Route::delete('/comparison/{product}', [ComparisonController::class, 'destroy'])->name('comparison.destroy');
+Route::controller(ComparisonController::class)->middleware('authenticated')->prefix('comparison')
+                                              ->name('comparison.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{category}', 'show')->name('show');
+    Route::post('{product}', 'store')->name('store');
+    Route::delete('{product}', 'destroy')->name('destroy');
 });
 
 Route::get('/comparison/public/{access_token}/{category_id}', [ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
