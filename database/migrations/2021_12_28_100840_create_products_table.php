@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->text('guarantee_info');
             $table->text('payment_info');
+            $table->enum('in_stock', ['In Stock', 'Ends', 'Out Of Stock']);
             $table->timestamps();
             $table->foreignId('category_id');
 
