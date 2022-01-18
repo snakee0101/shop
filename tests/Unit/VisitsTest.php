@@ -57,4 +57,15 @@ class VisitsTest extends TestCase
 
         $this->assertTrue(true);  //this test just checks that no exceptions happened
     }
+
+    public function test_product_visits_are_recorded_with_timestamp()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $product = Product::factory()->create();
+        $product->visit();
+
+        $this->assertNotNull( $user->fresh()->visited_products[0]->pivot->created_at );
+    }
 }
