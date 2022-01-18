@@ -80,7 +80,10 @@
                 <div class="product-card__actions pb-2">
                     <div class="product-card__prices">${{ product_object.price }}</div>
                     <div class="product-card__buttons mt-2">
-                        <cart-button-component :purchaseable="product_object"></cart-button-component>
+                        <cart-button-component :purchaseable="product_object"
+                                                v-if="product_object.in_stock !== 'Out Of Stock'">
+
+                        </cart-button-component>
                         <compare-button-component :user="user_object" :product="product_object"></compare-button-component>
                     </div>
                 </div>
