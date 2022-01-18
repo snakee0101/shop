@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function description(Product $product)
     {
-        $this->visit($product);
+        $product->visit();
 
         return view('product.description', [
             'product' => $product,
@@ -20,7 +20,7 @@ class ProductController extends Controller
 
     public function characteristics(Product $product)
     {
-        $this->visit($product);
+        $product->visit();
 
         return view('product.characteristics', [
             'product' => $product,
@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     public function reviews(Product $product)
     {
-        $this->visit($product);
+        $product->visit();
 
         return view('product.reviews', [
             'product' => $product,
@@ -41,7 +41,7 @@ class ProductController extends Controller
 
     public function questions(Product $product)
     {
-        $this->visit($product);
+        $product->visit();
 
         return view('product.questions', [
             'product' => $product,
@@ -52,7 +52,7 @@ class ProductController extends Controller
 
     public function videos(Product $product)
     {
-        $this->visit($product);
+        $product->visit();
 
         return view('product.videos', [
             'product' => $product,
@@ -62,7 +62,7 @@ class ProductController extends Controller
 
     public function buy_together(Product $product)
     {
-        $this->visit($product);
+        $product->visit();
 
         return view('product.buy_together', [
             'product' => $product,
