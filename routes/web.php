@@ -32,10 +32,11 @@ Route::controller(WishlistProductController::class)->prefix('/wishlist')->group(
 
 Route::post('/cart/add/{quantity}', [AddToCartController::class, 'add'])->name('cart.add');
 
-Route::get('/cart', [CartController::class, 'show'])->name('cart.index');
-Route::delete('/cart/delete/{cart_row_id}', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::post('/cart/update_quantity/{cart_row_id}', [CartController::class, 'update_quantity'])->name('cart.update_quantity');
-
+Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(function () {
+    Route::get('/', 'show')->name('index');
+    Route::delete('/delete/{cart_row_id}', 'destroy')->name('destroy');
+    Route::post('/update_quantity/{cart_row_id}', 'update_quantity')->name('update_quantity');
+});
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 
