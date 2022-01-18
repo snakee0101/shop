@@ -77,12 +77,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="product-card__actions">
+                <div class="product-card__actions pb-2">
                     <div class="product-card__prices">${{ product_object.price }}</div>
-                    <div class="product-card__buttons">
+                    <div class="product-card__buttons mt-2">
                         <cart-button-component :purchaseable="product_object"></cart-button-component>
                         <compare-button-component :user="user_object" :product="product_object"></compare-button-component>
                     </div>
+                </div>
+                <div class="product-card__actions m-0">
+                    <p class="m-0 text-success" v-if="product_object.in_stock == 'In Stock'">In Stock</p>
+                    <p class="m-0 text-danger" v-if="product_object.in_stock == 'Ends'">Ends</p>
+                    <p class="m-0 text-secondary" v-if="product_object.in_stock == 'Out Of Stock'">Out Of Stock</p>
                 </div>
             </div>
         </div>
