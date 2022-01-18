@@ -23,11 +23,12 @@ Route::get('/', function () {
 Route::resource('wishlist', WishlistController::class)->except(['create', 'show', 'edit'])->middleware('authenticated');
 Route::get('/wishlist/show/{wishlist_access_token}', [WishlistController::class, 'show'])->name('wishlist.show_guest');
 
-Route::post('/wishlist/{wishlist}/{product}', [WishlistProductController::class, 'toggle'])->name('wishlist_product.toggle');
-Route::get('/wishlist/toggle/{product}', [WishlistProductController::class, 'toggle_default'])->name('wishlist_product.toggle_default');
-Route::get('/wishlist/{wishlist}/set_default', [WishlistProductController::class, 'set_default'])->name('wishlist.set_default');
-Route::post('/wishlist/{wishlist}/{product}/move', [WishlistProductController::class, 'move'])->name('wishlist.move');
-
+Route::controller(WishlistProductController::class)->prefix('/wishlist')->group(function () {
+    Route::post('/{wishlist}/{product}', 'toggle')->name('wishlist_product.toggle');
+    Route::get('/toggle/{product}', 'toggle_default')->name('wishlist_product.toggle_default');
+    Route::get('/{wishlist}/set_default', 'set_default')->name('wishlist.set_default');
+    Route::post('/{wishlist}/{product}/move', 'move')->name('wishlist.move');
+});
 
 Route::post('/cart/add/{quantity}', [AddToCartController::class, 'add'])->name('cart.add');
 
