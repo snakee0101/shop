@@ -4,7 +4,7 @@ use App\Http\Controllers\{AddToCartController, CartController, OrderController};
 use App\Http\Controllers\{ProductController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\{ComparisonController, WishlistController, WishlistProductController};
+use App\Http\Controllers\{ComparisonController, VisitsController, WishlistController, WishlistProductController};
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -69,7 +69,7 @@ Route::resource('report', ReportController::class);
 
 Route::prefix('account')->group(function () {
     Route::view('/', 'account')->name('account');
-    Route::view('/visited_products', 'account')->name('account.visited_products');
+    Route::get('/visited_products', [VisitsController::class, 'show'])->name('account.visited_products');
 });
 
 
