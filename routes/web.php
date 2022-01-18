@@ -42,12 +42,16 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::view('/contacts', 'contact-us')->name('contacts');
 
 
-Route::get('/product/{product}', [ProductController::class, 'description'])->name('product.description');
-Route::get('/product/{product}/characteristics', [ProductController::class, 'characteristics'])->name('product.characteristics');
-Route::get('/product/{product}/reviews', [ProductController::class, 'reviews'])->name('product.reviews');
-Route::get('/product/{product}/questions', [ProductController::class, 'questions'])->name('product.questions');
-Route::get('/product/{product}/videos', [ProductController::class, 'videos'])->name('product.videos');
-Route::get('/product/{product}/buy_together', [ProductController::class, 'buy_together'])->name('product.buy_together');
+Route::controller(ProductController::class)->name('product.')->prefix('/product/{product}')
+                                                             ->group(function (){
+    Route::get('/', 'description')->name('description');
+    Route::get('characteristics', 'characteristics')->name('characteristics');
+    Route::get('reviews', 'reviews')->name('reviews');
+    Route::get('questions', 'questions')->name('questions');
+    Route::get('videos', 'videos')->name('videos');
+    Route::get('buy_together', 'buy_together')->name('buy_together');
+});
+
 
 
 Route::controller(ComparisonController::class)->middleware('authenticated')->prefix('comparison')
