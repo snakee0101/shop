@@ -1,3 +1,9 @@
+<div class="d-flex flex-row-reverse">
+    <form action="{{ route('visit.clear_all') }}" method="POST">
+        @csrf
+        <button class="btn btn-warning btn-sm">Clear all</button>
+    </form>
+</div>
 <div class="block block-products-carousel" data-layout="grid-5">
     <div class="container d-flex flex-wrap">
         @foreach($visited_products as $product)

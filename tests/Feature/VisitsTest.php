@@ -85,7 +85,7 @@ class VisitsTest extends TestCase
 
         $this->assertDatabaseCount('visited_products', 2);
 
-        $this->post( route('visit.clear_all') )->assertOk();
+        $this->post( route('visit.clear_all') )->assertRedirect();
 
         $this->assertDatabaseCount('visited_products', 0);
     }
