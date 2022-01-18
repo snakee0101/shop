@@ -126,10 +126,7 @@
             toggleSelectAll(wishlist_id, selected_product_ids)
             {
                 if(wishlist_id == this.wishlist_object.id) {
-                    if(selected_product_ids.length === 0)
-                        this.selected = false;
-                    else
-                        this.selected = true;
+                    this.selected = selected_product_ids.length !== 0;
                 }
             }
         }
