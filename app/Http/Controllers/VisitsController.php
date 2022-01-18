@@ -21,4 +21,11 @@ class VisitsController extends Controller
 
         return back();
     }
+
+    public function clearAll()
+    {
+        auth()->user()->visited_products()->detach();
+
+        return back();
+    }
 }

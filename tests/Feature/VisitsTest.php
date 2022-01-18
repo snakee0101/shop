@@ -69,4 +69,24 @@ class VisitsTest extends TestCase
             'product_id' => $product->id
         ]);
     }
+
+    public function test_all_visits_could_be_removed()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        Wishlist::createDefault($user);
+
+        $this->actingAs($user);
+
+        $this->get( route('product.description', $product) )->assertOk();
+        $this->get( route('product.description', $product2) )->assertOk();
+
+        $this->assertDatabaseCount('visited_products', 2);
+
+        $this->post( route('visit.clear_all') )->assertOk();
+
+        $this->assertDatabaseCount('visited_products', 0);
+    }
 }

@@ -73,6 +73,7 @@ Route::prefix('account')->group(function () {
 });
 
 Route::delete('/visit/{product}', [VisitsController::class, 'destroy'])->name('visit.destroy');
+Route::post('/visit/clearAll', [VisitsController::class, 'clearAll'])->name('visit.clear_all');
 
 
 Route::resource('category', CategoryController::class);
