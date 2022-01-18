@@ -1,20 +1,16 @@
 <?php
 
+use App\Http\Controllers\{AddToCartController, CartController, OrderController};
+use App\Http\Controllers\{ProductController, UserController, VoteController};
+use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\{ComparisonController, WishlistController, WishlistProductController};
+
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
 use App\Http\Controllers\CategoryController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     $filtering_group_1_products = Product::limit(10)->get();
@@ -24,49 +20,51 @@ Route::get('/', function () {
     ]);
 })->name('index-2');
 
-Route::resource('wishlist', \App\Http\Controllers\WishlistController::class)->except(['create', 'show', 'edit'])->middleware('authenticated');
-Route::get('/wishlist/show/{wishlist_access_token}', [\App\Http\Controllers\WishlistController::class, 'show'])->name('wishlist.show_guest');
-Route::post('/wishlist/{wishlist}/{product}', [\App\Http\Controllers\WishlistProductController::class, 'toggle'])->name('wishlist_product.toggle');
-Route::get('/wishlist/toggle/{product}', [\App\Http\Controllers\WishlistProductController::class, 'toggle_default'])->name('wishlist_product.toggle_default');
-Route::get('/wishlist/{wishlist}/set_default', [\App\Http\Controllers\WishlistProductController::class, 'set_default'])->name('wishlist.set_default');
-Route::post('/wishlist/{wishlist}/{product}/move', [\App\Http\Controllers\WishlistProductController::class, 'move'])->name('wishlist.move');
+Route::resource('wishlist', WishlistController::class)->except(['create', 'show', 'edit'])->middleware('authenticated');
+Route::get('/wishlist/show/{wishlist_access_token}', [WishlistController::class, 'show'])->name('wishlist.show_guest');
+
+Route::post('/wishlist/{wishlist}/{product}', [WishlistProductController::class, 'toggle'])->name('wishlist_product.toggle');
+Route::get('/wishlist/toggle/{product}', [WishlistProductController::class, 'toggle_default'])->name('wishlist_product.toggle_default');
+Route::get('/wishlist/{wishlist}/set_default', [WishlistProductController::class, 'set_default'])->name('wishlist.set_default');
+Route::post('/wishlist/{wishlist}/{product}/move', [WishlistProductController::class, 'move'])->name('wishlist.move');
 
 
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show'])->name('cart.index');
-Route::post('/cart/add/{quantity}', [\App\Http\Controllers\AddToCartController::class, 'add'])->name('cart.add');
-Route::delete('/cart/delete/{cart_row_id}', [\App\Http\Controllers\CartController::class, 'destroy'])->name('cart.destroy');
-Route::post('/cart/update_quantity/{cart_row_id}', [\App\Http\Controllers\CartController::class, 'update_quantity'])->name('cart.update_quantity');
+Route::post('/cart/add/{quantity}', [AddToCartController::class, 'add'])->name('cart.add');
+
+Route::get('/cart', [CartController::class, 'show'])->name('cart.index');
+Route::delete('/cart/delete/{cart_row_id}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::post('/cart/update_quantity/{cart_row_id}', [CartController::class, 'update_quantity'])->name('cart.update_quantity');
 
 
-Route::get('/checkout', [\App\Http\Controllers\OrderController::class, 'checkout'])->name('checkout');
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 
 
 Route::view('/contacts', 'contact-us')->name('contacts');
 
 
-Route::get('/product/{product}', [\App\Http\Controllers\ProductController::class, 'description'])->name('product.description');
-Route::get('/product/{product}/characteristics', [\App\Http\Controllers\ProductController::class, 'characteristics'])->name('product.characteristics');
-Route::get('/product/{product}/reviews', [\App\Http\Controllers\ProductController::class, 'reviews'])->name('product.reviews');
-Route::get('/product/{product}/questions', [\App\Http\Controllers\ProductController::class, 'questions'])->name('product.questions');
-Route::get('/product/{product}/videos', [\App\Http\Controllers\ProductController::class, 'videos'])->name('product.videos');
-Route::get('/product/{product}/buy_together', [\App\Http\Controllers\ProductController::class, 'buy_together'])->name('product.buy_together');
+Route::get('/product/{product}', [ProductController::class, 'description'])->name('product.description');
+Route::get('/product/{product}/characteristics', [ProductController::class, 'characteristics'])->name('product.characteristics');
+Route::get('/product/{product}/reviews', [ProductController::class, 'reviews'])->name('product.reviews');
+Route::get('/product/{product}/questions', [ProductController::class, 'questions'])->name('product.questions');
+Route::get('/product/{product}/videos', [ProductController::class, 'videos'])->name('product.videos');
+Route::get('/product/{product}/buy_together', [ProductController::class, 'buy_together'])->name('product.buy_together');
 
 
 Route::middleware('authenticated')->group(function () {
-    Route::get('/comparison', [\App\Http\Controllers\ComparisonController::class, 'index'])->name('comparison.index');
-    Route::get('/comparison/{category}', [\App\Http\Controllers\ComparisonController::class, 'show'])->name('comparison.show');
-    Route::post('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'store'])->name('comparison.store');
-    Route::delete('/comparison/{product}', [\App\Http\Controllers\ComparisonController::class, 'destroy'])->name('comparison.destroy');
+    Route::get('/comparison', [ComparisonController::class, 'index'])->name('comparison.index');
+    Route::get('/comparison/{category}', [ComparisonController::class, 'show'])->name('comparison.show');
+    Route::post('/comparison/{product}', [ComparisonController::class, 'store'])->name('comparison.store');
+    Route::delete('/comparison/{product}', [ComparisonController::class, 'destroy'])->name('comparison.destroy');
 });
 
-Route::get('/comparison/public/{access_token}/{category_id}', [\App\Http\Controllers\ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
+Route::get('/comparison/public/{access_token}/{category_id}', [ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
 
 
-Route::resource('review', \App\Http\Controllers\ReviewController::class);
-Route::resource('question', \App\Http\Controllers\QuestionController::class);
-Route::resource('reply', \App\Http\Controllers\ReplyController::class);
-Route::resource('vote', \App\Http\Controllers\VoteController::class);
-Route::resource('report', \App\Http\Controllers\ReportController::class);
+Route::resource('review', ReviewController::class);
+Route::resource('question', QuestionController::class);
+Route::resource('reply', ReplyController::class);
+Route::resource('vote', VoteController::class);
+Route::resource('report', ReportController::class);
 
 
 Route::prefix('account')->group(function () {
@@ -82,8 +80,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/register-user', [\App\Http\Controllers\UserController::class, 'register'])->name('register-user');
-Route::post('/login-user', [\App\Http\Controllers\UserController::class, 'login'])->name('login-user');
+Route::post('/register-user', [UserController::class, 'register'])->name('register-user');
+Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
 
 Route::fallback(fn() => view('404'));
 
