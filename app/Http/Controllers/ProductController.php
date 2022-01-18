@@ -8,14 +8,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    private function visit(Product $product)
-    {
-        try {
-            if(auth()->check())
-                auth()->user()->visited_products()->attach($product);
-        } catch(\Exception) {}
-    }
-
     public function description(Product $product)
     {
         $this->visit($product);

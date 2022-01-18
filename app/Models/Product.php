@@ -86,4 +86,12 @@ class Product extends Model implements Purchaseable
     {
         return $this->morphMany(Video::class, 'videos', 'object_type', 'object_id');
     }
+
+    public function visit()
+    {
+        try {
+            if(auth()->check())
+                auth()->user()->visited_products()->attach($this);
+        } catch(\Exception) {}
+    }
 }

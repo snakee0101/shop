@@ -21,4 +21,17 @@ class VisitsTest extends TestCase
 
        $this->assertInstanceOf(Product::class, $user->visited_products()->first());
     }
+
+    public function test_a_product_records_visits()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $this->assertEmpty($user->visited_products);
+
+        $product = Product::factory()->create();
+        $product->visit();
+
+        $this->assertCount(1, $user->fresh()->visited_products);
+    }
 }
