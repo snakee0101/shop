@@ -1,12 +1,20 @@
 <div class="block block-products-carousel" data-layout="grid-5">
     <div class="container d-flex flex-wrap">
         @foreach($visited_products as $product)
-            <product-card-component product="{{ $product }}"
-                                    user="{{ auth()->user() }}"
-                                    :key="{{ $product->id }}"
-                                    class="m-2">
+            <div class="d-inline-block mt-4">
+                <form action="{{ route('visit.destroy', $product) }}" method="POST" class="ml-4">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm">Delete visit</button>
+                </form>
 
-            </product-card-component>
+                <product-card-component product="{{ $product }}"
+                                        user="{{ auth()->user() }}"
+                                        :key="{{ $product->id }}"
+                                        class="m-2">
+
+                </product-card-component>
+            </div>
         @endforeach
     </div>
 </div>

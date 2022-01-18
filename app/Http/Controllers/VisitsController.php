@@ -18,5 +18,7 @@ class VisitsController extends Controller
     public function destroy(Product $product)
     {
         auth()->user()->visited_products()->detach($product);
+
+        return back();
     }
 }
