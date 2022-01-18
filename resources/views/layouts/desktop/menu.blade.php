@@ -457,7 +457,7 @@
                                     </div>
                                 </div><!-- .megamenu / end --></div>
                         </li>
-                        <li class="nav-links__item nav-links__item--with-submenu"><a
+                        {{--<li class="nav-links__item nav-links__item--with-submenu"><a
                                 href="shop-grid-3-columns-sidebar.html"><span>Shop <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
                                             xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
@@ -501,7 +501,7 @@
                                     <li><a href="{{ route('account') }}">My Account</a></li>
                                     <li><a href="track-order.html">Track Order</a></li>
                                 </ul><!-- .menu / end --></div>
-                        </li>
+                        </li>--}}
                     </ul>
                 </div><!-- .nav-links / end -->
                 <div class="nav-panel__indicators">
