@@ -36,16 +36,8 @@ class ReviewController extends Controller
 
         //Decode and save images
         foreach($request->all() as $key => $encoded_image) {
-            if(str_contains($key, 'image')) { //filter through image fields only
-                $unique_name = now()->timestamp . Str::uuid();
-
-                $path = '/public/images/' . $unique_name . '.png';
-                Storage::put( $path, Photo::decode($encoded_image));
-
-                $review->photos()->create([
-                    'url' => $path
-                ]);
-            }
+            if(str_contains($key, 'image'))  //filter through image fields only
+                Photo::store($encoded_image, $review);
         }
 
         //save videos
