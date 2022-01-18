@@ -34,4 +34,27 @@ class VisitsTest extends TestCase
 
         $this->assertCount(1, $user->fresh()->visited_products);
     }
+
+    public function test_duplicated_visit_doesnt_raise_an_exception()
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user);
+
+        $this->assertEmpty($user->visited_products);
+
+        $product = Product::factory()->create();
+        $product->visit();
+        $product->visit();
+
+        $this->assertCount(1, $user->fresh()->visited_products);
+    }
+
+    public function test_visit_from_not_logged_in_user_doesnt_raise_an_exception()
+    {
+        $product = Product::factory()->create();
+        $product->visit();
+
+        $this->assertTrue(true);  //this test just checks that no exceptions happened
+    }
 }

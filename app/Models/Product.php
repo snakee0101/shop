@@ -90,8 +90,7 @@ class Product extends Model implements Purchaseable
     public function visit()
     {
         try {
-            if(auth()->check())
-                auth()->user()->visited_products()->attach($this);
-        } catch(\Exception) {}
+            auth()->user()?->visited_products()->attach($this);  //invalid visits must be ignored
+        } catch(\Exception $e) {}
     }
 }
