@@ -72,6 +72,7 @@ Route::prefix('account')->group(function () {
     Route::get('/visited_products', [VisitsController::class, 'show'])->name('account.visited_products');
 });
 
+Route::delete('/visit/{product}', [VisitsController::class, 'destroy'])->name('visit.destroy');
 
 
 Route::resource('category', CategoryController::class);

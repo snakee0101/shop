@@ -41,4 +41,32 @@ class VisitsTest extends TestCase
         $this->visit('product.questions', $product, $user);
         $this->visit('product.videos', $product, $user);
     }
+
+    public function test_a_visit_could_be_detached()
+    {
+        $user = User::factory()->create();
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        Wishlist::createDefault($user);
+
+        $this->actingAs($user);
+
+        $this->get( route('product.description', $product) )->assertOk();
+        $this->get( route('product.description', $product2) )->assertOk();
+
+        $this->assertDatabaseCount('visited_products', 2);
+
+        $this->delete( route('visit.destroy', $product) );
+
+        $this->assertDatabaseHas('visited_products', [
+            'user_id' => $user->id,
+            'product_id' => $product2->id
+        ]);
+
+        $this->assertDatabaseMissing('visited_products', [
+            'user_id' => $user->id,
+            'product_id' => $product->id
+        ]);
+    }
 }
