@@ -21,29 +21,26 @@ class ProductTest extends TestCase
     public function test_product_can_determine_whether_it_is_in_a_wishlist()
     {
         $wishlist = Wishlist::factory()->create();
-        $product = Product::factory()->create();
-        $product2 = Product::factory()->create();
+        $products = Product::factory()->count(2)->create();
 
-        $wishlist->products()->attach($product);
+        $wishlist->products()->attach($products[0]);
 
-        $this->assertTrue( $product->fresh()->inWishlist($wishlist) );
-        $this->assertFalse( $product2->inWishlist($wishlist) );
+        $this->assertTrue( $products[0]->fresh()->inWishlist($wishlist) );
+        $this->assertFalse( $products[1]->inWishlist($wishlist) );
     }
 
     public function test_product_can_determine_whether_it_is_in_a_default_wishlist()
     {
-        $user = User::factory()->create();
+        $this->actingAs( $user = User::factory()->create() );
 
         $default_wishlist = Wishlist::factory()->create(['user_id' => $user]);
-        $wishlist2 = Wishlist::factory()->inactive()->create(['user_id' => $user]);
+        Wishlist::factory()->inactive()->create(['user_id' => $user]);
         $product = Product::factory()->create();
 
-        $this->actingAs( $user );
+        $this->assertFalse( $product->fresh()->inDefaultWishlist );
+
         $default_wishlist->products()->attach($product);
         $this->assertTrue( $product->fresh()->inDefaultWishlist );
-
-        $default_wishlist->products()->detach($product);
-        $this->assertFalse( $product->fresh()->inDefaultWishlist );
     }
 
     public function test_product_knows_reviews_count()
