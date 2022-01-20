@@ -9,4 +9,6 @@ class OrderCredentials extends Model
 {
     use HasFactory;
     protected $table = 'order_credentials';
+
+    public $timestamps = false;
 }
