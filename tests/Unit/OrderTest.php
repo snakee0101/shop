@@ -3,13 +3,21 @@
 namespace Tests\Unit;
 
 use App\Models\Order;
+use App\Models\OrderCredentials;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
-    public function test_example()
+    public function test_order_has_items()
     {
-        dd( Order::factory()->create() );
-        $this->assertTrue(true);
+
+    }
+
+    public function test_order_has_credentials()
+    {
+        $credentials = OrderCredentials::factory()->create();
+        $order = Order::find($credentials->order_id);
+
+        $this->assertInstanceOf(OrderCredentials::class, $order->credentials);
     }
 }

@@ -10,5 +10,8 @@ class Order extends Model
     use HasFactory;
     protected $dates = ['shipping_date'];
 
-
+    public function credentials()
+    {
+        return $this->hasOne(OrderCredentials::class);
+    }
 }
