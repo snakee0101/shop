@@ -12,8 +12,12 @@ class ProductSet extends Model implements Purchaseable
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['products_json', 'inCart', 'ObjectType', 'price'];
+    protected $appends = ['inCart', 'ObjectType', 'price'];
+    protected $with = ['products'];
 
+    /*
+     * Name and Price attributes are mandatory to add an object to cart
+     * */
     public function getNameAttribute()
     {
         return $this->products->implode('name', ' + ');
@@ -39,11 +43,6 @@ class ProductSet extends Model implements Purchaseable
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_set_product');
-    }
-
-    public function getProductsJsonAttribute()
-    {
-        return $this->products;
     }
 
     public static function whereContainsProduct(Product $product) :Builder
