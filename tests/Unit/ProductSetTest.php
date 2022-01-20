@@ -95,7 +95,7 @@ class ProductSetTest extends TestCase
             'product_id' => $product_2->id
         ]);
 
-        $this->assertStringContainsString('products_json', $product_set->fresh()->toJson());
+        $this->assertStringContainsString('products', $product_set->fresh()->toJson());
     }
 
     public function test_product_sets_containing_specified_product_could_be_returned()
