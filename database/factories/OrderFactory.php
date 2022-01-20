@@ -26,4 +26,15 @@ class OrderFactory extends Factory
             'shipping_date' => $this->faker->dateTimeBetween('-1 month'),
         ];
     }
+
+    public function withPostOfficeAddress()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'address' => null,
+                'apartment' => null,
+                'post_office_address' => $this->faker->streetAddress(),
+            ];
+        });
+    }
 }
