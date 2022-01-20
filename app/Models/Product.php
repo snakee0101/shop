@@ -51,8 +51,7 @@ class Product extends Model implements Purchaseable
     public function getInCartAttribute() :bool
     {
         return \Cart::getContent()->contains(
-            fn($item) => ($item->associatedModel->id == $this->id) &&
-                         ($this->object_type == $item->associatedModel->object_type)
+            fn($item) => $this->is($item->associatedModel)
         );
     }
 
