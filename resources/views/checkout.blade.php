@@ -74,10 +74,10 @@
 
                                     <div class="form-group border-top border-dark"><label for="checkout-street-address">Address</label>
                                         <input type="text" class="form-control" id="checkout-street-address"
-                                               placeholder="Street Address"></div>
+                                               name="address" placeholder="Street Address"></div>
                                     <div class="form-group"><label for="checkout-address">Apartment<span
                                                 class="text-muted"> (Optional)</span></label> <input type="text"
-                                                                                                     name="address"
+                                                                                                     name="apartment"
                                                                                                      class="form-control"
                                                                                                      id="checkout-address">
                                     </div>
