@@ -38,9 +38,6 @@ Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(f
     Route::post('/update_quantity/{cart_row_id}', 'update_quantity')->name('update_quantity');
 });
 
-Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-
-
 Route::view('/contacts', 'contact-us')->name('contacts');
 
 
@@ -72,6 +69,10 @@ Route::resource('question', QuestionController::class);
 Route::resource('reply', ReplyController::class);
 Route::resource('vote', VoteController::class);
 Route::resource('report', ReportController::class);
+Route::resource('order', OrderController::class);
+
+
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 
 
 Route::prefix('account')->group(function () {
