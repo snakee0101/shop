@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Order;
-use App\Models\Product;
+use App\Models\OrderCredentials;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class OrderFactory extends Factory
+class OrderCredentialsFactory extends Factory
 {
-    protected $model = Order::class;
+    protected $model = OrderCredentials::class;
 
     public function definition()
     {
