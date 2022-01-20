@@ -12,4 +12,9 @@ class OrderController extends Controller
             'cart_items' => \Cart::getContent()
         ]);
     }
+
+    public function store()
+    {
+        dd( \request()->input() );
+    }
 }
