@@ -9,7 +9,10 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'alpha'
+            'first_name' => 'alpha',
+            'last_name' => 'alpha',
+            'phone' => 'regex:/\+\d{12}/',
+            'email' => 'email',
         ];
     }
 }

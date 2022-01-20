@@ -56,4 +56,44 @@ class OrderTest extends TestCase
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('first_name');
     }
+
+    public function test_last_name_contains_only_letters()
+    {
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors();
+
+        $this->credentials['last_name'] = 541;
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+             ->assertSessionHasErrors('last_name');
+
+        $this->credentials['last_name'] = 'Test name';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('last_name');
+
+        $this->credentials['last_name'] = 'Test&';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('last_name');
+    }
+
+    public function test_phone_must_be_valid()
+    {
+        $this->credentials['phone'] = '+35094760244';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('phone');
+    }
+
+    public function test_email_must_be_valid()
+    {
+        $this->credentials['email'] = 'test@';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('email');
+
+        $this->credentials['email'] = 'test';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('email');
+
+        $this->credentials['email'] = '@test';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('email');
+    }
 }
