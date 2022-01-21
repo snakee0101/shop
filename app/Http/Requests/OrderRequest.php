@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\OrderPostOfficeAddress;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderRequest extends FormRequest
@@ -15,7 +16,7 @@ class OrderRequest extends FormRequest
             'email' => 'email',
             'address' => 'required_without:post_office_address',
             'apartment' => 'numeric|nullable',
-            'post_office_address' => 'required_without:address',
+            'post_office_address' => ['required_without:address', new OrderPostOfficeAddress( request('apartment') )],
             'city' => 'required',
             'state' => 'required',
             'postcode' => 'size:5',

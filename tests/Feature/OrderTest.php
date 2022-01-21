@@ -136,6 +136,17 @@ class OrderTest extends TestCase
             ->assertSessionHasErrors('apartment');
     }
 
+    public function test_apartment_must_not_be_present_with_post_office_address()
+    {
+        $this->credentials['apartment'] = '82';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('post_office_address');
+
+        $this->credentials['apartment'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors();
+    }
+
     public function test_post_office_address_is_required()
     {
         $this->credentials['post_office_address'] = '';
