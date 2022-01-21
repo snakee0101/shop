@@ -6,8 +6,6 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductSet;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
@@ -56,8 +54,19 @@ class OrderTest extends TestCase
 
     public function test_when_data_are_valid_order_is_saved_to_db()
     {
+        $product = Product::factory()->create();
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name',
+            'price' => $product->price,
+            'quantity' => 2,
+            'attributes' => [],
+            'associatedModel' => $product
+        ]);
+
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors()->assertOk();
+            ->assertSessionHasNoErrors();
 
         $this->assertDatabaseCount('orders', 1);
         $this->assertDatabaseHas('orders', [
@@ -75,8 +84,19 @@ class OrderTest extends TestCase
 
     public function test_when_data_are_valid_credentials_are_also_saved_to_db_if_provided()
     {
+        $product = Product::factory()->create();
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name',
+            'price' => $product->price,
+            'quantity' => 2,
+            'attributes' => [],
+            'associatedModel' => $product
+        ]);
+
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors()->assertOk();
+            ->assertSessionHasNoErrors();
 
         $this->assertDatabaseCount('order_credentials', 1);
         $this->assertDatabaseHas('order_credentials', [
@@ -93,7 +113,7 @@ class OrderTest extends TestCase
         $this->actingAs( User::factory()->create() );
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors()->assertOk();
+            ->assertSessionHasNoErrors();
 
         $this->assertDatabaseCount('order_credentials', 0);
     }
@@ -131,7 +151,7 @@ class OrderTest extends TestCase
         ]);
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors()->assertOk();
+            ->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('order_item', [
             'item_id' => $product->id,
@@ -179,7 +199,7 @@ class OrderTest extends TestCase
         ]);
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors()->assertOk();
+            ->assertSessionHasNoErrors();
 
         $this->assertTrue( \Cart::isEmpty() );
     }

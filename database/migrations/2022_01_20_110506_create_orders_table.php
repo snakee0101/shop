@@ -11,6 +11,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_paid');
+            $table->enum('status', ['on hold', 'processing', 'cancelled', 'sent', 'completed'])->default('on hold');  //https://woocommerce.com/document/managing-orders/#:~:text=Order%20Statuses,Awaiting%20payment%20(unpaid).
             $table->string('country');
             $table->string('address')->nullable();
             $table->string('apartment')->nullable();
