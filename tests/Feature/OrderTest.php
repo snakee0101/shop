@@ -42,18 +42,8 @@ class OrderTest extends TestCase
             'shipping_date' => '2021-02-20 20:20:20',
             'checkout_payment_method' => 'card'
         ];
-    }
 
-    public function test_if_cart_is_empty_order_will_not_be_performed()
-    {
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertRedirect( route('checkout') );
-
-        $this->assertDatabaseCount('orders', 0);
-    }
-
-    public function test_when_data_are_valid_order_is_saved_to_db()
-    {
+        //add product to cart - the form request performs a check
         $product = Product::factory()->create();
 
         \Cart::add([
@@ -64,7 +54,19 @@ class OrderTest extends TestCase
             'attributes' => [],
             'associatedModel' => $product
         ]);
+    }
 
+    public function test_if_cart_is_empty_order_will_not_be_performed()
+    {
+        \Cart::clear();
+
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_when_data_are_valid_order_is_saved_to_db()
+    {
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
 
@@ -84,17 +86,6 @@ class OrderTest extends TestCase
 
     public function test_when_data_are_valid_credentials_are_also_saved_to_db_if_provided()
     {
-        $product = Product::factory()->create();
-
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name',
-            'price' => $product->price,
-            'quantity' => 2,
-            'attributes' => [],
-            'associatedModel' => $product
-        ]);
-
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
 

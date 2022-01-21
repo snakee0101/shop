@@ -9,7 +9,7 @@ use Illuminate\Validation\ValidationException;
 
 class OrderRequest extends FormRequest
 {
-    private function performEmptyCartCheck(Validator $validator): void
+    private function performEmptyCartCheck(Validator $validator = null): void
     {
         if (\Cart::isEmpty())
             throw (new ValidationException($validator,
