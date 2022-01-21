@@ -23,7 +23,13 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="page-header__title"><h1>Checkout</h1></div>
+                    <div class="page-header__title">
+                        <h1>Checkout</h1>
+
+                        @if( old('message') )
+                            <p class="alert alert-primary text-dark">{{ old('message') }}</p>
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="checkout block">

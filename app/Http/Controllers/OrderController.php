@@ -54,5 +54,9 @@ class OrderController extends Controller
 
         //Clear a cart after processing the order
         \Cart::clear();
+
+        return redirect()->route('checkout')->withInput([
+           'message' => 'Your order is successfully placed'
+        ]);
     }
 }
