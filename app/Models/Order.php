@@ -10,6 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $dates = ['shipping_date'];
+    protected $guarded = [];
 
     public function credentials()
     {

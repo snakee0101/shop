@@ -36,8 +36,58 @@ class OrderTest extends TestCase
             'city' => 'New York',
             'state' => 'Washington',
             'postcode' => 85756,
-            'shipping_date' => '2021-02-20 20:20:20'
+            'shipping_date' => '2021-02-20 20:20:20',
+            'checkout_payment_method' => 'card'
         ];
+    }
+
+    public function test_when_data_are_valid_order_is_saved_to_db()
+    {
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors()->assertOk();
+
+        $this->assertDatabaseCount('orders', 1);
+        $this->assertDatabaseHas('orders', [
+            'is_paid' => true,
+            'country' => 'USA',
+            'address' => null,
+            'apartment' => null,
+            'post_office_address' => 'Next Street, 88',
+            'city' => 'New York',
+            'state' => 'Washington',
+            'postcode' => 85756,
+            'shipping_date' => '2021-02-20 20:20:20',
+        ]);
+    }
+
+    public function test_when_data_are_valid_credentials_are_also_saved_to_db()
+    {
+
+    }
+
+    public function test_when_data_are_valid_items_are_attached_to_order()
+    {
+
+    }
+
+    public function test_when_order_is_saved_cart_is_cleared()
+    {
+
+    }
+
+    public function test_when_something_is_invalid_order_is_not_saved()
+    {
+
+    }
+
+    public function test_when_something_is_invalid_cart_is_not_cleared()
+    {
+
+    }
+
+    public function test_when_something_is_invalid_credentials_are_not_saved()
+    {
+
     }
 
     public function test_either_post_office_or_address_must_be_present()
