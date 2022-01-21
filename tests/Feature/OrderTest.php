@@ -185,7 +185,21 @@ class OrderTest extends TestCase
 
     public function test_when_something_is_invalid_cart_is_not_cleared()
     {
+        $this->credentials['first_name'] = '';
 
+        $product = Product::factory()->create();
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name',
+            'price' => $product->price,
+            'quantity' => 2,
+            'attributes' => [],
+            'associatedModel' => $product
+        ]);
+
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
+
+        $this->assertFalse( \Cart::isEmpty() );
     }
 
     public function test_when_something_is_invalid_credentials_are_not_saved()
