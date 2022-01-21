@@ -88,17 +88,29 @@
 
                                     <div class="form-group border-top border-dark"><label for="checkout-street-address">Address</label>
                                         <input type="text" class="form-control" id="checkout-street-address"
-                                               name="address" placeholder="Street Address"></div>
+                                               name="address" placeholder="Street Address" value="{{ old('address') }}">
+                                        @error('address')
+                                            <p class="text-danger mt-1">If post office address is not stated - shipping address is required</p>
+                                        @enderror
+                                    </div>
                                     <div class="form-group"><label for="checkout-address">Apartment<span
                                                 class="text-muted"> (Optional)</span></label> <input type="text"
                                                                                                      name="apartment"
                                                                                                      class="form-control"
-                                                                                                     id="checkout-address">
+                                                                                                     id="checkout-address"
+                                                                                                     value="{{ old('apartment') }}">
+                                        @error('apartment')
+                                            <p class="text-danger mt-1">If apartment is stated - it must consist of numbers only</p>
+                                        @enderror
                                     </div>
                                     <p class="text-center">OR</p>
                                     <div class="form-group border-bottom border-dark"><label for="checkout-post-office-address">Post office address</label>
                                         <input type="text" class="form-control" id="checkout-post-office-address"
-                                               name="post_office_address" placeholder="Post Office Address"></div>
+                                               name="post_office_address" placeholder="Post Office Address" value="{{ old('post_office_address') }}">
+                                        @error('post_office_address')
+                                            <p class="text-danger mt-1">If post office address is stated - apartment and address must not be provided</p>
+                                        @enderror
+                                    </div>
                                     <hr>
 
                                     <div class="form-group"><label for="checkout-city">Town / City</label> <input
@@ -122,7 +134,7 @@
                                     <div class="form-group"><label for="shipping-date">Shipping date and time</label> <input
                                             type="text" name="shipping_date" class="form-control" id="shipping-date" value="{{ old('shipping_date') }}">
                                         @error('shipping_date')
-                                            <p class="text-danger mt-1">Shiiping date must be provided in format (example): 2020-10-25 10:10:10</p>
+                                            <p class="text-danger mt-1">Shipping date must be provided in format (example): 2020-10-25 10:10:10</p>
                                         @enderror
                                     </div>
                                 </div>

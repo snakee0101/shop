@@ -21,7 +21,7 @@ class OrderRequest extends FormRequest
 
         return $credentials_rules + ['address' => 'required_without:post_office_address',
                 'apartment' => 'numeric|nullable',
-                'post_office_address' => ['required_without:address', new OrderPostOfficeAddress(request('apartment'))],
+                'post_office_address' => ['required_without:address', new OrderPostOfficeAddress( request() )],
                 'city' => 'required',
                 'state' => 'required',
                 'postcode' => 'digits:5',
