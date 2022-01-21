@@ -63,7 +63,7 @@ class OrderTest extends TestCase
             ->assertSessionHasNoErrors();
     }
 
-    public function test_first_name_contains_only_letters()
+    public function test_first_name_contains_letters_and_some_symbols()
     {
         $this->credentials['first_name'] = '';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
@@ -75,33 +75,30 @@ class OrderTest extends TestCase
 
         $this->credentials['first_name'] = 'Test name';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('first_name');
+            ->assertSessionHasNoErrors();
 
-        $this->credentials['first_name'] = 'Test&';
+        $this->credentials['first_name'] = "Name'name-name";
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('first_name');
+            ->assertSessionHasNoErrors();
     }
 
     public function test_last_name_contains_only_letters()
     {
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
-
         $this->credentials['last_name'] = '';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-             ->assertSessionHasErrors('last_name');
+            ->assertSessionHasErrors('last_name');
 
         $this->credentials['last_name'] = 541;
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-             ->assertSessionHasErrors('last_name');
+            ->assertSessionHasErrors('last_name');
 
         $this->credentials['last_name'] = 'Test name';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('last_name');
+            ->assertSessionHasNoErrors();
 
-        $this->credentials['last_name'] = 'Test&';
+        $this->credentials['last_name'] = "Name'name-name";
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('last_name');
+            ->assertSessionHasNoErrors();
     }
 
     public function test_phone_must_be_valid()

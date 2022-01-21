@@ -36,19 +36,33 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6"><label for="checkout-first-name">First Name</label>
                                                 <input type="text" class="form-control" id="checkout-first-name"
-                                                       placeholder="First Name" name="first_name"></div>
+                                                       placeholder="First Name" name="first_name" value="{{ old('first_name') }}">
+                                                @error('first_name')
+                                                    <p class="text-danger mt-1">First name must contain only letters</p>
+                                                @enderror
+                                            </div>
                                             <div class="form-group col-md-6"><label for="checkout-last-name">Last Name</label>
                                                 <input type="text" class="form-control" id="checkout-last-name"
-                                                       placeholder="Last Name" name="last_name"></div>
+                                                       placeholder="Last Name" name="last_name" value="{{ old('last_name') }}">
+                                                @error('last_name')
+                                                    <p class="text-danger mt-1">Last name must contain only letters</p>
+                                                @enderror
+                                            </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6"><label for="checkout-phone">Phone</label> <input
                                                     type="text" class="form-control" id="checkout-phone" placeholder="Phone"
-                                                    name="phone">
+                                                    name="phone" value="{{ old('phone') }}">
+                                                @error('phone')
+                                                    <p class="text-danger mt-1">Phone must be in international format +XXXAAAAAAAAA</p>
+                                                @enderror
                                             </div>
                                             <div class="form-group col-md-6"><label for="checkout-email">Email</label> <input
                                                     type="text" class="form-control" id="checkout-email" placeholder="Email"
-                                                    name="email">
+                                                    name="email" value="{{ old('email') }}">
+                                                @error('email')
+                                                     <p class="text-danger mt-1">Enter valid email</p>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="w-100 mb-3">
@@ -88,13 +102,29 @@
                                     <hr>
 
                                     <div class="form-group"><label for="checkout-city">Town / City</label> <input
-                                            type="text" name="city" class="form-control" id="checkout-city"></div>
+                                            type="text" name="city" class="form-control" id="checkout-city" value="{{ old('city') }}">
+                                        @error('city')
+                                            <p class="text-danger mt-1">Enter town/city name</p>
+                                        @enderror
+                                    </div>
                                     <div class="form-group"><label for="checkout-state">State</label> <input
-                                            type="text" name="state" class="form-control" id="checkout-state"></div>
+                                            type="text" name="state" class="form-control" id="checkout-state" value="{{ old('state') }}">
+                                        @error('state')
+                                            <p class="text-danger mt-1">Enter state name</p>
+                                        @enderror
+                                    </div>
                                     <div class="form-group"><label for="checkout-postcode">Postcode / ZIP</label> <input
-                                            type="text" name="postcode" class="form-control" id="checkout-postcode"></div>
+                                            type="text" name="postcode" class="form-control" id="checkout-postcode" value="{{ old('postcode') }}">
+                                        @error('postcode')
+                                            <p class="text-danger mt-1">Enter valid postcode (5 digits)</p>
+                                        @enderror
+                                    </div>
                                     <div class="form-group"><label for="shipping-date">Shipping date and time</label> <input
-                                            type="text" name="shipping_date" class="form-control" id="shipping-date"></div>
+                                            type="text" name="shipping_date" class="form-control" id="shipping-date" value="{{ old('shipping_date') }}">
+                                        @error('shipping_date')
+                                            <p class="text-danger mt-1">Shiiping date must be provided in format (example): 2020-10-25 10:10:10</p>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>

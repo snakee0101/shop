@@ -10,8 +10,8 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         $credentials_rules = [
-            'first_name' => 'alpha',
-            'last_name' => 'alpha',
+            'first_name' => "regex:/[a-zA-Z\s'-]+/",
+            'last_name' => "regex:/[a-zA-Z\s'-]+/",
             'phone' => 'regex:/\+\d{12}/',
             'email' => 'email',
         ];
