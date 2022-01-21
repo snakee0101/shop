@@ -77,7 +77,10 @@ class OrderTest extends TestCase
 
     public function test_when_something_is_invalid_order_is_not_saved()
     {
+        $this->credentials['first_name'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
 
+        $this->assertDatabaseCount('orders', 0);
     }
 
     public function test_when_something_is_invalid_cart_is_not_cleared()
