@@ -121,7 +121,7 @@ class OrderTest extends TestCase
     public function test_address_is_required()
     {
         $this->credentials['address'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+        $this->post( route('order.store'), $this->credentials + $this->valid_data )
             ->assertSessionHasErrors('address');
     }
 

@@ -14,7 +14,7 @@ class OrderRequest extends FormRequest
             'phone' => 'regex:/\+\d{12}/',
             'email' => 'email',
             'address' => 'required_without:post_office_address',
-            'apartment' => 'numeric',
+            'apartment' => 'numeric|nullable',
             'post_office_address' => 'required_without:address',
             'city' => 'required',
             'state' => 'required',
