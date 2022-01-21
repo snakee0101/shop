@@ -12,6 +12,7 @@ class CreateOrderItemTable extends Migration
             $table->id();
             $table->foreignId('order_id');
             $table->morphs('item');
+            $table->unsignedInteger('quantity');
         });
     }
 

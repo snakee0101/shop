@@ -19,11 +19,13 @@ class Order extends Model
 
     public function products()
     {
-        return $this->morphedByMany(Product::class, 'item', 'order_item');
+        return $this->morphedByMany(Product::class, 'item', 'order_item')
+                    ->withPivot('quantity');
     }
 
     public function product_sets()
     {
-        return $this->morphedByMany(ProductSet::class, 'item', 'order_item');
+        return $this->morphedByMany(ProductSet::class, 'item', 'order_item')
+                    ->withPivot('quantity');
     }
 }

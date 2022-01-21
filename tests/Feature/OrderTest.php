@@ -3,9 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\ProductSet;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
@@ -86,9 +89,52 @@ class OrderTest extends TestCase
         $this->assertDatabaseCount('order_credentials', 0);
     }
 
-    public function test_when_data_are_valid_items_are_attached_to_order()
+    public function test_when_data_are_valid_cart_items_are_attached_to_order()
     {
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
 
+        $product_set = ProductSet::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product2->id
+        ]);
+        $this->assertInstanceOf(Product::class, $product_set->fresh()->products()->first());
+
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name',
+            'price' => $product->price,
+            'quantity' => 2,
+            'attributes' => [],
+            'associatedModel' => $product
+        ]);
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name 2',
+            'price' => $product_set->price,
+            'quantity' => 1,
+            'attributes' => [],
+            'associatedModel' => $product_set
+        ]);
+
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors()->assertOk();
+
+        $this->assertDatabaseHas('order_item', [
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 2
+        ]);
+
+        $this->assertDatabaseHas('order_item', [
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ]);
     }
 
     public function test_when_order_is_saved_cart_is_cleared()
