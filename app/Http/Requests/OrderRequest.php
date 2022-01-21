@@ -13,6 +13,9 @@ class OrderRequest extends FormRequest
             'last_name' => 'alpha',
             'phone' => 'regex:/\+\d{12}/',
             'email' => 'email',
+            'address' => 'required',
+            'apartment' => 'numeric',
+            'post_office_address' => 'required',
         ];
     }
 }

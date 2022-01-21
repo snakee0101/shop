@@ -96,4 +96,29 @@ class OrderTest extends TestCase
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('email');
     }
+
+    public function test_address_is_required()
+    {
+        $this->credentials['address'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('address');
+    }
+
+    public function test_apartment_consists_of_numbers_only()
+    {
+        $this->credentials['apartment'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('apartment');
+
+        $this->credentials['apartment'] = '82A';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('apartment');
+    }
+
+    public function test_post_office_address_is_required()
+    {
+        $this->credentials['post_office_address'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('post_office_address');
+    }
 }
