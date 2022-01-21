@@ -21,15 +21,40 @@ class OrderTest extends TestCase
         DB::table('order_item')->insert([[
             'order_id' => $order->id,
             'item_id' => $product->id,
-            'item_type' => Product::class
+            'item_type' => Product::class,
+            'quantity' => 1
         ],[
             'order_id' => $order->id,
             'item_id' => $product_set->id,
-            'item_type' => ProductSet::class
+            'item_type' => ProductSet::class,
+            'quantity' => 1
         ]]);
 
         $this->assertInstanceOf(Product::class, $order->fresh()->products[0]);
         $this->assertInstanceOf(ProductSet::class, $order->fresh()->product_sets[0]);
+    }
+
+    public function test_order_items_load_a_quantity()
+    {
+        $product = Product::factory()->create();
+        $product_set = ProductSet::factory()->create();
+
+        $order = Order::factory()->create();
+
+        DB::table('order_item')->insert([[
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 2
+        ],[
+            'order_id' => $order->id,
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ]]);
+
+        $this->assertEquals(2, $order->fresh()->products[0]->pivot->quantity);
+        $this->assertEquals(1, $order->fresh()->product_sets[0]->pivot->quantity);
     }
 
     public function test_order_has_credentials()
