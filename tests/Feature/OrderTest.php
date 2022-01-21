@@ -47,6 +47,9 @@ class OrderTest extends TestCase
 
         $this->post( route('order.store'), $this->credentials + $this->address + $this->valid_data )
             ->assertSessionHasNoErrors();
+
+        $this->post( route('order.store'), $this->credentials + $this->valid_data )
+            ->assertSessionHasErrors();
     }
 
     public function test_loggen_in_user_doesnt_enter_credentials_either_post_office_or_address_is_required()
@@ -122,14 +125,14 @@ class OrderTest extends TestCase
             ->assertSessionHasErrors('address');
     }
 
-    public function test_apartment_consists_of_numbers_only()
+    public function test_apartment_is_not_required_but_must_consists_of_numbers_only()
     {
         $this->credentials['apartment'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('apartment');
+        $this->post( route('order.store'), $this->credentials + $this->address + $this->valid_data )
+            ->assertSessionHasNoErrors();
 
         $this->credentials['apartment'] = '82A';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+        $this->post( route('order.store'), $this->credentials + $this->address + $this->valid_data )
             ->assertSessionHasErrors('apartment');
     }
 
