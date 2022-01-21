@@ -139,7 +139,40 @@ class OrderTest extends TestCase
 
     public function test_when_order_is_saved_cart_is_cleared()
     {
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
 
+        $product_set = ProductSet::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product2->id
+        ]);
+        $this->assertInstanceOf(Product::class, $product_set->fresh()->products()->first());
+
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name',
+            'price' => $product->price,
+            'quantity' => 2,
+            'attributes' => [],
+            'associatedModel' => $product
+        ]);
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name 2',
+            'price' => $product_set->price,
+            'quantity' => 1,
+            'attributes' => [],
+            'associatedModel' => $product_set
+        ]);
+
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors()->assertOk();
+
+        $this->assertTrue( \Cart::isEmpty() );
     }
 
     public function test_when_something_is_invalid_order_is_not_saved()

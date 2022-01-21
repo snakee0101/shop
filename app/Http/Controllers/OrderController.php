@@ -29,7 +29,8 @@ class OrderController extends Controller
             + $is_paid
         );
 
-        if(!auth()->check())  //if user is not logged in - credentials must be saved
+        //if user is not logged in - credentials must be saved
+        if(!auth()->check())
             $order->credentials()->create(
                 request(['first_name', 'last_name', 'phone', 'email'])
             );
@@ -46,5 +47,8 @@ class OrderController extends Controller
                     'quantity' => $item->quantity
                 ]);
         });
+
+        //Clear a cart after processing the order
+        \Cart::clear();
     }
 }
