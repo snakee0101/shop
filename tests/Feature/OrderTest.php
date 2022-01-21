@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -49,20 +50,40 @@ class OrderTest extends TestCase
         $this->assertDatabaseCount('orders', 1);
         $this->assertDatabaseHas('orders', [
             'is_paid' => true,
-            'country' => 'USA',
+            'country' => $this->valid_data['country'],
             'address' => null,
             'apartment' => null,
-            'post_office_address' => 'Next Street, 88',
-            'city' => 'New York',
-            'state' => 'Washington',
-            'postcode' => 85756,
-            'shipping_date' => '2021-02-20 20:20:20',
+            'post_office_address' => $this->post_office['post_office_address'],
+            'city' => $this->valid_data['city'],
+            'state' => $this->valid_data['state'],
+            'postcode' => $this->valid_data['postcode'],
+            'shipping_date' => $this->valid_data['shipping_date'],
         ]);
     }
 
-    public function test_when_data_are_valid_credentials_are_also_saved_to_db()
+    public function test_when_data_are_valid_credentials_are_also_saved_to_db_if_provided()
     {
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors()->assertOk();
 
+        $this->assertDatabaseCount('order_credentials', 1);
+        $this->assertDatabaseHas('order_credentials', [
+            'order_id' => Order::first()->id,
+            'first_name' => $this->credentials['first_name'],
+            'last_name' => $this->credentials['last_name'],
+            'phone' => $this->credentials['phone'],
+            'email' => $this->credentials['email']
+        ]);
+    }
+
+    public function test_when_user_is_authenticated_credentials_are_not_saved()
+    {
+        $this->actingAs( User::factory()->create() );
+
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors()->assertOk();
+
+        $this->assertDatabaseCount('order_credentials', 0);
     }
 
     public function test_when_data_are_valid_items_are_attached_to_order()
@@ -90,7 +111,10 @@ class OrderTest extends TestCase
 
     public function test_when_something_is_invalid_credentials_are_not_saved()
     {
+        $this->credentials['first_name'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
 
+        $this->assertDatabaseCount('order_credentials', 0);
     }
 
     public function test_either_post_office_or_address_must_be_present()

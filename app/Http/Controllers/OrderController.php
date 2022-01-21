@@ -22,9 +22,14 @@ class OrderController extends Controller
             'is_paid' => request('checkout_payment_method') === 'card'
         ];
 
-        Order::create(
+        $order = Order::create(
             $form->only(['country', 'address', 'apartment', 'post_office_address', 'city', 'state', 'postcode', 'shipping_date'])
             + $is_paid
         );
+
+        if(!auth()->check())  //if user is not logged in - credentials must be saved
+            $order->credentials()->create(
+                request(['first_name', 'last_name', 'phone', 'email'])
+            );
     }
 }

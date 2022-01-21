@@ -10,5 +10,6 @@ class OrderCredentials extends Model
     use HasFactory;
     protected $table = 'order_credentials';
 
+    protected $guarded = [];
     public $timestamps = false;
 }
