@@ -181,6 +181,10 @@ class OrderTest extends TestCase
         $this->credentials['postcode'] = '1234';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('postcode');
+
+        $this->credentials['postcode'] = '12F34';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('postcode');
     }
 
     public function test_shipping_date_must_be_in_valid_format()

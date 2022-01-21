@@ -19,7 +19,7 @@ class OrderRequest extends FormRequest
             'post_office_address' => ['required_without:address', new OrderPostOfficeAddress( request('apartment') )],
             'city' => 'required',
             'state' => 'required',
-            'postcode' => 'size:5',
+            'postcode' => 'digits:5',
             'shipping_date' => 'date_format:Y-m-d H:i:s'
         ];
     }
