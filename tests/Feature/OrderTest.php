@@ -65,6 +65,10 @@ class OrderTest extends TestCase
 
     public function test_first_name_contains_only_letters()
     {
+        $this->credentials['first_name'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('first_name');
+
         $this->credentials['first_name'] = 541;
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
              ->assertSessionHasErrors('first_name');
@@ -83,6 +87,10 @@ class OrderTest extends TestCase
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
 
+        $this->credentials['last_name'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+             ->assertSessionHasErrors('last_name');
+
         $this->credentials['last_name'] = 541;
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
              ->assertSessionHasErrors('last_name');
@@ -98,6 +106,10 @@ class OrderTest extends TestCase
 
     public function test_phone_must_be_valid()
     {
+        $this->credentials['phone'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('phone');
+
         $this->credentials['phone'] = '+35094760244';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('phone');
@@ -105,6 +117,10 @@ class OrderTest extends TestCase
 
     public function test_email_must_be_valid()
     {
+        $this->credentials['email'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('email');
+
         $this->credentials['email'] = 'test@';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('email');
@@ -200,5 +216,15 @@ class OrderTest extends TestCase
         $this->credentials['shipping_date'] = '15 Oct. 2012, 10:10:10';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('shipping_date');
+    }
+
+    public function test_when_user_if_logged_in_credentials_are_not_checked()
+    {
+        $this->post( route('order.store'),$this->post_office + $this->valid_data )
+            ->assertSessionHasErrors();
+
+        $this->actingAs( User::factory()->create() );
+        $this->post( route('order.store'),$this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors();
     }
 }

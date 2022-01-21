@@ -9,12 +9,22 @@ class OrderRequest extends FormRequest
 {
     public function rules()
     {
-        return [
-            'first_name' => 'alpha',
-            'last_name' => 'alpha',
-            'phone' => 'regex:/\+\d{12}/',
-            'email' => 'email',
-            'address' => 'required_without:post_office_address',
+        if(auth()->check())
+            $credentials_rules = [
+                'first_name' => 'alpha',
+                'last_name' => 'alpha',
+                'phone' => 'regex:/\+\d{12}/',
+                'email' => 'email',
+            ];
+        else
+            $credentials_rules = [
+                'first_name' => 'required|alpha',
+                'last_name' => 'required|alpha',
+                'phone' => 'required|regex:/\+\d{12}/',
+                'email' => 'required|email',
+            ];
+
+        return $credentials_rules + ['address' => 'required_without:post_office_address',
             'apartment' => 'numeric|nullable',
             'post_office_address' => ['required_without:address', new OrderPostOfficeAddress( request('apartment') )],
             'city' => 'required',
