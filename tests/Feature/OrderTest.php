@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
@@ -197,6 +198,25 @@ class OrderTest extends TestCase
             'associatedModel' => $product
         ]);
 
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
+
+        $this->assertFalse( \Cart::isEmpty() );
+    }
+
+    public function test_when_transaction_fails_cart_is_not_cleared()
+    {
+        $product = Product::factory()->create();
+
+        \Cart::add([
+            'id' => random_int(1,100),
+            'name' => 'name',
+            'price' => $product->price,
+            'quantity' => 2,
+            'attributes' => [],
+            'associatedModel' => $product
+        ]);
+
+        Schema::dropIfExists('orders'); //Simulate failed transaction
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
 
         $this->assertFalse( \Cart::isEmpty() );

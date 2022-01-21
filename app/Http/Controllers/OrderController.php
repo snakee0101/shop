@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductSet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -24,28 +25,31 @@ class OrderController extends Controller
             'is_paid' => request('checkout_payment_method') === 'card'
         ];
 
-        $order = Order::create(
-            $form->only(['country', 'address', 'apartment', 'post_office_address', 'city', 'state', 'postcode', 'shipping_date'])
-            + $is_paid
-        );
-
-        //if user is not logged in - credentials must be saved
-        if(!auth()->check())
-            $order->credentials()->create(
-                request(['first_name', 'last_name', 'phone', 'email'])
+        //If transaction fails - cart is not cleared
+        DB::transaction(function() use ($is_paid, $form) {
+            $order = Order::create(
+                $form->only(['country', 'address', 'apartment', 'post_office_address', 'city', 'state', 'postcode', 'shipping_date'])
+                + $is_paid
             );
 
-        //Attach all objects to order
-        \Cart::getContent()->each(function($item) use ($order) {
-            if($item->associatedModel instanceof Product)
-                $order->products()->attach($item->associatedModel, [
-                    'quantity' => $item->quantity
-                ]);
+            //if user is not logged in - credentials must be saved
+            if(!auth()->check())
+                $order->credentials()->create(
+                    request(['first_name', 'last_name', 'phone', 'email'])
+                );
 
-            if($item->associatedModel instanceof ProductSet)
-                $order->product_sets()->attach($item->associatedModel, [
-                    'quantity' => $item->quantity
-                ]);
+            //Attach all objects to order
+            \Cart::getContent()->each(function($item) use ($order) {
+                if($item->associatedModel instanceof Product)
+                    $order->products()->attach($item->associatedModel, [
+                        'quantity' => $item->quantity
+                    ]);
+
+                if($item->associatedModel instanceof ProductSet)
+                    $order->product_sets()->attach($item->associatedModel, [
+                        'quantity' => $item->quantity
+                    ]);
+            });
         });
 
         //Clear a cart after processing the order
