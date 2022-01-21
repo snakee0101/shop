@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -39,11 +40,28 @@ class OrderTest extends TestCase
         ];
     }
 
-    public function test_first_name_contains_only_letters()
+    public function test_either_post_office_or_address_must_be_present()
     {
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
 
+        $this->post( route('order.store'), $this->credentials + $this->address + $this->valid_data )
+            ->assertSessionHasNoErrors();
+    }
+
+    public function test_loggen_in_user_doesnt_enter_credentials()
+    {
+        $this->actingAs( User::factory()->create() );
+
+        $this->post( route('order.store'),$this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors();
+
+        $this->post( route('order.store'), $this->address + $this->valid_data )
+            ->assertSessionHasNoErrors();
+    }
+
+    public function test_first_name_contains_only_letters()
+    {
         $this->credentials['first_name'] = 541;
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
              ->assertSessionHasErrors('first_name');
@@ -120,5 +138,34 @@ class OrderTest extends TestCase
         $this->credentials['post_office_address'] = '';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('post_office_address');
+    }
+
+    public function test_city_is_required()
+    {
+        $this->credentials['city'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('city');
+    }
+
+    public function test_state_is_required()
+    {
+        $this->credentials['state'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('state');
+    }
+
+    public function test_postcode_consists_of_five_digits()
+    {
+        $this->credentials['postcode'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('postcode');
+
+        $this->credentials['postcode'] = '123456';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('postcode');
+
+        $this->credentials['postcode'] = '1234';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('postcode');
     }
 }

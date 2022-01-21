@@ -16,6 +16,9 @@ class OrderRequest extends FormRequest
             'address' => 'required',
             'apartment' => 'numeric',
             'post_office_address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'postcode' => 'numeric|size:5',
         ];
     }
 }
