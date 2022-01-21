@@ -20,6 +20,11 @@ class OrderController extends Controller
 
     public function store(OrderRequest $form)
     {
+        if(\Cart::isEmpty())
+            return redirect()->route('checkout')->withInput([
+                'message' => 'Your Cart is empty - select products to order first'
+            ]);
+
         //if 'checkout_payment_method' == 'card' then order is paid
         $is_paid = [
             'is_paid' => request('checkout_payment_method') === 'card'

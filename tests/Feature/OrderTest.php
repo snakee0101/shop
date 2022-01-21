@@ -46,6 +46,14 @@ class OrderTest extends TestCase
         ];
     }
 
+    public function test_if_cart_is_empty_order_will_not_be_performed()
+    {
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertRedirect( route('checkout') );
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
     public function test_when_data_are_valid_order_is_saved_to_db()
     {
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
