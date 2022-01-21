@@ -49,7 +49,7 @@ class OrderTest extends TestCase
             ->assertSessionHasNoErrors();
     }
 
-    public function test_loggen_in_user_doesnt_enter_credentials()
+    public function test_loggen_in_user_doesnt_enter_credentials_either_post_office_or_address_is_required()
     {
         $this->actingAs( User::factory()->create() );
 
@@ -167,5 +167,20 @@ class OrderTest extends TestCase
         $this->credentials['postcode'] = '1234';
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('postcode');
+    }
+
+    public function test_shipping_date_must_be_in_valid_format()
+    {
+        $this->credentials['shipping_date'] = '';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('shipping_date');
+
+        $this->credentials['shipping_date'] = '10:10:10 2021-10-10';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('shipping_date');
+
+        $this->credentials['shipping_date'] = '15 Oct. 2012, 10:10:10';
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasErrors('shipping_date');
     }
 }

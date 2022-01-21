@@ -18,7 +18,8 @@ class OrderRequest extends FormRequest
             'post_office_address' => 'required',
             'city' => 'required',
             'state' => 'required',
-            'postcode' => 'numeric|size:5',
+            'postcode' => 'size:5',
+            'shipping_date' => 'date_format:Y-m-d H:i:s'
         ];
     }
 }
