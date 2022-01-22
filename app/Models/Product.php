@@ -92,4 +92,9 @@ class Product extends Model implements Purchaseable
             auth()->user()?->visited_products()->attach($this);  //invalid visits must be ignored
         } catch(\Exception $e) {}
     }
+
+    public function discount()
+    {
+        return $this->morphOne(Discount::class, 'object');
+    }
 }

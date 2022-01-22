@@ -51,4 +51,9 @@ class ProductSet extends Model implements Purchaseable
             $query->where('products.id', $product->id);
         });
     }
+
+    public function discount()
+    {
+        return $this->morphOne(Discount::class, 'object');
+    }
 }
