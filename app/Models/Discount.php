@@ -17,4 +17,12 @@ class Discount extends Model
     {
         return $this->morphTo('object');
     }
+
+    /*
+     * Returns the object price after discount is applied
+     * */
+    public function apply() :float
+    {
+        return ($this->type)::apply($this->object->price, $this->value);
+    }
 }

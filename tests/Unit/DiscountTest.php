@@ -46,4 +46,13 @@ class DiscountTest extends TestCase
     {
         $this->assertEquals(150, PercentDiscount::apply(200, 25));
     }
+
+    public function test_discount_could_be_applied_to_a_current_item()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
+
+        $priceWithDiscount = $product->price - $discount->value;
+        $this->assertEquals($priceWithDiscount, $discount->apply());
+    }
 }
