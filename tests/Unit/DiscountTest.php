@@ -41,4 +41,9 @@ class DiscountTest extends TestCase
     {
         $this->assertEquals(175, FixedPriceDiscount::apply(200, 25));
     }
+
+    public function test_percent_discount_calculates_price()
+    {
+        $this->assertEquals(150, PercentDiscount::apply(200, 25));
+    }
 }
