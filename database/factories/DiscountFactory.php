@@ -17,7 +17,7 @@ class DiscountFactory extends Factory
     public function definition()
     {
         return [
-            'type' => FixedPriceDiscount::class,
+            'discount_classname' => FixedPriceDiscount::class,
             'value' => random_int(-40, -1),
         ];
     }
