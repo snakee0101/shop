@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Discounts\FixedPriceDiscount;
 use App\Discounts\PercentDiscount;
 use App\Models\Discount;
 use App\Models\Product;
@@ -34,5 +35,10 @@ class DiscountTest extends TestCase
         Discount::factory()->withObject($product)->create();
 
         $this->assertInstanceOf(Product::class, Discount::first()->object);
+    }
+
+    public function test_fixed_price_discount_calculates_price()
+    {
+        $this->assertEquals(175, FixedPriceDiscount::apply(200, 25));
     }
 }
