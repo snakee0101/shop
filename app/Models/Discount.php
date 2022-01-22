@@ -23,6 +23,6 @@ class Discount extends Model
      * */
     public function apply() :float
     {
-        return ($this->type)::apply($this->object->price, $this->value);
+        return ($this->type)::calculatePrice($this->object->price, $this->value);
     }
 }
