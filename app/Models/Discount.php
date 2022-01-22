@@ -13,4 +13,8 @@ class Discount extends Model
     protected $guarded = [];
     protected $dates = ['active_until'];
 
+    public function object()
+    {
+        return $this->morphTo('object');
+    }
 }

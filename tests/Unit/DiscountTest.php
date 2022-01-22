@@ -27,4 +27,12 @@ class DiscountTest extends TestCase
 
         $this->assertInstanceOf(Discount::class, $product_set->fresh()->discount);
     }
+
+    public function test_discount_retrieves_an_object_it_is_associated_with()
+    {
+        $product = Product::factory()->create();
+        Discount::factory()->withObject($product)->create();
+
+        $this->assertInstanceOf(Product::class, Discount::first()->object);
+    }
 }
