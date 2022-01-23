@@ -12,7 +12,7 @@ class ProductSet extends Model implements Purchaseable
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['inCart', 'ObjectType', 'PriceWithDiscount'];
+    protected $appends = ['inCart', 'ObjectType', 'PriceWithDiscount', 'price'];
     protected $with = ['products', 'discount'];
 
     /*
