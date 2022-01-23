@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements Purchaseable
 {
     use HasFactory;
-    //there is a problem when appending PriceWithDiscount to json - timeout
-    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType'];
+    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
     protected $with = ['discount'];
@@ -102,9 +101,6 @@ class Product extends Model implements Purchaseable
 
     public function getPriceWithDiscountAttribute()
     {
-        if($this->discount()->exists())
-            return $this->discount->apply();
-        else
-            return $this->price;
+        return $this->discount()->first()?->apply() ?? $this->price;
     }
 }
