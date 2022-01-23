@@ -88,7 +88,16 @@
                         <div class="product__sidebar">
                             <div class="product__availability">Availability: <span class="text-success">In Stock</span>
                             </div>
-                            <div class="product__prices">${{ $product->price }}</div>
+                            @if($product->priceWithDiscount < $product->price)
+                                <div class="product__prices">
+                                    <span class="text-danger">${{ $product->priceWithDiscount }}</span>
+                                    <small class="text-secondary"><s>${{ $product->price }}</s></small>
+                                </div>
+                            @else
+                                <div class="product__prices">
+                                    ${{ $product->price }}
+                                </div>
+                            @endif
                             <form class="product__options">
                                 <div class="form-group product__option"><label
                                         class="product__option-label">Color</label>
