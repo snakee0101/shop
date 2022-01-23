@@ -53,7 +53,7 @@ class DiscountTest extends TestCase
         $product = Product::factory()->create();
         $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
 
-        $priceWithDiscount = $product->priceWithoutDiscount - $discount->value;
+        $priceWithDiscount = $product->price - $discount->value;
         $this->assertEquals($priceWithDiscount, $discount->apply());
     }
 
@@ -62,8 +62,8 @@ class DiscountTest extends TestCase
         $product = Product::factory()->create();
         $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
 
-        $priceWithDiscount = $product->priceWithoutDiscount - $discount->value;
-        $this->assertEquals($priceWithDiscount, $product->price);
+        $priceWithDiscount = $product->price - $discount->value;
+        $this->assertEquals($priceWithDiscount, $product->priceWithDiscount);
     }
 
     public function test_product_set_can_return_price_without_all_products_discounts()
@@ -108,10 +108,10 @@ class DiscountTest extends TestCase
             'product_id' => $product2->id
         ]);
 
-        $total = $product1->priceWithoutDiscount + $product2->priceWithoutDiscount;
+        $total = $product1->price + $product2->price;
         $withDiscount = FixedPriceDiscount::calculatePrice($total, $discount->value);
 
-        $this->assertEquals($withDiscount, $product_set->fresh()->price);
+        $this->assertEquals($withDiscount, $product_set->fresh()->priceWithDiscount);
     }
 
     public function test_if_there_is_no_product_set_discount_individual_product_discounts_are_applied()
@@ -132,7 +132,7 @@ class DiscountTest extends TestCase
             'product_id' => $product2->id
         ]);
 
-        $total = $product1->price + $product2->price;
+        $total = $product1->fresh()->priceWithDiscount + $product2->fresh()->priceWithDiscount;
         $this->assertEquals($total, $product_set->fresh()->price);
     }
 }

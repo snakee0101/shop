@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements Purchaseable
 {
     use HasFactory;
-    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType'];
+    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'priceWithDiscount'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
 
@@ -98,17 +98,11 @@ class Product extends Model implements Purchaseable
         return $this->morphOne(Discount::class, 'object');
     }
 
-    /**
-     * Price must be with discount already taken into
-     * account, because all calculations are based on real price
-     * */
-    public function getPriceAttribute()
+    public function getPriceWithDiscountAttribute()
     {
-        return ($this->discount()->exists()) ? $this->discount->apply() : $this->attributes['price'];
-    }
-
-    public function getPriceWithoutDiscountAttribute()
-    {
-        return $this->attributes['price'];
+        if($this->discount()->exists())
+            return $this->discount->apply();
+        else
+            return $this->price;
     }
 }

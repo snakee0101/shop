@@ -12,7 +12,7 @@ class ProductSet extends Model implements Purchaseable
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['inCart', 'ObjectType', 'price'];
+    protected $appends = ['inCart', 'ObjectType', 'priceWithDiscount'];
     protected $with = ['products'];
 
     /*
@@ -24,13 +24,13 @@ class ProductSet extends Model implements Purchaseable
     }
 
     /**
-     * Price is calculated based on total price without discount if discount is present.
-     * If discount is not present - allow to apply individual product discounts
+     * If the product set discount exists - individual product price is returned without discount.
+     * But if there is no product set discount - discounts may be applied on individual products.
      * */
     public function getPriceAttribute()
     {
-        return ($this->discount()->exists()) ? $this->discount->apply()
-                                             : $this->products->sum( fn($item) => $item->price);
+        return $this->discount()->exists() ? $this->products->sum('price')
+                                           : $this->products->sum(fn($product) => $product->priceWithDiscount);
     }
 
     public function getObjectTypeAttribute()
@@ -63,11 +63,12 @@ class ProductSet extends Model implements Purchaseable
     }
 
     /**
-     * Price without discount is a sum of products price without discount.
-     * So, specific products' discounts are not taken into account.
+     * Price is calculated based on total price without discount if discount is present.
+     * If discount is not present - allow to apply individual product discounts
      * */
-    public function getPriceWithoutDiscountAttribute()
+    public function getPriceWithDiscountAttribute()
     {
-        return $this->products->sum( fn($item) => $item->priceWithoutDiscount);
+        return ($this->discount()->exists()) ? $this->discount->apply()
+                                             : $this->price;
     }
 }
