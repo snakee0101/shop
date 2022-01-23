@@ -78,7 +78,13 @@
                     </div>
                 </div>
                 <div class="product-card__actions pb-2">
-                    <div class="product-card__prices">${{ product_object.price }}</div>
+                    <div class="product-card__prices" v-if="product_object.PriceWithDiscount < product_object.price">
+                        <span class="font-weight-bold text-danger">${{ product_object.PriceWithDiscount }}</span>
+                        <span class="text-secondary" style=""><s><small>${{ product_object.price }}</small></s></span>
+                    </div>
+                    <div class="product-card__prices" v-else>
+                        ${{ product_object.price }}
+                    </div>
                     <div class="product-card__buttons mt-2">
                         <cart-button-component :purchaseable="product_object"
                                                 v-if="product_object.in_stock !== 'Out Of Stock'">
