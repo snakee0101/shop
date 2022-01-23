@@ -13,6 +13,7 @@ class Product extends Model implements Purchaseable
     protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
+    protected $with = ['discount'];
 
     protected $casts = [
         'price' => 'float',

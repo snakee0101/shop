@@ -13,7 +13,7 @@ class ProductSet extends Model implements Purchaseable
     public $timestamps = false;
 
     protected $appends = ['inCart', 'ObjectType'];
-    protected $with = ['products'];
+    protected $with = ['products', 'discount'];
 
     /*
      * Name and Price attributes are mandatory to add an object to cart
