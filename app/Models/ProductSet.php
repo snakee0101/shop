@@ -56,4 +56,13 @@ class ProductSet extends Model implements Purchaseable
     {
         return $this->morphOne(Discount::class, 'object');
     }
+
+    /**
+     * Price without discount is a sum of products price without discount.
+     * So, specific products' discounts are not taken into account.
+     * */
+    public function getPriceWithoutDiscountAttribute()
+    {
+        return $this->products->sum( fn($item) => $item->priceWithoutDiscount);
+    }
 }

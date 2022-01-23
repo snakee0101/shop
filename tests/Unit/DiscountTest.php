@@ -7,6 +7,7 @@ use App\Discounts\PercentDiscount;
 use App\Models\Discount;
 use App\Models\Product;
 use App\Models\ProductSet;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class DiscountTest extends TestCase
@@ -63,5 +64,27 @@ class DiscountTest extends TestCase
 
         $priceWithDiscount = $product->priceWithoutDiscount - $discount->value;
         $this->assertEquals($priceWithDiscount, $product->price);
+    }
+
+    public function test_product_set_can_return_price_without_all_products_discounts()
+    {
+        $product1 = Product::factory()->create();
+        $product2 = Product::factory()->create();
+        Discount::factory()->withObject($product1)->create(); //assumed FixedPriceDiscount
+
+        $product_set = ProductSet::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product2->id
+        ]);
+
+        $total = $product1->priceWithoutDiscount + $product2->priceWithoutDiscount;
+        $this->assertEquals($total, $product_set->fresh()->priceWithoutDiscount);
     }
 }

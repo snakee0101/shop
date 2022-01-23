@@ -98,7 +98,7 @@ class Product extends Model implements Purchaseable
         return $this->morphOne(Discount::class, 'object');
     }
 
-    /*
+    /**
      * Price must be with discount already taken into
      * account, because all calculations are based on real price
      * */
