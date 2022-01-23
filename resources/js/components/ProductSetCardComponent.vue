@@ -2,9 +2,22 @@
     <div class="d-inline-block m-3 mb-4 border" style="max-width: 400px">
         <div class="d-inline-flex flex-row">
             <div v-for="product in product_set_object.products" class="d-inline-flex flex-col ml-2">
-                <div>
+                <!--if there is a discount of entire product set - don't show discounts for individual products-->
+                <div v-if="product_set_object.PriceWithDiscount < product_set_object.price">
                     <img src="/images/products/product-2.jpg" style="width: 50px">
                     <h6 class="mt-2 text-left">${{ product.price }}</h6>
+                </div>
+                <!--otherwise - show them-->
+                <div v-else>
+                    <img src="/images/products/product-2.jpg" style="width: 50px">
+                    <!--if there is a product discount - show it-->
+                    <div v-if="product.PriceWithDiscount < product.price" class="d-inline">
+                        <h6 class="mt-2 text-left text-danger">${{ product.PriceWithDiscount }}</h6>
+                        <small class="text-secondary"><s>${{ product.price }}</s></small>
+                    </div>
+                    <div v-else>
+                        <h6 class="mt-2 text-left">${{ product.PriceWithDiscount }}</h6>
+                    </div>
                 </div>
                 <p class="ml-2 text-left">{{ product.name }}</p>
             </div>
@@ -20,7 +33,7 @@
             </h3>
             <!--otherwise show a regular price-->
             <h3 class="mr-3 my-0 mt-1" v-else>
-                ${{ product_set_object.products[0].price + product_set_object.products[1].price }}
+                ${{ product_set_object.products[0].PriceWithDiscount + product_set_object.products[1].PriceWithDiscount }}
             </h3>
         </div>
     </div>
