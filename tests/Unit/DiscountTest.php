@@ -113,4 +113,26 @@ class DiscountTest extends TestCase
 
         $this->assertEquals($withDiscount, $product_set->fresh()->price);
     }
+
+    public function test_if_there_is_no_product_set_discount_individual_product_discounts_are_applied()
+    {
+        $product1 = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        $product_set = ProductSet::factory()->create();
+        $discount = Discount::factory()->withObject($product1)->create(); //assumed FixedPriceDiscount
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product2->id
+        ]);
+
+        $total = $product1->price + $product2->price;
+        $this->assertEquals($total, $product_set->fresh()->price);
+    }
 }

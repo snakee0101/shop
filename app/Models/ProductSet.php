@@ -24,12 +24,13 @@ class ProductSet extends Model implements Purchaseable
     }
 
     /**
-     * Price is calculated based on total price without discount
+     * Price is calculated based on total price without discount if discount is present.
+     * If discount is not present - allow to apply individual product discounts
      * */
     public function getPriceAttribute()
     {
         return ($this->discount()->exists()) ? $this->discount->apply()
-                                             : $this->products()->sum('price');
+                                             : $this->products->sum( fn($item) => $item->price);
     }
 
     public function getObjectTypeAttribute()
