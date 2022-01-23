@@ -52,7 +52,16 @@ class DiscountTest extends TestCase
         $product = Product::factory()->create();
         $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
 
-        $priceWithDiscount = $product->price - $discount->value;
+        $priceWithDiscount = $product->priceWithoutDiscount - $discount->value;
         $this->assertEquals($priceWithDiscount, $discount->apply());
+    }
+
+    public function test_if_discount_is_present_product_price_is_returned_with_discount()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
+
+        $priceWithDiscount = $product->priceWithoutDiscount - $discount->value;
+        $this->assertEquals($priceWithDiscount, $product->price);
     }
 }
