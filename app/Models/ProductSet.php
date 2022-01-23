@@ -23,9 +23,13 @@ class ProductSet extends Model implements Purchaseable
         return $this->products->implode('name', ' + ');
     }
 
+    /**
+     * Price is calculated based on total price without discount
+     * */
     public function getPriceAttribute()
     {
-        return $this->products()->sum('price');
+        return ($this->discount()->exists()) ? $this->discount->apply()
+                                             : $this->products()->sum('price');
     }
 
     public function getObjectTypeAttribute()
