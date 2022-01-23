@@ -35,17 +35,17 @@ class DiscountTest extends TestCase
         $product = Product::factory()->create();
         Discount::factory()->withObject($product)->create();
 
-        $this->assertInstanceOf(Product::class, Discount::first()->object);
+        $this->assertInstanceOf(Product::class, Discount::first()->item);
     }
 
     public function test_fixed_price_discount_calculates_price()
     {
-        $this->assertEquals(175, FixedPriceDiscount::calculatePrice(200, 25));
+        $this->assertEquals(175, (new FixedPriceDiscount)->calculatePrice(200, 25));
     }
 
     public function test_percent_discount_calculates_price()
     {
-        $this->assertEquals(150, PercentDiscount::calculatePrice(200, 25));
+        $this->assertEquals(150, (new PercentDiscount)->calculatePrice(200, 25));
     }
 
     public function test_discount_could_be_applied_to_a_current_item()
@@ -109,7 +109,7 @@ class DiscountTest extends TestCase
         ]);
 
         $total = $product1->price + $product2->price;
-        $withDiscount = FixedPriceDiscount::calculatePrice($total, $discount->value);
+        $withDiscount = (new FixedPriceDiscount)->calculatePrice($total, $discount->value);
 
         $this->assertEquals($withDiscount, $product_set->fresh()->priceWithDiscount);
     }

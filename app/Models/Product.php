@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model implements Purchaseable
 {
     use HasFactory;
-    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'priceWithDiscount'];
+    //there is a problem when appending PriceWithDiscount to json - timeout
+    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
 
@@ -95,7 +96,7 @@ class Product extends Model implements Purchaseable
 
     public function discount()
     {
-        return $this->morphOne(Discount::class, 'object');
+        return $this->morphOne(Discount::class, 'item');
     }
 
     public function getPriceWithDiscountAttribute()

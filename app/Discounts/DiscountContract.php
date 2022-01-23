@@ -7,5 +7,5 @@ interface DiscountContract
     /*
      * Returns item price after discount is applied
      * */
-    public static function calculatePrice($initialPrice, $discountValue) :float;
+    public function calculatePrice($initialPrice, $discountValue);
 }

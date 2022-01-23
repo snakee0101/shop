@@ -26,8 +26,8 @@ class DiscountFactory extends Factory
     {
         return $this->state(function (array $attributes) use ($object) {
             return [
-                'object_id' => $object->id,
-                'object_type' => $object::class,
+                'item_id' => $object->id,
+                'item_type' => $object::class,
             ];
         });
     }

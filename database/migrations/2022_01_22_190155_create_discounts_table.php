@@ -11,7 +11,7 @@ class CreateDiscountsTable extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
             $table->string('discount_classname');
-            $table->morphs('object');
+            $table->morphs('item');
             $table->float('value');
             $table->timestamp('active_until')->nullable();
             $table->string('promocode')->nullable();

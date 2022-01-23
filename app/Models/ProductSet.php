@@ -12,7 +12,7 @@ class ProductSet extends Model implements Purchaseable
     use HasFactory;
     public $timestamps = false;
 
-    protected $appends = ['inCart', 'ObjectType', 'priceWithDiscount'];
+    protected $appends = ['inCart', 'ObjectType'];
     protected $with = ['products'];
 
     /*
@@ -59,7 +59,7 @@ class ProductSet extends Model implements Purchaseable
 
     public function discount()
     {
-        return $this->morphOne(Discount::class, 'object');
+        return $this->morphOne(Discount::class, 'item');
     }
 
     /**
@@ -68,7 +68,9 @@ class ProductSet extends Model implements Purchaseable
      * */
     public function getPriceWithDiscountAttribute()
     {
-        return ($this->discount()->exists()) ? $this->discount->apply()
-                                             : $this->price;
+        if($this->discount()->exists())
+            return $this->discount->apply();
+        else
+            return $this->price;
     }
 }

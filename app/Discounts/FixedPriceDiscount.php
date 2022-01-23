@@ -4,7 +4,7 @@ namespace App\Discounts;
 
 class FixedPriceDiscount implements DiscountContract
 {
-    public static function calculatePrice($initialPrice, $discountValue): float
+    public function calculatePrice($initialPrice, $discountValue)
     {
         return $initialPrice - $discountValue;
     }

@@ -13,9 +13,9 @@ class Discount extends Model
     protected $guarded = [];
     protected $dates = ['active_until'];
 
-    public function object()
+    public function item()
     {
-        return $this->morphTo('object');
+        return $this->morphTo();
     }
 
     /*
@@ -23,6 +23,6 @@ class Discount extends Model
      * */
     public function apply() :float
     {
-        return $this->discount_classname::calculatePrice($this->object->price, $this->value);
+        return (new $this->discount_classname)->calculatePrice($this->item->price, $this->value);
     }
 }
