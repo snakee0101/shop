@@ -195,4 +195,15 @@ class DiscountTest extends TestCase
         Discount::applyCoupon('ABCD');
         $this->assertEquals('ABCD', session('coupon_code'));
     }
+
+    public function test_when_coupon_code_is_invalid_it_throws_an_exception()
+    {
+        $this->expectException(\Exception::class);
+
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)
+            ->withCouponCode('ABCD')->create();
+
+        Discount::applyCoupon('A');
+    }
 }
