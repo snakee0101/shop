@@ -41,6 +41,12 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <th scope="row" class="bg-warning">Price</th>
+                    @foreach($products as $product)
+                        <td class="bg-warning">${{ $product->price }}</td>
+                    @endforeach
+                </tr>
                 @foreach(\App\Models\Characteristic::diff($products) as $char)
                     <tr>
                         <th scope="row">{{ $char->name }}</th>
