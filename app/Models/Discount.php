@@ -11,7 +11,7 @@ class Discount extends Model
 
     public $timestamps = false;
     protected $guarded = [];
-    protected $dates = ['active_until'];
+    protected $dates = ['active_since', 'active_until'];
 
     public function item()
     {
@@ -24,5 +24,10 @@ class Discount extends Model
     public function apply() :float
     {
         return (new $this->discount_classname)->calculatePrice($this->item->price, $this->value);
+    }
+
+    public function isExpired()
+    {
+        return now()->greaterThan($this->active_until);
     }
 }

@@ -135,4 +135,17 @@ class DiscountTest extends TestCase
         $total = $product1->fresh()->priceWithDiscount + $product2->fresh()->priceWithDiscount;
         $this->assertEquals($total, $product_set->fresh()->price);
     }
+
+    public function test_discount_can_check_whether_it_is_expired()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)
+                                       ->withExpirationDate(now(), now()->addDay())->create();
+
+        $this->travel(5)->hours();
+        $this->assertFalse($discount->isExpired());
+
+        $this->travel(20)->hours();
+        $this->assertTrue($discount->isExpired());
+    }
 }
