@@ -160,7 +160,18 @@
                                         @foreach($cart_items as $item)
                                             <tr>
                                                 <td>{{ $item->associatedModel->name }} × {{ $item->quantity }}</td>
-                                                <td>${{ $item->associatedModel->price * $item->quantity }}</td>
+                                                <td>
+                                                    @if($item->associatedModel::class === \App\Models\Product::class)
+                                                        @if($item->associatedModel->discount)
+                                                            <small class="text-secondary"><s>${{ $item->associatedModel->price * $item->quantity }}</s></small>
+                                                            <span class="text-danger">${{ $item->associatedModel->priceWithDiscount * $item->quantity }}</span>
+                                                        @else
+                                                            ${{ $item->associatedModel->price * $item->quantity }}
+                                                        @endif
+                                                    @else
+                                                        product set processing
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -177,7 +188,7 @@
                                         <tfoot class="checkout__totals-footer">
                                         <tr>
                                             <th>Total</th>
-                                            <td>${{ \Cart::getTotal() }}</td>
+                                            <td>${{ \Cart::getContent()->sum( fn($item) => $item->associatedModel->priceWithDiscount * $item->quantity ) }}</td>
                                         </tr>
                                         </tfoot>
                                     </table>
