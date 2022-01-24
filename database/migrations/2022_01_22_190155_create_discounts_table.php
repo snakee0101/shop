@@ -13,6 +13,7 @@ class CreateDiscountsTable extends Migration
             $table->string('discount_classname');
             $table->morphs('item');
             $table->float('value');
+            $table->timestamp('active_since')->nullable();
             $table->timestamp('active_until')->nullable();
             $table->string('promocode')->nullable();
         });

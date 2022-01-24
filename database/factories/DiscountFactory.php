@@ -32,11 +32,12 @@ class DiscountFactory extends Factory
         });
     }
 
-    public function withExpirationDate(Carbon $date)
+    public function withExpirationDate(Carbon $since_date, Carbon $until_date)
     {
-        return $this->state(function (array $attributes) use ($date) {
+        return $this->state(function (array $attributes) use ($since_date, $until_date) {
             return [
-                'active_until' => $date,
+                'active_since' => $since_date,
+                'active_until' => $until_date,
             ];
         });
     }
