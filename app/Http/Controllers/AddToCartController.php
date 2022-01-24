@@ -23,7 +23,7 @@ class AddToCartController extends Controller
         \Cart::add(array(
             'id' => $unique_micro_timestamp,
             'name' => $this->item->name,
-            'price' => $this->item->price,
+            'price' => $this->item->priceWithDiscount,
             'quantity' => $quantity,
             'attributes' => [],
             'associatedModel' => $this->item
