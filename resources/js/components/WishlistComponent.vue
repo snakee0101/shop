@@ -113,11 +113,11 @@ export default {
     computed: {
         total() {
             if(this.selected_product_ids.length === 0)
-                return this.wishlist_object.products_json.map(product => product.price)
+                return this.wishlist_object.products_json.map(product => product.PriceWithDiscount)
                                                          .reduce( (prev_price, current_price) => prev_price + current_price, 0);
             else
                 return this.wishlist_object.products_json.filter( product => this.selected_product_ids.indexOf( product.id ) !== -1 )
-                                                         .map(product => product.price)
+                                                         .map(product => product.PriceWithDiscount)
                                                          .reduce( (prev_price, current_price) => prev_price + current_price, 0);
         }
     },
