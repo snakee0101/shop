@@ -48,6 +48,6 @@ class Discount extends Model
 
     public function isCouponCodeApplied() :bool
     {
-        return is_null($this->coupon_code) ? true : false;
+        return is_null($this->coupon_code) || session('coupon_code') == $this->coupon_code;
     }
 }
