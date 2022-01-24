@@ -57,7 +57,7 @@
                 </div>
             </td>
             <td class="cart-table__column cart-table__column--total" data-title="Total">${{
-                    item.price * item.quantity
+                    item.associatedModel.PriceWithDiscount * item.quantity
                 }}
             </td>
             <td class="cart-table__column cart-table__column--remove">
