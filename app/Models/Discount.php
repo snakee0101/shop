@@ -26,6 +26,11 @@ class Discount extends Model
         return (new $this->discount_classname)->calculatePrice($this->item->price, $this->value);
     }
 
+    public function isActive()
+    {
+        return $this->isExpired() === false; //&& $this->isPromocodeApplied();
+    }
+
     public function isExpired()
     {
         return now()->greaterThan($this->active_until);
