@@ -24,17 +24,29 @@
                 </ul>
             </td>
             <td class="cart-table__column cart-table__column--price" data-title="Price">
+                <!--Check for product discount-->
                 <p v-if="item.associatedModel.ObjectType === 'App\\Models\\Product'">
+                    <!--if a product has a discount - show it-->
                     <template v-if="item.associatedModel.PriceWithDiscount < item.associatedModel.price">
                         <small class="text-secondary"><s>${{ item.associatedModel.price }}</s></small>
                         <span class="text-danger">${{ item.associatedModel.PriceWithDiscount }}</span>
                     </template>
+                    <!--otherwise show normal price-->
                     <template v-else>
                         ${{ item.associatedModel.price }}
                     </template>
                 </p>
+                <!--Check for product set discount-->
                 <p v-else>
-                    product set price
+                    <!--if there is product set based discount - calculate price with product set itself-->
+                    <template v-if="item.associatedModel.PriceWithDiscount < item.associatedModel.price">
+                        <small class="text-secondary"><s>${{ item.associatedModel.price }}</s></small>
+                        <span class="text-danger">${{ item.associatedModel.PriceWithDiscount }}</span>
+                    </template>
+                    <!--otherwise show product prices with discounts applied-->
+                    <template v-else>
+                        ${{ item.associatedModel.price }}
+                    </template>
                 </p>
             </td>
             <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
