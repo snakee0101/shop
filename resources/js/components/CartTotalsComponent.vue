@@ -48,7 +48,7 @@ export default {
         update_total(cart_items_object)
         {
             this.total = Object.values(cart_items_object)
-                               .map( item => item.price * item.quantity )
+                               .map( item => item.associatedModel.PriceWithDiscount * item.quantity )
                                .reduce( (price_1, price_2) => price_1 + price_2 );
         }
     }
