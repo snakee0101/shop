@@ -238,4 +238,16 @@ class DiscountTest extends TestCase
         Discount::applyCoupon('ABCD');
         $this->assertTrue( $discount->isCouponCodeApplied() );
     }
+
+    public function test_if_discount_has_a_coupon_and_its_not_applied_discount_is_not_active()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)
+            ->withCouponCode('ABCD')->create();
+
+        $this->assertFalse( $discount->isActive() );
+
+        Discount::applyCoupon('ABCD');
+        $this->assertTrue( $discount->isActive() );
+    }
 }

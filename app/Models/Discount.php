@@ -37,7 +37,7 @@ class Discount extends Model
 
     public function isActive() :bool
     {
-        return $this->isExpired() === false; //&& $this->isPromocodeApplied();
+        return ($this->isExpired() === false) && $this->isCouponCodeApplied();
     }
 
     public function isExpired() :bool
