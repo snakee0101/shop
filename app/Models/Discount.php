@@ -23,16 +23,18 @@ class Discount extends Model
      * */
     public function apply() :float
     {
-        return (new $this->discount_classname)->calculatePrice($this->item->price, $this->value);
+        return $this->isActive() ? (new $this->discount_classname)->calculatePrice($this->item->price, $this->value)
+                                  : $this->item->price;
     }
 
-    public function isActive()
+    public function isActive() :bool
     {
         return $this->isExpired() === false; //&& $this->isPromocodeApplied();
     }
 
-    public function isExpired()
+    public function isExpired() :bool
     {
-        return now()->greaterThan($this->active_until);
+        return is_null($this->active_until) ? false //If expiration date is not set - consider discount as not expired
+                                            : now()->greaterThan($this->active_until);
     }
 }

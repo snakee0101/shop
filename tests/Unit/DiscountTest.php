@@ -161,4 +161,28 @@ class DiscountTest extends TestCase
         $this->travel(20)->hours();
         $this->assertFalse($discount->isActive());
     }
+
+    public function test_inactive_discount_returns_regular_item_price()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)
+            ->withExpirationDate(now(), now()->addDay())->create();
+
+        $this->travel(5)->hours(); //discount is still active
+
+        $discounted_price = $discount->fresh()->apply();
+
+        $this->assertTrue($discounted_price < $product->price );
+
+        $this->travel(20)->hours(); //discount is inactive
+        $this->assertEquals($product->price, $discount->refresh()->apply());
+    }
+
+    public function test_expiration_date_is_ignored_if_it_is_not_set()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)->create();
+
+        $this->assertFalse( $discount->isExpired() );
+    }
 }

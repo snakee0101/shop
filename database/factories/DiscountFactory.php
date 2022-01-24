@@ -18,7 +18,7 @@ class DiscountFactory extends Factory
     {
         return [
             'discount_classname' => FixedPriceDiscount::class,
-            'value' => random_int(-40, -1),
+            'value' => random_int(10, 40),
         ];
     }
 
