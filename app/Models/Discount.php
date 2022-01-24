@@ -45,4 +45,9 @@ class Discount extends Model
         return is_null($this->active_until) ? false //If expiration date is not set - consider discount as not expired
                                             : now()->greaterThan($this->active_until);
     }
+
+    public function isCouponCodeApplied() :bool
+    {
+        return is_null($this->coupon_code) ? true : false;
+    }
 }

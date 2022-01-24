@@ -218,4 +218,12 @@ class DiscountTest extends TestCase
         ])->assertRedirect()
           ->assertSessionHas('coupon_code', 'ABCD');
     }
+
+    public function test_coupon_code_is_considered_applied_if_it_doesnt_exist()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)->create();
+
+        $this->assertTrue( $discount->isCouponCodeApplied() );
+    }
 }
