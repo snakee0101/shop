@@ -23,7 +23,20 @@
                     <li>Material: Aluminium</li>
                 </ul>
             </td>
-            <td class="cart-table__column cart-table__column--price" data-title="Price">${{ item.price }}</td>
+            <td class="cart-table__column cart-table__column--price" data-title="Price">
+                <p v-if="item.associatedModel.ObjectType === 'App\\Models\\Product'">
+                    <template v-if="item.associatedModel.PriceWithDiscount < item.associatedModel.price">
+                        <small class="text-secondary"><s>${{ item.associatedModel.price }}</s></small>
+                        <span class="text-danger">${{ item.associatedModel.PriceWithDiscount }}</span>
+                    </template>
+                    <template v-else>
+                        ${{ item.associatedModel.price }}
+                    </template>
+                </p>
+                <p v-else>
+                    product set price
+                </p>
+            </td>
             <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
                 <div class="input-number"><input class="form-control input-number__input" type="number"
                                                  min="1" :value="item.quantity">
