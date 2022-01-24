@@ -206,4 +206,17 @@ class DiscountTest extends TestCase
 
         Discount::applyCoupon('A');
     }
+
+    public function test_coupon_code_could_be_applied_within_controller()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)
+            ->withCouponCode('ABCD')->create();
+
+        $this->post( route('coupon.store'), [
+            'code' => 'ABCD'
+        ])->assertRedirect()
+          ->assertSessionHas('coupon_code', 'ABCD')
+          ->assertSessionHasInput('couponMessage');
+    }
 }

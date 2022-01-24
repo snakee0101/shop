@@ -4,7 +4,11 @@ use App\Http\Controllers\{AddToCartController, CartController, OrderController};
 use App\Http\Controllers\{ProductController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\{ComparisonController, VisitsController, WishlistController, WishlistProductController};
+use App\Http\Controllers\{ComparisonController,
+    CouponController,
+    VisitsController,
+    WishlistController,
+    WishlistProductController};
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +41,8 @@ Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(f
     Route::delete('/delete/{cart_row_id}', 'destroy')->name('destroy');
     Route::post('/update_quantity/{cart_row_id}', 'update_quantity')->name('update_quantity');
 });
+
+Route::post('/coupon', [CouponController::class, 'store'])->name('coupon.store');
 
 Route::view('/contacts', 'contact-us')->name('contacts');
 

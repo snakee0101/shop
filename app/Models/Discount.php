@@ -29,7 +29,7 @@ class Discount extends Model
 
     public static function applyCoupon($code)
     {
-        if( static::where('coupon_code', $code)->doesntExists() )
+        if( static::where('coupon_code', $code)->doesntExist() )
             throw new \Exception('Coupon with specified code doesn\'t exist');
 
         session(['coupon_code' => $code]);

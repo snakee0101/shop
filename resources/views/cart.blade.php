@@ -30,11 +30,15 @@
 
                 </product-cart-table-component>
                 <div class="cart__actions">
-                    <form class="cart__coupon-form"><label for="input-coupon-code" class="sr-only">Password</label>
-                        <input type="text" class="form-control" id="input-coupon-code" placeholder="Coupon Code">
+                    <form class="cart__coupon-form" method="POST" action="{{ route('coupon.store') }}">
+                        @csrf
+                        <input type="text" class="form-control" id="input-coupon-code" name="code" placeholder="Coupon Code">
                         <button type="submit" class="btn btn-primary">Apply Coupon</button>
                     </form>
                 </div>
+
+                <p class="mt-1 text-success">You may apply only one coupon code per Cart</p>
+
                 <div class="row justify-content-end pt-5">
                     <div class="col-12 col-md-7 col-lg-6 col-xl-5">
                         <div class="card">
