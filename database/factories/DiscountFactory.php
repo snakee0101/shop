@@ -42,11 +42,11 @@ class DiscountFactory extends Factory
         });
     }
 
-    public function withPromocode($code)
+    public function withCouponCode($code)
     {
         return $this->state(function (array $attributes) use ($code) {
             return [
-                'promocode' => $code,
+                'coupon_code' => $code,
             ];
         });
     }

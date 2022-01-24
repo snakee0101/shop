@@ -15,7 +15,7 @@ class CreateDiscountsTable extends Migration
             $table->float('value'); //discount value must always be positive
             $table->timestamp('active_since')->nullable();
             $table->timestamp('active_until')->nullable();
-            $table->string('promocode')->nullable();
+            $table->string('coupon_code')->nullable();
         });
     }
 
