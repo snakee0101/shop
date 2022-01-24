@@ -185,4 +185,14 @@ class DiscountTest extends TestCase
 
         $this->assertFalse( $discount->isExpired() );
     }
+
+    public function test_when_coupon_is_applied_it_is_stored_into_a_session()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)
+                                       ->withCouponCode('ABCD')->create();
+
+        Discount::applyCoupon('ABCD');
+        $this->assertEquals('ABCD', session('coupon_code'));
+    }
 }

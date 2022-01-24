@@ -27,6 +27,11 @@ class Discount extends Model
                                   : $this->item->price;
     }
 
+    public static function applyCoupon($code)
+    {
+        session(['coupon_code' => $code]);
+    }
+
     public function isActive() :bool
     {
         return $this->isExpired() === false; //&& $this->isPromocodeApplied();
