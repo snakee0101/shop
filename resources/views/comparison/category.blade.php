@@ -44,7 +44,14 @@
                 <tr>
                     <th scope="row" class="bg-warning">Price</th>
                     @foreach($products as $product)
-                        <td class="bg-warning">${{ $product->price }}</td>
+                        <td class="bg-warning">
+                            @if($product->priceWithDiscount < $product->price)
+                                <small class="text-secondary"><s>${{ $product->price }}</s></small>
+                                <span class="text-danger font-weight-bold">${{ $product->priceWithDiscount }}</span>
+                            @else
+                                <span class="font-weight-bold">${{ $product->price }}</span>
+                            @endif
+                        </td>
                     @endforeach
                 </tr>
                 @foreach(\App\Models\Characteristic::diff($products) as $char)
