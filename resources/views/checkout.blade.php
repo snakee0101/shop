@@ -169,7 +169,12 @@
                                                             ${{ $item->associatedModel->price * $item->quantity }}
                                                         @endif
                                                     @else
-                                                        product set processing
+                                                        @if($item->associatedModel->priceWithDiscount < $item->associatedModel->price)
+                                                            <small class="text-secondary"><s>${{ $item->associatedModel->price * $item->quantity }}</s></small>
+                                                            <span class="text-danger">${{ $item->associatedModel->priceWithDiscount * $item->quantity }}</span>
+                                                        @else
+                                                            ${{ $item->associatedModel->price * $item->quantity }}
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>
