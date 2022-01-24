@@ -12,11 +12,13 @@ class CouponController extends Controller
         try {
             Discount::applyCoupon( $request->code );
 
-            return redirect()->back()
-                      ->withInput(['couponMessage' => 'Coupon has been applied successfully']);
+            return redirect()->back()->with([
+                'couponMessage' => 'Coupon has been applied successfully'
+            ]);
         } catch(\Exception) {
-            return redirect()->back()
-                      ->withInput(['couponError' => 'You have applied invalid coupon code']);
+            return redirect()->back()->with([
+                'couponError' => 'You have applied invalid coupon code'
+            ]);
         }
     }
 }

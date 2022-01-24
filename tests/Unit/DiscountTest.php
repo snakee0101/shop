@@ -216,7 +216,6 @@ class DiscountTest extends TestCase
         $this->post( route('coupon.store'), [
             'code' => 'ABCD'
         ])->assertRedirect()
-          ->assertSessionHas('coupon_code', 'ABCD')
-          ->assertSessionHasInput('couponMessage');
+          ->assertSessionHas('coupon_code', 'ABCD');
     }
 }
