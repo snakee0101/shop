@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Contracts\Purchaseable;
+use App\Traits\HasDiscounts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements Purchaseable
 {
-    use HasFactory;
+    use HasFactory, HasDiscounts;
+
     protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
@@ -96,15 +98,5 @@ class Product extends Model implements Purchaseable
         try {
             auth()->user()?->visited_products()->attach($this);  //invalid visits must be ignored
         } catch(\Exception $e) {}
-    }
-
-    public function discount()
-    {
-        return $this->morphOne(Discount::class, 'item');
-    }
-
-    public function getPriceWithDiscountAttribute()
-    {
-        return $this->discount()->first()?->apply() ?? $this->price;
     }
 }

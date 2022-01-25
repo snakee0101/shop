@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Contracts\Purchaseable;
+use App\Traits\HasDiscounts;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductSet extends Model implements Purchaseable
 {
-    use HasFactory;
+    use HasFactory, HasDiscounts;
+
     public $timestamps = false;
 
     protected $appends = ['inCart', 'ObjectType', 'PriceWithDiscount', 'price'];
@@ -55,19 +57,5 @@ class ProductSet extends Model implements Purchaseable
         return ProductSet::whereHas('products', function ($query) use ($product) {
             $query->where('products.id', $product->id);
         });
-    }
-
-    public function discount()
-    {
-        return $this->morphOne(Discount::class, 'item');
-    }
-
-    /**
-     * Price is calculated based on total price without discount if discount is present.
-     * If discount is not present - allow to apply individual product discounts
-     * */
-    public function getPriceWithDiscountAttribute()
-    {
-        return $this->discount()->first()?->apply() ?? $this->price;
     }
 }
