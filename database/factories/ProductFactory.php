@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'price' => $this->faker->numberBetween(1,1000) - 0.50,
             'guarantee_info' => $this->faker->sentence,
             'payment_info' => $this->faker->sentence,
-            'in_stock' => $this->faker->randomElement(['In Stock', 'Ends', 'Out Of Stock']),
+            'in_stock' => $this->faker->randomElement([Product::STATUS_IN_STOCK, Product::STATUS_ENDS, Product::STATUS_OUT_OF_STOCK]),
             'category_id' => Category::factory()
         ];
     }

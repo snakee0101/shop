@@ -19,6 +19,10 @@ class Product extends Model implements Purchaseable
         'quantity' => 'integer'
     ];
 
+    public const STATUS_IN_STOCK = 'In Stock';
+    public const STATUS_ENDS = 'Ends';
+    public const STATUS_OUT_OF_STOCK = 'Out Of Stock';
+
     public function getObjectTypeAttribute()
     {
         return __CLASS__;

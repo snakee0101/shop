@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->text('guarantee_info');
             $table->text('payment_info');
-            $table->enum('in_stock', ['In Stock', 'Ends', 'Out Of Stock']);
+            $table->enum('in_stock', [Product::STATUS_IN_STOCK, Product::STATUS_ENDS, Product::STATUS_OUT_OF_STOCK]);
             $table->timestamps();
             $table->foreignId('category_id');
 

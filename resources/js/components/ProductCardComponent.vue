@@ -87,16 +87,16 @@
                     </div>
                     <div class="product-card__buttons mt-2">
                         <cart-button-component :purchaseable="product_object"
-                                                v-if="product_object.in_stock !== 'Out Of Stock'">
+                                                v-if="product_object.in_stock !== statuses.STATUS_OUT_OF_STOCK">
 
                         </cart-button-component>
                         <compare-button-component :user="user_object" :product="product_object"></compare-button-component>
                     </div>
                 </div>
                 <div class="product-card__actions m-0">
-                    <p class="m-0 text-success" v-if="product_object.in_stock == 'In Stock'">In Stock</p>
-                    <p class="m-0 text-danger" v-if="product_object.in_stock == 'Ends'">Ends</p>
-                    <p class="m-0 text-secondary" v-if="product_object.in_stock == 'Out Of Stock'">Out Of Stock</p>
+                    <p class="m-0 text-success" v-if="product_object.in_stock === statuses.STATUS_IN_STOCK">In Stock</p>
+                    <p class="m-0 text-danger" v-if="product_object.in_stock === statuses.STATUS_ENDS">Ends</p>
+                    <p class="m-0 text-secondary" v-if="product_object.in_stock === statuses.STATUS_OUT_OF_STOCK">Out Of Stock</p>
                 </div>
             </div>
         </div>
@@ -111,7 +111,12 @@
             return {
                 product_object: this.product ? JSON.parse(this.product) : {},
                 user_object: this.user ? JSON.parse(this.user) : {},
-                selected: false
+                selected: false,
+                statuses: {
+                    STATUS_IN_STOCK: 'In Stock',
+                    STATUS_ENDS: 'Ends',
+                    STATUS_OUT_OF_STOCK: 'Out Of Stock'
+                }
             };
         },
         created() {
