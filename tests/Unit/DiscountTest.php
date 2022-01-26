@@ -250,4 +250,9 @@ class DiscountTest extends TestCase
         Discount::applyCoupon('ABCD');
         $this->assertTrue( $discount->isActive() );
     }
+
+    public function test_a()
+    {
+
+    }
 }

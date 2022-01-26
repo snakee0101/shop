@@ -21,10 +21,20 @@ class OrderFactory extends Factory
             'apartment' => $this->faker->randomNumber(2),
             'post_office_address' => null,
             'city' => $this->faker->city(),
+            'status' => $this->faker->randomElement(['on hold', 'processing', 'cancelled', 'sent', 'completed']),
             'state' => $this->faker->city(),
             'postcode' => $this->faker->postcode(),
             'shipping_date' => $this->faker->dateTimeBetween('-1 month'),
         ];
+    }
+
+    public function withStatus($status)
+    {
+        return $this->state(function (array $attributes) use ($status) {
+            return [
+                'status' => $status,
+            ];
+        });
     }
 
     public function withPostOfficeAddress()

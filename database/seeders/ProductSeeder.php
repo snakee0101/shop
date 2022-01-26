@@ -11,7 +11,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         foreach (Category::all() as $category)
-            Product::factory()->count(5)->create([
+            Product::factory()->count(20)->create([
                 'category_id' => $category
             ]);
     }
