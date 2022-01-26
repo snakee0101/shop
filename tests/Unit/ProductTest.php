@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
@@ -71,5 +72,46 @@ class ProductTest extends TestCase
         Review::factory()->create(['product_id' => $product2, 'rating' => 4]);
 
         $this->assertEquals(3, $product2->fresh()->review_stars_average);
+    }
+
+    //product_gets_other_products_in_completed_orders_that_contain_current_product
+
+    private function prepare_order_products()
+    {
+        //I need to get all products within orders, that contain product [1]
+        //all duplications are removed
+
+        $products = Product::factory()->count(9)->create();
+
+        //these products must be returned
+        $order_1 = Order::factory()->withStatus('completed')->create();
+        $order_1->products()->attach([ $products[0]->id, $products[1]->id, $products[2]->id ], ['quantity' => 1]);
+
+        //these products must be returned
+        $order_2 = Order::factory()->withStatus('completed')->create();
+        $order_2->products()->attach([ $products[3]->id, $products[1]->id, $products[4]->id ], ['quantity' => 1]);
+
+        //doesn't contain product [1] - these products are not returned
+        $order_3 = Order::factory()->withStatus('completed')->create();
+        $order_3->products()->attach([ $products[5]->id, $products[6]->id, $products[7]->id ], ['quantity' => 1]);
+
+        //order is not completed - it is ignored
+        $order_4 = Order::factory()->withStatus('on hold')->create();
+        $order_4->products()->attach([ $products[7]->id, $products[1]->id, $products[8]->id ], ['quantity' => 1]);
+
+        return compact('products', 'order_1', 'order_2', 'order_3', 'order_4');
+    }
+
+    public function test_only_right_products_are_returned()
+    {
+        $data = $this->prepare_order_products();
+        $res = $data['products'][1]->allBoughtTogetherProducts;
+
+        $this->assertCount(4, $res);
+
+        $this->assertTrue( $res->contains( fn($product) => $data['products'][0]->id === $product->id) );
+        $this->assertTrue( $res->contains( fn($product) => $data['products'][2]->id === $product->id) );
+        $this->assertTrue( $res->contains( fn($product) => $data['products'][3]->id === $product->id) );
+        $this->assertTrue( $res->contains( fn($product) => $data['products'][4]->id === $product->id) );
     }
 }

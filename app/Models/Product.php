@@ -99,4 +99,25 @@ class Product extends Model implements Purchaseable
             auth()->user()?->visited_products()->attach($this);  //invalid visits must be ignored
         } catch(\Exception $e) {}
     }
+
+    public function getAllBoughtTogetherProductsAttribute()
+    {
+        $current_product_id = $this->id;
+
+        $orders_that_contain_current_product = Order::whereHas('products', function($query) use ($current_product_id) {
+            $query->where('products.id', $current_product_id);
+        });
+
+        $completed_orders = $orders_that_contain_current_product->whereStatus('completed')
+                                                                ->get();
+
+        $all_order_products = $completed_orders->flatMap( fn($order) => $order->products );
+
+
+        $unique_products = $all_order_products->unique( fn($product) => $product->id );
+
+        $products_that_dont_contain_current_product = $unique_products->reject( fn($product) => $product->id == $this->id );
+
+        return $products_that_dont_contain_current_product;
+    }
 }
