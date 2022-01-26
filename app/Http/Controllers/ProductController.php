@@ -48,6 +48,8 @@ class ProductController extends Controller
 
     public function buy_together(Product $product)
     {
-        return $this->product_view($product, 'product.buy_together');
+        return $this->product_view($product, 'product.buy_together', [
+            'bought_together_data' => $product->groupedBoughtTogetherProducts
+        ]);
     }
 }
