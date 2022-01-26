@@ -114,4 +114,12 @@ class ProductTest extends TestCase
         $this->assertTrue( $res->contains( fn($product) => $data['products'][3]->id === $product->id) );
         $this->assertTrue( $res->contains( fn($product) => $data['products'][4]->id === $product->id) );
     }
+
+    public function test_grouped_bought_together_products_can_be_returned()
+    {
+        $data = $this->prepare_order_products();
+        $res = $data['products'][1]->groupedBoughtTogetherProducts;
+
+        $this->assertEquals( $res[ $data['products'][2]->category_id ][0]->id, $data['products'][2]->id );
+    }
 }

@@ -120,4 +120,13 @@ class Product extends Model implements Purchaseable
 
         return $products_that_dont_contain_current_product;
     }
+
+    public function getGroupedBoughtTogetherProductsAttribute()
+    {
+        $products = $this->allBoughtTogetherProducts;
+
+        return $products->groupBy( function($product) {
+            return $product->category_id;
+        } )->take(10);
+    }
 }
