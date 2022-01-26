@@ -18,7 +18,7 @@
         <div class="block-products-carousel__slider">
             <div class="block-products-carousel__preloader"></div>
             <div class="owl-carousel">
-                @foreach($filtering_group_1_products as $product)
+                @foreach($products as $product)
                     <product-card-component product="{{ $product }}"
                                             user="{{ auth()->user() }}"
                                             :key="{{ $product->id }}">
