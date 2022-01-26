@@ -1,6 +1,6 @@
 <div class="block block-products-carousel" data-layout="grid-5">
     <div class="container">
-        <div class="block-header"><h3 class="block-header__title">Filter group 2</h3>
+        <div class="block-header"><h3 class="block-header__title">{{ $group_name }}</h3>
             <div class="block-header__divider"></div>
             <div class="block-header__arrows-list">
                 <button class="block-header__arrow block-header__arrow--left" type="button">

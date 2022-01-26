@@ -173,7 +173,8 @@
                 </div>
             </div>
         </div><!-- .block-categories / end --><!-- .block-products-carousel -->
-        @include('partials.filtering_group', ['products' => $filtering_group_1_products])<!-- .block-products-carousel / end --><!-- .block-posts -->
+        @include('partials.filtering_group', ['products' => $filtering_group_1_products,
+                                              'group_name' => 'Filtering group'])<!-- .block-products-carousel / end --><!-- .block-posts -->
         <div class="block block-posts block-posts--layout--grid-nl" data-layout="grid-nl">
             <div class="container">
                 <div class="block-header"><h3 class="block-header__title">Latest News</h3>
