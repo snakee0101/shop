@@ -6,12 +6,7 @@ use App\Contracts\Purchaseable;
 
 class AddToCartController extends Controller
 {
-    public $item;
-
-    public function __construct(Purchaseable $item) //The Purchaseable interface is resolved in AppServiceProvider
-    {
-        $this->item = $item;
-    }
+    public function __construct(private Purchaseable $item) { }  //The Purchaseable interface is resolved in AppServiceProvider
 
     public function add($quantity)
     {
