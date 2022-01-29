@@ -15,4 +15,9 @@ class AdminController extends Controller
     {
         return view('admin.products.create');
     }
+
+    public function list_users()
+    {
+        return view('admin.users');
+    }
 }

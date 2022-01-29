@@ -194,8 +194,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' ? 'menu-open' : '' }}">
+            <a href="{{ route('admin.products.index') }}" class="nav-link {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Products
@@ -218,11 +218,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.users.index') }}" class="nav-link  {{ Route::currentRouteName() == 'admin.users.index' ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+                Users
               </p>
             </a>
           </li>
