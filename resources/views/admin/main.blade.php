@@ -273,6 +273,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item {{ Route::currentRouteName() == 'admin.characteristics.index' || Route::currentRouteName() == 'admin.characteristics.create' ? 'menu-open' : '' }}">
+                        <a href="{{ route('admin.characteristics.index') }}"
+                           class="nav-link {{ Route::currentRouteName() == 'admin.characteristics.index' || Route::currentRouteName() == 'admin.characteristics.create' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Characteristics
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.characteristics.index') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'admin.characteristics.index' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Characteristics</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.characteristics.create') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'admin.characteristics.create' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create Characteristic</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

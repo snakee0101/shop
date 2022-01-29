@@ -35,4 +35,14 @@ class AdminController extends Controller
     {
         return view('admin.orders.index');
     }
+
+    public function characteristics_index()
+    {
+        return view('admin.characteristics.index');
+    }
+
+    public function create_characteristics()
+    {
+        return view('admin.characteristics.create');
+    }
 }
