@@ -60,4 +60,9 @@ class AdminController extends Controller
     {
         return view('admin.reports.index');
     }
+
+    public function statistics()
+    {
+        return view('admin.statistics');
+    }
 }

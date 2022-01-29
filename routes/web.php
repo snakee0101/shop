@@ -116,6 +116,8 @@ Route::controller(AdminController::class)->prefix('admin-panel')
 
     Route::get('/reports', 'reports')->name('admin.reports.index');
 
+    Route::get('/statistics', 'statistics')->name('admin.statistics');
+
     Route::get('/characteristics/index', 'characteristics_index')->name('admin.characteristics.index');
     Route::get('/characteristics/create', 'create_characteristics')->name('admin.characteristics.create');
 
