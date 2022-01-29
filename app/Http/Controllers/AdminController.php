@@ -46,6 +46,16 @@ class AdminController extends Controller
         return view('admin.characteristics.create');
     }
 
+    public function product_sets_index()
+    {
+        return view('admin.product_sets.index');
+    }
+
+    public function create_product_sets()
+    {
+        return view('admin.product_sets.create');
+    }
+
     public function reports()
     {
         return view('admin.reports.index');

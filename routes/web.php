@@ -118,6 +118,9 @@ Route::controller(AdminController::class)->prefix('admin-panel')
 
     Route::get('/characteristics/index', 'characteristics_index')->name('admin.characteristics.index');
     Route::get('/characteristics/create', 'create_characteristics')->name('admin.characteristics.create');
+
+    Route::get('/product_sets/index', 'product_sets_index')->name('admin.product_sets.index');
+    Route::get('/product_sets/create', 'create_product_sets')->name('admin.product_sets.create');
 });
 
 
