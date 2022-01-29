@@ -247,6 +247,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.reports.index') }}"
+                           class="nav-link  {{ Route::currentRouteName() == 'admin.reports.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Reports
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'menu-open' : '' }}">
                         <a href="{{ route('admin.categories.index') }}"
                            class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'active' : '' }}">

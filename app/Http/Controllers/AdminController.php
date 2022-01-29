@@ -45,4 +45,9 @@ class AdminController extends Controller
     {
         return view('admin.characteristics.create');
     }
+
+    public function reports()
+    {
+        return view('admin.reports.index');
+    }
 }
