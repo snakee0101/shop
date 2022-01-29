@@ -30,4 +30,9 @@ class AdminController extends Controller
     {
         return view('admin.categories.create');
     }
+
+    public function order_index()
+    {
+        return view('admin.orders.index');
+    }
 }

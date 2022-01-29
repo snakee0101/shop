@@ -109,6 +109,7 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/users', 'list_users')->name('admin.users.index');
     Route::get('/category/index', 'categories_index')->name('admin.categories.index');
     Route::get('/category/create', 'create_category')->name('admin.categories.create');
+    Route::get('/orders', 'order_index')->name('admin.orders.index');
 });
 
 
