@@ -20,4 +20,14 @@ class AdminController extends Controller
     {
         return view('admin.users');
     }
+
+    public function categories_index()
+    {
+        return view('admin.categories.index');
+    }
+
+    public function create_category()
+    {
+        return view('admin.categories.create');
+    }
 }

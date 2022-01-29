@@ -107,6 +107,8 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/', 'products')->name('admin.products.index');
     Route::get('/product/create', 'create_product')->name('admin.products.create');
     Route::get('/users', 'list_users')->name('admin.users.index');
+    Route::get('/category/index', 'categories_index')->name('admin.categories.index');
+    Route::get('/category/create', 'create_category')->name('admin.categories.create');
 });
 
 
