@@ -100,6 +100,14 @@ Route::get('/dashboard', function () {
 Route::post('/register-user', [UserController::class, 'register'])->name('register-user');
 Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
 
+
+Route::prefix('admin-panel')->group(function(){
+    Route::get('/', function (){
+        return view('admin.starter');
+    });
+});
+
+
 Route::fallback(fn() => view('404'));
 
 require __DIR__.'/auth.php';
