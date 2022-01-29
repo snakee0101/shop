@@ -4,7 +4,8 @@ use App\Http\Controllers\{AddToCartController, CartController, OrderController};
 use App\Http\Controllers\{ProductController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\{ComparisonController,
+use App\Http\Controllers\{AdminController,
+    ComparisonController,
     CouponController,
     VisitsController,
     WishlistController,
@@ -101,10 +102,10 @@ Route::post('/register-user', [UserController::class, 'register'])->name('regist
 Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
 
 
-Route::prefix('admin-panel')->group(function(){
-    Route::get('/', function (){
-        return view('admin.starter');
-    });
+Route::controller(AdminController::class)->prefix('admin-panel')
+                                         ->group(function(){
+    Route::get('/', 'products')->name('admin.products.index');
+    Route::get('/product/create', 'create_product')->name('admin.products.create');
 });
 
 
