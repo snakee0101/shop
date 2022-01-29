@@ -12,6 +12,7 @@ class Category extends Model
 
     public $timestamps = false;
     protected $withCount = ['products'];
+    protected $guarded = [];
 
     public function subCategories()
     {

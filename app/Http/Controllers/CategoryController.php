@@ -21,7 +21,9 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Category::create( $request->only( ['name', 'parent_id'] ) + [
+            'image_url' => 'ABCD'
+        ] );
     }
 
     public function show(Category $category)
