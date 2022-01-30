@@ -1,6 +1,12 @@
 @extends('admin.main')
 
 @section('content')
+    <p class="m-3">
+        <a href="{{ route('admin.categories.create') }}">
+            <button class="btn btn-success">+ Create Category</button>
+        </a>
+    </p>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
