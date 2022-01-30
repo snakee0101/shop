@@ -75,4 +75,14 @@ class CategoryTest extends TestCase
             'image' => null
         ] )->assertSessionHasErrors('image');
     }
+
+    public function test_category_could_be_deleted()
+    {
+        $category = Category::factory()->create();
+
+        $this->assertDatabaseCount('categories', 1);
+        $this->delete( route('category.destroy', $category) );
+
+        $this->assertDatabaseCount('categories', 0);
+    }
 }
