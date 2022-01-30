@@ -2,21 +2,25 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CharacteristicTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_characteristic_could_be_created()
     {
-        $response = $this->get('/');
+        $category = Category::factory()->create();
 
-        $response->assertStatus(200);
+        $response = $this->post( route('characteristic.store'), [
+            'name' => 'test',
+            'category_id' => $category->id
+        ] )->assertOk();
+
+        $this->assertDatabaseHas('characteristics', [
+           'name' => 'test',
+           'category_id' => $category->id
+        ]);
     }
 }

@@ -9,6 +9,7 @@ class Characteristic extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $guarded = [];
 
     /**
      * Returns only those characteristic models that have different values among products

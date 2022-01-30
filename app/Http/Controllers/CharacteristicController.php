@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Characteristic;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,8 @@ class CharacteristicController extends Controller
 
     public function store(Request $request)
     {
-        //
+
+        Characteristic::create( $request->only(['name', 'category_id']) );
     }
 
     public function show(Characteristic $characteristic)
