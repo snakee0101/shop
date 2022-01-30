@@ -60,4 +60,19 @@ class CategoryTest extends TestCase
             'image' => $file
         ] )->assertSessionHasErrors('name');
     }
+
+    public function test_category_image_is_required()
+    {
+        Storage::fake();
+
+        $file = UploadedFile::fake()->image('test.png');
+
+        $category = Category::factory()->make();
+
+        $this->post( route('category.store'), [
+            'name' => '',
+            'parent_id' => null,
+            'image' => null
+        ] )->assertSessionHasErrors('image');
+    }
 }

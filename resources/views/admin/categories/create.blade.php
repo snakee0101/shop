@@ -35,6 +35,9 @@
                                 <label class="custom-file-label" for="category_image">Choose image</label>
                             </div>
                         </div>
+                        @error('image')
+                            <p class="text-danger mt-1">Category image is required - selected file must be an image</p>
+                        @enderror
                     </div>
                 </div>
                 <!-- /.card-body -->
