@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        dd( request('name') );
+        dd( request('parent_id') );
 
         $path = $request->file('image')
                         ->store('/public/images/');

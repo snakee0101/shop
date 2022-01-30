@@ -17,10 +17,11 @@
                     </div>
                     <div class="form-group">
                         <label>Parent category</label>
-                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="parent_id" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            <option selected="selected" data-select2-id="3" value="">None</option>
-                            <option data-select2-id="34" value="Alaska">Alaska</option>
-                            <option data-select2-id="35" value="California">California</option>
+                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="parent_id" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option selected="selected" data-select2-id="0" value="">None</option>
+                            @foreach($categories as $category)
+                                <option data-select2-id="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
