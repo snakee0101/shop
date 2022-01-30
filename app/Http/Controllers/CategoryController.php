@@ -35,6 +35,7 @@ class CategoryController extends Controller
             'image_url' => Storage::url($path)
         ] );
 
+        session()->flash('message', 'Category was successfully created');
         return back();
     }
 

@@ -46,6 +46,12 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
+
+            @if( session()->has('message') )
+                <div class="alert alert-success" role="alert">
+                    {{ session()->pull('message') }}
+                </div>
+            @endif
         </div>
     </div>
 @endsection
