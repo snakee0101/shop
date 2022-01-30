@@ -58,7 +58,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view('admin.categories.edit', [
-            'category' => $category
+            'category' => $category,
+            'categories' => Category::all()
         ]);
     }
 
@@ -75,7 +76,7 @@ class CategoryController extends Controller
             $path = $request->file('image')
                             ->store('/public/images/');
 
-        Category::create( $request->only( ['name', 'parent_id'] ) + [
+        $category->update( $request->only( ['name', 'parent_id'] ) + [
                 'image_url' => ($path == '') ? $category->image_url : Storage::url($path)  //store an image if it is provided, otherwise leave original image
         ]);
 
