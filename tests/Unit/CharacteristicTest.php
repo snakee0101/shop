@@ -113,4 +113,22 @@ class CharacteristicTest extends TestCase
         $this->assertDatabaseCount('characteristic_product', 0);
 
     }
+
+    public function test_characteristic_name_must_be_unique_across_one_category()
+    {
+        $this->withoutExceptionHandling();
+        $this->expectExceptionMessage('UNIQUE');
+
+        $category = Category::factory()->create();
+
+        DB::table('characteristics')->insert([
+            'name' => 'test',
+            'category_id' => $category->id
+        ] );
+
+        DB::table('characteristics')->insert([
+            'name' => 'test',
+            'category_id' => $category->id
+        ] );
+    }
 }

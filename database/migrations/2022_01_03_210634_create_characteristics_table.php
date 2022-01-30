@@ -16,6 +16,8 @@ class CreateCharacteristicsTable extends Migration
                   ->references('id')
                   ->on('categories')
                   ->cascadeOnDelete();
+
+            $table->unique(['name', 'category_id']);
         });
     }
 
