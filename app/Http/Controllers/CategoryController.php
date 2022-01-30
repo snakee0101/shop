@@ -62,7 +62,20 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            /*'image' => 'image'*/
+        ]);
+
+       /* $path = $request->file('image')
+            ->store('/public/images/');*/
+
+        Category::create( $request->only( ['name', 'parent_id'] ) + [
+                'image_url' => $category->image_url /*Storage::url($path)*/
+        ]);
+
+        session()->flash('message', 'Category was successfully updated');
+        return back();
     }
 
     public function destroy(Category $category)

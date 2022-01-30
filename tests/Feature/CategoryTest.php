@@ -85,4 +85,22 @@ class CategoryTest extends TestCase
 
         $this->assertDatabaseCount('categories', 0);
     }
+
+    public function test_category_data_could_be_updated()
+    {
+        $category = Category::factory()->create();
+
+        $file = UploadedFile::fake()->image('test.png');
+
+        $this->put( route('category.update', $category->id), [
+            'name' => 'new name',
+            'parent_id' => null,
+            'image' => $file
+        ] );
+
+        $this->assertDatabaseHas('categories', [
+            'name' => 'new name',
+            'parent_id' => null
+        ]);
+    }
 }
