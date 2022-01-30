@@ -5,6 +5,7 @@ use App\Http\Controllers\{ProductController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\{AdminController,
+    CharacteristicController,
     ComparisonController,
     CouponController,
     VisitsController,
@@ -77,6 +78,7 @@ Route::resource('reply', ReplyController::class);
 Route::resource('vote', VoteController::class);
 Route::resource('report', ReportController::class);
 Route::resource('order', OrderController::class);
+Route::resource('characteristic', CharacteristicController::class);
 
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
