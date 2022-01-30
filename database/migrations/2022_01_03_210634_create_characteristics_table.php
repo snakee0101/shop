@@ -14,7 +14,8 @@ class CreateCharacteristicsTable extends Migration
 
             $table->foreignId('category_id')
                   ->references('id')
-                  ->on('categories');
+                  ->on('categories')
+                  ->cascadeOnDelete();
         });
     }
 

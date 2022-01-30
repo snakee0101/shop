@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Characteristic;
 use App\Models\Product;
 use Tests\TestCase;
 use App\Models\Category;
@@ -82,6 +83,13 @@ class CategoryTest extends TestCase
 
     public function test_when_category_is_deleted_all_characteristics_are_deleted()
     {
+        $category = Category::factory()->create();
+        $char = Characteristic::factory()->create(['category_id' => $category->id]);
 
+        $this->assertDatabaseCount('characteristics', 1);
+
+        $category->delete();
+
+        $this->assertDatabaseCount('characteristics', 0);
     }
 }
