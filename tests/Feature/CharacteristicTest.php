@@ -3,8 +3,10 @@
 namespace Tests\Feature;
 
 use App\Models\Category;
+use App\Models\Characteristic;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class CharacteristicTest extends TestCase
@@ -57,5 +59,21 @@ class CharacteristicTest extends TestCase
             'name' => 'test',
             'category_id' => $category->id
         ] )->assertSessionHasNoErrors();
+    }
+
+    public function test_characteristic_could_be_deleted_from_controller()
+    {
+        $category = Category::factory()->create();
+
+        DB::table('characteristics')->insert([
+            'name' => 'test',
+            'category_id' => $category->id
+        ] );
+
+        $this->assertDatabaseCount('characteristics', 1);
+
+        $this->delete( route('characteristic.destroy', Characteristic::first()) );
+
+        $this->assertDatabaseCount('characteristics', 0);
     }
 }

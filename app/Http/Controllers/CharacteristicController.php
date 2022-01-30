@@ -58,6 +58,6 @@ class CharacteristicController extends Controller
 
     public function destroy(Characteristic $characteristic)
     {
-        //
+        $characteristic->delete();
     }
 }
