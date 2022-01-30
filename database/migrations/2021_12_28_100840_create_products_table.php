@@ -24,11 +24,12 @@ class CreateProductsTable extends Migration
             $table->text('payment_info');
             $table->enum('in_stock', [Product::STATUS_IN_STOCK, Product::STATUS_ENDS, Product::STATUS_OUT_OF_STOCK]);
             $table->timestamps();
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')->nullable();
 
             $table->foreign('category_id')
                   ->references('id')
-                  ->on('categories');
+                  ->on('categories')
+                  ->nullOnDelete();
         });
     }
 

@@ -73,11 +73,13 @@ class CategoryTest extends TestCase
 
     public function test_when_category_is_deleted_all_products_are_detached()
     {
+        $category = Category::factory()->create();
+        $product = Product::factory()->create([
+            'category_id' => $category->id
+        ]);
 
-    }
-
-    public function test_when_category_is_deleted_all_subcategories_are_deleted()
-    {
+        $category->delete();
+        $this->assertNull( $product->fresh()->category_id );
 
     }
 
