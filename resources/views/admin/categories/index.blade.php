@@ -39,12 +39,16 @@
                                                 <img src="{{ $category->image_url }}" height="100" width="100">
                                             </td>
                                             <td>
-                                                <form action="{{ route('category.destroy', $category) }}" method="post">
+                                                <form action="{{ route('category.destroy', $category) }}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
 
                                                     <button class="btn btn-danger">Delete</button>
                                                 </form>
+
+                                                <a href="{{ route('category.edit', $category) }}">
+                                                    <button class="btn btn-warning">Edit</button>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
