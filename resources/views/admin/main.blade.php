@@ -18,6 +18,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }} ">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
+
+    <!-- Data tables -->
+    <link href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -384,14 +388,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- jQuery -->
 <script src="{{ asset('admin/plugins/jquery/jquery.min.js')  }} "></script>
+
+<!-- Select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
+
+<!-- Data Tables -->
+<script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }} "></script>
 <script>
     $(document).ready(function() {
         $('.form-control.select2').select2();
+        $('.dataTable').DataTable();
     });
 </script>
 </body>
