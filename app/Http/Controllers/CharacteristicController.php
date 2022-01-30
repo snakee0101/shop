@@ -22,7 +22,7 @@ class CharacteristicController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         Characteristic::create( $request->only(['name', 'category_id']) );
