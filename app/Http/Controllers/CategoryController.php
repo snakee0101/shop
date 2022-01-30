@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -21,8 +23,11 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $path = $request->file('image')
+                        ->store('/public/images/');
+
         Category::create( $request->only( ['name', 'parent_id'] ) + [
-            'image_url' => 'ABCD'
+            'image_url' => Storage::url($path)
         ] );
     }
 
