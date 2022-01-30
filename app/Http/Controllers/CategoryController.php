@@ -23,14 +23,14 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        dd( request('parent_id') );
-
         $path = $request->file('image')
                         ->store('/public/images/');
 
         Category::create( $request->only( ['name', 'parent_id'] ) + [
             'image_url' => Storage::url($path)
         ] );
+
+        return back();
     }
 
     public function show(Category $category)
