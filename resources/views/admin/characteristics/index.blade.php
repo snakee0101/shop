@@ -40,7 +40,7 @@
                                                 {{ \App\Models\Category::find($char->category_id)->name }}
                                             </td>
                                             <td>
-                                                <form action="" method="post" class="d-inline">
+                                                <form action="{{ route('characteristic.destroy', $char) }}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
 
