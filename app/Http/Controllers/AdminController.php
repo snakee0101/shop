@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Characteristic;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -43,7 +44,9 @@ class AdminController extends Controller
 
     public function characteristics_index()
     {
-        return view('admin.characteristics.index');
+        return view('admin.characteristics.index', [
+            'characteristics' => Characteristic::all()
+        ]);
     }
 
     public function create_characteristics()
