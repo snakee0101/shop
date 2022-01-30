@@ -22,7 +22,8 @@ class CreateCharacteristicProductTable extends Migration
 
             $table->foreignId('characteristic_id')
                   ->references('id')
-                  ->on('characteristics');
+                  ->on('characteristics')
+                  ->cascadeOnDelete();
 
             $table->string('value');
         });

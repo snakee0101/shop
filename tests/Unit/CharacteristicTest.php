@@ -98,4 +98,19 @@ class CharacteristicTest extends TestCase
 
         $this->assertNotEmpty( Characteristic::diff(Product::all()) );
     }
+
+    public function test_when_characteristics_are_deleted_all_products_are_detached()
+    {
+        $product1 = Product::factory()->create();
+
+        $char = Characteristic::factory()->create(['category_id' => $product1->category_id]);
+        DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char->id, 'value' => 'unique' ]);
+
+        $this->assertDatabaseCount('characteristic_product', 1);
+
+        $char->delete();
+
+        $this->assertDatabaseCount('characteristic_product', 0);
+
+    }
 }

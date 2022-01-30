@@ -69,4 +69,19 @@ class CategoryTest extends TestCase
 
         $this->assertEquals(5, $category->fresh()->products_count);
     }
+
+    public function test_when_category_is_deleted_all_products_are_detached()
+    {
+
+    }
+
+    public function test_when_category_is_deleted_all_subcategories_are_deleted()
+    {
+
+    }
+
+    public function test_when_category_is_deleted_all_characteristics_are_deleted()
+    {
+
+    }
 }
