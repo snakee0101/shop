@@ -33,4 +33,14 @@ class CharacteristicTest extends TestCase
             'category_id' => $category->id
         ] )->assertSessionHasErrors('name');
     }
+
+    public function test_characteristic_category_is_required_to_store_the_characteristic()
+    {
+        $category = Category::factory()->create();
+
+        $response = $this->post( route('characteristic.store'), [
+            'name' => 'test',
+            'category_id' => null
+        ] )->assertSessionHasErrors('category_id');
+    }
 }

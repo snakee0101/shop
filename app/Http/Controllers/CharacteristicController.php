@@ -21,7 +21,8 @@ class CharacteristicController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'category_id' => 'required',
         ]);
 
         Characteristic::create( $request->only(['name', 'category_id']) );
