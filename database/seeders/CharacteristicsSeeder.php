@@ -10,9 +10,16 @@ class CharacteristicsSeeder extends Seeder
 {
     public function run()
     {
-        foreach (Category::all() as $category)
-            Characteristic::factory()->count(5)->create([
-                'category_id' => $category
-            ]);
+        foreach (Category::all() as $category){
+            for ($i=1; $i<10; $i++){
+                try{
+                    Characteristic::factory()->create([
+                        'category_id' => $category
+                    ]);
+                } catch(\Exception $e) {
+                    continue;
+                }
+            }
+        }
     }
 }
