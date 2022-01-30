@@ -14,6 +14,9 @@
                     <div class="form-group">
                         <label for="category_name">Category name</label>
                         <input type="text" class="form-control" name="name" id="category_name" placeholder="Enter category name">
+                        @error('name')
+                            <p class="text-danger mt-1">Category name is required</p>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>Parent category</label>

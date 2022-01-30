@@ -45,4 +45,19 @@ class CategoryTest extends TestCase
         $file_url = Storage::files('/public/images')[0];
         Storage::assertExists($file_url);
     }
+
+    public function test_category_name_is_required()
+    {
+        Storage::fake();
+
+        $file = UploadedFile::fake()->image('test.png');
+
+        $category = Category::factory()->make();
+
+        $this->post( route('category.store'), [
+            'name' => '',
+            'parent_id' => null,
+            'image' => $file
+        ] )->assertSessionHasErrors('name');
+    }
 }
