@@ -64,14 +64,17 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            /*'image' => 'image'*/
+            'image' => 'image|nullable'
         ]);
 
-       /* $path = $request->file('image')
-            ->store('/public/images/');*/
+        $path = '';
+
+        if($request->file('image'))
+            $path = $request->file('image')
+                            ->store('/public/images/');
 
         Category::create( $request->only( ['name', 'parent_id'] ) + [
-                'image_url' => $category->image_url /*Storage::url($path)*/
+                'image_url' => ($path == '') ? $category->image_url : Storage::url($path)  //store an image if it is provided, otherwise leave original image
         ]);
 
         session()->flash('message', 'Category was successfully updated');
