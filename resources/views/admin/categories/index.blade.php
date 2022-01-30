@@ -39,7 +39,12 @@
                                                 <img src="{{ $category->image_url }}" height="100" width="100">
                                             </td>
                                             <td>
-                                                Actions
+                                                <form action="{{ route('category.destroy', $category) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
