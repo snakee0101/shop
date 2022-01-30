@@ -23,4 +23,14 @@ class CharacteristicTest extends TestCase
            'category_id' => $category->id
         ]);
     }
+
+    public function test_characteristic_name_is_required_to_store_the_characteristic()
+    {
+        $category = Category::factory()->create();
+
+        $response = $this->post( route('characteristic.store'), [
+            'name' => '',
+            'category_id' => $category->id
+        ] )->assertSessionHasErrors('name');
+    }
 }
