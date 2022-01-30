@@ -24,7 +24,9 @@ class AdminController extends Controller
 
     public function categories_index()
     {
-        return view('admin.categories.index');
+        return view('admin.categories.index', [
+            'categories' => Category::all()
+        ]);
     }
 
     public function create_category()
