@@ -271,8 +271,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.orders.index') }}"
-                           class="nav-link  {{ Route::currentRouteName() == 'admin.orders.index' ? 'active' : '' }}">
+                        <a href="{{ route('order.index') }}"
+                           class="nav-link  {{ Route::currentRouteName() == 'order.index' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Orders

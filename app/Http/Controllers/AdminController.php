@@ -37,11 +37,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function order_index()
-    {
-        return view('admin.orders.index');
-    }
-
     public function characteristics_index()
     {
         return view('admin.characteristics.index', [

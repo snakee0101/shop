@@ -114,8 +114,6 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/category/index', 'categories_index')->name('admin.categories.index');
     Route::get('/category/create', 'create_category')->name('admin.categories.create');
 
-    Route::get('/orders', 'order_index')->name('admin.orders.index');
-
     Route::get('/reports', 'reports')->name('admin.reports.index');
 
     Route::get('/statistics', 'statistics')->name('admin.statistics');

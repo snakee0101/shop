@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        return view('admin.orders.index', [
+            'orders' => Order::all()
+        ]);
+    }
+
     public function checkout()
     {
         return view('checkout', [
