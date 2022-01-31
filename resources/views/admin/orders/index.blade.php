@@ -106,10 +106,6 @@
 
                                                 <button class="btn btn-danger btn-sm">Delete</button>
                                             </form>
-                                            <br><br>
-                                            <a href="">
-                                                <button class="btn btn-warning btn-sm">Edit</button>
-                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
