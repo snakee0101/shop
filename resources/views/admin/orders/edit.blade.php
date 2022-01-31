@@ -9,7 +9,7 @@
         {{--------------------------------------------ORDERED PRODUCTS --------------------------------------------}}
         <div class="card card-primary m-0">
             <div class="card-header">
-                <h3 class="card-title">Products of order #{{ $order->id }}</h3>
+                <h3 class="card-title font-weight-bold">Products of order #{{ $order->id }}</h3>
             </div>
             <div class="card-body pb-0">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -100,7 +100,7 @@
         {{--------------------------------------------ORDERED PRODUCT SETS --------------------------------------------}}
         <div class="card card-primary m-0 mt-4">
             <div class="card-header">
-                <h3 class="card-title">Product sets of order #{{ $order->id }}</h3>
+                <h3 class="card-title font-weight-bold">Product sets of order #{{ $order->id }}</h3>
             </div>
             <div class="card-body pb-0">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -174,6 +174,22 @@
         </div>
 
         {{--------------------------------------------TOTALS SECTION ---------------------------------------------------}}
+        <div class="card card-warning m-0 mt-4">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold">Totals</h3>
+            </div>
+            <div class="card-body pb-0">
+                <p style="font-size: 1.5em">
+                    Products subtotal: <span class="font-weight-bold">${{ $order->product_subtotal }}</span>
+                </p>
+                <p style="font-size: 1.5em">
+                    Product sets subtotal: <span class="font-weight-bold">${{ $order->product_set_subtotal }}</span>
+                </p>
+                <p style="font-size: 2em" class="font-weight-bold">
+                    Total: <span class="text-danger">${{ $order->total }}</span>
+                </p>
+            </div>
+        </div>
 
         {{--------------------------------------------CREDENTIALS SECTION ---------------------------------------------------}}
     </div>
