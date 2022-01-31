@@ -130,7 +130,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <form action="" method="post" class="d-inline">
+                                            <form action="{{ route('order.destroy', $order) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
 
