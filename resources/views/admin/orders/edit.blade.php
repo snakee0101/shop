@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <p style="font-size: 2em">
-                    Total: <span class="font-weight-bold text-danger">${{ $order->total }}</span>
+                    Subtotal: <span class="font-weight-bold text-danger">${{ $order->product_subtotal }}</span>
                 </p>
             </div>
         </div>
