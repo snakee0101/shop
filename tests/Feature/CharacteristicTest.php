@@ -94,4 +94,17 @@ class CharacteristicTest extends TestCase
             'category_id' => $category2->id
         ]);
     }
+
+    public function test_characteristic_name_is_required_when_updating()
+    {
+        $category = Category::factory()->create();
+        $char = Characteristic::factory()->create(['category_id' => $category->id]);
+
+        $category2 = Category::factory()->create();
+
+        $this->put( route('characteristic.update', $char), [
+            'name' => '',
+            'category_id' => $category2->id
+        ] )->assertSessionHasErrors('name');
+    }
 }

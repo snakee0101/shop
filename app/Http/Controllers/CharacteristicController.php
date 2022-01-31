@@ -55,6 +55,10 @@ class CharacteristicController extends Controller
 
     public function update(Request $request, Characteristic $characteristic)
     {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
         $characteristic->update( $request->only( ['name', 'category_id'] ) );
 
         return back();
