@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -33,6 +34,15 @@ class OrderFactory extends Factory
         return $this->state(function (array $attributes) use ($status) {
             return [
                 'status' => $status,
+            ];
+        });
+    }
+
+    public function withUser(User $user)
+    {
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user,
             ];
         });
     }
