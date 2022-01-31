@@ -98,6 +98,80 @@
         </div>
 
         {{--------------------------------------------ORDERED PRODUCT SETS --------------------------------------------}}
+        <div class="card card-primary m-0 mt-4">
+            <div class="card-header">
+                <h3 class="card-title">Product sets of order #{{ $order->id }}</h3>
+            </div>
+            <div class="card-body pb-0">
+                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline text-center"
+                                   aria-describedby="example1_info">
+                                <thead>
+                                <tr>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">#
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Name
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Price per item
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Quantity
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Total price
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($order->product_sets as $product_set)
+                                    <tr>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $product_set->id }}
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            <a href="{{ route('product.description', $product_set->products[0]) }}" target="__blank">
+                                                {{ $product_set->products[0]->name }}
+                                            </a> +
+                                            <a href="{{ route('product.description', $product_set->products[1]) }}" target="__blank">
+                                                {{ $product_set->products[1]->name }}
+                                            </a>
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            @if($product_set->priceWithDiscount < $product_set->price)
+                                                <span class="font-weight-bold text-danger">${{ $product_set->priceWithDiscount }}</span>
+                                                <span class="text-secondary" style=""><s><small>${{ $product_set->price }}</small></s></span>
+                                            @else
+                                                ${{ $product_set->price }}
+                                            @endif
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $product_set->pivot->quantity }}
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            @if($product_set->priceWithDiscount < $product_set->price)
+                                                <span class="font-weight-bold text-danger">${{ $product_set->priceWithDiscount * $product_set->pivot->quantity }}</span>
+                                                <span class="text-secondary" style=""><s><small>${{ $product_set->price * $product_set->pivot->quantity }}</small></s></span>
+                                            @else
+                                                ${{ $product_set->price * $product_set->pivot->quantity }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <p style="font-size: 2em">
+                    Subtotal: <span class="font-weight-bold text-danger">${{ $order->product_set_subtotal }}</span>
+                </p>
+            </div>
+        </div>
 
         {{--------------------------------------------TOTALS SECTION ---------------------------------------------------}}
 
