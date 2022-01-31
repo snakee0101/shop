@@ -47,7 +47,7 @@
                                                     <button class="btn btn-danger">Delete</button>
                                                 </form>
 
-                                                <a href="">
+                                                <a href="{{ route('characteristic.edit', $char) }}">
                                                     <button class="btn btn-warning">Edit</button>
                                                 </a>
                                             </td>

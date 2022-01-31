@@ -47,7 +47,10 @@ class CharacteristicController extends Controller
 
     public function edit(Characteristic $characteristic)
     {
-        //
+        return view('admin.characteristics.edit', [
+            'char' => $characteristic,
+            'categories' => Category::all()
+        ]);
     }
 
     public function update(Request $request, Characteristic $characteristic)
