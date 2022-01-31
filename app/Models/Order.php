@@ -28,4 +28,10 @@ class Order extends Model
         return $this->morphedByMany(ProductSet::class, 'item', 'order_item')
                     ->withPivot('quantity');
     }
+
+    public function getTotalAttribute()
+    {
+        return $this->products->sum( fn($product) => $product->priceWithDiscount )
+             + $this->product_sets->sum( fn($product) => $product->priceWithDiscount );
+    }
 }
