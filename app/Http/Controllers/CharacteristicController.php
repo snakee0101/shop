@@ -55,13 +55,23 @@ class CharacteristicController extends Controller
 
     public function update(Request $request, Characteristic $characteristic)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required',
+            ]);
 
-        $characteristic->update( $request->only( ['name', 'category_id'] ) );
+            $characteristic->update( $request->only( ['name', 'category_id'] ) );
 
-        return back();
+            session()->flash('message', 'Characteristic is successfully updated');
+            session()->flash('status', 'OK');
+
+            return back();
+        } catch(QueryException) {
+            session()->flash('message', 'Characteristic with the given name is already exists in this category');
+            session()->flash('status', 'Error');
+
+            return back();
+        }
     }
 
 
