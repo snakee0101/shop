@@ -192,5 +192,26 @@
         </div>
 
         {{--------------------------------------------CREDENTIALS SECTION ---------------------------------------------------}}
+        <div class="card card-success m-0 mt-4">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold">Order Credentials</h3>
+            </div>
+            <div class="card-body pb-0">
+                <table class="table">
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr>
+                        <td>{{ $credentials->first_name }}</td>
+                        <td>{{ $credentials->last_name }}</td>
+                        <td>{{ $credentials->phone }}</td>
+                        <td>{{ $credentials->email }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection
