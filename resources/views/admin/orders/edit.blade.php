@@ -4,6 +4,9 @@
     <p class="m-3 font-weight-bold"><a href="{{ route('order.index') }}" class="text-danger">&lt; Back to all orders</a></p>
 
     <div class="container m-3">
+        {{--------------------------------------------ORDER DATA ITSELF--------------------------------------------}}
+
+        {{--------------------------------------------ORDERED PRODUCTS --------------------------------------------}}
         <div class="card card-primary m-0">
             <div class="card-header">
                 <h3 class="card-title">Products of order #{{ $order->id }}</h3>
@@ -16,6 +19,9 @@
                                    aria-describedby="example1_info">
                                 <thead>
                                 <tr>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">#
+                                    </th>
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-sort="ascending">Name
                                     </th>
@@ -42,6 +48,9 @@
                                 <tbody>
                                 @foreach($order->products as $product)
                                     <tr>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $product->id }}
+                                        </td>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             <a href="{{ route('product.description', $product) }}" target="__blank">
                                                 {{ $product->name }}
@@ -87,5 +96,11 @@
                 </p>
             </div>
         </div>
+
+        {{--------------------------------------------ORDERED PRODUCT SETS --------------------------------------------}}
+
+        {{--------------------------------------------TOTALS SECTION ---------------------------------------------------}}
+
+        {{--------------------------------------------CREDENTIALS SECTION ---------------------------------------------------}}
     </div>
 @endsection
