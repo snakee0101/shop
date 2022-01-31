@@ -444,4 +444,15 @@ class OrderTest extends TestCase
         $this->post( route('order.store'),$this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
     }
+
+    public function test_order_could_be_deleted()
+    {
+        $order = Order::factory()->create();
+
+        $this->assertDatabaseCount('orders', 1);
+
+        $this->delete( route('order.destroy', $order) );
+
+        $this->assertDatabaseCount('orders', 0);
+    }
 }

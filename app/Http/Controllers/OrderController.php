@@ -18,6 +18,11 @@ class OrderController extends Controller
         ]);
     }
 
+    public function destroy(Order $order)
+    {
+        $order->delete();
+    }
+
     public function checkout()
     {
         return view('checkout', [
