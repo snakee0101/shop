@@ -67,8 +67,38 @@
                                                 {{ $order->is_paid ? 'Yes' : 'No' }}
                                             </a>
                                         </td>
-                                        <td class="dtr-control sorting_1" tabindex="0">
-                                            -
+                                        <td class="dtr-control sorting_1" tabindex="0" style="font-size: 1.2em">
+                                            @switch($order->status)
+                                                @case('on hold')
+                                                    <a class="badge badge-secondary">
+                                                        On Hold
+                                                    </a>
+                                                @break
+
+                                                @case('processing')
+                                                    <a class="badge badge-warning">
+                                                        Processing
+                                                    </a>
+                                                @break
+
+                                                @case('cancelled')
+                                                    <a class="badge badge-danger">
+                                                        Cancelled
+                                                    </a>
+                                                @break
+
+                                                @case('sent')
+                                                    <a class="badge badge-primary">
+                                                        Sent
+                                                    </a>
+                                                @break
+
+                                                @case('completed')
+                                                    <a class="badge badge-success">
+                                                        Completed
+                                                    </a>
+                                                @break
+                                            @endswitch
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             {{ $order->country }}
