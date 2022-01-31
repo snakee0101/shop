@@ -1,6 +1,8 @@
 @extends('admin.main')
 
 @section('content')
+    <p class="m-3 font-weight-bold"><a href="{{ route('order.index') }}" class="text-danger">&lt; Back to all orders</a></p>
+
     <div class="container m-3">
         <div class="card card-primary m-0">
             <div class="card-header">
