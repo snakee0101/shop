@@ -5,9 +5,69 @@
 
     <div class="container m-3">
         {{--------------------------------------------ORDER DATA ITSELF--------------------------------------------}}
-
-        {{--------------------------------------------ORDERED PRODUCTS --------------------------------------------}}
         <div class="card card-primary m-0">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold">Order #{{ $order->id }} data</h3>
+            </div>
+            <div class="card-body pb-0">
+                <div class="container">
+                    <div class="row mb-3">
+                        <div class="col-3">
+                           <span class="text-danger font-weight-bold">Paid:</span>
+                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                    <input type="radio" id="paid_yes" name="is_paid" class="custom-control-input" value="Yes" {{ $order->is_paid ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="paid_yes">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="paid_no" name="is_paid" class="custom-control-input" value="No" {{ $order->is_paid == false ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="paid_no">No</label>
+                                </div>
+                        </div>
+                        <div class="col">
+                            <span class="text-danger font-weight-bold">Status:</span>
+                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                    <input type="radio" id="status_on_hold" name="status" class="custom-control-input" value="on hold" {{ $order->status == 'on hold' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="status_on_hold">On hold</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                    <input type="radio" id="status_processing" name="status" class="custom-control-input" value="processing" {{ $order->status == 'processing' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="status_processing">Processing</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                    <input type="radio" id="status_cancelled" name="status" class="custom-control-input" value="cancelled" {{ $order->status == 'cancelled' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="status_cancelled">Cancelled</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                    <input type="radio" id="status_sent" name="status" class="custom-control-input" value="sent" {{ $order->status == 'sent' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="status_sent">Sent</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                    <input type="radio" id="status_completed" name="status" class="custom-control-input" value="completed" {{ $order->status == 'completed' ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="status_completed">Completed</label>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <span class="text-danger font-weight-bold">User: </span>
+                            @if($order->user_id)
+                                {{ $order->owner->first_name }} {{ $order->owner->last_name }}
+                            @else
+                                &lt;anonymous user&gt;
+                            @endif
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--------------------------------------------ORDERED PRODUCTS --------------------------------------------}}
+        <div class="card card-primary m-0 mt-3">
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Products of order #{{ $order->id }}</h3>
             </div>
