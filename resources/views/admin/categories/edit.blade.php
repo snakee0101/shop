@@ -48,6 +48,10 @@
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
+
+                    <a href="" class="ml-3">
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                    </a>
                 </div>
             </form>
 
