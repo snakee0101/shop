@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderCredentials;
 use App\Models\Product;
 use App\Models\ProductSet;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
@@ -33,6 +34,23 @@ class OrderTest extends TestCase
 
         $this->assertInstanceOf(Product::class, $order->fresh()->products[0]);
         $this->assertInstanceOf(ProductSet::class, $order->fresh()->product_sets[0]);
+    }
+
+    public function test_order_has_an_owner()
+    {
+        $user = User::factory()->create();
+
+        $order = Order::factory()->withUser($user)->create();
+        $product = Product::factory()->create();
+
+        DB::table('order_item')->insert([
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 1
+        ]);
+
+        $this->assertInstanceOf(User::class, $order->fresh()->owner);
     }
 
     public function test_order_items_load_a_quantity()

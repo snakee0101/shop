@@ -12,6 +12,11 @@ class Order extends Model
     protected $dates = ['shipping_date'];
     protected $guarded = [];
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function credentials()
     {
         return $this->hasOne(OrderCredentials::class);
