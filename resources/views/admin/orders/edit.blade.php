@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container m-3">
-        <div class="card card-primary">
+        <div class="card card-primary m-0">
             <div class="card-header">
                 <h3 class="card-title">Products of order #{{ $order->id }}</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body pb-0">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
@@ -35,7 +35,7 @@
                                 @foreach($order->products as $product)
                                     <tr>
                                         <td class="dtr-control sorting_1" tabindex="0">
-                                            <a href="{{ route('product.description', $product) }}">
+                                            <a href="{{ route('product.description', $product) }}" target="__blank">
                                                 {{ $product->name }}
                                             </a>
                                         </td>
@@ -63,6 +63,9 @@
                         </div>
                     </div>
                 </div>
+                <p style="font-size: 2em">
+                    Total: <span class="font-weight-bold text-danger">${{ $order->total }}</span>
+                </p>
             </div>
         </div>
     </div>
