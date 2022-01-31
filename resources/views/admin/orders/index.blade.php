@@ -48,6 +48,12 @@
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-sort="ascending">Shipping date
                                     </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Details
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Actions
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,7 +63,7 @@
                                             {{ $order->id }}
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0" style="font-size: 1.2em">
-                                            <a href="#" class="badge {{ $order->is_paid ? 'badge-primary' : 'badge-danger' }}">
+                                            <a class="badge {{ $order->is_paid ? 'badge-primary' : 'badge-danger' }}">
                                                 {{ $order->is_paid ? 'Yes' : 'No' }}
                                             </a>
                                         </td>
@@ -87,6 +93,23 @@
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             {{ $order->shipping_date }}
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            <a href="">
+                                                Show Details
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form action="" method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                            <br><br>
+                                            <a href="">
+                                                <button class="btn btn-warning btn-sm">Edit</button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
