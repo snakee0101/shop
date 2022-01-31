@@ -18,6 +18,13 @@ class OrderController extends Controller
         ]);
     }
 
+    public function edit(Order $order)
+    {
+        return view('admin.orders.edit', [
+            'order' => $order
+        ]);
+    }
+
     public function destroy(Order $order)
     {
         $order->delete();

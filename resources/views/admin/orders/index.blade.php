@@ -125,7 +125,7 @@
                                             {{ $order->shipping_date }}
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0">
-                                            <a href="">
+                                            <a href="{{ route('order.edit', $order) }}">
                                                 Show Details
                                             </a>
                                         </td>
