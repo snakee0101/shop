@@ -76,4 +76,22 @@ class CharacteristicTest extends TestCase
 
         $this->assertDatabaseCount('characteristics', 0);
     }
+
+    public function test_characteristic_could_be_updated()
+    {
+        $category = Category::factory()->create();
+        $char = Characteristic::factory()->create(['category_id' => $category->id]);
+
+        $category2 = Category::factory()->create();
+
+        $this->put( route('characteristic.update', $char), [
+            'name' => 'new name',
+            'category_id' => $category2->id
+        ] );
+
+        $this->assertDatabaseHas('characteristics', [
+            'name' => 'new name',
+            'category_id' => $category2->id
+        ]);
+    }
 }

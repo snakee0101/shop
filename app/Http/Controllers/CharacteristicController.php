@@ -55,7 +55,9 @@ class CharacteristicController extends Controller
 
     public function update(Request $request, Characteristic $characteristic)
     {
-        //
+        $characteristic->update( $request->only( ['name', 'category_id'] ) );
+
+        return back();
     }
 
 
