@@ -21,7 +21,13 @@
                                         colspan="1" aria-sort="ascending">Category
                                     </th>
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                        colspan="1" aria-sort="ascending">Price
+                                        colspan="1" aria-sort="ascending">Price per item
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                             colspan="1" aria-sort="ascending">Quantity
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Total price
                                     </th>
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-sort="ascending">Description
@@ -48,6 +54,17 @@
                                                 <span class="text-secondary" style=""><s><small>${{ $product->price }}</small></s></span>
                                             @else
                                                 ${{ $product->price }}
+                                            @endif
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $product->pivot->quantity }}
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            @if($product->priceWithDiscount < $product->price)
+                                                <span class="font-weight-bold text-danger">${{ $product->priceWithDiscount * $product->pivot->quantity }}</span>
+                                                <span class="text-secondary" style=""><s><small>${{ $product->price * $product->pivot->quantity }}</small></s></span>
+                                            @else
+                                                ${{ $product->price * $product->pivot->quantity }}
                                             @endif
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0">

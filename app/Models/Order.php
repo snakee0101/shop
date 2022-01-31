@@ -31,7 +31,7 @@ class Order extends Model
 
     public function getTotalAttribute()
     {
-        return $this->products->sum( fn($product) => $product->priceWithDiscount )
-             + $this->product_sets->sum( fn($product) => $product->priceWithDiscount );
+        return $this->products->sum( fn($product) => $product->priceWithDiscount * $product->pivot->quantity )
+             + $this->product_sets->sum( fn($product_set) => $product_set->priceWithDiscount * $product_set->pivot->quantity );
     }
 }

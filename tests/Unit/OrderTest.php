@@ -93,7 +93,7 @@ class OrderTest extends TestCase
         ]]);
 
         $this->assertEquals($product_1->priceWithDiscount + $product_2->priceWithDiscount
-                                                                  + $product->priceWithDiscount,
+                                                                  + $product->priceWithDiscount*2,
                                      $order->fresh()->total);
     }
 
