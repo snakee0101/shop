@@ -57,10 +57,14 @@
                             @endif
                         </div>
                         <div class="col">
-
+                            <span class="text-danger font-weight-bold">Order creation date: </span>
+                            {{ $order->created_at }}
                         </div>
-                        <div class="col">
-
+                        <div class="col d-flex">
+                            <span class="text-danger font-weight-bold">Order shipping date: </span>
+                            <div class="form-group d-inline">
+                                <input type="text" class="form-control w-auto" name="shipping_date" value="{{ $order->shipping_date }}">
+                            </div>
                         </div>
                     </div>
                 </div>
