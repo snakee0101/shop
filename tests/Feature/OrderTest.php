@@ -445,6 +445,24 @@ class OrderTest extends TestCase
             ->assertSessionHasNoErrors();
     }
 
+    public function test_user_is_not_saved_if_it_is_not_logged_in()
+    {
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors();
+
+        $this->assertNull( Order::first()->user_id );
+    }
+
+    public function test_user_is_saved_if_it_is_logged_in()
+    {
+        $this->actingAs( $user = User::factory()->create() );
+
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+            ->assertSessionHasNoErrors();
+
+        $this->assertEquals( $user->id, Order::first()->user_id );
+    }
+
     public function test_order_could_be_deleted()
     {
         $order = Order::factory()->create();

@@ -47,11 +47,15 @@ class OrderController extends Controller
             'is_paid' => request('checkout_payment_method') === 'card'
         ];
 
+        $user = [
+            'user_id' => auth()->id()
+        ];
+
         //If transaction fails - cart is not cleared
-        DB::transaction(function() use ($is_paid, $form) {
+        DB::transaction(function() use ($is_paid, $form, $user) {
             $order = Order::create(
                 $form->only(['country', 'address', 'apartment', 'post_office_address', 'city', 'state', 'postcode', 'shipping_date'])
-                + $is_paid
+                + $is_paid + $user
             );
 
             //if user is not logged in - credentials must be saved
