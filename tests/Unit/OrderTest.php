@@ -97,6 +97,49 @@ class OrderTest extends TestCase
                                      $order->fresh()->total);
     }
 
+    public function test_order_calculates_product_subtotal()
+    {
+        $product = Product::factory()->create();
+        $product_set = ProductSet::factory()->create();
+
+        $order = Order::factory()->create();
+
+        $product_1 = Product::factory()->create();
+        $product_2 = Product::factory()->create();
+
+        Discount::factory()->withObject($product)->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
+        DB::table('order_item')->insert([[
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 2
+        ],[
+            'order_id' => $order->id,
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ]]);
+
+        $this->assertEquals($product->priceWithDiscount * 2,
+            $order->fresh()->product_subtotal);
+    }
+
+    public function test_order_calculates_product_set_subtotal()
+    {
+
+    }
+
     public function test_order_has_credentials()
     {
         $credentials = OrderCredentials::factory()->create();
