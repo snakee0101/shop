@@ -13,6 +13,10 @@ class CreateOrderItemTable extends Migration
             $table->foreignId('order_id');
             $table->morphs('item');
             $table->unsignedInteger('quantity');
+
+            $table->foreign('order_id')->references('id')
+                ->on('orders')
+                ->cascadeOnDelete();
         });
     }
 

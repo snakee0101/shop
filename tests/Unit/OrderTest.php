@@ -79,6 +79,28 @@ class OrderTest extends TestCase
 
     public function test_when_order_is_deleted_all_items_are_also_deleted()
     {
+        $product = Product::factory()->create();
+        $product_set = ProductSet::factory()->create();
 
+        $order = Order::factory()->create();
+
+        DB::table('order_item')->insert([[
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 2
+        ],[
+            'order_id' => $order->id,
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ]]);
+
+        $this->assertDatabaseCount('order_item', 2);
+
+        $order->delete();
+
+
+        $this->assertDatabaseCount('order_item', 0);
     }
 }
