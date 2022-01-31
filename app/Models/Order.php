@@ -39,4 +39,9 @@ class Order extends Model
     {
         return $this->products->sum( fn($product) => $product->priceWithDiscount * $product->pivot->quantity );
     }
+
+    public function getProductSetSubtotalAttribute()
+    {
+        return $this->product_sets->sum( fn($product_set) => $product_set->priceWithDiscount * $product_set->pivot->quantity );
+    }
 }
