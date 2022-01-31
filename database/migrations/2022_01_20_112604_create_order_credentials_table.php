@@ -10,7 +10,9 @@ class CreateOrderCredentialsTable extends Migration
     {
         Schema::create('order_credentials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->references('id')->on('orders');
+            $table->foreignId('order_id')->references('id')
+                                                ->on('orders')
+                                                ->cascadeOnDelete();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');

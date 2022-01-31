@@ -64,4 +64,21 @@ class OrderTest extends TestCase
 
         $this->assertInstanceOf(OrderCredentials::class, $order->credentials);
     }
+
+    public function test_when_order_is_deleted_its_credentials_are_also_deleted()
+    {
+        $credentials = OrderCredentials::factory()->create();
+        $order = Order::find($credentials->order_id);
+
+        $this->assertDatabaseCount('order_credentials', 1);
+
+        $order->delete();
+
+        $this->assertDatabaseCount('order_credentials', 0);
+    }
+
+    public function test_when_order_is_deleted_all_items_are_also_deleted()
+    {
+
+    }
 }
