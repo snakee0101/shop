@@ -247,7 +247,7 @@ class AdminOrderActionsTest extends TestCase
         $this->post( route('order.actions.add_product', $order), [
             'id' => 1000,
             'quantity' => 2
-        ])->assertSessionHasErrors('id');
+        ])->assertSessionHasErrorsIn('product', 'id');
     }
 
     public function test_when_product_set_is_not_exists_it_could_not_be_added_to_the_order()
@@ -257,6 +257,6 @@ class AdminOrderActionsTest extends TestCase
         $this->post( route('order.actions.add_product_set', $order), [
             'id' => 1000,
             'quantity' => 2
-        ])->assertSessionHasErrors('id');
+        ])->assertSessionHasErrorsIn('product_set', 'id');
     }
 }

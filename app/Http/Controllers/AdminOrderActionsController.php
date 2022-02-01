@@ -43,8 +43,8 @@ class AdminOrderActionsController extends Controller
 
     public function add_product(Order $order, Request $request)
     {
-        $request->validate([
-            'id' => 'exists:products,id'
+        $request->validateWithBag('product', [
+            'id' => 'required|exists:products,id'
         ]);
 
         $order->products()->attach($request->id, [
@@ -56,8 +56,8 @@ class AdminOrderActionsController extends Controller
 
     public function add_product_set(Order $order, Request $request)
     {
-        $request->validate([
-            'id' => 'exists:product_sets,id'
+        $request->validateWithBag('product_set', [
+            'id' => 'required|exists:product_sets,id'
         ]);
 
         $order->product_sets()->attach($request->id, [

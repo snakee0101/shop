@@ -212,7 +212,7 @@
                             </div>
                          </details>
                     </form>
-                    @error('id')
+                    @error('id', 'product')
                         <p class="alert alert-danger mt-1">Product with the given id is not found</p>
                     @enderror
                 </div>
@@ -385,7 +385,7 @@
                             </div>
                         </details>
                     </form>
-                    @error('id')
+                    @error('id', 'product_set')
                         <p class="alert alert-danger mt-1">Product set with the given id is not found</p>
                     @enderror
                 </div>
