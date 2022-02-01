@@ -190,6 +190,9 @@
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-sort="ascending">Image
                                     </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Actions
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -230,6 +233,14 @@
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             <img src="{{ $product->photos[0]->url }}" height="100" width="100">
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('order.actions.delete_product', [$order, $product]) }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-danger">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

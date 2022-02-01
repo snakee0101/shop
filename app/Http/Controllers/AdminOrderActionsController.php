@@ -10,7 +10,7 @@ class AdminOrderActionsController extends Controller
 {
     public function delete_product(Order $order, Product $product)
     {
-        $order->products()->delete($product);
+        $order->products()->detach($product);
 
         return redirect()->back();
     }
