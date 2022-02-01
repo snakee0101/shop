@@ -41,9 +41,9 @@ class AdminOrderActionsController extends Controller
         return redirect()->back();
     }
 
-    public function add_product(Order $order, Product $product)
+    public function add_product(Order $order, Request $request)
     {
-        $order->products()->attach($product, [
+        $order->products()->attach($request->id, [
             'quantity' => request('quantity')
         ]);
 

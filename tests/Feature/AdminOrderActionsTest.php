@@ -193,7 +193,8 @@ class AdminOrderActionsTest extends TestCase
 
         $this->assertEmpty( $order->products );
 
-        $this->post( route('order.actions.add_product', [$order, $product]), [
+        $this->post( route('order.actions.add_product', $order), [
+            'id' => $product->id,
             'quantity' => 2
         ]);
 
