@@ -212,6 +212,9 @@
                             </div>
                          </details>
                     </form>
+                    @error('id')
+                        <p class="alert alert-danger mt-1">Product with the given id is not found</p>
+                    @enderror
                 </div>
 
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
