@@ -9,116 +9,127 @@
             <div class="card-header">
                 <h3 class="card-title font-weight-bold">Order #{{ $order->id }} data</h3>
             </div>
-            <div class="card-body pb-0">
-                <div class="container">
-                    <div class="row mb-3">
-                        <div class="col-3">
-                           <span class="text-danger font-weight-bold">Paid:</span>
-                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                    <input type="radio" id="paid_yes" name="is_paid" class="custom-control-input" value="Yes" {{ $order->is_paid ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="paid_yes">Yes</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="paid_no" name="is_paid" class="custom-control-input" value="No" {{ $order->is_paid == false ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="paid_no">No</label>
-                                </div>
-                        </div>
-                        <div class="col">
-                            <span class="text-danger font-weight-bold">Status:</span>
-                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                    <input type="radio" id="status_on_hold" name="status" class="custom-control-input" value="on hold" {{ $order->status == 'on hold' ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="status_on_hold">On hold</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                    <input type="radio" id="status_processing" name="status" class="custom-control-input" value="processing" {{ $order->status == 'processing' ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="status_processing">Processing</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                    <input type="radio" id="status_cancelled" name="status" class="custom-control-input" value="cancelled" {{ $order->status == 'cancelled' ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="status_cancelled">Cancelled</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                    <input type="radio" id="status_sent" name="status" class="custom-control-input" value="sent" {{ $order->status == 'sent' ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="status_sent">Sent</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                    <input type="radio" id="status_completed" name="status" class="custom-control-input" value="completed" {{ $order->status == 'completed' ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="status_completed">Completed</label>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <span class="text-danger font-weight-bold">User: </span>
-                            @if($order->user_id)
-                                {{ $order->owner->first_name }} {{ $order->owner->last_name }}
-                            @else
-                                &lt;anonymous user&gt;
-                            @endif
-                        </div>
-                        <div class="col">
-                            <span class="text-danger font-weight-bold">Order creation date: </span>
-                            {{ $order->created_at }}
-                        </div>
-                        <div class="col d-flex">
-                            <span class="text-danger font-weight-bold">Order shipping date: </span>
-                            <div class="form-group d-inline">
-                                <input type="text" class="form-control w-auto" name="shipping_date" value="{{ $order->shipping_date }}">
+            <form action="{{ route('order.update', $order) }}" method="post">
+                @csrf
+                @method('PUT')
+                <div class="card-body pb-0">
+                    <div class="container">
+                        <div class="row mb-3">
+                            <div class="col-3">
+                               <span class="text-danger font-weight-bold">Paid:</span>
+                                    <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                        <input type="radio" id="paid_yes" name="is_paid" class="custom-control-input" value="Yes" {{ $order->is_paid ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="paid_yes">Yes</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="paid_no" name="is_paid" class="custom-control-input" value="No" {{ $order->is_paid == false ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="paid_no">No</label>
+                                    </div>
+                            </div>
+                            <div class="col">
+                                <span class="text-danger font-weight-bold">Status:</span>
+                                    <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                        <input type="radio" id="status_on_hold" name="status" class="custom-control-input" value="on hold" {{ $order->status == 'on hold' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="status_on_hold">On hold</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                        <input type="radio" id="status_processing" name="status" class="custom-control-input" value="processing" {{ $order->status == 'processing' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="status_processing">Processing</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                        <input type="radio" id="status_cancelled" name="status" class="custom-control-input" value="cancelled" {{ $order->status == 'cancelled' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="status_cancelled">Cancelled</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                        <input type="radio" id="status_sent" name="status" class="custom-control-input" value="sent" {{ $order->status == 'sent' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="status_sent">Sent</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                        <input type="radio" id="status_completed" name="status" class="custom-control-input" value="completed" {{ $order->status == 'completed' ? 'checked' : '' }}>
+                                        <label class="custom-control-label" for="status_completed">Completed</label>
+                                    </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col d-flex align-items-baseline">
-                            <span class="text-danger font-weight-bold mr-2">Country: </span>
-                            <div class="form-group d-inline">
-                                <input type="text" class="form-control w-auto" name="country" value="{{ $order->country }}">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <span class="text-danger font-weight-bold">User: </span>
+                                @if($order->user_id)
+                                    {{ $order->owner->first_name }} {{ $order->owner->last_name }}
+                                @else
+                                    &lt;anonymous user&gt;
+                                @endif
                             </div>
-                        </div>
-                        <div class="col d-flex align-items-baseline">
-                            <span class="text-danger font-weight-bold mr-2">State: </span>
-                            <div class="form-group d-inline">
-                                <input type="text" class="form-control w-auto" name="state" value="{{ $order->state }}">
+                            <div class="col">
+                                <span class="text-danger font-weight-bold">Order creation date: </span>
+                                {{ $order->created_at }}
                             </div>
-                        </div>
-                        <div class="col d-flex align-items-baseline">
-                            <span class="text-danger font-weight-bold mr-2">City: </span>
-                            <div class="form-group d-inline">
-                                <input type="text" class="form-control w-auto" name="city" value="{{ $order->city }}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col d-flex flex-col">
-                            <div class="row">
-                                <span class="text-danger font-weight-bold mr-2">Address: </span>
+                            <div class="col d-flex">
+                                <span class="text-danger font-weight-bold">Order shipping date: </span>
                                 <div class="form-group d-inline">
-                                    <input type="text" class="form-control w-auto" name="address" value="{{ $order->address }}">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <span class="text-danger font-weight-bold mr-2">Apartment: </span>
-                                <div class="form-group d-inline">
-                                    <input type="text" class="form-control w-auto" name="apartment" value="{{ $order->apartment }}">
+                                    <input type="text" class="form-control w-auto" name="shipping_date" value="{{ $order->shipping_date }}">
                                 </div>
                             </div>
                         </div>
-                        <div class="col d-flex flex-col">
-                            <div class="row ">
-                                <span class="text-danger font-weight-bold mr-2">Post Office Address: </span>
+                        <div class="row mb-3">
+                            <div class="col d-flex align-items-baseline">
+                                <span class="text-danger font-weight-bold mr-2">Country: </span>
                                 <div class="form-group d-inline">
-                                    <input type="text" class="form-control w-auto" name="post_office_address" value="{{ $order->post_office_address }}">
+                                    <input type="text" class="form-control w-auto" name="country" value="{{ $order->country }}">
                                 </div>
                             </div>
-                            <div class="row">
-                                <span class="text-danger font-weight-bold mr-2">Postcode: </span>
+                            <div class="col d-flex align-items-baseline">
+                                <span class="text-danger font-weight-bold mr-2">State: </span>
                                 <div class="form-group d-inline">
-                                    <input type="text" class="form-control w-auto" name="postcode" value="{{ $order->postcode }}">
+                                    <input type="text" class="form-control w-auto" name="state" value="{{ $order->state }}">
                                 </div>
                             </div>
+                            <div class="col d-flex align-items-baseline">
+                                <span class="text-danger font-weight-bold mr-2">City: </span>
+                                <div class="form-group d-inline">
+                                    <input type="text" class="form-control w-auto" name="city" value="{{ $order->city }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex flex-col">
+                                <div class="row">
+                                    <span class="text-danger font-weight-bold mr-2">Address: </span>
+                                    <div class="form-group d-inline">
+                                        <input type="text" class="form-control w-auto" name="address" value="{{ $order->address }}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <span class="text-danger font-weight-bold mr-2">Apartment: </span>
+                                    <div class="form-group d-inline">
+                                        <input type="text" class="form-control w-auto" name="apartment" value="{{ $order->apartment }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col d-flex flex-col">
+                                <div class="row ">
+                                    <span class="text-danger font-weight-bold mr-2">Post Office Address: </span>
+                                    <div class="form-group d-inline">
+                                        <input type="text" class="form-control w-auto" name="post_office_address" value="{{ $order->post_office_address }}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <span class="text-danger font-weight-bold mr-2">Postcode: </span>
+                                    <div class="form-group d-inline">
+                                        <input type="text" class="form-control w-auto" name="postcode" value="{{ $order->postcode }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                            <a href="" class="ml-3">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         {{--------------------------------------------ORDERED PRODUCTS --------------------------------------------}}
         <div class="card card-primary m-0 mt-3">

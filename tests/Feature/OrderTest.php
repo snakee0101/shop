@@ -479,7 +479,7 @@ class OrderTest extends TestCase
         $order = Order::factory()->create();
 
         $data = [
-            'is_paid' => true,
+            'is_paid' => 'No',
             'status' => 'sent',
             'country' => 'USA',
             'address' => 'New Street, 123b',
@@ -494,6 +494,7 @@ class OrderTest extends TestCase
         $this->put( route('order.update', $order), $data)
              ->assertRedirect();
 
+        $data['is_paid'] = false;
         $this->assertDatabaseHas('orders', $data);
     }
 }

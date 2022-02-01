@@ -107,9 +107,13 @@ class OrderController extends Controller
 
     public function update(Order $order)
     {
-        $order->update( request(['is_paid', 'status', 'country',
+        //TODO: check datetime format in shipping date
+
+        $is_paid = ['is_paid' => \request('is_paid') == 'Yes'];
+
+        $order->update( request(['status', 'country',
             'address', 'apartment', 'post_office_address', 'city',
-            'state', 'postcode', 'shipping_date']) );
+            'state', 'postcode', 'shipping_date']) + $is_paid );
 
         return redirect()->back();
     }
