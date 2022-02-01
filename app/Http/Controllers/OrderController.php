@@ -104,4 +104,13 @@ class OrderController extends Controller
            'message' => 'Your order is successfully placed'
         ]);
     }
+
+    public function update(Order $order)
+    {
+        $order->update( request(['is_paid', 'status', 'country',
+            'address', 'apartment', 'post_office_address', 'city',
+            'state', 'postcode', 'shipping_date']) );
+
+        return redirect()->back();
+    }
 }

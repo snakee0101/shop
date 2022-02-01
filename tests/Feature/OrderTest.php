@@ -473,4 +473,27 @@ class OrderTest extends TestCase
 
         $this->assertDatabaseCount('orders', 0);
     }
+
+    public function test_order_data_could_be_updated()
+    {
+        $order = Order::factory()->create();
+
+        $data = [
+            'is_paid' => true,
+            'status' => 'sent',
+            'country' => 'USA',
+            'address' => 'New Street, 123b',
+            'apartment' => '54',
+            'post_office_address' => null,
+            'city' => 'New York',
+            'state' => 'New York',
+            'postcode' => 12345,
+            'shipping_date' => '2022-10-10 10:10:10'
+        ];
+
+        $this->put( route('order.update', $order), $data)
+             ->assertRedirect();
+
+        $this->assertDatabaseHas('orders', $data);
+    }
 }
