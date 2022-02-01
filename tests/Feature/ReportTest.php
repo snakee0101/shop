@@ -30,4 +30,21 @@ class ReportTest extends TestCase
             'object_type' => $review::class
         ]);
     }
+
+    public function test_report_could_be_deleted()
+    {
+        $user = User::factory()->create();
+        $review = Review::factory()->create();
+
+        $report = Report::factory()
+            ->withObject($review)
+            ->create();
+
+        $this->actingAs($user);
+
+        $this->delete( route('report.destroy', $report) )
+             ->assertRedirect();
+
+        $this->assertDatabaseCount('reports', 0);
+    }
 }
