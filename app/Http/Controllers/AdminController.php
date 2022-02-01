@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Characteristic;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -63,7 +64,9 @@ class AdminController extends Controller
 
     public function reports()
     {
-        return view('admin.reports.index');
+        return view('admin.reports.index', [
+            'reports' => Report::all()
+        ]);
     }
 
     public function statistics()
