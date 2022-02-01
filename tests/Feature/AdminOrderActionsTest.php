@@ -205,6 +205,36 @@ class AdminOrderActionsTest extends TestCase
 
     public function test_product_set_could_be_added_to_the_order()
     {
+        $order = Order::factory()->create();
+        $product_set = ProductSet::factory()->create();
 
+        $product_1 = Product::factory()->create();
+        $product_2 = Product::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
+        DB::table('order_item')->insert([
+            'order_id' => $order->id,
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ]);
+
+        $this->post( route('order.actions.add_product_set', [$order, $product_set]), [
+            'quantity' => 2
+        ]);
+
+        $this->assertDatabaseHas('order_item', [
+            'item_type' => ProductSet::class,
+            'quantity' => 2
+        ]);
     }
 }
