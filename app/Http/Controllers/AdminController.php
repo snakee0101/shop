@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -21,7 +22,9 @@ class AdminController extends Controller
 
     public function list_users()
     {
-        return view('admin.users');
+        return view('admin.users.index', [
+            'users' => User::all()
+        ]);
     }
 
     public function categories_index()
