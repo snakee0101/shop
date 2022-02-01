@@ -44,7 +44,7 @@
                         {{ $report->created_at }}
                     </td>
                     <td>
-                        <form action="" method="post" class="d-inline">
+                        <form action="{{ route('report.destroy', $report) }}" method="post" class="d-inline">
                             @csrf
                             @method('DELETE')
 
