@@ -5,6 +5,7 @@ use App\Http\Controllers\{ProductController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\{AdminController,
+    AdminOrderActionsController,
     CharacteristicController,
     ComparisonController,
     CouponController,
@@ -60,6 +61,10 @@ Route::controller(ProductController::class)->name('product.')->prefix('/product/
 });
 
 
+Route::controller(AdminOrderActionsController::class)->name('order.actions.')->prefix('/order/{order}/')
+                                                                             ->group(function (){
+   Route::delete('/delete_product/{product}', 'delete_product')->name('delete_product');
+});
 
 Route::controller(ComparisonController::class)->middleware('authenticated')->prefix('comparison')
                                               ->name('comparison.')->group(function () {
