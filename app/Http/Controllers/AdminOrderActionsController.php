@@ -16,6 +16,13 @@ class AdminOrderActionsController extends Controller
         return redirect()->back();
     }
 
+    public function delete_product_set(Order $order, ProductSet $product_set)
+    {
+        $order->product_sets()->detach($product_set);
+
+        return redirect()->back();
+    }
+
     public function change_product_quantity(Order $order, Product $product)
     {
         $order->products()->syncWithoutDetaching([
@@ -34,9 +41,11 @@ class AdminOrderActionsController extends Controller
         return redirect()->back();
     }
 
-    public function delete_product_set(Order $order, ProductSet $product_set)
+    public function add_product(Order $order, Product $product)
     {
-        $order->product_sets()->detach($product_set);
+        $order->products()->attach($product, [
+            'quantity' => request('quantity')
+        ]);
 
         return redirect()->back();
     }

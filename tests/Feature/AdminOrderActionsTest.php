@@ -185,4 +185,26 @@ class AdminOrderActionsTest extends TestCase
             'quantity' => 10
         ]);
     }
+
+    public function test_product_could_be_added_to_the_order()
+    {
+        $order = Order::factory()->create();
+        $product = Product::factory()->create();
+
+        $this->assertEmpty( $order->products );
+
+        $this->post( route('order.actions.add_product', [$order, $product]), [
+            'quantity' => 2
+        ]);
+
+        $this->assertCount(1, $order->fresh()->products);
+        $this->assertDatabaseHas('order_item', [
+            'quantity' => 2
+        ]);
+    }
+
+    public function test_product_set_could_be_added_to_the_order()
+    {
+
+    }
 }
