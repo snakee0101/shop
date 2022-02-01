@@ -67,6 +67,7 @@ Route::controller(AdminOrderActionsController::class)->name('order.actions.')->p
    Route::delete('/delete_product_set/{product_set}', 'delete_product_set')->name('delete_product_set');
 
    Route::post('/change_quantity/product/{product}', 'change_product_quantity')->name('change_product_quantity');
+   Route::post('/change_quantity/product_set/{product_set}', 'change_product_set_quantity')->name('change_product_set_quantity');
 });
 
 Route::controller(ComparisonController::class)->middleware('authenticated')->prefix('comparison')

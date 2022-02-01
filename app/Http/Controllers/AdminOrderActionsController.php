@@ -24,6 +24,16 @@ class AdminOrderActionsController extends Controller
 
         return redirect()->back();
     }
+
+    public function change_product_set_quantity(Order $order, ProductSet $product_set)
+    {
+        $order->product_sets()->sync([
+            $product_set->id => ['quantity' => request('quantity')]
+        ]);
+
+        return redirect()->back();
+    }
+
     public function delete_product_set(Order $order, ProductSet $product_set)
     {
         $order->product_sets()->detach($product_set);
