@@ -349,6 +349,47 @@
                 <h3 class="card-title font-weight-bold">Product sets of order #{{ $order->id }}</h3>
             </div>
             <div class="card-body pb-0">
+                <div class="row mb-3">
+                    <form action="{{ route('order.actions.add_product_set', $order) }}" class="w-100" method="post">
+                        @csrf
+                        <details>
+                            <summary class="font-weight-bold" style="font-size: 1.3em">Add product set</summary>
+                            <div class="row">
+                                <div class="col d-flex align-items-baseline">
+                                    <span class="text-danger font-weight-bold mr-2">Product Set Id: </span>
+                                    <div class="form-group d-inline">
+                                        <input type="text" class="form-control w-auto" name="id">
+                                    </div>
+                                </div>
+                                <div class="col d-flex align-items-baseline">
+                                    <span class="text-danger font-weight-bold mr-2">Quantity: </span>
+                                    <div class="form-group d-inline">
+                                        <input type="text" class="form-control w-auto" name="quantity">
+                                    </div>
+                                </div>
+                                <div class="col d-flex align-items-baseline">
+                                    <a href="">
+                                        <button type="button" class="btn btn-sm btn-outline-danger p-0 ml-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                                 fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
+                                    </a>
+
+                                    <button class="btn btn-success ml-2">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+                    </form>
+                    @error('id')
+                        <p class="alert alert-danger mt-1">Product set with the given id is not found</p>
+                    @enderror
+                </div>
+
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
