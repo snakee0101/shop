@@ -18,7 +18,7 @@ class AdminOrderActionsController extends Controller
 
     public function change_product_quantity(Order $order, Product $product)
     {
-        $order->products()->sync([
+        $order->products()->syncWithoutDetaching([
             $product->id => ['quantity' => request('quantity')]
         ]);
 
@@ -27,7 +27,7 @@ class AdminOrderActionsController extends Controller
 
     public function change_product_set_quantity(Order $order, ProductSet $product_set)
     {
-        $order->product_sets()->sync([
+        $order->product_sets()->syncWithoutDetaching([
             $product_set->id => ['quantity' => request('quantity')]
         ]);
 

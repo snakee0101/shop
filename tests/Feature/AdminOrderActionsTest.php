@@ -32,6 +32,72 @@ class AdminOrderActionsTest extends TestCase
         $this->assertCount(0, $order->fresh()->products);
     }
 
+    public function test_when_product_count_is_changed_other_products_are_not_detached()
+    {
+        $order = Order::factory()->create();
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        DB::table('order_item')->insert([[
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 1
+        ],[
+            'order_id' => $order->id,
+            'item_id' => $product2->id,
+            'item_type' => Product::class,
+            'quantity' => 1
+        ]]);
+
+        $this->assertCount(2, $order->fresh()->products);
+
+        $this->post(route('order.actions.change_product_quantity', [$order, $product]), [
+            'quantity' => 10
+        ] )->assertRedirect();
+
+        $this->assertCount(2, $order->fresh()->products);
+    }
+
+    public function test_when_product_set_count_is_changed_other_products_are_not_detached()
+    {
+        $order = Order::factory()->create();
+        $product_set = ProductSet::factory()->create();
+
+        $product_1 = Product::factory()->create();
+        $product_2 = Product::factory()->create();
+
+        $product_3 = Product::factory()->create();
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_1->id
+        ]);
+
+        DB::table('product_set_product')->insert([
+            'product_set_id' => $product_set->id,
+            'product_id' => $product_2->id
+        ]);
+
+        DB::table('order_item')->insert([[
+            'order_id' => $order->id,
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ],[
+            'order_id' => $order->id,
+            'item_id' => $product_3->id,
+            'item_type' => Product::class,
+            'quantity' => 1
+        ]]);
+
+        $this->post(route('order.actions.change_product_set_quantity', [$order, $product_set]), [
+            'quantity' => 10
+        ] )->assertRedirect();
+
+        $this->assertDatabaseCount('order_item', 2);
+    }
+
     public function test_product_set_could_be_deleted_from_order()
     {
         $order = Order::factory()->create();
