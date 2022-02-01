@@ -18,7 +18,7 @@ class CharacteristicTest extends TestCase
         $response = $this->post( route('characteristic.store'), [
             'name' => 'test',
             'category_id' => $category->id
-        ] )->assertOk();
+        ] );
 
         $this->assertDatabaseHas('characteristics', [
            'name' => 'test',
