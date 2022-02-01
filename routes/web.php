@@ -64,6 +64,7 @@ Route::controller(ProductController::class)->name('product.')->prefix('/product/
 Route::controller(AdminOrderActionsController::class)->name('order.actions.')->prefix('/order/{order}/')
                                                                              ->group(function (){
    Route::delete('/delete_product/{product}', 'delete_product')->name('delete_product');
+   Route::delete('/delete_product_set/{product_set}', 'delete_product_set')->name('delete_product_set');
 });
 
 Route::controller(ComparisonController::class)->middleware('authenticated')->prefix('comparison')
