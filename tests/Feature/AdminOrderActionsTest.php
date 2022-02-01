@@ -229,7 +229,8 @@ class AdminOrderActionsTest extends TestCase
             'quantity' => 1
         ]);
 
-        $this->post( route('order.actions.add_product_set', [$order, $product_set]), [
+        $this->post( route('order.actions.add_product_set', $order), [
+            'id' => $product_set->id,
             'quantity' => 2
         ]);
 

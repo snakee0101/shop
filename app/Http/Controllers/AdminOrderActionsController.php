@@ -50,9 +50,9 @@ class AdminOrderActionsController extends Controller
         return redirect()->back();
     }
 
-    public function add_product_set(Order $order, ProductSet $product_set)
+    public function add_product_set(Order $order, Request $request)
     {
-        $order->product_sets()->attach($product_set, [
+        $order->product_sets()->attach($request->id, [
             'quantity' => request('quantity')
         ]);
 
