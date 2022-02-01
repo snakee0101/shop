@@ -22,7 +22,7 @@ class CouponController extends Controller
                 'status' => 'Error'
             ];
         } finally {
-            return redirect()->back()->with($data);
+            return back()->with($data);
         }
     }
 }

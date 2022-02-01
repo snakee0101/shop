@@ -41,7 +41,7 @@
 
                 @if( session()->has('message') )
                     <div class="alert {{ session('status') == 'OK' ? 'alert-success' : 'alert-danger'}}" role="alert">
-                        {{ session()->pull('message') }}
+                        {{ session('message') }}
                     </div>
                 @endif
 
