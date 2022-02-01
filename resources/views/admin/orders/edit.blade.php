@@ -120,6 +120,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            @error('country')
+                                <div class="alert alert-danger p-2" role="alert">
+                                   Country is required
+                                </div>
+                            @enderror
+                            @error('city')
+                                <div class="alert alert-danger p-2" role="alert">
+                                   City is required
+                                </div>
+                            @enderror
+                            @error('state')
+                                <div class="alert alert-danger p-2" role="alert">
+                                   State is required
+                                </div>
+                            @enderror
+                            @error('shipping_date')
+                                <div class="alert alert-danger p-2" role="alert">
+                                   Shipping date is required and must be in valid format. Example: 2021-10-10 12:12:12
+                                </div>
+                            @enderror
+                        </div>
                         <div class="card-footer d-flex">
                             <button type="submit" class="btn btn-primary">Submit</button>
 
