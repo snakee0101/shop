@@ -283,6 +283,9 @@
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-sort="ascending">Total price
                                     </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Actions
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -317,6 +320,14 @@
                                             @else
                                                 ${{ $product_set->price * $product_set->pivot->quantity }}
                                             @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('order.actions.delete_product_set', [$order, $product_set]) }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-danger">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
