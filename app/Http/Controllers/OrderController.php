@@ -105,9 +105,14 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update(Order $order)
+    public function update(Order $order, Request $request)
     {
-        //TODO: check datetime format in shipping date
+        $request->validate([
+            'country' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'shipping_date' => 'required|date_format:Y-m-d H:i:s'
+        ]);
 
         $is_paid = ['is_paid' => \request('is_paid') == 'Yes'];
 

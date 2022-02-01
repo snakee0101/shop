@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('post_office_address')->nullable();
             $table->string('city');
             $table->string('state');
-            $table->string('postcode');
+            $table->string('postcode')->nullable();
             $table->timestamp('shipping_date');
             $table->timestamps();
         });
