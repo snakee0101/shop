@@ -64,4 +64,30 @@ class AdminOrderActionsTest extends TestCase
 
         $this->assertCount(0, $order->fresh()->product_sets);
     }
+
+    public function test_products_quantity_in_order_could_be_changed()
+    {
+        $order = Order::factory()->create();
+        $product = Product::factory()->create();
+
+        DB::table('order_item')->insert([
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 1
+        ]);
+
+        $this->post(route('order.actions.change_product_quantity', [$order, $product]), [
+            'quantity' => 10
+        ] )->assertRedirect();
+
+        $this->assertDatabaseHas('order_item', [
+            'quantity' => 10
+        ]);
+    }
+
+    public function test_product_sets_quantity_in_order_could_be_changed()
+    {
+
+    }
 }
