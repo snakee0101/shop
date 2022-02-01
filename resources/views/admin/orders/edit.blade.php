@@ -87,6 +87,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col d-flex flex-col">
+                            <div class="row">
+                                <span class="text-danger font-weight-bold mr-2">Address: </span>
+                                <div class="form-group d-inline">
+                                    <input type="text" class="form-control w-auto" name="address" value="{{ $order->address }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="text-danger font-weight-bold mr-2">Apartment: </span>
+                                <div class="form-group d-inline">
+                                    <input type="text" class="form-control w-auto" name="apartment" value="{{ $order->apartment }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-col">
+                            <div class="row ">
+                                <span class="text-danger font-weight-bold mr-2">Post Office Address: </span>
+                                <div class="form-group d-inline">
+                                    <input type="text" class="form-control w-auto" name="post_office_address" value="{{ $order->post_office_address }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="text-danger font-weight-bold mr-2">Postcode: </span>
+                                <div class="form-group d-inline">
+                                    <input type="text" class="form-control w-auto" name="postcode" value="{{ $order->postcode }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
