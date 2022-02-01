@@ -67,6 +67,26 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col d-flex align-items-baseline">
+                            <span class="text-danger font-weight-bold mr-2">Country: </span>
+                            <div class="form-group d-inline">
+                                <input type="text" class="form-control w-auto" name="country" value="{{ $order->country }}">
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-baseline">
+                            <span class="text-danger font-weight-bold mr-2">State: </span>
+                            <div class="form-group d-inline">
+                                <input type="text" class="form-control w-auto" name="state" value="{{ $order->state }}">
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-baseline">
+                            <span class="text-danger font-weight-bold mr-2">City: </span>
+                            <div class="form-group d-inline">
+                                <input type="text" class="form-control w-auto" name="city" value="{{ $order->city }}">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
