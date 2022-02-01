@@ -192,13 +192,13 @@
                                 id="tab-bought-together">
                                 @yield('buy_together')
                             </div>
-                            @unless($product_sets->isEmpty())
+                            @if(isset($product_sets) && $product_sets->isNotEmpty())
                                 <div class="mt-5">
                                     @include('partials.product_set_filtering_group', [
                                         'product_sets' => $product_sets
                                     ])
                                 </div>
-                            @endunless
+                            @endif
                         </div>
                     </div>
                 </div>

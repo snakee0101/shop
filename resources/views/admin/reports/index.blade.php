@@ -27,7 +27,9 @@
             @foreach($reports as $report)
                 <tr>
                     <td class="dtr-control sorting_1" tabindex="0">
-                        {{ class_basename( $report->object ) }} #{{ $report->object->id }}
+                        <a href="{{ route( mb_strtolower(class_basename( $report->object )) . '.show', $report->object) }}" target="__blank">
+                            {{ class_basename( $report->object ) }} #{{ $report->object->id }}
+                        </a>
                     </td>
                     <td>
                         {{ $report->cause }}
