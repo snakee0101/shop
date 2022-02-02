@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Characteristic;
+use App\Models\Product;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,9 @@ class AdminController extends Controller
 {
     public function products()
     {
-        return view('admin.products.index');
+        return view('admin.products.index', [
+            'products' => Product::all()
+        ]);
     }
 
     public function create_product()
