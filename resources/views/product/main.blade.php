@@ -26,35 +26,23 @@
                         <div class="product__gallery">
                             <div class="product-gallery">
                                 <div class="product-gallery__featured">
-                                    <div class="owl-carousel" id="product-image"><a
-                                            href="/images/products/product-16.html" target="_blank"><img
-                                                src="/images/products/product-16.jpg" alt=""> </a><a
-                                            href="/images/products/product-16-1.html" target="_blank"><img
-                                                src="/images/products/product-16-1.jpg" alt=""> </a><a
-                                            href="/images/products/product-16-2.html" target="_blank"><img
-                                                src="/images/products/product-16-2.jpg" alt=""> </a><a
-                                            href="/images/products/product-16-3.html" target="_blank"><img
-                                                src="/images/products/product-16-3.jpg" alt=""> </a><a
-                                            href="/images/products/product-16-4.html" target="_blank"><img
-                                                src="/images/products/product-16-4.jpg" alt=""></a></div>
+                                    <div class="owl-carousel" id="product-image">
+                                        @foreach($product->photos as $photo)
+                                            <a href="#" target="_blank">
+                                                <img src="{{ $photo->url }}" alt="">
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 </div>
                                 <div class="product-gallery__carousel">
-                                    <div class="owl-carousel" id="product-carousel"><a href="#"
-                                                                                       class="product-gallery__carousel-item"><img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16.jpg" alt=""> </a><a href="#"
-                                                                                                     class="product-gallery__carousel-item"><img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-1.jpg" alt=""> </a><a href="#"
-                                                                                                       class="product-gallery__carousel-item"><img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-2.jpg" alt=""> </a><a href="#"
-                                                                                                       class="product-gallery__carousel-item"><img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-3.jpg" alt=""> </a><a href="#"
-                                                                                                       class="product-gallery__carousel-item"><img
-                                                class="product-gallery__carousel-image"
-                                                src="/images/products/product-16-4.jpg" alt=""></a></div>
+                                    <div class="owl-carousel" id="product-carousel">
+                                        @foreach($product->photos as $photo)
+                                            <a href="#" class="product-gallery__carousel-item">
+                                                <img class="product-gallery__carousel-image"
+                                                     src="{{ $photo->url }}" alt="">
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,10 +123,14 @@
 
                                         </cart-button-quantity-component>
                                         <div class="product__actions-item product__actions-item--wishlist">
-                                            <favorite-button-component :user="{{ auth()->user() ?? "{}" }}" :product="{{ $product }}" :big-sized="true"></favorite-button-component>
+                                            <favorite-button-component :user="{{ auth()->user() ?? "{}" }}"
+                                                                       :product="{{ $product }}"
+                                                                       :big-sized="true"></favorite-button-component>
                                         </div>
                                         <div class="product__actions-item product__actions-item--compare">
-                                            <compare-button-component :user="{{ auth()->user() ?? "{}" }}" :product="{{ $product }}" :big-sized="true"></compare-button-component>
+                                            <compare-button-component :user="{{ auth()->user() ?? "{}" }}"
+                                                                      :product="{{ $product }}"
+                                                                      :big-sized="true"></compare-button-component>
                                         </div>
                                     </div>
                                 </div>
