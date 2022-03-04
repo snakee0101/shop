@@ -84,8 +84,6 @@ class AdminController extends Controller
 
     public function store_product(Request $request)
     {
-        dd($request->discount_applied); //state: "on" or null
-
         $request->validate([
             'name' => 'required|unique:products,name',
             'description' => 'required',
@@ -96,10 +94,21 @@ class AdminController extends Controller
             'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
         ]);
 
-        Product::create(
+        $product = Product::create(
             $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
                 ['category_id' => $request->category_id]
         );
+
+        if($request->discount_applied === 'on')
+        {
+            $product->discount()->create([
+                'discount_classname' => $request->discount_classname,
+                'value' => $request->discount_value,
+                'active_since' => $request->discount_active_since,
+                'active_until' => $request->discount_active_until,
+                'coupon_code' => $request->coupon_code
+            ]);
+        }
 
         session()->flash('message', 'Product was successfully created');
         return back();
