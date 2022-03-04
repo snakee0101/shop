@@ -84,6 +84,8 @@ class AdminController extends Controller
 
     public function store_product(Request $request)
     {
+        dd($request->discount_applied); //state: "on" or null
+
         $request->validate([
             'name' => 'required|unique:products,name',
             'description' => 'required',

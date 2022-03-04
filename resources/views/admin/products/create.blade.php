@@ -112,6 +112,55 @@
             </div>
         </div>
 
+        <div class="container row mt-4">
+            <div class="card card-warning col p-0 m-auto">
+                <div class="card-header">
+                    <h3 class="card-title">Discount</h3>
+                    <div class="form-check d-inline ml-4">
+                        <input class="form-check-input" type="checkbox" id="discount_applied" name="discount_applied">
+                        <label class="form-check-label" for="discount_applied">
+                            Apply discount
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col d-flex flex-row align-items-center">
+                            - <input name="discount_value" class="form-control mx-2" type="text" value="0.00">
+                            <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                <input type="radio" id="fixed_discount" name="discount_classname"
+                                       class="custom-control-input"
+                                       value="{{ \App\Discounts\FixedPriceDiscount::class }}">
+                                <label class="custom-control-label" for="fixed_discount">$</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline d-inline-block">
+                                <input type="radio" id="percent_discount" name="discount_classname" class="custom-control-input"
+                                       value="{{ \App\Discounts\PercentDiscount::class }}">
+                                <label class="custom-control-label" for="percent_discount">%</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="active_until" class="col-sm-2 col-form-label">Active until</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="active_until" id="active_until" placeholder="Enter discount expire date. Format: 2020-02-02">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="coupon_code" class="col-sm-2 col-form-label">Coupon code</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="coupon_code" name="coupon_code">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-warning mt-3">Submit</button>
     </form>
 @endsection
