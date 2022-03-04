@@ -32,7 +32,6 @@ class ProductTest extends TestCase
             'discount_applied' => 'on',
             'discount_classname' => FixedPriceDiscount::class,
             'discount_value' => 10,
-            'coupon_code' => 'ABCD'
         ];
 
         $this->post( route('admin.products.store_product'),
@@ -54,7 +53,6 @@ class ProductTest extends TestCase
         $discount_data = [
             'discount_classname' => FixedPriceDiscount::class,
             'discount_value' => 10,
-            'coupon_code' => 'ABCD'
         ];
 
         $this->post( route('admin.products.store_product'),
@@ -82,6 +80,25 @@ class ProductTest extends TestCase
         )->assertRedirect();
 
         $this->assertStringContainsString(date('Y-m-d'), Discount::first()->active_since);
+    }
+
+    public function test_product_could_be_created_with_discount_that_has_automatically_generated_coupon_code()
+    {
+        $product = Product::factory()->make();
+
+        $discount_data = [
+            'discount_applied' => 'on',
+            'discount_classname' => FixedPriceDiscount::class,
+            'discount_value' => 10,
+            'with_coupon_code' => 'on'
+        ];
+
+        $this->post( route('admin.products.store_product'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            + $discount_data
+        )->assertRedirect();
+
+        $this->assertNotEmpty( Discount::first()->coupon_code );
     }
 
     public function test_product_could_be_created_with_images()

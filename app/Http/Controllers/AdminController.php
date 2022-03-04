@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -111,6 +112,9 @@ class AdminController extends Controller
 
             if($request->discount_active_until && !$request->discount_active_since)
                 $data['active_since'] = date('Y-m-d');
+
+            if($request->with_coupon_code === 'on')
+                $data['coupon_code'] = Str::uuid();
 
             $product->discount()->create($data);
         }

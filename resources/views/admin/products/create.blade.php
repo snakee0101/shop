@@ -130,7 +130,7 @@
                             <div class="custom-control custom-radio custom-control-inline d-inline-block">
                                 <input type="radio" id="fixed_discount" name="discount_classname"
                                        class="custom-control-input"
-                                       value="{{ \App\Discounts\FixedPriceDiscount::class }}">
+                                       value="{{ \App\Discounts\FixedPriceDiscount::class }}" checked>
                                 <label class="custom-control-label" for="fixed_discount">$</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline d-inline-block">
@@ -158,9 +158,11 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <label for="coupon_code" class="col-sm-2 col-form-label">Coupon code</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="coupon_code" name="coupon_code">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="coupon_code" name="with_coupon_code">
+                            <label class="form-check-label" for="coupon_code">
+                                With coupon code
+                            </label>
                         </div>
                     </div>
                 </div>
