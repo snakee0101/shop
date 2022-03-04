@@ -1,32 +1,36 @@
 @extends('admin.main')
 
 @section('content')
-    <p class="m-3 font-weight-bold"><a href="{{ route('admin.products.index') }}" class="text-danger">&lt; Back to all products</a></p>
+    <p class="m-3 font-weight-bold"><a href="{{ route('admin.products.index') }}" class="text-danger">&lt; Back to all
+            products</a></p>
+    <h2>Create product</h2>
 
-    <div class="container row">
-        <div class="card card-primary col-5 p-0 m-auto">
-            <div class="card-header">
-                <h3 class="card-title">Create product</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form action="{{ route('admin.products.store_product') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.products.store_product') }}" method="post" enctype="multipart/form-data">
+        <div class="container row">
+            <div class="card card-primary col-5 p-0 m-auto">
+                <div class="card-header">
+                    <h3 class="card-title">Basic data</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="product_name">Name</label>
-                        <input type="text" class="form-control" name="name" id="product_name" placeholder="Enter product name">
+                        <input type="text" class="form-control" name="name" id="product_name"
+                               placeholder="Enter product name">
                         @error('name')
-                            <p class="text-danger mt-1">Product name is required</p>
+                        <p class="text-danger mt-1">Product name is required</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="product_description">Description</label>
-                        <textarea class="form-control" name="description" id="product_description" placeholder="Enter product description" rows="5">
+                        <textarea class="form-control" name="description" id="product_description"
+                                  placeholder="Enter product description" rows="5">
 
                         </textarea>
                         @error('description')
-                            <p class="text-danger mt-1">Product description is required</p>
+                        <p class="text-danger mt-1">Product description is required</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -36,12 +40,13 @@
                             <input name="price" type="text" class="form-control" value="0.00">
                         </div>
                         @error('price')
-                            <p class="text-danger mt-1">Product price is required</p>
+                        <p class="text-danger mt-1">Product price is required</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="product_payment_info">Payment info</label>
-                        <textarea class="form-control" name="payment_info" id="product_payment_info" placeholder="Enter product payment info" rows="5">
+                        <textarea class="form-control" name="payment_info" id="product_payment_info"
+                                  placeholder="Enter product payment info" rows="5">
 
                         </textarea>
                         @error('payment_info')
@@ -50,24 +55,27 @@
                     </div>
                     <div class="form-group">
                         <label for="product_guarantee_info">Guarantee info</label>
-                        <textarea class="form-control" name="guarantee_info" id="product_guarantee_info" placeholder="Enter product guarantee info" rows="5">
+                        <textarea class="form-control" name="guarantee_info" id="product_guarantee_info"
+                                  placeholder="Enter product guarantee info" rows="5">
 
                         </textarea>
                         @error('guarantee_info')
-                            <p class="text-danger mt-1">Product guarantee info is required</p>
+                        <p class="text-danger mt-1">Product guarantee info is required</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="product_category">Product category</label>
-                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="category_id" tabindex="-1" aria-hidden="true">
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                name="category_id" tabindex="-1" aria-hidden="true">
                             <option selected="selected" data-select2-id="0" value="">None</option>
                             @foreach($categories as $category)
-                                <option data-select2-id="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option data-select2-id="{{ $category->id }}"
+                                        value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
 
                         @error('category_id')
-                            <p class="text-danger mt-1">Product category is required</p>
+                        <p class="text-danger mt-1">Product category is required</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -92,16 +100,14 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-
-            @if( session()->has('message') )
-                <div class="alert alert-success" role="alert">
-                    {{ session()->pull('message') }}
-                </div>
-            @endif
+                @if( session()->has('message') )
+                    <div class="alert alert-success" role="alert">
+                        {{ session()->pull('message') }}
+                    </div>
+                @endif
+            </div>
         </div>
-    </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 @endsection
