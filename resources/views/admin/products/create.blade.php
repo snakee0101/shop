@@ -146,6 +146,12 @@
                         </div>
                     </div>
                     <div class="row mt-3">
+                        <label for="active_since" class="col-sm-2 col-form-label">Active since</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="active_since" id="active_since" placeholder="Enter discount start date. Format: 2020-02-02">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
                         <label for="active_until" class="col-sm-2 col-form-label">Active until</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="active_until" id="active_until" placeholder="Enter discount expire date. Format: 2020-02-02">
