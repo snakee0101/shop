@@ -84,6 +84,22 @@ class AdminController extends Controller
 
     public function store_product(Request $request)
     {
-        dd( $request );
+        $request->validate([
+            'name' => 'required|unique:products,name',
+            'description' => 'required',
+            'price' => 'numeric',
+            'payment_info' => 'required',
+            'guarantee_info' => 'required',
+            'category_id' => 'exists:categories,id',
+            'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
+        ]);
+
+        Product::create(
+            $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
+                ['category_id' => $request->category_id]
+        );
+
+        session()->flash('message', 'Product was successfully created');
+        return back();
     }
 }

@@ -66,25 +66,25 @@
                             @endforeach
                         </select>
 
-                        @error('category')
+                        @error('category_id')
                             <p class="text-danger mt-1">Product category is required</p>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="product_category">Stock status</label>
                         <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                            <input type="radio" id="status_on_hold" name="status" class="custom-control-input"
+                            <input type="radio" id="status_on_hold" name="in_stock" class="custom-control-input"
                                    value="{{ \App\Models\Product::STATUS_IN_STOCK }}" checked>
                             <label class="custom-control-label" for="status_on_hold">In Stock</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                            <input type="radio" id="status_processing" name="status"
+                            <input type="radio" id="status_processing" name="in_stock"
                                    class="custom-control-input"
                                    value="{{ \App\Models\Product::STATUS_ENDS }}">
                             <label class="custom-control-label" for="status_processing">Ends</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                            <input type="radio" id="status_cancelled" name="status" class="custom-control-input"
+                            <input type="radio" id="status_cancelled" name="in_stock" class="custom-control-input"
                                    value="{{ \App\Models\Product::STATUS_OUT_OF_STOCK }}">
                             <label class="custom-control-label" for="status_cancelled">Out Of Stock</label>
                         </div>

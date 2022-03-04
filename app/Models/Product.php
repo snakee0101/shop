@@ -15,6 +15,7 @@ class Product extends Model implements Purchaseable
     protected $perPage = 48;
     protected $withCount = ['reviews'];
     protected $with = ['discount'];
+    protected $guarded = [];
 
     protected $casts = [
         'price' => 'float',
