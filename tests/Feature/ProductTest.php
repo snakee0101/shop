@@ -8,15 +8,33 @@ use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_product_could_be_created_with_basic_data() //basic data: name, description, price, payment_info, guarantee_info, category, stock_status
     {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
+    }
+
+    public function test_product_could_be_created_with_discount()
+    {
+
+    }
+
+    public function test_product_could_be_created_with_images()
+    {
+
+    }
+
+    public function test_product_could_be_created_with_videos()
+    {
+
+    }
+
+    public function test_product_could_be_created_with_characteristics()
+    {
+
+    }
+
+    public function test_product_could_be_created_with_product_set()
+    {
+
     }
 }

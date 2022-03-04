@@ -20,7 +20,9 @@ class AdminController extends Controller
 
     public function create_product()
     {
-        return view('admin.products.create');
+        return view('admin.products.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     public function list_users()
@@ -78,5 +80,10 @@ class AdminController extends Controller
     public function statistics()
     {
         return view('admin.statistics');
+    }
+
+    public function store_product(Request $request)
+    {
+        dd( $request );
     }
 }
