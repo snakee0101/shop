@@ -101,13 +101,18 @@ class AdminController extends Controller
 
         if($request->discount_applied === 'on')
         {
-            $product->discount()->create([
+            $data = [
                 'discount_classname' => $request->discount_classname,
                 'value' => $request->discount_value,
                 'active_since' => $request->discount_active_since,
                 'active_until' => $request->discount_active_until,
                 'coupon_code' => $request->coupon_code
-            ]);
+            ];
+
+            if($request->discount_active_until && !$request->discount_active_since)
+                $data['active_since'] = date('Y-m-d');
+
+            $product->discount()->create($data);
         }
 
         session()->flash('message', 'Product was successfully created');
