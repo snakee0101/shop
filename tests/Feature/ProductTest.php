@@ -108,7 +108,25 @@ class ProductTest extends TestCase
 
     public function test_product_could_be_created_with_videos()
     {
+        $video_json_data = [
+            'video-0' => '{"url":"https://www.youtube.com/embed/UYbJNpC4Jt8","title":"38250"}'
+        ];
 
+        $product = Product::factory()->make();
+
+        $this->post( route('admin.products.store_product'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
+            + ['category_id' => $product->category_id] + $video_json_data
+        )->assertRedirect();
+
+        $this->assertDatabaseHas('products', [
+            'name' => $product->name
+        ]);
+
+        $this->assertDatabaseHas('videos', [
+            'url' => "https://www.youtube.com/embed/UYbJNpC4Jt8",
+            'title' => "38250"
+        ]);
     }
 
     public function test_product_could_be_created_with_characteristics()

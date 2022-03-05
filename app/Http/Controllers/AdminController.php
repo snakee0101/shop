@@ -119,6 +119,17 @@ class AdminController extends Controller
             $product->discount()->create($data);
         }
 
+        //save videos
+        foreach($request->all() as $key => $encoded_video) {
+            if(str_contains($key, 'video')) { //filter through video fields only
+                $video = json_decode($encoded_video);
+                $product->videos()->create([
+                    'url' => $video->url,
+                    'title' => $video->title
+                ]);
+            }
+        }
+
         session()->flash('message', 'Product was successfully created');
         return back();
     }
