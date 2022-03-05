@@ -113,6 +113,38 @@
         </div>
 
         <div class="container row mt-4">
+            <div class="card card-primary col p-0 m-auto">
+                <div class="card-header">
+                    <h3 class="card-title">Specification</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Characteristic name</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container row mt-4">
             <div class="card card-warning col p-0 m-auto">
                 <div class="card-header">
                     <h3 class="card-title">Discount</h3>
@@ -134,7 +166,8 @@
                                 <label class="custom-control-label" for="fixed_discount">$</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline d-inline-block">
-                                <input type="radio" id="percent_discount" name="discount_classname" class="custom-control-input"
+                                <input type="radio" id="percent_discount" name="discount_classname"
+                                       class="custom-control-input"
                                        value="{{ \App\Discounts\PercentDiscount::class }}">
                                 <label class="custom-control-label" for="percent_discount">%</label>
                             </div>
@@ -148,13 +181,17 @@
                     <div class="row mt-3">
                         <label for="discount_active_since" class="col-sm-2 col-form-label">Active since</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="discount_active_since" id="discount_active_since" placeholder="Enter discount start date. Format: 2020-02-02">
+                            <input type="text" class="form-control" name="discount_active_since"
+                                   id="discount_active_since"
+                                   placeholder="Enter discount start date. Format: 2020-02-02">
                         </div>
                     </div>
                     <div class="row mt-3">
                         <label for="discount_active_until" class="col-sm-2 col-form-label">Active until</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="discount_active_until" id="discount_active_until" placeholder="Enter discount expire date. Format: 2020-02-02">
+                            <input type="text" class="form-control" name="discount_active_until"
+                                   id="discount_active_until"
+                                   placeholder="Enter discount expire date. Format: 2020-02-02">
                         </div>
                     </div>
                     <div class="row mt-3">
