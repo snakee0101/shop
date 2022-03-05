@@ -181,6 +181,18 @@
             </div>
         </div>
 
+        <div class="container row mt-4">
+            <div class="card card-primary col p-0 m-auto">
+                <div class="card-header">
+                    <h3 class="card-title">Photos</h3>
+                </div>
+                <div class="card-body">
+                    <new-photo-container-component>
+                    </new-photo-container-component>
+                </div>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-warning mt-3">Submit</button>
     </form>
 @endsection
