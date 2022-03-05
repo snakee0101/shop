@@ -13,7 +13,7 @@
         <tbody class="cart-table__body">
         <tr class="cart-table__row" v-for="(item, row_id) in items_object">
             <td class="cart-table__column cart-table__column--image"><a href="#"><img
-                src="/images/products/product-1.jpg" alt=""></a></td>
+                :src="item.associatedModel.photos[0].url" alt=""></a></td>
             <td class="cart-table__column cart-table__column--product"><a href="#"
                                                                           class="cart-table__product-name">{{
                     item.name
