@@ -25,11 +25,12 @@ class Photo extends Model
     {
         $unique_name = now()->timestamp . Str::uuid();
 
-        $path = '/public/images/' . $unique_name . '.png';
-        Storage::put( $path, Photo::decode($encoded_image));
+        $path_1 = '/public/images/' . $unique_name . '.png';
+        Storage::put( $path_1, Photo::decode($encoded_image));
 
+        $path_2 = '/storage/images/' . $unique_name . '.png';
         $model->photos()->create([
-            'url' => $path
+            'url' => $path_2
         ]);
     }
 }
