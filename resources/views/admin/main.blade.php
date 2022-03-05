@@ -22,9 +22,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Data tables -->
     <link href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet" />
 
+    <script src="{{ asset('js/app.js') }}"></script>
+    <link href="/css/app.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">

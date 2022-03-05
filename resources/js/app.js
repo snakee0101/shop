@@ -16,6 +16,7 @@ Vue.component('cart-totals-component', require('./components/CartTotalsComponent
 Vue.component('vote-controls-component', require('./components/VoteControlsComponent').default);
 Vue.component('new-photo-container-component', require('./components/NewPhotoContainerComponent').default);
 Vue.component('new-video-container-component', require('./components/NewVideoContainerComponent').default);
+Vue.component('admin-new-video-container-component', require('./components/AdminNewVideoContainerComponent').default);
 Vue.component('gallery-viewer-component', require('./components/GalleryViewerComponent').default);
 Vue.component('report-component', require('./components/ReportComponent').default);
 
