@@ -8,7 +8,7 @@
 
         <button type="button" class="btn btn-success mt-2" @click="add()">Add</button>
         <div>
-            <div class="text-center d-inline-block" v-for="video in videos">
+            <div class="text-center d-inline-block" v-for="(video, index) in videos">
                 <div class="d-inline-block">
                     <iframe style="margin: 10px"
                             width="280" height="157"
@@ -29,6 +29,7 @@
                         </button>
                     </div>
                 </div>
+                <input type="text" :name="'video-' + index" :value="JSON.stringify(video)" class="d-none">
             </div>
         </div>
     </div>
