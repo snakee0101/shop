@@ -4,9 +4,11 @@ namespace Tests\Feature;
 
 use App\Discounts\FixedPriceDiscount;
 use App\Models\Discount;
+use App\Models\Photo;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
@@ -103,7 +105,22 @@ class ProductTest extends TestCase
 
     public function test_product_could_be_created_with_images()
     {
+        Storage::fake();
+        $product = Product::factory()->make();
 
+        $this->post( route('admin.products.store_product'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
+            + ['category_id' => $product->category_id] + ['image-1' => base64_encode('test string')]
+        )->assertRedirect();
+
+        $this->assertDatabaseHas('products', [
+            'name' => $product->name
+        ]);
+
+        $file_url = Storage::files('/public/images')[0];
+        Storage::assertExists($file_url);
+
+        $this->assertInstanceOf(Photo::class, Product::first()->photos[0]);
     }
 
     public function test_product_could_be_created_with_videos()

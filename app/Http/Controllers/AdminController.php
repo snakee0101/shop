@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Characteristic;
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Report;
 use App\Models\User;
@@ -125,6 +126,12 @@ class AdminController extends Controller
 
             $video_object = json_decode($encoded_video);
             $product->videos()->create((array)$video_object);
+        }
+
+        //Decode and save images
+        foreach($request->all() as $key => $encoded_image) {
+            if(str_contains($key, 'image'))  //filter through image fields only
+                Photo::store($encoded_image, $product);
         }
 
         session()->flash('message', 'Product was successfully created');
