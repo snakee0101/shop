@@ -97,11 +97,10 @@ class AdminController extends Controller
 
         $product = Product::create(
             $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
-                ['category_id' => $request->category_id]
+            ['category_id' => $request->category_id]
         );
 
-        if($request->discount_applied === 'on')
-        {
+        if ($request->discount_applied === 'on') {
             $data = [
                 'discount_classname' => $request->discount_classname,
                 'value' => $request->discount_value,
@@ -110,24 +109,22 @@ class AdminController extends Controller
                 'coupon_code' => $request->coupon_code
             ];
 
-            if($request->discount_active_until && !$request->discount_active_since)
+            if ($request->discount_active_until && !$request->discount_active_since)
                 $data['active_since'] = date('Y-m-d');
 
-            if($request->with_coupon_code === 'on')
+            if ($request->with_coupon_code === 'on')
                 $data['coupon_code'] = Str::uuid();
 
             $product->discount()->create($data);
         }
 
         //save videos
-        foreach($request->all() as $key => $encoded_video) {
-            if(str_contains($key, 'video')) { //filter through video fields only
-                $video = json_decode($encoded_video);
-                $product->videos()->create([
-                    'url' => $video->url,
-                    'title' => $video->title
-                ]);
-            }
+        foreach ($request->all() as $key => $encoded_video) {
+            if (!str_contains($key, 'video'))  //filter through video fields only
+                continue;
+
+            $video_object = json_decode($encoded_video);
+            $product->videos()->create((array)$video_object);
         }
 
         session()->flash('message', 'Product was successfully created');
