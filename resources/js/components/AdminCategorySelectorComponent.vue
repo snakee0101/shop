@@ -21,6 +21,9 @@ export default {
         $('.select2-category-selector').on('select2:select', function (e) {
             let selected_category_id = e.params.data.element.value;
 
+            //get characteristics list from the server
+            axios.post('/characteristic/for_category/' + selected_category_id)
+                 .then(response => window.events.$emit('update_specification_with_characteristics', response.data))
         });
     }
 }
