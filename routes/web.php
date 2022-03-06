@@ -92,6 +92,7 @@ Route::resource('report', ReportController::class);
 Route::resource('order', OrderController::class);
 Route::resource('characteristic', CharacteristicController::class);
 
+Route::post('/characteristic/for_category/{category}', [CharacteristicController::class, 'forCategory'])->name('characteristic.for_category');
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 

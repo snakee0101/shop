@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class CharacteristicController extends Controller
 {
-    public function index()
+    public function forCategory(Category $category)
     {
-        //
+        return $category->characteristics;
     }
 
     public function create()

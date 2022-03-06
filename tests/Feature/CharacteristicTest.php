@@ -107,4 +107,18 @@ class CharacteristicTest extends TestCase
             'category_id' => $category2->id
         ] )->assertSessionHasErrors('name');
     }
+
+    public function test_category_can_get_a_list_of_its_characteristics()
+    {
+        $category = Category::factory()->create();
+        $chars = Characteristic::factory()->count(3)
+                                         ->create(['category_id' => $category->id]);
+
+        $json_response = $this->post( route('characteristic.for_category', $category) )->assertSuccessful()
+                                                                      ->content();
+
+        $this->assertStringContainsString($chars[0]->name, $json_response);
+        $this->assertStringContainsString($chars[1]->name, $json_response);
+        $this->assertStringContainsString($chars[2]->name, $json_response);
+    }
 }
