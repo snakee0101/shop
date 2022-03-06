@@ -27,6 +27,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function destroy_product(Product $product)
+    {
+        $product->delete();
+
+        return back();
+    }
+
     public function list_users()
     {
         return view('admin.users.index', [

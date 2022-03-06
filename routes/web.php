@@ -137,6 +137,8 @@ Route::controller(AdminController::class)->prefix('admin-panel')
 
     Route::get('/product_sets/index', 'product_sets_index')->name('admin.product_sets.index');
     Route::get('/product_sets/create', 'create_product_sets')->name('admin.product_sets.create');
+
+    Route::delete('/product/{product}', 'destroy_product')->name('admin.product.destroy');
 });
 
 
