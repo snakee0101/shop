@@ -102,7 +102,7 @@
                                         </td>
                                         <td>
                                             @if($product->trashed())
-                                                <form action="{{ '' }}" method="post" class="d-inline">
+                                                <form action="{{ route('admin.product.restore', $product) }}" method="post" class="d-inline">
                                                     @csrf
                                                     <button class="btn btn-warning">Activate</button>
                                                 </form>
