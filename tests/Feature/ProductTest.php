@@ -199,4 +199,13 @@ class ProductTest extends TestCase
         $this->delete( route('admin.product.destroy', $product) );
         $this->assertSoftDeleted($product);
     }
+
+    public function test_soft_deleted_product_could_be_restored()
+    {
+        $product = Product::factory()->create();
+        $product->delete();
+
+        $this->post( route('admin.product.restore', $product) );
+        $this->assertNotSoftDeleted($product);
+    }
 }

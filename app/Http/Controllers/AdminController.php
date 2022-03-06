@@ -34,6 +34,14 @@ class AdminController extends Controller
         return back();
     }
 
+    public function restore_product($product_id)
+    {
+        $product = Product::withTrashed()->find($product_id);
+        $product->restore();
+
+        return back();
+    }
+
     public function list_users()
     {
         return view('admin.users.index', [
