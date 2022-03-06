@@ -101,7 +101,7 @@
                                             {{ $product->description }}
                                         </td>
                                         <td>
-                                            <form action="{{ '' }}" method="post" class="d-inline">
+                                            <form action="{{ route('admin.product.destroy', $product) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
 
