@@ -113,28 +113,9 @@
                     <h3 class="card-title">Specification</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Characteristic name</th>
-                            <th scope="col">Value</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <admin-characteristic-table-component>
+
+                    </admin-characteristic-table-component>
                 </div>
             </div>
         </div>
@@ -228,3 +209,9 @@
         <button type="submit" class="btn btn-warning mt-3">Submit</button>
     </form>
 @endsection
+<script>
+    import AdminCharacteristicTableComponent from "../../../js/components/AdminCharacteristicTableComponent";
+    export default {
+        components: {AdminCharacteristicTableComponent}
+    }
+</script>
