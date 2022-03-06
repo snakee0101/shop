@@ -134,6 +134,17 @@ class AdminController extends Controller
                 Photo::store($encoded_image, $product);
         }
 
+        //Attach characteristics to product
+        foreach($request->all() as $key => $char_value) {
+            if(!str_contains($key, 'char-'))  //filter through characteristic fields only
+                continue;
+
+            $char_id = Str::of($key)->after('-');
+            $product->characteristics()->attach($char_id, [
+                'value' => $char_value
+            ]);
+        }
+
         session()->flash('message', 'Product was successfully created');
         return back();
     }

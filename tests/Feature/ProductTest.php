@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Discounts\FixedPriceDiscount;
+use App\Models\Category;
+use App\Models\Characteristic;
 use App\Models\Discount;
 use App\Models\Photo;
 use App\Models\Product;
@@ -148,11 +150,38 @@ class ProductTest extends TestCase
 
     public function test_product_could_be_created_with_characteristics()
     {
+        $product = Product::factory()->make();
+        $category = Category::factory()->create();
+        $chars = Characteristic::factory()->count(3)
+                                          ->create(['category_id' => $category->id]);
 
-    }
+        $char_data = [
+            'char-' . $chars[0]->id => 'value 1',
+            'char-' . $chars[1]->id => 'value 2',
+            'char-' . $chars[2]->id => 'value 3',
+        ];
 
-    public function test_product_could_be_created_with_product_set()
-    {
+        $this->post( route('admin.products.store_product'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
+            + ['category_id' => $category->id] + $char_data
+        )->assertRedirect();
 
+        $this->assertDatabaseHas('characteristic_product', [
+            'product_id' => Product::first()->id,
+            'characteristic_id' => $chars[0]->id,
+            'value' => 'value 1'
+        ]);
+
+        $this->assertDatabaseHas('characteristic_product', [
+            'product_id' => Product::first()->id,
+            'characteristic_id' => $chars[1]->id,
+            'value' => 'value 2'
+        ]);
+
+        $this->assertDatabaseHas('characteristic_product', [
+            'product_id' => Product::first()->id,
+            'characteristic_id' => $chars[2]->id,
+            'value' => 'value 3'
+        ]);
     }
 }
