@@ -7,17 +7,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
+        <tr v-for="char in char_list">
+            <td scope="row">{{ char.name }}</td>
+            <td>
+                <input type="text" class="form-control" :name="'char-' + char.id">
+            </td>
         </tr>
         </tbody>
     </table>
@@ -26,13 +20,18 @@
 <script>
 export default {
     name: "AdminCharacteristicTableComponent",
+    data() {
+        return {
+            char_list : {}
+        };
+    },
     mounted() {
         window.events.$on('update_specification_with_characteristics', this.update_specification);
     },
     methods: {
         update_specification(data)
         {
-            console.log(data);
+            this.char_list = data;
         }
     }
 }
