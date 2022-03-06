@@ -42,7 +42,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($products as $product)
-                                    <tr>
+                                    <tr class="{{ $product->trashed() ? 'bg-secondary' : '' }}">
                                         <td class="dtr-control sorting_1">
                                             {{ $product->id }}
                                         </td>
@@ -101,16 +101,22 @@
                                             {{ $product->description }}
                                         </td>
                                         <td>
-                                            <form action="{{ route('admin.product.destroy', $product) }}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
+                                            @if($product->trashed())
+                                                <form action="{{ '' }}" method="post" class="d-inline">
+                                                    @csrf
+                                                    <button class="btn btn-warning">Activate</button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('admin.product.destroy', $product) }}" method="post" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
 
-                                                <button class="btn btn-danger">Delete</button>
-                                            </form>
-
-                                            <a href="{{ '' }}">
-                                                <button class="btn btn-warning">Edit</button>
-                                            </a>
+                                                    <button class="btn btn-danger">Deactivate</button>
+                                                </form>
+                                                <a href="{{ '' }}">
+                                                    <button class="btn btn-warning">Edit</button>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
