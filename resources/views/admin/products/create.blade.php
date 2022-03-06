@@ -46,17 +46,12 @@
                         </div>
                         <div class="form-group">
                             <label for="product_category">Product category</label>
-                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
-                                    name="category_id" tabindex="-1" aria-hidden="true">
-                                <option selected="selected" data-select2-id="0" value="">None</option>
-                                @foreach($categories as $category)
-                                    <option data-select2-id="{{ $category->id }}"
-                                            value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
+                            <admin-category-selector-component :categories="{{ $categories }}">
+
+                            </admin-category-selector-component>
 
                             @error('category_id')
-                            <p class="text-danger mt-1">Product category is required</p>
+                                <p class="text-danger mt-1">Product category is required</p>
                             @enderror
                         </div>
                         <div class="form-group">
