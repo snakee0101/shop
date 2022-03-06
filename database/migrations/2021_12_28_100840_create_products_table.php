@@ -30,6 +30,8 @@ class CreateProductsTable extends Migration
                   ->references('id')
                   ->on('categories')
                   ->nullOnDelete();
+
+            $table->softDeletes();
         });
     }
 

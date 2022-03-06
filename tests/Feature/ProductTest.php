@@ -184,4 +184,12 @@ class ProductTest extends TestCase
             'value' => 'value 3'
         ]);
     }
+
+    public function test_product_must_be_soft_deleted()
+    {
+        $product = Product::factory()->create();
+        $product->delete();
+
+        $this->assertSoftDeleted($product);
+    }
 }

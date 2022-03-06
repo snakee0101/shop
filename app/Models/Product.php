@@ -6,10 +6,11 @@ use App\Contracts\Purchaseable;
 use App\Traits\HasDiscounts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model implements Purchaseable
 {
-    use HasFactory, HasDiscounts;
+    use HasFactory, HasDiscounts, SoftDeletes;
 
     protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
