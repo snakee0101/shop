@@ -33,6 +33,13 @@ export default {
             images: []
         }
     },
+    mounted()
+    {
+        if(this.saved_photos)
+        {
+            this.encoded_images = this.saved_photos.map(photo => photo.encoded_data);
+        }
+    },
     methods: {
         delete_image(index) {
             this.images.splice(index, 1);
