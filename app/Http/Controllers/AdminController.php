@@ -213,6 +213,19 @@ class AdminController extends Controller
             $product->discount()->create($data);
         }
 
+        //Attach characteristics
+        $product->characteristics()->detach(); //delete all old characteristics
+
+        foreach($request->all() as $key => $char_value) {
+            if(!str_contains($key, 'char-'))  //filter through characteristic fields only
+                continue;
+
+            $char_id = Str::of($key)->after('-');
+            $product->characteristics()->attach($char_id, [
+                'value' => $char_value
+            ]);
+        }
+
         return back();
     }
 }

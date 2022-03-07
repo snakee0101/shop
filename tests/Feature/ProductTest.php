@@ -287,4 +287,35 @@ class ProductTest extends TestCase
         $this->put( route('admin.product.update', $product), $new_data);
         $this->assertDatabaseCount('discounts', 0);
     }
+
+    public function test_product_specification_could_be_updated()
+    {
+        $product = Product::factory()->create();
+
+        $category = Category::factory()->create();
+        $chars = Characteristic::factory()->count(3)
+            ->create(['category_id' => $category->id]);
+
+        $char_data = [
+            'char-' . $chars[0]->id => 'value 1',
+            'char-' . $chars[1]->id => 'value 2',
+            'char-' . $chars[2]->id => 'value 3',
+        ];
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data + $char_data);
+
+        $this->assertEquals('value 1', $product->fresh()->characteristics[0]->pivot->value);
+        $this->assertEquals('value 2', $product->fresh()->characteristics[1]->pivot->value);
+        $this->assertEquals('value 3', $product->fresh()->characteristics[2]->pivot->value);
+    }
 }
