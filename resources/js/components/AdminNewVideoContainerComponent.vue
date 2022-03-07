@@ -38,12 +38,22 @@
 <script>
 export default {
     name: "AdminNewVideoContainerComponent",
+    props: ['saved_videos'],
     data() {
         return {
             'videos': [],
             'url': "",
             'title': ''
         };
+    },
+    mounted() {
+        if(this.saved_videos)
+        {
+            this.saved_videos.forEach( video => this.videos.push({
+                url : video.url,
+                title : video.title
+            }));
+        }
     },
     methods: {
         convert_url_to_embed(url) {

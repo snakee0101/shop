@@ -183,7 +183,7 @@
                     <h3 class="card-title">Videos</h3>
                 </div>
                 <div class="card-body">
-                    <admin-new-video-container-component>
+                    <admin-new-video-container-component :saved_videos="{{ $product->videos }}">
                     </admin-new-video-container-component>
                 </div>
             </div>
