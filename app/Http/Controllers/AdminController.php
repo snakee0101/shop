@@ -36,7 +36,10 @@ class AdminController extends Controller
 
     public function edit_product(Product $product)
     {
-        dd('edit product');
+        return view('admin.products.edit', [
+            'product' => $product,
+            'categories' => Category::all()
+        ]);
     }
 
     public function restore_product($product_id)
