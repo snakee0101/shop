@@ -208,4 +208,26 @@ class ProductTest extends TestCase
         $this->post( route('admin.product.restore', $product) );
         $this->assertNotSoftDeleted($product);
     }
+
+    //UPDATE PRODUCT TESTS
+    public function test_basic_product_data_could_be_updated()
+    {
+        $product = Product::factory()->create();
+
+        $category = Category::factory()->create();
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data);
+
+        $this->assertDatabaseHas('products', $new_data);
+    }
 }

@@ -119,11 +119,13 @@ class AdminController extends Controller
             'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
         ]);
 
+        //Save basic data
         $product = Product::create(
             $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
             ['category_id' => $request->category_id]
         );
 
+        //Apply discount
         if ($request->discount_applied === 'on') {
             $data = [
                 'discount_classname' => $request->discount_classname,
@@ -157,7 +159,7 @@ class AdminController extends Controller
                 Photo::store($encoded_image, $product);
         }
 
-        //Attach characteristics to product
+        //Attach characteristics
         foreach($request->all() as $key => $char_value) {
             if(!str_contains($key, 'char-'))  //filter through characteristic fields only
                 continue;
@@ -170,5 +172,24 @@ class AdminController extends Controller
 
         session()->flash('message', 'Product was successfully created');
         return back();
+    }
+
+    public function update_product(Request $request, Product $product)
+    {
+        $request->validate([
+            'name' => 'required|unique:products,name',
+            'description' => 'required',
+            'price' => 'numeric',
+            'payment_info' => 'required',
+            'guarantee_info' => 'required',
+            'category_id' => 'exists:categories,id',
+            'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
+        ]);
+
+        //Update basic data
+        $product->update(
+            $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
+            ['category_id' => $request->category_id]
+        );
     }
 }
