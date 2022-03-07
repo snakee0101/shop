@@ -108,7 +108,7 @@
                     <h3 class="card-title">Specification</h3>
                 </div>
                 <div class="card-body">
-                    <admin-characteristic-table-component>
+                    <admin-characteristic-table-component :chars="{{ $product->characteristics }}">
 
                     </admin-characteristic-table-component>
                 </div>
