@@ -17,6 +17,15 @@ class Photo extends Model
     public $timestamps = false;
     protected $guarded = [];
 
+    protected static function boot( )
+    {
+        parent::boot();
+
+        static::deleting(function ($photo) {
+            Storage::delete( Str::after($photo->url, '/storage') );
+        });
+    }
+
     public function getEncodedDataAttribute()
     {
         if(str_contains(Route::currentRouteName(), 'admin') ) //this path is available only to admin routes, otherwise it causes error in layout

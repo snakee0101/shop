@@ -34,4 +34,21 @@ class PhotoTest extends TestCase
 
           $this->assertInstanceOf(Photo::class, $product->fresh()->photos()->first());
     }
+
+    public function test_when_photo_is_deleted_attached_file_is_also_deleted()
+    {
+        Storage::fake();
+
+        Storage::put('/images/testfile.png', 'test content');
+        Storage::assertExists('/images/testfile.png');
+
+        $product = Product::factory()->create();
+        $photo = Photo::factory()->withObject($product)->create([
+            'url' => Storage::url('/images/testfile.png')
+        ]);
+
+        $product->photos->each->delete();
+
+        Storage::assertMissing('/images/testfile.png');
+    }
 }
