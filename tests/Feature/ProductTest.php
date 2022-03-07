@@ -12,6 +12,7 @@ use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ProductTest extends TestCase
@@ -378,5 +379,31 @@ class ProductTest extends TestCase
         $this->put( route('admin.product.update', $product), $new_data);
 
         Storage::assertMissing('/images/testfile.png');
+    }
+
+    public function test_product_images_could_be_updated()
+    {
+        Storage::fake();
+        $product = Product::factory()->create();
+
+        $category = Category::factory()->create();
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $images = [
+            'image-1' => base64_encode('data')
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data + $images);
+
+        $this->assertInstanceOf(Photo::class, $product->fresh()->photos()->first());
     }
 }
