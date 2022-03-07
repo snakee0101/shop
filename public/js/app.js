@@ -4036,9 +4036,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminCategorySelectorComponent",
-  props: ['categories'],
+  props: ['categories', 'current_category_id'],
   mounted: function mounted() {
     $('.select2-category-selector').select2();
     $('.select2-category-selector').on('select2:select', function (e) {
@@ -24442,22 +24452,49 @@ var render = function () {
       attrs: { name: "category_id", tabindex: "-1", "aria-hidden": "true" },
     },
     [
-      _c(
-        "option",
-        { attrs: { selected: "selected", "data-select2-id": "0", value: "" } },
-        [_vm._v("None")]
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.categories, function (category) {
-        return _c(
-          "option",
-          {
-            attrs: { "data-select2-id": category.id },
-            domProps: { value: category.id },
-          },
-          [_vm._v("\n        " + _vm._s(category.name) + "\n    ")]
-        )
-      }),
+      _vm.current_category_id
+        ? _vm._l(_vm.categories, function (category) {
+            return _c(
+              "option",
+              {
+                attrs: { "data-select2-id": category.id },
+                domProps: {
+                  value: category.id,
+                  selected:
+                    _vm.current_category_id == category.id ? "selected" : "",
+                },
+              },
+              [_vm._v("\n            " + _vm._s(category.name) + "\n        ")]
+            )
+          })
+        : [
+            _c(
+              "option",
+              {
+                attrs: {
+                  selected: "selected",
+                  "data-select2-id": "0",
+                  value: "",
+                },
+              },
+              [_vm._v("None")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.categories, function (category) {
+              return _c(
+                "option",
+                {
+                  attrs: { "data-select2-id": category.id },
+                  domProps: { value: category.id },
+                },
+                [
+                  _vm._v(
+                    "\n            " + _vm._s(category.name) + "\n        "
+                  ),
+                ]
+              )
+            }),
+          ],
     ],
     2
   )
