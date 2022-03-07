@@ -34,6 +34,11 @@ class AdminController extends Controller
         return back();
     }
 
+    public function edit_product(Product $product)
+    {
+        dd('edit product');
+    }
+
     public function restore_product($product_id)
     {
         $product = Product::withTrashed()->find($product_id);
