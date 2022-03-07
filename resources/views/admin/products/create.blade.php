@@ -27,9 +27,7 @@
                         <div class="form-group">
                             <label for="product_description">Description</label>
                             <textarea class="form-control" name="description" id="product_description"
-                                      placeholder="Enter product description" rows="5">
-
-                        </textarea>
+                                      placeholder="Enter product description" rows="5"></textarea>
                             @error('description')
                             <p class="text-danger mt-1">Product description is required</p>
                             @enderror
@@ -78,9 +76,7 @@
                         <div class="form-group">
                             <label for="product_payment_info">Payment info</label>
                             <textarea class="form-control" name="payment_info" id="product_payment_info"
-                                      placeholder="Enter product payment info" rows="5">
-
-                        </textarea>
+                                      placeholder="Enter product payment info" rows="5"></textarea>
                             @error('payment_info')
                             <p class="text-danger mt-1">Product payment info is required</p>
                             @enderror
@@ -88,9 +84,7 @@
                         <div class="form-group">
                             <label for="product_guarantee_info">Guarantee info</label>
                             <textarea class="form-control" name="guarantee_info" id="product_guarantee_info"
-                                      placeholder="Enter product guarantee info" rows="5">
-
-                        </textarea>
+                                      placeholder="Enter product guarantee info" rows="5"></textarea>
                             @error('guarantee_info')
                             <p class="text-danger mt-1">Product guarantee info is required</p>
                             @enderror
