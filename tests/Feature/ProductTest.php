@@ -8,6 +8,7 @@ use App\Models\Characteristic;
 use App\Models\Discount;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Video;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
@@ -321,6 +322,34 @@ class ProductTest extends TestCase
 
     public function test_product_videos_could_be_updated()
     {
-        //user can change caption for video
+        $product = Product::factory()->create();
+        $category = Category::factory()->create();
+
+        $video = Video::factory()->withObject($product)->create();
+        $video_1 = Video::factory()->make();
+        $video_2 = Video::factory()->make();
+
+        $video_data = [
+            'video-1' => $video_1->toJson(),
+            'video-2' => $video_2->toJson()
+        ];
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data + $video_data);
+
+        $this->assertDatabaseHas('videos', $video_1->toArray());
+        $this->assertDatabaseHas('videos', $video_2->toArray());
+
+        $this->assertDatabaseMissing('videos', $video->toArray());
+
     }
 }

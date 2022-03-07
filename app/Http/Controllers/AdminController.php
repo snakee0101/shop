@@ -226,6 +226,17 @@ class AdminController extends Controller
             ]);
         }
 
+        //save videos
+        $product->videos()->delete(); //delete all old videos
+
+        foreach ($request->all() as $key => $encoded_video) {
+            if (!str_contains($key, 'video'))  //filter through video fields only
+                continue;
+
+            $video_object = json_decode($encoded_video);
+            $product->videos()->create((array)$video_object);
+        }
+
         return back();
     }
 }
