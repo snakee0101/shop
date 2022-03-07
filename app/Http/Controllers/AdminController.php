@@ -177,7 +177,7 @@ class AdminController extends Controller
     public function update_product(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required|unique:products,name',
+            'name' => 'required',
             'description' => 'required',
             'price' => 'numeric',
             'payment_info' => 'required',
@@ -212,5 +212,7 @@ class AdminController extends Controller
 
             $product->discount()->create($data);
         }
+
+        return back();
     }
 }
