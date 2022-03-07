@@ -195,7 +195,7 @@
                     <h3 class="card-title">Photos</h3>
                 </div>
                 <div class="card-body">
-                    <new-photo-container-component>
+                    <new-photo-container-component :saved_photos="{{ $product->photos }}">
                     </new-photo-container-component>
                 </div>
             </div>

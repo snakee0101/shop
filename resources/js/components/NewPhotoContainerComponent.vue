@@ -26,6 +26,7 @@
 <script>
 export default {
     name: "NewPhotoContainerComponent",
+    props: ['saved_photos'],
     data() {
         return {
             encoded_images: [],
