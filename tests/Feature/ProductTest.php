@@ -230,4 +230,61 @@ class ProductTest extends TestCase
 
         $this->assertDatabaseHas('products', $new_data);
     }
+
+    public function test_discount_could_be_updated()
+    {
+        $product = Product::factory()->create();
+
+        $category = Category::factory()->create();
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $discount_data = [
+            'discount_applied' => 'on',
+            'discount_classname' => FixedPriceDiscount::class,
+            'discount_value' => 5,
+            'with_coupon_code' => 'on'
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data + $discount_data);
+
+        $this->assertDatabaseHas('discounts', [
+            'discount_classname' => FixedPriceDiscount::class,
+            'value' => 5,
+        ]);
+    }
+
+    public function test_if_discount_is_not_applied_it_is_deleted()
+    {
+        $product = Product::factory()->create();
+        $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
+
+        $this->assertDatabaseHas('discounts', [
+            'discount_classname' => FixedPriceDiscount::class,
+            'value' => $discount->value,
+        ]);
+
+        $category = Category::factory()->create();
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data);
+        $this->assertDatabaseCount('discounts', 0);
+    }
 }
