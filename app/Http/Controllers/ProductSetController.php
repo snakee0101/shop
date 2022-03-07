@@ -9,7 +9,9 @@ class ProductSetController extends Controller
 {
     public function index()
     {
-        return view('admin.product_sets.index');
+        return view('admin.product_sets.index', [
+            'product_sets' => ProductSet::all()
+        ]);
     }
 
     public function create()

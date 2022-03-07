@@ -1,5 +1,107 @@
 @extends('admin.main')
 
 @section('content')
-   <p>list of all product sets</p>
+    <p class="m-3">
+        <a href="{{ route('product_set.create') }}">
+            <button class="btn btn-success">+ Create Product Set</button>
+        </a>
+    </p>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold">All Product Sets</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example1"
+                                   class="table table-bordered table-striped dataTable dtr-inline text-center"
+                                   aria-describedby="example1_info">
+                                <thead>
+                                <tr>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">#
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Products
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Price
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Discount
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Actions
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($product_sets as $product_set)
+                                    <tr>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $product_set->id }}
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            <a href="{{ route('product.description', $product_set->products[0]) }}"
+                                               target="__blank">
+                                                {{ $product_set->products[0]->name }}
+                                            </a> +
+                                            <a href="{{ route('product.description', $product_set->products[1]) }}"
+                                               target="__blank">
+                                                {{ $product_set->products[1]->name }}
+                                            </a>
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            @if($product_set->priceWithDiscount < $product_set->price)
+                                                <span
+                                                    class="font-weight-bold text-danger">${{ $product_set->priceWithDiscount }}</span>
+                                                <span class="text-secondary"
+                                                      style=""><s><small>${{ $product_set->price }}</small></s></span>
+                                            @else
+                                                ${{ $product_set->price }}
+                                            @endif
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            @if($product_set->discount)
+                                                @switch($product_set->discount->discount_classname)
+                                                    @case(\App\Discounts\FixedPriceDiscount::class)
+                                                        Fixed price discount<br> <span class="font-weight-bold text-danger">- ${{ $product_set->discount->value }}</span>
+                                                    @break
+
+                                                    @case(\App\Discounts\PercentDiscount::class)
+                                                        Percent discount<br> <span class="font-weight-bold text-danger">- {{ $product_set->discount->value }}%</span>
+                                                    @break
+                                                @endswitch
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form
+                                                action="{{ '' }}"
+                                                method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-danger">Deactivate</button>
+                                            </form>
+                                            <a href="{{ '' }}">
+                                                <button class="btn btn-warning">Edit</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
 @endsection
