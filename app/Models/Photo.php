@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,8 +19,13 @@ class Photo extends Model
 
     public function getEncodedDataAttribute()
     {
-        $raw_data = Storage::get( '/public/' . Str::after($this->url, 'storage') );
-        return 'data:image/png;base64,' . base64_encode($raw_data);
+        if(str_contains(Route::currentRouteName(), 'admin') ) //this path is available only to admin routes, otherwise it causes error in layout
+        {
+            $raw_data = Storage::get( '/public/' . Str::after($this->url, 'storage') );
+            return 'data:image/png;base64,' . base64_encode($raw_data);
+        }
+
+        return '';
     }
 
     public static function decode($data)
