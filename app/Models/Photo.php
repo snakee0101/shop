@@ -11,8 +11,16 @@ class Photo extends Model
 {
     use HasFactory;
 
+    protected $appends = ['encoded_data'];
+
     public $timestamps = false;
     protected $guarded = [];
+
+    public function getEncodedDataAttribute()
+    {
+        $raw_data = Storage::get( '/public/' . Str::after($this->url, 'storage') );
+        return 'data:image/png;base64,' . base64_encode($raw_data);
+    }
 
     public static function decode($data)
     {
