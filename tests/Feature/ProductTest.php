@@ -318,4 +318,9 @@ class ProductTest extends TestCase
         $this->assertEquals('value 2', $product->fresh()->characteristics[1]->pivot->value);
         $this->assertEquals('value 3', $product->fresh()->characteristics[2]->pivot->value);
     }
+
+    public function test_product_videos_could_be_updated()
+    {
+        //user can change caption for video
+    }
 }

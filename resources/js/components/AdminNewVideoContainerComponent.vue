@@ -20,7 +20,8 @@
 
                     </iframe>
                     <div class="d-flex flex-row justify-content-between px-3" style="width:280px; word-break:break-all; align-items: center">
-                        <h4 class="ml-2">{{ video.title }}</h4>
+                        <input type="text" class="ml-2 form-control" v-model="video.title">
+
                         <button class="btn btn-outline-danger btn-sm p-2" @click="remove(video)" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
