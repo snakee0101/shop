@@ -237,9 +237,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ Route::currentRouteName() == 'admin.product_sets.index' || Route::currentRouteName() == 'admin.product_sets.create' ? 'menu-open' : '' }}">
-                        <a href="{{ route('admin.product_sets.index') }}"
-                           class="nav-link {{ Route::currentRouteName() == 'admin.product_sets.index' || Route::currentRouteName() == 'admin.product_sets.create' ? 'active' : '' }}">
+                    <li class="nav-item {{ Route::currentRouteName() == 'product_set.index' || Route::currentRouteName() == 'admin.product_sets.create' ? 'menu-open' : '' }}">
+                        <a href="{{ route('product_set.index') }}"
+                           class="nav-link {{ Route::currentRouteName() == 'product_set.index' || Route::currentRouteName() == 'admin.product_sets.create' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Product Sets
@@ -248,8 +248,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin.product_sets.index') }}"
-                                   class="nav-link {{ Route::currentRouteName() == 'admin.product_sets.index' ? 'active' : '' }}">
+                                <a href="{{ route('product_set.index') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'product_set.index' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All product sets</p>
                                 </a>

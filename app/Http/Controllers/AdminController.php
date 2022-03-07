@@ -85,11 +85,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function product_sets_index()
-    {
-        return view('admin.product_sets.index');
-    }
-
     public function create_product_sets()
     {
         return view('admin.product_sets.create');

@@ -9,7 +9,7 @@ class ProductSetController extends Controller
 {
     public function index()
     {
-        //
+        return view('admin.product_sets.index');
     }
 
     public function create()

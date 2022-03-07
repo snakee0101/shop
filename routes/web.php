@@ -9,6 +9,7 @@ use App\Http\Controllers\{AdminController,
     CharacteristicController,
     ComparisonController,
     CouponController,
+    ProductSetController,
     VisitsController,
     WishlistController,
     WishlistProductController};
@@ -85,6 +86,7 @@ Route::get('/comparison/public/{access_token}/{category_id}', [ComparisonControl
 
 
 Route::resource('review', ReviewController::class);
+Route::resource('product_set', ProductSetController::class);
 Route::resource('question', QuestionController::class);
 Route::resource('reply', ReplyController::class);
 Route::resource('vote', VoteController::class);
@@ -135,7 +137,6 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/characteristics/index', 'characteristics_index')->name('admin.characteristics.index');
     Route::get('/characteristics/create', 'create_characteristics')->name('admin.characteristics.create');
 
-    Route::get('/product_sets/index', 'product_sets_index')->name('admin.product_sets.index');
     Route::get('/product_sets/create', 'create_product_sets')->name('admin.product_sets.create');
 
     Route::delete('/product/{product}', 'destroy_product')->name('admin.product.destroy');
