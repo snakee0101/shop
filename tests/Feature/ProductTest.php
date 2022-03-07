@@ -350,6 +350,33 @@ class ProductTest extends TestCase
         $this->assertDatabaseHas('videos', $video_2->toArray());
 
         $this->assertDatabaseMissing('videos', $video->toArray());
+    }
 
+    public function test_when_product_is_created_all_old_images_are_deleted()
+    {
+        Storage::fake();
+
+        Storage::put('/images/testfile.png', 'test content');
+        Storage::assertExists('/images/testfile.png');
+
+        $product = Product::factory()->create();
+        $photo = Photo::factory()->withObject($product)->create([
+            'url' => Storage::url('/images/testfile.png')
+        ]);
+        $category = Category::factory()->create();
+
+        $new_data = [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+
+        $this->put( route('admin.product.update', $product), $new_data);
+
+        Storage::assertMissing('/images/testfile.png');
     }
 }

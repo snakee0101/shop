@@ -237,6 +237,14 @@ class AdminController extends Controller
             $product->videos()->create((array)$video_object);
         }
 
+        //Decode and save images
+        $product->photos->each->delete(); //Delete all old images
+
+        /*foreach($request->all() as $key => $encoded_image) {
+            if(str_contains($key, 'image'))  //filter through image fields only
+                Photo::store($encoded_image, $product);
+        }*/
+
         return back();
     }
 }
