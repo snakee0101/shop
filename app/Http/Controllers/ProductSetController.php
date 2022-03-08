@@ -85,4 +85,12 @@ class ProductSetController extends Controller
 
         return back();
     }
+
+    public function restore($productSetId)
+    {
+        ProductSet::withTrashed()->find($productSetId)
+                                 ->restore();
+
+        return back();
+    }
 }

@@ -139,4 +139,17 @@ class ProductSetTest extends TestCase
 
         $this->assertSoftDeleted($product_set);
     }
+
+    public function test_product_set_could_be_restored()
+    {
+        $product_set = ProductSet::factory()->create();
+        $product_set->delete();
+
+        $this->assertSoftDeleted($product_set);
+
+        $this->post( route('product_set.restore', $product_set->id) )
+             ->assertRedirect();
+
+        $this->assertNotSoftDeleted($product_set->fresh());
+    }
 }
