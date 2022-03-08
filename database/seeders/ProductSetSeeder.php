@@ -16,7 +16,9 @@ class ProductSetSeeder extends Seeder
 
         foreach ($products_grouped_by_2 as $products)
         {
-            $product_set = ProductSet::factory()->create();
+            $product_set = ProductSet::factory()->create([
+                'created_at' => now()->subDays( random_int(1, 60) )
+            ]);
 
             foreach ($products as $product) {
                 DB::table('product_set_product')->insert([

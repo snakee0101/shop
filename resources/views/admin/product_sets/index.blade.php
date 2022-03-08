@@ -35,6 +35,9 @@
                                         colspan="1" aria-sort="ascending">Discount
                                     </th>
                                     <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1" aria-sort="ascending">Creation date
+                                    </th>
+                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
                                         colspan="1" aria-sort="ascending">Actions
                                     </th>
                                 </tr>
@@ -79,6 +82,9 @@
                                             @else
                                                 -
                                             @endif
+                                        </td>
+                                        <td class="dtr-control sorting_1" tabindex="0">
+                                            {{ $product_set->created_at }}
                                         </td>
                                         <td>
                                             <form
