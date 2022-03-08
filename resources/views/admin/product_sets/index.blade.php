@@ -72,11 +72,17 @@
                                             @if($product_set->discount)
                                                 @switch($product_set->discount->discount_classname)
                                                     @case(\App\Discounts\FixedPriceDiscount::class)
-                                                        Fixed price discount<br> <span class="font-weight-bold text-danger">- ${{ $product_set->discount->value }}</span>
+                                                        Fixed price discount <span class="font-weight-bold text-danger">- ${{ $product_set->discount->value }}</span><br>
+                                                        @if($product_set->discount->coupon_code)
+                                                            <span class="font-weight-bold">Coupon code:</span> {{ $product_set->discount->coupon_code }}
+                                                        @endif
                                                     @break
 
                                                     @case(\App\Discounts\PercentDiscount::class)
-                                                        Percent discount<br> <span class="font-weight-bold text-danger">- {{ $product_set->discount->value }}%</span>
+                                                        Percent discount <span class="font-weight-bold text-danger">- {{ $product_set->discount->value }}%</span><br>
+                                                        @if($product_set->discount->coupon_code)
+                                                            <span class="font-weight-bold">Coupon code:</span> {{ $product_set->discount->coupon_code }}
+                                                        @endif
                                                     @break
                                                 @endswitch
                                             @else
