@@ -81,6 +81,8 @@ class ProductSetController extends Controller
 
     public function destroy(ProductSet $productSet)
     {
-        //
+        $productSet->delete();
+
+        return back();
     }
 }

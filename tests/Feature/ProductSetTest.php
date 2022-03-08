@@ -129,4 +129,14 @@ class ProductSetTest extends TestCase
 
         $this->assertDatabaseCount('discounts', 0);
     }
+
+    public function test_product_set_could_be_soft_deleted()
+    {
+        $product_set = ProductSet::factory()->create();
+
+        $this->delete( route('product_set.destroy', $product_set) )
+             ->assertRedirect();
+
+        $this->assertSoftDeleted($product_set);
+    }
 }
