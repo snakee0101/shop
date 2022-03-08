@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Characteristic;
+use App\Models\Discount;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Report;
@@ -121,23 +122,8 @@ class AdminController extends Controller
         );
 
         //Apply discount
-        if ($request->discount_applied === 'on') {
-            $data = [
-                'discount_classname' => $request->discount_classname,
-                'value' => $request->discount_value,
-                'active_since' => $request->discount_active_since,
-                'active_until' => $request->discount_active_until,
-                'coupon_code' => $request->coupon_code
-            ];
-
-            if ($request->discount_active_until && !$request->discount_active_since)
-                $data['active_since'] = date('Y-m-d');
-
-            if ($request->with_coupon_code === 'on')
-                $data['coupon_code'] = Str::uuid();
-
-            $product->discount()->create($data);
-        }
+        if ($request->discount_applied === 'on')
+            Discount::attachTo($product, $request);
 
         //save videos
         foreach ($request->all() as $key => $encoded_video) {
@@ -190,23 +176,8 @@ class AdminController extends Controller
         //Apply discount
         $product->discount()->delete(); //delete old discount
 
-        if ($request->discount_applied === 'on') {
-            $data = [
-                'discount_classname' => $request->discount_classname,
-                'value' => $request->discount_value,
-                'active_since' => $request->discount_active_since,
-                'active_until' => $request->discount_active_until,
-                'coupon_code' => $request->coupon_code
-            ];
-
-            if ($request->discount_active_until && !$request->discount_active_since)
-                $data['active_since'] = date('Y-m-d');
-
-            if ($request->with_coupon_code === 'on')
-                $data['coupon_code'] = Str::uuid();
-
-            $product->discount()->create($data);
-        }
+        if ($request->discount_applied === 'on')
+            Discount::attachTo($product, $request);
 
         //Attach characteristics
         $product->characteristics()->detach(); //delete all old characteristics

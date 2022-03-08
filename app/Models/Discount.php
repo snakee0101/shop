@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Discount extends Model
 {
@@ -12,6 +13,25 @@ class Discount extends Model
     public $timestamps = false;
     protected $guarded = [];
     protected $dates = ['active_since', 'active_until'];
+
+    public static function attachTo($item, $request)
+    {
+        $data = [
+            'discount_classname' => $request->discount_classname,
+            'value' => $request->discount_value,
+            'active_since' => $request->discount_active_since,
+            'active_until' => $request->discount_active_until,
+            'coupon_code' => $request->coupon_code
+        ];
+
+        if ($request->discount_active_until && !$request->discount_active_since)
+            $data['active_since'] = date('Y-m-d');
+
+        if ($request->with_coupon_code === 'on')
+            $data['coupon_code'] = Str::uuid();
+
+        $item->discount()->create($data);
+    }
 
     public function item()
     {
