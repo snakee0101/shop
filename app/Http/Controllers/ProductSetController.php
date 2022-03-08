@@ -24,7 +24,12 @@ class ProductSetController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'product-1' => 'required|exists:products,id',
+            'product-2' => 'required|exists:products,id',
+        ]);
+
+        //dd($request->all());
     }
 
     public function show(ProductSet $productSet)

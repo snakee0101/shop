@@ -8,9 +8,13 @@ use Tests\TestCase;
 
 class ProductSetTest extends TestCase
 {
-    public function test_example()
+    public function test_product_set_could_be_created()
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
+
+    }
+
+    public function test_product_set_could_be_created_with_discount()
+    {
+
     }
 }

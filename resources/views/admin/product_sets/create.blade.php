@@ -24,6 +24,9 @@
                     </select>
                 </div>
             </div>
+            @error('product-1')
+                <p class="text-danger mt-1">Please select product 1</p>
+            @enderror
             <div class="row mt-3">
                 <label for="discount_active_until" class="col-sm-2 col-form-label">Product 2</label>
                 <div class="col-sm-10">
@@ -41,7 +44,9 @@
                     </select>
                 </div>
             </div>
-
+            @error('product-2')
+                <p class="text-danger mt-1">Please select product 2</p>
+            @enderror
 
             @if( session()->has('message') )
                 <div class="alert alert-success" role="alert">
