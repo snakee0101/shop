@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\ProductSet;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,9 @@ class ProductSetController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.product_sets.create', [
+            'products' => Product::all()
+        ]);
     }
 
     public function store(Request $request)
