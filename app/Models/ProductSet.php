@@ -7,10 +7,11 @@ use App\Traits\HasDiscounts;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductSet extends Model implements Purchaseable
 {
-    use HasFactory, HasDiscounts;
+    use HasFactory, HasDiscounts, SoftDeletes;
 
     public $timestamps = false;
 

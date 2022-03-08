@@ -11,6 +11,7 @@ class CreateProductSetsTable extends Migration
         Schema::create('product_sets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
