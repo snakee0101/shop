@@ -52,4 +52,31 @@ class ProductSetTest extends TestCase
             'item_type' => ProductSet::class
         ]);
     }
+
+    public function test_product_set_product_list_could_be_updated()
+    {
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        $product3 = Product::factory()->create();
+        $product4 = Product::factory()->create();
+
+        $product_set = ProductSet::factory()->create();
+        $product_set->products()
+                    ->attach([ $product->id, $product2->id ]);
+
+        $this->put( route('product_set.update', $product_set), [
+                'product-1' => $product3->id,
+                'product-2' => $product4->id] )->assertRedirect();
+
+        $this->assertDatabaseCount('product_set_product', 2);
+
+        $this->assertEquals($product3->id, $product_set->fresh()->products[0]->id);
+        $this->assertEquals($product4->id, $product_set->fresh()->products[1]->id);
+    }
+
+    public function test_product_set_discount_could_be_updated()
+    {
+
+    }
 }

@@ -61,7 +61,18 @@ class ProductSetController extends Controller
 
     public function update(Request $request, ProductSet $productSet)
     {
-        dd($request);
+        $request->validate([
+            'product-1' => 'required|exists:products,id',
+            'product-2' => 'required|exists:products,id',
+        ]);
+
+        //Update products
+        $productSet->products()
+                   ->sync([ $request['product-1'], $request['product-2'] ]);
+
+
+
+        return back();
     }
 
     public function destroy(ProductSet $productSet)
