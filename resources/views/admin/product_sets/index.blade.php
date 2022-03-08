@@ -88,7 +88,7 @@
                                         </td>
                                         <td>
                                             <form
-                                                action="{{ '' }}"
+                                                action="{{ route('product_set.destroy', $product_set) }}"
                                                 method="post" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
