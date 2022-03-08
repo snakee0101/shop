@@ -77,6 +77,35 @@ class ProductSetTest extends TestCase
 
     public function test_product_set_discount_could_be_updated()
     {
+        $product = Product::factory()->create();
+        $product2 = Product::factory()->create();
+
+        $product3 = Product::factory()->create();
+        $product4 = Product::factory()->create();
+
+        $discount_data = [
+            'discount_applied' => 'on',
+            'discount_classname' => FixedPriceDiscount::class,
+            'discount_value' => 10,
+        ];
+
+        $product_set = ProductSet::factory()->create();
+        $product_set->products()
+            ->attach([ $product->id, $product2->id ]);
+
+        $this->put( route('product_set.update', $product_set), [
+            'product-1' => $product3->id,
+            'product-2' => $product4->id] + $discount_data )->assertRedirect();
+
+        $this->assertDatabaseHas('discounts', [
+            'discount_classname' => $discount_data['discount_classname'],
+            'value' => $discount_data['discount_value'],
+            'item_type' => ProductSet::class
+        ]);
+    }
+
+    public function test_product_set_discount_could_be_removed()
+    {
 
     }
 }

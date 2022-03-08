@@ -70,7 +70,9 @@ class ProductSetController extends Controller
         $productSet->products()
                    ->sync([ $request['product-1'], $request['product-2'] ]);
 
-
+        //Apply discount
+        if ($request->discount_applied === 'on')
+            Discount::attachTo($productSet, $request);
 
         return back();
     }
