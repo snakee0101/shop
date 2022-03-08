@@ -71,6 +71,8 @@ class ProductSetController extends Controller
                    ->sync([ $request['product-1'], $request['product-2'] ]);
 
         //Apply discount
+        $productSet->discount()->delete();
+
         if ($request->discount_applied === 'on')
             Discount::attachTo($productSet, $request);
 
