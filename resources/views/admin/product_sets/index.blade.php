@@ -44,7 +44,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($product_sets as $product_set)
-                                    <tr>
+                                    <tr style="{{ $product_set->trashed() ? 'background: rgba(255, 0, 0, 0.21)' : '' }}">
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             {{ $product_set->id }}
                                         </td>
@@ -87,17 +87,27 @@
                                             {{ $product_set->created_at }}
                                         </td>
                                         <td>
-                                            <form
-                                                action="{{ route('product_set.destroy', $product_set) }}"
-                                                method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
+                                            @if($product_set->trashed())
+                                                <form
+                                                    action="{{ route('product_set.restore', $product_set) }}"
+                                                    method="post" class="d-inline">
+                                                    @csrf
 
-                                                <button class="btn btn-danger">Deactivate</button>
-                                            </form>
-                                            <a href="{{ route('product_set.edit', $product_set) }}">
-                                                <button class="btn btn-warning">Edit</button>
-                                            </a>
+                                                    <button class="btn btn-primary">Activate</button>
+                                                </form>
+                                            @else
+                                                <form
+                                                    action="{{ route('product_set.destroy', $product_set) }}"
+                                                    method="post" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button class="btn btn-danger">Deactivate</button>
+                                                </form>
+                                                <a href="{{ route('product_set.edit', $product_set) }}">
+                                                    <button class="btn btn-warning">Edit</button>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
