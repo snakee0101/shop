@@ -61,7 +61,7 @@ class ProductSetController extends Controller
 
     public function update(Request $request, ProductSet $productSet)
     {
-        //
+        dd($request);
     }
 
     public function destroy(ProductSet $productSet)
