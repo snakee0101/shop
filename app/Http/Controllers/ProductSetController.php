@@ -29,7 +29,13 @@ class ProductSetController extends Controller
             'product-2' => 'required|exists:products,id',
         ]);
 
-        //dd($request->all());
+        ProductSet::create()
+                  ->products()
+                  ->attach([ $request['product-1'], $request['product-2'] ]);
+
+        session()->flash('message', 'Product Set has been successfully created');
+
+        return back();
     }
 
     public function show(ProductSet $productSet)
