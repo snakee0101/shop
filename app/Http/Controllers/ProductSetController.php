@@ -53,7 +53,10 @@ class ProductSetController extends Controller
 
     public function edit(ProductSet $productSet)
     {
-        //
+        return view('admin.product_sets.edit', [
+            'product_set' => $productSet,
+            'products' => Product::all()
+        ]);
     }
 
     public function update(Request $request, ProductSet $productSet)

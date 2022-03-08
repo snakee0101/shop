@@ -89,7 +89,7 @@
 
                                                 <button class="btn btn-danger">Deactivate</button>
                                             </form>
-                                            <a href="{{ '' }}">
+                                            <a href="{{ route('product_set.edit', $product_set) }}">
                                                 <button class="btn btn-warning">Edit</button>
                                             </a>
                                         </td>
