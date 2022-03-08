@@ -5,16 +5,50 @@
             product sets</a></p>
     <h2 class="my-3 font-weight-bold">Create product set</h2>
 
-    <form action="{{ route('admin.products.store_product') }}" method="post" enctype="multipart/form-data">
-        <div class="container row">
-                @csrf
+    <form action="{{ route('product_set.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="row mt-3">
+                <label for="discount_active_since" class="col-sm-2 col-form-label">Product 1</label>
+                <div class="col-sm-10">
+                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                            tabindex="-1" aria-hidden="true" name="product-1">
 
-                @if( session()->has('message') )
-                    <div class="alert alert-success" role="alert">
-                        {{ session()->pull('message') }}
-                    </div>
-                @endif
-        </div>
+                            <option value="" selected>Not selected</option>
+
+                            @foreach($products as $product_1)
+                                <option data-select2-id="{{ '#a' . $product_1->id }}"
+                                        value="{{ $product_1->id }}">
+                                    {{ "#{$product_1->id}. " . $product_1->name }}
+                                </option>
+                            @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <label for="discount_active_until" class="col-sm-2 col-form-label">Product 2</label>
+                <div class="col-sm-10">
+                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                            tabindex="-1" aria-hidden="true" name="product-2">
+
+                        <option value="" selected>Not selected</option>
+
+                        @foreach($products as $product_2)
+                            <option data-select2-id="{{ '#b' . $product_2->id }}"
+                                    value="{{ $product_2->id }}">
+                                {{ "#{$product_2->id}. " . $product_2->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+
+            @if( session()->has('message') )
+                <div class="alert alert-success" role="alert">
+                    {{ session()->pull('message') }}
+                </div>
+            @endif
+
 
         <div class="container row mt-4">
             <div class="card card-warning col p-0 m-auto">
