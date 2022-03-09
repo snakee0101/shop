@@ -70,8 +70,11 @@
                                         </td>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             @if($product_set->discount)
-                                                @switch($product_set->discount->discount_classname)
-                                                    @case(\App\Discounts\FixedPriceDiscount::class)
+                                                @if($product_set->discount->isExpired())
+                                                    <span class="font-weight-bold">Discount expired</span>
+                                                @else
+                                                    @switch($product_set->discount->discount_classname)
+                                                        @case(\App\Discounts\FixedPriceDiscount::class)
                                                         Fixed price discount <span class="font-weight-bold text-danger">- ${{ $product_set->discount->value }}</span><br>
                                                         @if($product_set->discount->coupon_code)
                                                             <span class="font-weight-bold">Coupon code:</span> {{ $product_set->discount->coupon_code }}
@@ -80,9 +83,9 @@
                                                         @if($product_set->discount->active_until)
                                                             <span class="font-weight-bold">Expire date:</span> {{ $product_set->discount->active_since->format('Y-m-d') }} - {{ $product_set->discount->active_until->format('Y-m-d') }}
                                                         @endif
-                                                    @break
+                                                        @break
 
-                                                    @case(\App\Discounts\PercentDiscount::class)
+                                                        @case(\App\Discounts\PercentDiscount::class)
                                                         Percent discount <span class="font-weight-bold text-danger">- {{ $product_set->discount->value }}%</span><br>
                                                         @if($product_set->discount->coupon_code)
                                                             <span class="font-weight-bold">Coupon code:</span> {{ $product_set->discount->coupon_code }}
@@ -91,8 +94,9 @@
                                                         @if($product_set->discount->active_until)
                                                             <span class="font-weight-bold">Expire date:</span> {{ $product_set->discount->active_since->format('Y-m-d') }} - {{ $product_set->discount->active_until->format('Y-m-d') }}
                                                         @endif
-                                                    @break
-                                                @endswitch
+                                                        @break
+                                                    @endswitch
+                                                @endif
                                             @else
                                                 -
                                             @endif
