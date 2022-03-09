@@ -43,8 +43,13 @@ class Discount extends Model
      * */
     public function apply() :float
     {
-        return $this->isActive() ? (new $this->discount_classname)->calculatePrice($this->item->price, $this->value)
-                                  : $this->item->price;
+        $item = $this->item;
+
+        if(!$this->item) //if item is soft-deleted - it doesn't available directly - so get it from db
+            $item = ($this->item_type)::withTrashed()->find($this->item_id);
+
+        return $this->isActive() ? (new $this->discount_classname)->calculatePrice($item->price, $this->value)
+                                 : $item->price;
     }
 
     public static function applyCoupon($code)
