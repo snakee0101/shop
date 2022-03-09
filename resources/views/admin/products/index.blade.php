@@ -69,7 +69,7 @@
                                                         @endif
                                                         <br>
                                                         @if($product->discount->active_until)
-                                                            <span class="font-weight-bold">Expire date:</span> {{ $product->discount->active_since->format('Y-m-d') }} - {{ $product_set->discount->active_until->format('Y-m-d') }}
+                                                            <span class="font-weight-bold">Expire date:</span> {{ $product->discount->active_since->format('Y-m-d') }} - {{ $product->discount->active_until->format('Y-m-d') }}
                                                         @endif
                                                     @break
 
@@ -80,7 +80,7 @@
                                                         @endif
                                                         <br>
                                                         @if($product->discount->active_until)
-                                                            <span class="font-weight-bold">Expire date:</span> {{ $product->discount->active_since->format('Y-m-d') }} - {{ $product_set->discount->active_until->format('Y-m-d') }}
+                                                            <span class="font-weight-bold">Expire date:</span> {{ $product->discount->active_since->format('Y-m-d') }} - {{ $product->discount->active_until->format('Y-m-d') }}
                                                         @endif
                                                     @break
                                                 @endswitch
