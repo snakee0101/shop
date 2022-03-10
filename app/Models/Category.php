@@ -24,7 +24,7 @@ class Category extends Model
         return $this->belongsTo(self::class, 'parent_id', 'id');
     }
 
-    public function hasSubCategories() : bool
+    public function hasSubCategories(): bool
     {
         return $this->subCategories()->exists();
     }
@@ -34,7 +34,7 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    public static function topLevelCategories() :Builder
+    public static function topLevelCategories(): Builder
     {
         return static::whereNull('parent_id');
     }
@@ -42,5 +42,15 @@ class Category extends Model
     public function characteristics()
     {
         return $this->hasMany(Characteristic::class);
+    }
+
+    public function breadcrumbsMenu()
+    {
+        $categories_list_reversed = [$category = $this]; //category 3 > category 2 > category 1
+
+        while($category->parent_id != null)
+            $categories_list_reversed[] = $category = $category->parentCategory; //recursively search for categories
+
+        return array_reverse($categories_list_reversed); //category 1 > category 2 > category 3
     }
 }
