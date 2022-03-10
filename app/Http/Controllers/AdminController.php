@@ -65,7 +65,8 @@ class AdminController extends Controller
             'user' => $user,
             'orders' => Order::where('user_id', $user->id)->get(),
             'wishlisted_products' => $user->wishlists->flatMap(fn($wishlist) => $wishlist->products)
-                                                     ->unique()
+                                                     ->unique(),
+            'reports' => Report::where('user_id', $user->id)->get()
         ]);
     }
 
