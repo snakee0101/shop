@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Discount;
+use App\Models\Order;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Report;
@@ -61,7 +62,8 @@ class AdminController extends Controller
     public function show_user(User $user)
     {
         return view('admin.users.show', [
-            'user' => $user
+            'user' => $user,
+            'orders' => Order::where('user_id', $user->id)->get()
         ]);
     }
 
