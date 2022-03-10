@@ -58,6 +58,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function show_user(User $user)
+    {
+        return view('admin.users.show', [
+            'user' => $user
+        ]);
+    }
+
     public function categories_index()
     {
         return view('admin.categories.index', [

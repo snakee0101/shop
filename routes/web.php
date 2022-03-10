@@ -128,6 +128,7 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::post('/product', 'store_product')->name('admin.products.store_product');
 
     Route::get('/users', 'list_users')->name('admin.users.index');
+    Route::get('/users/{user}', 'show_user')->name('admin.users.show');
 
     Route::get('/category/index', 'categories_index')->name('admin.categories.index');
     Route::get('/category/create', 'create_category')->name('admin.categories.create');

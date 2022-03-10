@@ -1,17 +1,20 @@
 @extends('admin.main')
 
 @section('content')
+    <p class="m-3 font-weight-bold"><a href="{{ route('admin.users.index') }}" class="text-danger">&lt; Back to all
+            users</a></p>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title font-weight-bold">All Users</h3>
+                <h3 class="card-title font-weight-bold">Information about user <span class="text-danger">#{{ $user->id }}</span> {{ $user->first_name }}  {{ $user->last_name }}</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline text-center"
+                            <table id="example1" class="table table-bordered table-striped dtr-inline text-center"
                                    aria-describedby="example1_info">
                                 <thead>
                                 <tr>
@@ -25,7 +28,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($users as $user)
                                         <tr>
                                             <td class="dtr-control sorting_1" tabindex="0">
                                                 {{ $user->id }}
@@ -43,12 +45,9 @@
                                                 {{ $user->email }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.users.show', $user) }}">
-                                                    Details
-                                                </a>
+                                                -
                                             </td>
                                         </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
