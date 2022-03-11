@@ -137,4 +137,15 @@ class VoteTest extends TestCase
         $this->assertEquals(+1, $question->fresh()->vote);
 
     }
+
+    public function test_voted_object_is_available()
+    {
+        $user = User::factory()->create();
+
+        $question = Question::factory()->create();
+        $vote = Vote::factory()->withObject($question)
+            ->create(['user_id' => $user->id, 'value' => -1]);
+
+        $this->assertInstanceOf(Question::class, $vote->voted_object);
+    }
 }

@@ -11,4 +11,9 @@ class Vote extends Model
 
     public $timestamps = false;
     protected $guarded = [];
+
+    public function voted_object()
+    {
+        return $this->morphTo('object');
+    }
 }
