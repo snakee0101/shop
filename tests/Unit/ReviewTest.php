@@ -25,4 +25,15 @@ class ReviewTest extends TestCase
         $review = Review::factory()->create();
         $this->assertInstanceOf(User::class, $review->author);
     }
+
+    public function test_review_belongs_to_a_product()
+    {
+        $product = Product::factory()->create();
+
+        $review = Review::factory()->create([
+            'product_id' => $product->id
+        ]);
+
+        $this->assertInstanceOf(Product::class, $review->product);
+    }
 }
