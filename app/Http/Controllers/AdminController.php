@@ -13,6 +13,7 @@ use App\Models\Reply;
 use App\Models\Report;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -85,6 +86,7 @@ class AdminController extends Controller
                 'object_type' => Question::class,
                 'user_id' => $user->id
             ])->get(),
+            'votes' => Vote::where('user_id' , $user->id)->get(),
         ]);
     }
 

@@ -868,4 +868,42 @@
             <!-- /.card-body -->
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold text-danger">Votes</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline text-center"
+                       aria-describedby="example1_info">
+                    <thead>
+                    <tr>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Voted object
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Vote
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($votes as $vote)
+                        <tr>
+                            <td class="dtr-control sorting_1">
+                                <a href="{{ route( mb_strtolower(class_basename( $vote->voted_object )) . '.show', $vote->voted_object) }}" target="__blank">
+                                    {{ class_basename( $vote->voted_object ) }} #{{ $vote->voted_object->id }}
+                                </a>
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                {{ $vote->value }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
 @endsection
