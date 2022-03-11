@@ -35,4 +35,12 @@ class ReplyTest extends TestCase
 
         $this->assertInstanceOf(User::class, $reply->author);
     }
+
+    public function test_replied_object_is_available()
+    {
+        $review = Review::factory()->create();
+        $reply = Reply::factory()->withObject($review)->create();
+
+        $this->assertInstanceOf(Review::class, $reply->object);
+    }
 }
