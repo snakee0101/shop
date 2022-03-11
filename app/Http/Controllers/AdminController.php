@@ -8,7 +8,9 @@ use App\Models\Discount;
 use App\Models\Order;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Reply;
 use App\Models\Report;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -71,7 +73,12 @@ class AdminController extends Controller
                                        ->orderByDesc('pivot_created_at')->get(),
             'comparison' => $user->comparison->groupBy(function($product) {
                                 return $product->category_id;
-                            })
+                            }),
+            'reviews' => Review::where('user_id', $user->id)->get(),
+            'review_replies' => Reply::where([
+                'object_type' => Review::class,
+                'user_id' => $user->id
+            ])->get()
         ]);
     }
 

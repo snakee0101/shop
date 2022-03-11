@@ -654,4 +654,83 @@
             <!-- /.card-body -->
         </div>
     </div>
+
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold text-danger">Reviews</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline text-center"
+                       aria-describedby="example1_info">
+                    <thead>
+                    <tr>
+                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                            colspan="1" aria-sort="ascending">#
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Reviewed product
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Rating
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Comment
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Advantages
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Disadvantages
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($reviews as $review)
+                        <tr>
+                            <td class="dtr-control sorting_1">
+                                {{ $review->id }}
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                <a href="{{ route('product.description', $review->product) }}" target="__blank">
+                                    {{ $review->product->name }}
+                                </a>
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                @for($i = 1; $i < $review->rating + 1; $i++)
+                                    <svg class="rating__star d-inline-block" width="13px" height="12px">
+                                        <g class="rating__fill">
+                                            <use
+                                                xlink:href="/images/sprite.svg#star-normal"></use>
+                                        </g>
+                                        <g class="rating__stroke">
+                                            <use
+                                                xlink:href="/images/sprite.svg#star-normal-stroke"></use>
+                                        </g>
+                                    </svg>
+                                    <div class="rating__star rating__star--only-edge d-inline-block">
+                                        <div class="rating__fill">
+                                            <div class="fake-svg-icon"></div>
+                                        </div>
+                                        <div class="rating__stroke">
+                                            <div class="fake-svg-icon"></div>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                {{ $review->comment }}
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                {{ $review->advantages }}
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                {{ $review->disadvantages }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
 @endsection
