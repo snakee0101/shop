@@ -25,4 +25,15 @@ class QuestionTest extends TestCase
         $q = Question::factory()->create();
         $this->assertInstanceOf(User::class, $q->author);
     }
+
+    public function test_question_belongs_to_a_product()
+    {
+        $product = Product::factory()->create();
+
+        $question = Question::factory()->create([
+            'product_id' => $product->id
+        ]);
+
+        $this->assertInstanceOf(Product::class, $question->product);
+    }
 }
