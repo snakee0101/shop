@@ -778,4 +778,50 @@
             <!-- /.card-body -->
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold text-danger">Questions</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline text-center"
+                       aria-describedby="example1_info">
+                    <thead>
+                    <tr>
+                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
+                            colspan="1" aria-sort="ascending">#
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Product
+                        </th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Question
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($questions as $question)
+                        <tr>
+                            <td class="dtr-control sorting_1">
+                                <a href="{{ route('question.show', $question) }}" target="__blank">
+                                    {{ $question->id }}
+                                </a>
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                <a href="{{ route('product.description', $question->product) }}" target="__blank">
+                                    {{ $question->product->name }}
+                                </a>
+                            </td>
+                            <td class="dtr-control sorting_1">
+                                {{ $question->comment }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
 @endsection

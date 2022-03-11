@@ -8,6 +8,7 @@ use App\Models\Discount;
 use App\Models\Order;
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\Question;
 use App\Models\Reply;
 use App\Models\Report;
 use App\Models\Review;
@@ -78,7 +79,8 @@ class AdminController extends Controller
             'review_replies' => Reply::where([
                 'object_type' => Review::class,
                 'user_id' => $user->id
-            ])->get()
+            ])->get(),
+            'questions' => Question::where('user_id', $user->id)->get(),
         ]);
     }
 
