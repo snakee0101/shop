@@ -106,9 +106,8 @@ class Product extends Model implements Purchaseable
     {
         $current_product_id = $this->id;
 
-        $completed_orders_that_contain_current_product = Order::whereHas('products', function($query) use ($current_product_id) {
-            $query->where('products.id', $current_product_id);
-        })->whereStatus('completed')->get();
+        $completed_orders_that_contain_current_product = Order::whereRelation('products', 'products.id', $current_product_id)
+                                                              ->whereStatus('completed')->get();
 
         $all_order_products = $completed_orders_that_contain_current_product->flatMap( fn($order) => $order->products );
 

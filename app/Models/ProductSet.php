@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use phpDocumentor\Reflection\Types\Static_;
 
 class ProductSet extends Model implements Purchaseable
 {
@@ -55,8 +56,6 @@ class ProductSet extends Model implements Purchaseable
 
     public static function whereContainsProduct(Product $product) :Builder
     {
-        return ProductSet::whereHas('products', function ($query) use ($product) {
-            $query->where('products.id', $product->id);
-        });
+        return static::whereRelation('products', 'products.id', $product->id);
     }
 }
