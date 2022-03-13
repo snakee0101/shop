@@ -33,4 +33,12 @@ class VideoTest extends TestCase
 
         $this->assertInstanceOf(Video::class, $product->fresh()->videos()->first());
     }
+
+    public function test_video_can_access_object_it_attached_to()
+    {
+        $product = Product::factory()->create();
+        $video = Video::factory()->withObject($product)->create();
+
+        $this->assertInstanceOf(Product::class, $video->object);
+    }
 }

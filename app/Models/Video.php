@@ -11,4 +11,9 @@ class Video extends Model
 
     public $timestamps = false;
     protected $guarded = [];
+
+    public function object()
+    {
+        return $this->morphTo('object');
+    }
 }

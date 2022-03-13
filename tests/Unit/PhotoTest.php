@@ -51,4 +51,14 @@ class PhotoTest extends TestCase
 
         Storage::assertMissing('/images/testfile.png');
     }
+
+    public function test_photo_can_access_object_it_attached_to()
+    {
+        $product = Product::factory()->create();
+        $photo = Photo::factory()->withObject($product)->create([
+            'url' => Storage::url('/images/testfile.png'),
+        ]);
+
+        $this->assertInstanceOf(Product::class, $photo->object);
+    }
 }

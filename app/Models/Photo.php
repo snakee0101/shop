@@ -37,6 +37,11 @@ class Photo extends Model
         return '';
     }
 
+    public function object()
+    {
+        return $this->morphTo('object');
+    }
+
     public static function decode($data)
     {
         $imgData = str_replace(' ','+', $data);
