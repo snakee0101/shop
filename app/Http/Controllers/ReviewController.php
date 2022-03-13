@@ -35,19 +35,13 @@ class ReviewController extends Controller
         ] + request(['product_id', 'rating', 'comment', 'advantages', 'disadvantages']));
 
         //Decode and save images
-        foreach($request->all() as $key => $encoded_image) {
-            if(str_contains($key, 'image'))  //filter through image fields only
-                Photo::store($encoded_image, $review);
+        foreach($request->whereKeyContains('image') as $encoded_image) {
+            Photo::store($encoded_image, $review);
         }
 
         //save videos
-        foreach($request->all() as $key => $video_url) {
-            if(str_contains($key, 'video')) { //filter through video fields only
-                $review->videos()->create([
-                    'url' => $video_url
-                ]);
-            }
-        }
+        foreach($request->whereKeyContains('video') as $video_url)
+            $review->videos()->create( ['url' => $video_url] );
 
         return back();
     }

@@ -168,25 +168,18 @@ class AdminController extends Controller
             Discount::attachTo($product, $request);
 
         //save videos
-        foreach ($request->all() as $key => $encoded_video) {
-            if (!str_contains($key, 'video'))  //filter through video fields only
-                continue;
-
+        foreach ($request->whereKeyContains('video') as $encoded_video) {
             $video_object = json_decode($encoded_video);
             $product->videos()->create((array)$video_object);
         }
 
         //Decode and save images
-        foreach($request->all() as $key => $encoded_image) {
-            if(str_contains($key, 'image'))  //filter through image fields only
-                Photo::store($encoded_image, $product);
-        }
+        foreach($request->whereKeyContains('image') as $encoded_image)
+            Photo::store($encoded_image, $product);
+
 
         //Attach characteristics
-        foreach($request->all() as $key => $char_value) {
-            if(!str_contains($key, 'char-'))  //filter through characteristic fields only
-                continue;
-
+        foreach($request->whereKeyContains('char-') as $key => $char_value) {
             $char_id = Str::of($key)->after('-');
             $product->characteristics()->attach($char_id, [
                 'value' => $char_value
@@ -224,10 +217,7 @@ class AdminController extends Controller
         //Attach characteristics
         $product->characteristics()->detach(); //delete all old characteristics
 
-        foreach($request->all() as $key => $char_value) {
-            if(!str_contains($key, 'char-'))  //filter through characteristic fields only
-                continue;
-
+        foreach($request->whereKeyContains('char-') as $key => $char_value) {
             $char_id = Str::of($key)->after('-');
             $product->characteristics()->attach($char_id, [
                 'value' => $char_value
@@ -237,10 +227,7 @@ class AdminController extends Controller
         //save videos
         $product->videos()->delete(); //delete all old videos
 
-        foreach ($request->all() as $key => $encoded_video) {
-            if (!str_contains($key, 'video'))  //filter through video fields only
-                continue;
-
+        foreach ($request->whereKeyContains('video') as $encoded_video) {
             $video_object = json_decode($encoded_video);
             $product->videos()->create((array)$video_object);
         }
@@ -248,10 +235,8 @@ class AdminController extends Controller
         //Decode and save images
         $product->photos->each->delete(); //Delete all old images
 
-        foreach($request->all() as $key => $encoded_image) {
-            if(str_contains($key, 'image'))  //filter through image fields only
-                Photo::store($encoded_image, $product);
-        }
+        foreach($request->whereKeyContains('image') as $encoded_image)
+            Photo::store($encoded_image, $product);
 
         return back();
     }
