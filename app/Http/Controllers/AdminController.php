@@ -13,7 +13,9 @@ use App\Models\Reply;
 use App\Models\Report;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Video;
 use App\Models\Vote;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -87,6 +89,10 @@ class AdminController extends Controller
                 'user_id' => $user->id
             ])->get(),
             'votes' => Vote::where('user_id' , $user->id)->get(),
+            'videos' => Video::whereHasMorph('object', [Question::class, Review::class],
+                                                       function(Builder $query) use ($user) {
+                                                            $query->where('user_id', $user->id);
+                                                       })->get(),
         ]);
     }
 

@@ -906,4 +906,36 @@
             <!-- /.card-body -->
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold text-danger">Videos</h3>
+            </div>
+            <div class="card-body">
+                @foreach($videos as $video)
+                    <div class="text-center d-inline-block">
+                        <div class="d-inline-block">
+                            <iframe style="margin: 10px"
+                                    width="280" height="157"
+                                    src="{{ $video->url }}"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+
+                            </iframe>
+                            <h4 class="ml-2">
+                                <a href="{{ route( mb_strtolower(class_basename( $video->object )) . '.show', $video->object) }}" target="__blank">
+                                    {{ class_basename( $video->object ) }} #{{ $video->object->id }}
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
 @endsection
