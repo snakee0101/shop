@@ -938,4 +938,28 @@
             <!-- /.card-body -->
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title font-weight-bold text-danger">Photos</h3>
+            </div>
+            <div class="card-body">
+                @foreach($photos as $photo)
+                    <div class="text-center d-inline-block">
+                        <div class="d-inline-block">
+                            <img src="{{ $photo->url }}" width="160">
+                            <h4 class="ml-2">
+                                <a href="{{ route( mb_strtolower(class_basename( $photo->object )) . '.show', $photo->object) }}" target="__blank">
+                                    {{ class_basename( $photo->object ) }} #{{ $photo->object->id }}
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
 @endsection
