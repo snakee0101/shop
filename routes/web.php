@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\{AddToCartController, CartController, OrderController};
-use App\Http\Controllers\{ProductController, UserController, VoteController};
+use App\Http\Controllers\{ProductActionsController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\{AdminController,
@@ -51,7 +51,7 @@ Route::post('/coupon', [CouponController::class, 'store'])->name('coupon.store')
 Route::view('/contacts', 'contact-us')->name('contacts');
 
 
-Route::controller(ProductController::class)->name('product.')->prefix('/product/{product}')
+Route::controller(ProductActionsController::class)->name('product.')->prefix('/product/{product}')
                                                              ->group(function (){
     Route::get('/', 'description')->name('description');
     Route::get('characteristics', 'characteristics')->name('characteristics');

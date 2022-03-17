@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductSet;
 
-class ProductController extends Controller
+class ProductActionsController extends Controller
 {
     private function product_view(Product $product, $view, array $additional = [])
     {
