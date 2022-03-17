@@ -92,13 +92,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function characteristics_index()
-    {
-        return view('admin.characteristics.index', [
-            'characteristics' => Characteristic::all()
-        ]);
-    }
-
     public function statistics()
     {
         return view('admin.statistics');

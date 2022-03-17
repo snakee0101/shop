@@ -316,9 +316,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ Route::currentRouteName() == 'admin.characteristics.index' || Route::currentRouteName() == 'characteristic.create' ? 'menu-open' : '' }}">
-                        <a href="{{ route('admin.characteristics.index') }}"
-                           class="nav-link {{ Route::currentRouteName() == 'admin.characteristics.index' || Route::currentRouteName() == 'characteristic.create' ? 'active' : '' }}">
+                    <li class="nav-item {{ Route::currentRouteName() == 'characteristic.index' || Route::currentRouteName() == 'characteristic.create' ? 'menu-open' : '' }}">
+                        <a href="{{ route('characteristic.index') }}"
+                           class="nav-link {{ Route::currentRouteName() == 'characteristic.index' || Route::currentRouteName() == 'characteristic.create' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Characteristics
@@ -327,8 +327,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('admin.characteristics.index') }}"
-                                   class="nav-link {{ Route::currentRouteName() == 'admin.characteristics.index' ? 'active' : '' }}">
+                                <a href="{{ route('characteristic.index') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'characteristic.index' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Characteristics</p>
                                 </a>

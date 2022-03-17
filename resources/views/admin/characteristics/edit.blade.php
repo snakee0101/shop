@@ -1,7 +1,7 @@
 @extends('admin.main')
 
 @section('content')
-    <p class="m-3 font-weight-bold"><a href="{{ route('admin.characteristics.index') }}" class="text-danger">&lt; Back to all characteristics</a></p>
+    <p class="m-3 font-weight-bold"><a href="{{ route('characteristic.index') }}" class="text-danger">&lt; Back to all characteristics</a></p>
 
     <div class="container row">
         <div class="card card-primary col-5 p-0 m-auto">

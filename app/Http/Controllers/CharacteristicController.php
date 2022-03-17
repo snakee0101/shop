@@ -14,6 +14,13 @@ class CharacteristicController extends Controller
         return $category->characteristics;
     }
 
+    public function index()
+    {
+        return view('admin.characteristics.index', [
+            'characteristics' => Characteristic::all()
+        ]);
+    }
+
     public function create()
     {
         return view('admin.characteristics.create', [
