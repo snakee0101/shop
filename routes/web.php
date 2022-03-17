@@ -113,9 +113,6 @@ Route::post('/visit/clearAll', [VisitsController::class, 'clearAll'])->name('vis
 Route::resource('category', CategoryController::class);
 Route::redirect('/catalog', route('category.index'));
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::post('/register-user', [UserController::class, 'register'])->name('register-user');
 Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
