@@ -35,14 +35,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function edit_product(Product $product)
-    {
-        return view('admin.products.edit', [
-            'product' => $product,
-            'categories' => Category::all()
-        ]);
-    }
-
     public function restore_product($product_id)
     {
         $product = Product::withTrashed()->find($product_id);

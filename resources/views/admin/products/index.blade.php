@@ -131,7 +131,7 @@
 
                                                     <button class="btn btn-danger">Deactivate</button>
                                                 </form>
-                                                <a href="{{ route('admin.product.edit', $product) }}">
+                                                <a href="{{ route('product.edit', $product) }}">
                                                     <button class="btn btn-warning">Edit</button>
                                                 </a>
                                             @endif
