@@ -290,9 +290,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'menu-open' : '' }}">
+                    <li class="nav-item {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'category.create' ? 'menu-open' : '' }}">
                         <a href="{{ route('admin.categories.index') }}"
-                           class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'admin.categories.create' ? 'active' : '' }}">
+                           class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' || Route::currentRouteName() == 'category.create' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Categories
@@ -308,8 +308,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.categories.create') }}"
-                                   class="nav-link {{ Route::currentRouteName() == 'admin.categories.create' ? 'active' : '' }}">
+                                <a href="{{ route('category.create') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'category.create' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create category</p>
                                 </a>

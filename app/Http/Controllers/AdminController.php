@@ -107,13 +107,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function create_category()
-    {
-        return view('admin.categories.create', [
-            'categories' => Category::all()
-        ]);
-    }
-
     public function characteristics_index()
     {
         return view('admin.characteristics.index', [
