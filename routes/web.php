@@ -51,18 +51,6 @@ Route::post('/coupon', [CouponController::class, 'store'])->name('coupon.store')
 
 Route::view('/contacts', 'contact-us')->name('contacts');
 
-
-Route::controller(ProductActionsController::class)->name('product.')->prefix('/product/{product}')
-                                                             ->group(function (){
-    Route::get('/', 'description')->name('description');
-    Route::get('characteristics', 'characteristics')->name('characteristics');
-    Route::get('reviews', 'reviews')->name('reviews');
-    Route::get('questions', 'questions')->name('questions');
-    Route::get('videos', 'videos')->name('videos');
-    Route::get('buy_together', 'buy_together')->name('buy_together');
-});
-
-
 Route::controller(AdminOrderActionsController::class)->name('order.actions.')->prefix('/order/{order}/')
                                                                              ->group(function (){
    Route::delete('/delete_product/{product}', 'delete_product')->name('delete_product');
@@ -96,6 +84,17 @@ Route::resource('vote', VoteController::class);
 Route::resource('report', ReportController::class);
 Route::resource('order', OrderController::class);
 Route::resource('characteristic', CharacteristicController::class);
+
+
+Route::controller(ProductActionsController::class)->name('product.')->prefix('/product/{product}')
+                                                                    ->group(function (){
+        Route::get('/', 'description')->name('description');
+        Route::get('characteristics', 'characteristics')->name('characteristics');
+        Route::get('reviews', 'reviews')->name('reviews');
+        Route::get('questions', 'questions')->name('questions');
+        Route::get('videos', 'videos')->name('videos');
+        Route::get('buy_together', 'buy_together')->name('buy_together');
+});
 
 Route::post('/product_set/{productSetId}/restore', [ProductSetController::class, 'restore'])->name('product_set.restore');
 
