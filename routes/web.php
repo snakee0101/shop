@@ -9,6 +9,7 @@ use App\Http\Controllers\{AdminController,
     CharacteristicController,
     ComparisonController,
     CouponController,
+    ProductController,
     ProductSetController,
     VisitsController,
     WishlistController,
@@ -86,6 +87,7 @@ Route::get('/comparison/public/{access_token}/{category_id}', [ComparisonControl
 
 
 Route::resource('category', CategoryController::class);
+Route::resource('product', ProductController::class);
 Route::resource('review', ReviewController::class);
 Route::resource('product_set', ProductSetController::class);
 Route::resource('question', QuestionController::class);
