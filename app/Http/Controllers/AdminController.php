@@ -179,12 +179,8 @@ class AdminController extends Controller
 
 
         //Attach characteristics
-        foreach($request->whereKeyContains('char-') as $key => $char_value) {
-            $char_id = Str::of($key)->after('-');
-            $product->characteristics()->attach($char_id, [
-                'value' => $char_value
-            ]);
-        }
+        foreach($request->whereKeyContains('char-') as $char_name => $char_value)
+            Characteristic::attachTo($product, $char_name, $char_value);
 
         session()->flash('message', 'Product was successfully created');
         return back();
@@ -217,12 +213,8 @@ class AdminController extends Controller
         //Attach characteristics
         $product->characteristics()->detach(); //delete all old characteristics
 
-        foreach($request->whereKeyContains('char-') as $key => $char_value) {
-            $char_id = Str::of($key)->after('-');
-            $product->characteristics()->attach($char_id, [
-                'value' => $char_value
-            ]);
-        }
+        foreach($request->whereKeyContains('char-') as $char_name => $char_value)
+            Characteristic::attachTo($product, $char_name, $char_value);
 
         //save videos
         $product->videos()->delete(); //delete all old videos
