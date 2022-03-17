@@ -85,6 +85,7 @@ Route::controller(ComparisonController::class)->middleware('authenticated')->pre
 Route::get('/comparison/public/{access_token}/{category_id}', [ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
 
 
+Route::resource('category', CategoryController::class);
 Route::resource('review', ReviewController::class);
 Route::resource('product_set', ProductSetController::class);
 Route::resource('question', QuestionController::class);
@@ -108,10 +109,6 @@ Route::prefix('account')->group(function () {
 
 Route::delete('/visit/{product}', [VisitsController::class, 'destroy'])->name('visit.destroy');
 Route::post('/visit/clearAll', [VisitsController::class, 'clearAll'])->name('visit.clear_all');
-
-
-Route::resource('category', CategoryController::class);
-Route::redirect('/catalog', route('category.index'));
 
 
 Route::post('/register-user', [UserController::class, 'register'])->name('register-user');
