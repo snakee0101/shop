@@ -130,7 +130,6 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/statistics', 'statistics')->name('admin.statistics');
 
     Route::get('/characteristics/index', 'characteristics_index')->name('admin.characteristics.index');
-    Route::get('/characteristics/create', 'create_characteristics')->name('admin.characteristics.create');
 
     Route::put('/product/{product}', 'update_product')->name('admin.product.update');
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');

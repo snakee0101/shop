@@ -2,7 +2,7 @@
 
 @section('content')
     <p class="m-3">
-        <a href="{{ route('admin.characteristics.create') }}">
+        <a href="{{ route('characteristic.create') }}">
             <button class="btn btn-success">+ Create Characteristic</button>
         </a>
     </p>
