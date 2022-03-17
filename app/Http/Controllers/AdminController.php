@@ -106,13 +106,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function reports()
-    {
-        return view('admin.reports.index', [
-            'reports' => Report::all()
-        ]);
-    }
-
     public function statistics()
     {
         return view('admin.statistics');

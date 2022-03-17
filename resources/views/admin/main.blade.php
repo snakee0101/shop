@@ -282,8 +282,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('admin.reports.index') }}"
-                           class="nav-link  {{ Route::currentRouteName() == 'admin.reports.index' ? 'active' : '' }}">
+                        <a href="{{ route('report.index') }}"
+                           class="nav-link  {{ Route::currentRouteName() == 'report.index' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Reports
