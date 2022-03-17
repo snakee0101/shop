@@ -125,7 +125,7 @@
                                                     <button class="btn btn-warning">Activate</button>
                                                 </form>
                                             @else
-                                                <form action="{{ route('admin.product.destroy', $product) }}" method="post" class="d-inline">
+                                                <form action="{{ route('product.destroy', $product) }}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
 

@@ -198,7 +198,7 @@ class ProductTest extends TestCase
     public function test_product_could_be_deleted_by_user()
     {
         $product = Product::factory()->create();
-        $this->delete( route('admin.product.destroy', $product) );
+        $this->delete( route('product.destroy', $product) );
         $this->assertSoftDeleted($product);
     }
 

@@ -35,13 +35,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function destroy_product(Product $product)
-    {
-        $product->delete();
-
-        return back();
-    }
-
     public function edit_product(Product $product)
     {
         return view('admin.products.edit', [
