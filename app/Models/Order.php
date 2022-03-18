@@ -20,10 +20,10 @@ class Order extends Model
     public function credentials()
     {
         return $this->hasOne(OrderCredentials::class)->withDefault([
-            'first_name' => $this->owner->first_name,
-            'last_name' => $this->owner->last_name,
-            'phone' => $this->owner->phone,
-            'email' => $this->owner->email
+            'first_name' => $this->owner?->first_name,
+            'last_name' => $this->owner?->last_name,
+            'phone' => $this->owner?->phone,
+            'email' => $this->owner?->email
         ]);
     }
 

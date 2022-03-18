@@ -535,10 +535,10 @@
                         <th>Email</th>
                     </tr>
                     <tr>
-                        <td>{{ $credentials->first_name }}</td>
-                        <td>{{ $credentials->last_name }}</td>
-                        <td>{{ $credentials->phone }}</td>
-                        <td>{{ $credentials->email }}</td>
+                        <td>{{ $order->credentials->first_name }}</td>
+                        <td>{{ $order->credentials->last_name }}</td>
+                        <td>{{ $order->credentials->phone }}</td>
+                        <td>{{ $order->credentials->email }}</td>
                     </tr>
                 </table>
             </div>

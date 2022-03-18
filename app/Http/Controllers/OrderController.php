@@ -21,26 +21,8 @@ class OrderController extends Controller
 
     public function edit(Order $order)
     {
-        if( is_null($order->credentials) )
-        {
-            $credentials = new class ($order->owner) {
-                public $first_name, $last_name, $phone, $email;
-
-                public function __construct(User $order_owner)
-                {
-                    $this->first_name = $order_owner->first_name;
-                    $this->last_name = $order_owner->last_name;
-                    $this->phone = $order_owner->phone;
-                    $this->email = $order_owner->email;
-                }
-            };
-        } else {
-            $credentials = $order->credentials;
-        }
-
         return view('admin.orders.edit', [
             'order' => $order,
-            'credentials' => $credentials
         ]);
     }
 
