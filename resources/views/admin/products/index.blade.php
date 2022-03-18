@@ -2,7 +2,7 @@
 
 @section('content')
     <p class="m-3">
-        <a href="{{ route('admin.products.create') }}">
+        <a href="{{ route('product.create') }}">
             <button class="btn btn-success">+ Create Product</button>
         </a>
     </p>

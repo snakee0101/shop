@@ -211,9 +211,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' ? 'menu-open' : '' }}">
+                    <li class="nav-item {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'product.create' ? 'menu-open' : '' }}">
                         <a href="{{ route('admin.products.index') }}"
-                           class="nav-link {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'admin.products.create' ? 'active' : '' }}">
+                           class="nav-link {{ Route::currentRouteName() == 'admin.products.index' || Route::currentRouteName() == 'product.create' ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Products
@@ -229,8 +229,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.products.create') }}"
-                                   class="nav-link {{ Route::currentRouteName() == 'admin.products.create' ? 'active' : '' }}">
+                                <a href="{{ route('product.create') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'product.create' ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Create product</p>
                                 </a>

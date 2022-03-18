@@ -28,13 +28,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function create_product()
-    {
-        return view('admin.products.create', [
-            'categories' => Category::all()
-        ]);
-    }
-
     public function restore_product($product_id)
     {
         $product = Product::withTrashed()->find($product_id);
