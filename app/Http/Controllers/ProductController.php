@@ -79,7 +79,49 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'numeric',
+            'payment_info' => 'required',
+            'guarantee_info' => 'required',
+            'category_id' => 'exists:categories,id',
+            'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
+        ]);
+
+        //Update basic data
+        $product->update(
+            $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
+            ['category_id' => $request->category_id]
+        );
+
+        //Apply discount
+        $product->discount()->delete(); //delete old discount
+
+        if ($request->discount_applied === 'on')
+            Discount::attachTo($product, $request);
+
+        //Attach characteristics
+        $product->characteristics()->detach(); //delete all old characteristics
+
+        foreach($request->whereKeyContains('char-') as $char_name => $char_value)
+            Characteristic::attachTo($product, $char_name, $char_value);
+
+        //save videos
+        $product->videos()->delete(); //delete all old videos
+
+        foreach ($request->whereKeyContains('video') as $encoded_video) {
+            $video_object = json_decode($encoded_video);
+            $product->videos()->create((array)$video_object);
+        }
+
+        //Decode and save images
+        $product->photos->each->delete(); //Delete all old images
+
+        foreach($request->whereKeyContains('image') as $encoded_image)
+            Photo::store($encoded_image, $product);
+
+        return back();
     }
 
     public function destroy(Product $product)

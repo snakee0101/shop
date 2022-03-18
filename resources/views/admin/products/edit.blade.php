@@ -5,7 +5,7 @@
             products</a></p>
     <h2 class="my-3 font-weight-bold">Edit product "{{ $product->name }}"</h2>
 
-    <form action="{{ route('admin.product.update', $product) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('product.update', $product) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
         <div class="container row">
             <div class="card card-primary col p-0 m-auto">

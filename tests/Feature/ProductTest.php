@@ -228,7 +228,7 @@ class ProductTest extends TestCase
             'in_stock' => Product::STATUS_ENDS
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data);
+        $this->put( route('product.update', $product), $new_data);
 
         $this->assertDatabaseHas('products', $new_data);
     }
@@ -256,7 +256,7 @@ class ProductTest extends TestCase
             'with_coupon_code' => 'on'
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data + $discount_data);
+        $this->put( route('product.update', $product), $new_data + $discount_data);
 
         $this->assertDatabaseHas('discounts', [
             'discount_classname' => FixedPriceDiscount::class,
@@ -286,7 +286,7 @@ class ProductTest extends TestCase
             'in_stock' => Product::STATUS_ENDS
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data);
+        $this->put( route('product.update', $product), $new_data);
         $this->assertDatabaseCount('discounts', 0);
     }
 
@@ -314,7 +314,7 @@ class ProductTest extends TestCase
             'in_stock' => Product::STATUS_ENDS
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data + $char_data);
+        $this->put( route('product.update', $product), $new_data + $char_data);
 
         $this->assertEquals('value 1', $product->fresh()->characteristics[0]->pivot->value);
         $this->assertEquals('value 2', $product->fresh()->characteristics[1]->pivot->value);
@@ -345,7 +345,7 @@ class ProductTest extends TestCase
             'in_stock' => Product::STATUS_ENDS
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data + $video_data);
+        $this->put( route('product.update', $product), $new_data + $video_data);
 
         $this->assertDatabaseHas('videos', $video_1->toArray());
         $this->assertDatabaseHas('videos', $video_2->toArray());
@@ -376,7 +376,7 @@ class ProductTest extends TestCase
             'in_stock' => Product::STATUS_ENDS
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data);
+        $this->put( route('product.update', $product), $new_data);
 
         Storage::assertMissing('/images/testfile.png');
     }
@@ -402,7 +402,7 @@ class ProductTest extends TestCase
             'image-1' => base64_encode('data')
         ];
 
-        $this->put( route('admin.product.update', $product), $new_data + $images);
+        $this->put( route('product.update', $product), $new_data + $images);
 
         $this->assertInstanceOf(Photo::class, $product->fresh()->photos()->first());
     }

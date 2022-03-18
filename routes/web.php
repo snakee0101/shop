@@ -127,7 +127,6 @@ Route::controller(AdminController::class)->prefix('admin-panel')
 
     Route::get('/statistics', 'statistics')->name('admin.statistics');
 
-    Route::put('/product/{product}', 'update_product')->name('admin.product.update');
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
 });
 
