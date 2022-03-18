@@ -118,8 +118,6 @@ class OrderTest extends TestCase
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        $order = Order::factory()->create();
-
         $product_1 = Product::factory()->create();
         $product_2 = Product::factory()->create();
 
@@ -153,10 +151,9 @@ class OrderTest extends TestCase
 
     public function test_order_has_credentials()
     {
-        $credentials = OrderCredentials::factory()->create();
-        $order = Order::find($credentials->order_id);
+        OrderCredentials::factory()->create();
 
-        $this->assertInstanceOf(OrderCredentials::class, $order->credentials);
+        $this->assertInstanceOf(OrderCredentials::class, Order::first()->credentials);
     }
 
     public function test_when_order_doesnt_have_credentials_it_returns_user_credentials()
