@@ -39,12 +39,6 @@ class Order extends Model
                     ->withPivot('quantity');
     }
 
-    public function getTotalAttribute()
-    {
-        return $this->products->sum( fn($product) => $product->priceWithDiscount * $product->pivot->quantity )
-             + $this->product_sets->sum( fn($product_set) => $product_set->priceWithDiscount * $product_set->pivot->quantity );
-    }
-
     public function getProductSubtotalAttribute()
     {
         return $this->products->sum( fn($product) => $product->priceWithDiscount * $product->pivot->quantity );
@@ -53,5 +47,10 @@ class Order extends Model
     public function getProductSetSubtotalAttribute()
     {
         return $this->product_sets->sum( fn($product_set) => $product_set->priceWithDiscount * $product_set->pivot->quantity );
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->product_subtotal + $this->product_set_subtotal;
     }
 }
