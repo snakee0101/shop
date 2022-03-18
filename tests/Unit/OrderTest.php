@@ -13,24 +13,32 @@ use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
+    /**
+     * $items format : [ [model, quantity], [model, quantity], ... ]
+     * Example: [ [$product, 3], [$product_set, 2] ]
+     * */
+    private function create_order_with_items(array $items)
+    {
+        $order = Order::factory()->create();
+
+        array_walk($items, function ($item, $index) use ($order) {
+            DB::table('order_item')->insert([
+                'order_id' => $order->id,
+                'item_id' => $item[0]->id,
+                'item_type' => $item[0]::class,
+                'quantity' => $item[1]
+            ]);
+        });
+
+        return $order;
+    }
+
     public function test_order_has_items()
     {
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        $order = Order::factory()->create();
-
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 1
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order =  $this->create_order_with_items([ [$product, 1], [$product_set, 1] ]);
 
         $this->assertInstanceOf(Product::class, $order->fresh()->products[0]);
         $this->assertInstanceOf(ProductSet::class, $order->fresh()->product_sets[0]);
@@ -41,19 +49,7 @@ class OrderTest extends TestCase
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        $order = Order::factory()->create();
-
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 1
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order = $this->create_order_with_items([ [$product, 1], [$product_set, 1] ]);;
 
         $this->assertInstanceOf(Order::class, $product->fresh()->orders[0]);
         $this->assertInstanceOf(Order::class, $product_set->fresh()->orders[0]);
@@ -81,19 +77,7 @@ class OrderTest extends TestCase
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        $order = Order::factory()->create();
-
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 2
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertEquals(2, $order->fresh()->products[0]->pivot->quantity);
         $this->assertEquals(1, $order->fresh()->product_sets[0]->pivot->quantity);
@@ -121,17 +105,7 @@ class OrderTest extends TestCase
             'product_id' => $product_2->id
         ]);
 
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 2
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertEquals($product_1->priceWithDiscount + $product_2->priceWithDiscount
                                                                   + $product->priceWithDiscount*2,
@@ -160,17 +134,7 @@ class OrderTest extends TestCase
             'product_id' => $product_2->id
         ]);
 
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 2
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertEquals($product->priceWithDiscount * 2,
             $order->fresh()->product_subtotal);
@@ -180,8 +144,6 @@ class OrderTest extends TestCase
     {
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
-
-        $order = Order::factory()->create();
 
         $product_1 = Product::factory()->create();
         $product_2 = Product::factory()->create();
@@ -198,17 +160,7 @@ class OrderTest extends TestCase
             'product_id' => $product_2->id
         ]);
 
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 2
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertEquals($product_set->priceWithDiscount,
             $order->fresh()->product_set_subtotal);
@@ -249,24 +201,11 @@ class OrderTest extends TestCase
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        $order = Order::factory()->create();
-
-        DB::table('order_item')->insert([[
-            'order_id' => $order->id,
-            'item_id' => $product->id,
-            'item_type' => Product::class,
-            'quantity' => 2
-        ],[
-            'order_id' => $order->id,
-            'item_id' => $product_set->id,
-            'item_type' => ProductSet::class,
-            'quantity' => 1
-        ]]);
+        $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertDatabaseCount('order_item', 2);
 
         $order->delete();
-
 
         $this->assertDatabaseCount('order_item', 0);
     }
