@@ -32,6 +32,12 @@ class Product extends Model implements Purchaseable
         return __CLASS__;
     }
 
+    public function orders()
+    {
+        return $this->morphToMany(Order::class, 'item', 'order_item')
+                    ->withPivot('quantity');
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

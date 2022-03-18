@@ -36,6 +36,29 @@ class OrderTest extends TestCase
         $this->assertInstanceOf(ProductSet::class, $order->fresh()->product_sets[0]);
     }
 
+    public function test_item_knows_orders_it_belongs_to()
+    {
+        $product = Product::factory()->create();
+        $product_set = ProductSet::factory()->create();
+
+        $order = Order::factory()->create();
+
+        DB::table('order_item')->insert([[
+            'order_id' => $order->id,
+            'item_id' => $product->id,
+            'item_type' => Product::class,
+            'quantity' => 1
+        ],[
+            'order_id' => $order->id,
+            'item_id' => $product_set->id,
+            'item_type' => ProductSet::class,
+            'quantity' => 1
+        ]]);
+
+        $this->assertInstanceOf(Order::class, $product->fresh()->orders[0]);
+        $this->assertInstanceOf(Order::class, $product_set->fresh()->orders[0]);
+    }
+
     public function test_order_has_an_owner()
     {
         $user = User::factory()->create();

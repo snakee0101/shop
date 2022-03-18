@@ -85,13 +85,7 @@ class OrderController extends Controller
 
             //Attach all objects to order
             \Cart::getContent()->each(function($item) use ($order) {
-                //Gets the name of polymorphic relation that will be called
-                $method = match( get_class($item->associatedModel) ) {
-                    Product::class => 'products',
-                    ProductSet::class => 'product_sets',
-                };
-
-                $order->$method()->attach($item->associatedModel, [
+                $item->associatedModel->orders()->attach($order, [
                     'quantity' => $item->quantity
                 ]);
             });

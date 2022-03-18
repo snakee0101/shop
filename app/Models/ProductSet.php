@@ -49,6 +49,12 @@ class ProductSet extends Model implements Purchaseable
         );
     }
 
+    public function orders()
+    {
+        return $this->morphToMany(Order::class, 'item', 'order_item')
+                    ->withPivot('quantity');
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_set_product');
