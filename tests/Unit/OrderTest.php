@@ -33,6 +33,17 @@ class OrderTest extends TestCase
         return $order;
     }
 
+    private function fill_product_set($product_set, array $products)
+    {
+        foreach ($products as $product)
+        {
+            DB::table('product_set_product')->insert([
+                'product_set_id' => $product_set->id,
+                'product_id' => $product->id
+            ]);
+        }
+    }
+
     public function test_order_has_items()
     {
         $product = Product::factory()->create();
@@ -88,22 +99,12 @@ class OrderTest extends TestCase
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        $order = Order::factory()->create();
-
         $product_1 = Product::factory()->create();
         $product_2 = Product::factory()->create();
 
         Discount::factory()->withObject($product)->create();
 
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_1->id
-        ]);
-
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_2->id
-        ]);
+        $this->fill_product_set($product_set, [$product_1, $product_2]);
 
         $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
@@ -124,15 +125,7 @@ class OrderTest extends TestCase
 
         Discount::factory()->withObject($product)->create();
 
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_1->id
-        ]);
-
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_2->id
-        ]);
+        $this->fill_product_set($product_set, [$product_1, $product_2]);
 
         $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
@@ -150,15 +143,7 @@ class OrderTest extends TestCase
 
         Discount::factory()->withObject($product)->create();
 
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_1->id
-        ]);
-
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_2->id
-        ]);
+        $this->fill_product_set($product_set, [$product_1, $product_2]);
 
         $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
