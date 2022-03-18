@@ -40,11 +40,10 @@ class CharacteristicController extends Controller
 
             session()->flash('message', 'Characteristic is successfully created');
             session()->flash('status', 'OK');
-
-            return back();
         } catch(QueryException) {
             session()->flash('message', 'Characteristic with the given name is already exists in this category');
             session()->flash('status', 'Error');
+        } finally {
             return back();
         }
     }
@@ -73,12 +72,10 @@ class CharacteristicController extends Controller
 
             session()->flash('message', 'Characteristic is successfully updated');
             session()->flash('status', 'OK');
-
-            return back();
         } catch(QueryException) {
             session()->flash('message', 'Characteristic with the given name is already exists in this category');
             session()->flash('status', 'Error');
-
+        } finally {
             return back();
         }
     }
