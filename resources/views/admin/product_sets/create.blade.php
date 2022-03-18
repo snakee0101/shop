@@ -50,7 +50,7 @@
 
             @if( session()->has('message') )
                 <div class="alert alert-success" role="alert">
-                    {{ session()->pull('message') }}
+                    {{ session('message') }}
                 </div>
             @endif
 
