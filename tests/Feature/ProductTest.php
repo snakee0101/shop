@@ -21,7 +21,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->make();
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
         )->assertRedirect();
 
@@ -40,7 +40,7 @@ class ProductTest extends TestCase
             'discount_value' => 10,
         ];
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
             + $discount_data
         )->assertRedirect();
@@ -61,7 +61,7 @@ class ProductTest extends TestCase
             'discount_value' => 10,
         ];
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
             + $discount_data
         )->assertRedirect();
@@ -80,7 +80,7 @@ class ProductTest extends TestCase
             'discount_active_until' => '2021-10-10'
         ];
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
             + $discount_data
         )->assertRedirect();
@@ -99,7 +99,7 @@ class ProductTest extends TestCase
             'with_coupon_code' => 'on'
         ];
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
             + $discount_data
         )->assertRedirect();
@@ -112,7 +112,7 @@ class ProductTest extends TestCase
         Storage::fake();
         $product = Product::factory()->make();
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
             + ['category_id' => $product->category_id] + ['image-1' => base64_encode('test string')]
         )->assertRedirect();
@@ -135,7 +135,7 @@ class ProductTest extends TestCase
 
         $product = Product::factory()->make();
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
             + ['category_id' => $product->category_id] + $video_json_data
         )->assertRedirect();
@@ -163,7 +163,7 @@ class ProductTest extends TestCase
             'char-' . $chars[2]->id => 'value 3',
         ];
 
-        $this->post( route('admin.products.store_product'),
+        $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
             + ['category_id' => $category->id] + $char_data
         )->assertRedirect();

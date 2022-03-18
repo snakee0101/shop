@@ -119,7 +119,6 @@ Route::post('/login-user', [UserController::class, 'login'])->name('login-user')
 Route::controller(AdminController::class)->prefix('admin-panel')
                                          ->group(function(){
     Route::get('/', 'products')->name('admin.products.index');
-    Route::post('/product', 'store_product')->name('admin.products.store_product');
 
     Route::get('/users', 'list_users')->name('admin.users.index');
     Route::get('/users/{user}', 'show_user')->name('admin.users.show');
