@@ -222,6 +222,16 @@ class OrderTest extends TestCase
         $this->assertInstanceOf(OrderCredentials::class, $order->credentials);
     }
 
+    public function test_when_order_doesnt_have_credentials_it_returns_user_credentials()
+    {
+        $order = Order::factory()->for(User::factory(), 'owner')->create();
+
+        $this->assertEquals($order->credentials->first_name, $order->owner->first_name);
+        $this->assertEquals($order->credentials->last_name, $order->owner->last_name);
+        $this->assertEquals($order->credentials->phone, $order->owner->phone);
+        $this->assertEquals($order->credentials->email, $order->owner->email);
+    }
+
     public function test_when_order_is_deleted_its_credentials_are_also_deleted()
     {
         $credentials = OrderCredentials::factory()->create();
