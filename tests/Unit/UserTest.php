@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Order;
+use App\Models\Question;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\Vote;
@@ -16,6 +17,13 @@ class UserTest extends TestCase
         Review::factory()->create();
 
         $this->assertInstanceOf(Review::class, User::first()->reviews()->first() );
+    }
+
+    public function test_user_can_access_questions()
+    {
+        Question::factory()->create();
+
+        $this->assertInstanceOf(Question::class, User::first()->questions()->first() );
     }
 
     public function test_user_can_access_orders()

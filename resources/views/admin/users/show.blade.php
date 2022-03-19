@@ -801,7 +801,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($questions as $question)
+                    @foreach($user->questions as $question)
                         <tr>
                             <td class="dtr-control sorting_1">
                                 <a href="{{ route('question.show', $question) }}" target="__blank">

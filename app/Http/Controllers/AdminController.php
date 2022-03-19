@@ -59,7 +59,6 @@ class AdminController extends Controller
                 'object_type' => Review::class,
                 'user_id' => $user->id
             ])->get(),
-            'questions' => Question::where('user_id', $user->id)->get(),
             'question_replies' => Reply::where([
                 'object_type' => Question::class,
                 'user_id' => $user->id
