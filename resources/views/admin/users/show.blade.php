@@ -363,7 +363,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($reports as $report)
+                                @foreach($user->reports as $report)
                                     <tr>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             <a href="{{ route( mb_strtolower(class_basename( $report->object )) . '.show', $report->object) }}" target="__blank">

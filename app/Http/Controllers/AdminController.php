@@ -49,7 +49,6 @@ class AdminController extends Controller
             'user' => $user,
             'wishlisted_products' => $user->wishlists->flatMap(fn($wishlist) => $wishlist->products)
                                                      ->unique(),
-            'reports' => Report::where('user_id', $user->id)->get(),
             'visited_products' => $user->visited_products()
                                        ->orderByDesc('pivot_created_at')->get(),
             'comparison' => $user->comparison->groupBy(function($product) {

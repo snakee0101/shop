@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
     public function votes()
     {
         return $this->hasMany(Vote::class);
