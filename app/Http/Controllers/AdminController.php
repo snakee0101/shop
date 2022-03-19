@@ -56,7 +56,6 @@ class AdminController extends Controller
             'comparison' => $user->comparison->groupBy(function($product) {
                                 return $product->category_id;
                             }),
-            'reviews' => Review::where('user_id', $user->id)->get(),
             'review_replies' => Reply::where([
                 'object_type' => Review::class,
                 'user_id' => $user->id

@@ -684,7 +684,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($reviews as $review)
+                    @foreach($user->reviews as $review)
                         <tr>
                             <td class="dtr-control sorting_1">
                                 {{ $review->id }}
