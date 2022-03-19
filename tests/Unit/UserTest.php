@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Order;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,5 +15,12 @@ class UserTest extends TestCase
         Review::factory()->create();
 
         $this->assertInstanceOf(Review::class, User::first()->reviews()->first() );
+    }
+
+    public function test_user_can_access_orders()
+    {
+        Order::factory()->withUser( User::factory()->create() )->create();
+
+        $this->assertInstanceOf(Order::class, User::first()->orders()->first() );
     }
 }

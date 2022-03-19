@@ -47,7 +47,6 @@ class AdminController extends Controller
     {
         return view('admin.users.show', [
             'user' => $user,
-            'orders' => Order::where('user_id', $user->id)->get(),
             'wishlisted_products' => $user->wishlists->flatMap(fn($wishlist) => $wishlist->products)
                                                      ->unique(),
             'reports' => Report::where('user_id', $user->id)->get(),

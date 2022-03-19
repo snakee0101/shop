@@ -116,7 +116,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $order)
+                                @foreach($user->orders as $order)
                                     <tr>
                                         <td class="dtr-control sorting_1" tabindex="0">
                                             {{ $order->id }}
