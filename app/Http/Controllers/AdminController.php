@@ -64,7 +64,6 @@ class AdminController extends Controller
                 'object_type' => Question::class,
                 'user_id' => $user->id
             ])->get(),
-            'votes' => Vote::where('user_id' , $user->id)->get(),
             'videos' => Video::whereHasMorph('object', [Question::class, Review::class],
                                                        function(Builder $query) use ($user) {
                                                             $query->where('user_id', $user->id);

@@ -888,7 +888,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($votes as $vote)
+                    @foreach($user->votes as $vote)
                         <tr>
                             <td class="dtr-control sorting_1">
                                 <a href="{{ route( mb_strtolower(class_basename( $vote->voted_object )) . '.show', $vote->voted_object) }}" target="__blank">

@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }
