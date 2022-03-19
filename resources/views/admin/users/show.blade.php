@@ -435,7 +435,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($visited_products as $product)
+                                @foreach($user->visited_products as $product)
                                     <tr class="{{ $product->trashed() ? 'bg-secondary' : '' }}">
                                         <td class="dtr-control sorting_1">
                                             {{ $product->id }}

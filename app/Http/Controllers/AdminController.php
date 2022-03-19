@@ -49,8 +49,6 @@ class AdminController extends Controller
             'user' => $user,
             'wishlisted_products' => $user->wishlists->flatMap(fn($wishlist) => $wishlist->products)
                                                      ->unique(),
-            'visited_products' => $user->visited_products()
-                                       ->orderByDesc('pivot_created_at')->get(),
             'comparison' => $user->comparison->groupBy(function($product) {
                                 return $product->category_id;
                             }),

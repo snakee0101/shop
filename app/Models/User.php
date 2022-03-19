@@ -45,7 +45,8 @@ class User extends Authenticatable
     public function visited_products()
     {
         return $this->belongsToMany(Product::class, 'visited_products')
-                    ->withTimestamps();
+                    ->withTimestamps()
+                    ->orderByDesc('created_at');
     }
 
     public function reviews()
