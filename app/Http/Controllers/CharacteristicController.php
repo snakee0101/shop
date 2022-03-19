@@ -31,7 +31,7 @@ class CharacteristicController extends Controller
     public function store(Request $request)
     {
         try {
-            $provider = $request->validate([
+            $request->validate([
                 'name' => 'required',
                 'category_id' => 'required|exists:categories,id',
             ]);
@@ -40,11 +40,13 @@ class CharacteristicController extends Controller
 
             session()->flash('message', 'Characteristic is successfully created');
             session()->flash('status', 'OK');
+
+            return back()->withErrors();
         } catch(QueryException) {
             session()->flash('message', 'Characteristic with the given name is already exists in this category');
             session()->flash('status', 'Error');
-        } finally {
-            return back();
+
+            return back()->withErrors();
         }
     }
 
@@ -72,11 +74,13 @@ class CharacteristicController extends Controller
 
             session()->flash('message', 'Characteristic is successfully updated');
             session()->flash('status', 'OK');
+
+            return back()->withErrors();
         } catch(QueryException) {
             session()->flash('message', 'Characteristic with the given name is already exists in this category');
             session()->flash('status', 'Error');
-        } finally {
-            return back();
+
+            return back()->withErrors();
         }
     }
 
