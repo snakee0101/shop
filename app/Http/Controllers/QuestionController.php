@@ -50,7 +50,6 @@ class QuestionController extends Controller
     {
         return view('product.specific_question', [
             'question' => $question,
-            'product' => $question->product
         ]);
     }
 

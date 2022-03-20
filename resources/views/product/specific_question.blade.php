@@ -1,9 +1,9 @@
-@extends('product.main')
+@extends('product.main', ['product' => $question->product])
 
 @section('questions')
     <div class="reviews-view">
         <p>
-            <a href="{{ route('product.questions', $product) . '#product_tabs' }}"> &lt Back to all questions</a>
+            <a href="{{ route('product.questions', $question->product) . '#product_tabs' }}"> &lt Back to all questions</a>
         </p>
         <div class="reviews-view__list" id="reviews"><h3 class="reviews-view__header">Customer Questions</h3>
             <div class="reviews-list">
