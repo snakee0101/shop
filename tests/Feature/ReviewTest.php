@@ -72,6 +72,21 @@ class ReviewTest extends TestCase
         $this->assertInstanceOf(Video::class, Review::first()->videos[0]);
     }
 
+    public function test_many_videos_could_be_attached()
+    {
+        $review = Review::factory()->make();
+        auth()->login( $review->author );
+
+        $data = array_merge($review->toArray(), [
+            'video-1' => 'test url',
+            'video-2' => 'test url 2',
+        ]);
+
+        $this->post( route('review.store'), $data );
+        $this->assertInstanceOf(Video::class, Review::first()->videos[0]);
+        $this->assertInstanceOf(Video::class, Review::first()->videos[1]);
+    }
+
     public function test_review_comment_is_required()
     {
         $review = Review::factory()->make();
