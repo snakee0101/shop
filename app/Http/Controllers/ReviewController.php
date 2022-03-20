@@ -50,7 +50,6 @@ class ReviewController extends Controller
     {
         return view('product.specific_review', [
             'review' => $review,
-            'product' => Product::find($review->product_id)
         ]);
     }
 
