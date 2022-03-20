@@ -29,8 +29,7 @@ class ReviewController extends Controller
             'disadvantages' => 'required_with:advantages',
         ]);
 
-        $review = Review::create([
-            'user_id' => auth()->id(),
+        $review = auth()->user()->reviews()->create([
             'notify_on_reply' => request()->has('notify_on_reply'),
         ] + request(['product_id', 'rating', 'comment', 'advantages', 'disadvantages']));
 
