@@ -30,14 +30,12 @@ class ReplyController extends Controller
             'text' => 'required'
         ]);
 
-        $reply = Reply::create([
+        $object = request('object_type')::find( request('object_id') );
+
+        $object->replies()->create([
             'user_id' => auth()->id(),
             'text' => nl2br( request('text') ),
-            'object_id' => request('object_id'),
-            'object_type' => request('object_type')
         ]);
-
-        $object = request('object_type')::find( request('object_id') );
 
         if($object->notify_on_reply)
             $object->author->notify( new ReplyNotification($object) );
