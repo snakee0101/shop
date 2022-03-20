@@ -50,7 +50,7 @@ class QuestionController extends Controller
     {
         return view('product.specific_question', [
             'question' => $question,
-            'product' => Product::find($question->product_id)
+            'product' => $question->product
         ]);
     }
 
