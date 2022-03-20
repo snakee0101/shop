@@ -27,17 +27,13 @@ class QuestionController extends Controller
             'comment' => 'required',
         ]);
 
-        $question = Question::create([
-            'user_id' => auth()->id(),
-            'product_id' => request('product_id'),
-            'comment' => request('comment'),
-            'notify_on_reply' => request()->has('notify_on_reply'),
-        ]);
+        $question = auth()->user()->questions()->create(
+            request(['product_id', 'comment']) + ['notify_on_reply' => request()->has('notify_on_reply')]
+        );
 
         //Decode and save images
-        foreach($request->whereKeyContains('image') as $encoded_image) {
+        foreach($request->whereKeyContains('image') as $encoded_image)
             Photo::store($encoded_image, $question);
-        }
 
         //save videos
         foreach($request->whereKeyContains('video') as $video_url)
