@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 class RegistrationTest extends TestCase
@@ -21,6 +23,12 @@ class RegistrationTest extends TestCase
             'password' => 'password',
             'password_confirmation' => 'password'
         ];
+    }
+
+    private function register(array $invalid_data) :TestResponse
+    {
+        return $this->post('/register-user', array_merge($this->data, $invalid_data))
+            ->assertSessionHasErrorsIn('register', array_key_first($invalid_data)); //key of array's first item (for example, first_name) is a request parameter name
     }
 
     public function test_new_users_can_register()
@@ -46,72 +54,37 @@ class RegistrationTest extends TestCase
 
     public function test_first_name_is_validated_on_registration()
     {
-        $data_invalid_first_name = $this->data;
-        $data_invalid_first_name['first_name'] = 'abcd0';
-        $this->post('/register-user', $data_invalid_first_name)
-             ->assertSessionHasErrorsIn('register', 'first_name');
-
-        $data_invalid_first_name['first_name'] = 'abcd_';
-        $this->post('/register-user', $data_invalid_first_name)
-            ->assertSessionHasErrorsIn('register','first_name');
-
-        $data_invalid_first_name['first_name'] = 'abc d';
-        $this->post('/register-user', $data_invalid_first_name)
-            ->assertSessionHasErrorsIn('register','first_name');
+        $this->register(['first_name' => 'abcd0']);
+        $this->register(['first_name' => 'abcd_']);
+        $this->register(['first_name' => 'abc d']);
     }
 
     public function test_last_name_is_validated_on_registration()
     {
-        $data_invalid_last_name = $this->data;
-        $data_invalid_last_name['last_name'] = 'abcd0';
-        $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasErrorsIn('register','last_name');
-
-        $data_invalid_last_name['last_name'] = 'abcd_';
-        $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasErrorsIn('register','last_name');
-
-        $data_invalid_last_name['last_name'] = 'abc d';
-        $this->post('/register-user', $data_invalid_last_name)
-            ->assertSessionHasErrorsIn('register','last_name');
+        $this->register(['last_name' => 'abcd0']);
+        $this->register(['last_name' => 'abcd_']);
+        $this->register(['last_name' => 'abc d']);
     }
 
     public function test_phone_is_validated_on_registration()
     {
-        $data_invalid_phone = $this->data;
-        $data_invalid_phone['phone'] = '+38060814374';
-        $this->post('/register-user', $data_invalid_phone)
-            ->assertSessionHasErrorsIn('register','phone');
-
-        $data_invalid_phone['phone'] = '380608143744';
-        $this->post('/register-user', $data_invalid_phone)
-            ->assertSessionHasErrorsIn('register','phone');
+        $this->register(['phone' => '+38060814374']);
+        $this->register(['phone' => '380608143744']);
     }
 
     public function test_email_is_validated_on_registration()
     {
-        $data_invalid_email = $this->data;
-        $data_invalid_email['email'] = 'abc572075';
-        $this->post('/register-user', $data_invalid_email)
-            ->assertSessionHasErrorsIn('register','email');
+        $this->register(['email' => 'abc572075']);
     }
 
     public function test_password_is_required_on_registration()
     {
-        $data_missing_password = $this->data;
-        $data_missing_password['password'] = '';
-        $data_missing_password['password_confirmation'] = '';
-
-        $this->post('/register-user', $data_missing_password)
-            ->assertSessionHasErrorsIn('register','password');
+        $this->register(['password' => '', 'password_confirmation' => '']);
     }
 
     public function test_password_is_confirmed_on_registration()
     {
-        $data_invalid_password = $this->data;
-        $data_invalid_password['password_confirmation'] = 'wrong password';
-        $this->post('/register-user', $data_invalid_password)
-            ->assertSessionHasErrorsIn('register','password');
+        $this->register(['password' => 'password', 'password_confirmation' => 'wrong password']);
     }
 
     public function test_email_must_be_unique()
