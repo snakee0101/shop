@@ -1,0 +1,48 @@
+.content-wrapper {
+    background: transparent;
+}
+
+.product-tabs__item {
+    padding: 14px 30px!important;
+}
+
+.product-tabs .product-tabs__content {
+    padding: 40px 40px!important;
+}
+
+.wishlist_toggle:hover svg {
+    stroke: #fff!important;
+}
+
+.image-modal .modal-dialog,
+.video-modal .modal-dialog {
+    max-width: 90%!important;
+    width: 90%;
+}
+
+.image-modal .modal-content,
+.video-modal .modal-content {
+    max-width: 100%!important;
+    width: 100%;
+}
+
+.image-modal .modal-header,
+.video-modal .modal-header {
+    padding: 0.4rem 1rem;
+}
+
+.image-modal .modal-body,
+.video-modal .modal-body {
+    padding: 0;
+}
+
+.special_specs_block {
+    overflow-x: scroll;
+}
+
+.special_specs_block td,
+.special_specs_block th {
+    max-width: 200px!important;
+    word-wrap: break-word;
+}
+
