@@ -22,8 +22,6 @@ class VisitsTest extends TestCase
         ]);
 
         DB::table('visited_products')->delete();
-
-        $this->assertDatabaseCount('visited_products', 0);
     }
 
     public function test_when_authenticated_user_accesses_any_product_controller_page_the_visit_is_saved()
@@ -44,30 +42,20 @@ class VisitsTest extends TestCase
 
     public function test_a_visit_could_be_detached()
     {
-        $user = User::factory()->create();
-        $product = Product::factory()->create();
-        $product2 = Product::factory()->create();
+        $this->actingAs( $user = User::factory()->create() );
+        $products = Product::factory()->count(2)->create();
 
         Wishlist::createDefault($user);
 
-        $this->actingAs($user);
-
-        $this->get( route('product.description', $product) )->assertOk();
-        $this->get( route('product.description', $product2) )->assertOk();
+        $this->get( route('product.description', $products[0]) )->assertOk();
+        $this->get( route('product.description', $products[1]) )->assertOk();
 
         $this->assertDatabaseCount('visited_products', 2);
 
-        $this->delete( route('visit.destroy', $product) );
+        $this->delete( route('visit.destroy', $products[0]) );
 
-        $this->assertDatabaseHas('visited_products', [
-            'user_id' => $user->id,
-            'product_id' => $product2->id
-        ]);
-
-        $this->assertDatabaseMissing('visited_products', [
-            'user_id' => $user->id,
-            'product_id' => $product->id
-        ]);
+        $this->assertDatabaseHas('visited_products', ['product_id' => $products[1]->id] );
+        $this->assertDatabaseMissing('visited_products', ['product_id' => $products[0]->id] );
     }
 
     public function test_all_visits_could_be_removed()
