@@ -13,34 +13,30 @@ class ReportTest extends TestCase
 {
     public function test_report_could_be_created()
     {
-        $user = User::factory()->create();
+        $this->actingAs( User::factory()->create() );
         $review = Review::factory()->create();
 
         $report_data = Report::factory()
             ->withObject($review)
-            ->make();
+            ->raw();
 
-        $this->actingAs($user);
-
-        $this->post( route('report.store'), $report_data->toArray() )
+        $this->post( route('report.store'), $report_data )
              ->assertOk();
 
         $this->assertDatabaseHas('reports', [
             'object_id' => $review->id,
-            'object_type' => $review::class
+            'object_type' => Review::class
         ]);
     }
 
     public function test_report_could_be_deleted()
     {
-        $user = User::factory()->create();
+        $this->actingAs( User::factory()->create() );
         $review = Review::factory()->create();
 
         $report = Report::factory()
             ->withObject($review)
             ->create();
-
-        $this->actingAs($user);
 
         $this->delete( route('report.destroy', $report) )
              ->assertRedirect();
