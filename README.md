@@ -18,14 +18,15 @@ Default user login credentials: Email - "test@gmail.com"; Password - "password".
 There is admin panel (located in /admin-panel), where all products, products sets, ... are managed.
 Also I have DB Schema (written with Mysql Workbench) * it is located in file "shop db schema.mwb".
 
-## What I'd like to do in the future
+## Future plans
 
+- product Badges that could be assigned by admin
 - user dashboard
 - admin login
 - moderator role
 - admin and moderator privilege management
 - advertisement banners, that could be placed by admin
-- currecy converter (you will see the Product price in specific currency)
+- currency converter (you will see the Product price in specific currency)
 - payments (maybe with paypal)
 - global search
 - category page search (will be powered by Meilisearch) 
