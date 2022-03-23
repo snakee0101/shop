@@ -52,3 +52,7 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 7. run "php artisan migrate"
 8. run "php artisan db:seed"
 9. run a website - "php artisan serve", "npm run watch"
+
+## Issues
+
+For some reason dataTables plugin doesn't work in chrome - so view this site in firefox.
