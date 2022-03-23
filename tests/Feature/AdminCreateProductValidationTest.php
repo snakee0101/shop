@@ -36,9 +36,9 @@ class AdminCreateProductValidationTest extends TestCase
         ];
 
         $this->characteristics_data = [
-            "char-{$characteristics[0]->name}" => 'test value 1',
-            "char-{$characteristics[1]->name}" => 'test value 2',
-            "char-{$characteristics[2]->name}" => 'test value 3',
+            "char-{$characteristics[0]->id}" => 'test value 1',
+            "char-{$characteristics[1]->id}" => 'test value 2',
+            "char-{$characteristics[2]->id}" => 'test value 3',
         ];
 
         $this->discount_data = [
@@ -112,5 +112,13 @@ class AdminCreateProductValidationTest extends TestCase
 
         $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
             ->assertSessionHasNoErrors();
+    }
+
+    public function test_product_category_must_be_selected()
+    {
+        $this->basic_data['category_id'] = '';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasErrors('category_id');
     }
 }
