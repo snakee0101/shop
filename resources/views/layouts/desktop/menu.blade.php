@@ -4,7 +4,7 @@
             <div class="nav-panel__row">
                 <div class="nav-panel__departments"><!-- .departments -->
                     <div class="departments" data-departments-fixed-by="">
-                        <div class="departments__body">
+                       {{--<div class="departments__body">
                             <div class="departments__links-wrapper">
                                 <ul class="departments__links">
                                     <li class="departments__item"><a href="#">Power Tools
@@ -370,7 +370,7 @@
                             <svg class="departments__button-arrow" width="9px" height="6px">
                                 <use xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use>
                             </svg>
-                        </button>
+                        </button>--}}
                     </div><!-- .departments / end --></div>
                 <div class="nav-panel__nav-links nav-links">
                     <ul class="nav-links__list">
@@ -380,7 +380,8 @@
                         <li class="nav-links__item nav-links__item--with-submenu"><a
                                 href="{{ route('category.index') }}"><span>Catalog</span></a>
                         </li>
-                        <li class="nav-links__item nav-links__item--with-submenu"><a href="#"><span>Megamenu <svg
+                        {{--<li class="nav-links__item nav-links__item--with-submenu">
+                            <a href="#"><span>Megamenu <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
                                             xlink:href="/images/sprite.svg#arrow-rounded-down-9x6"></use></svg></span></a>
                             <div class="nav-links__megamenu nav-links__megamenu--size--nl">
@@ -456,7 +457,7 @@
                                         </div>
                                     </div>
                                 </div><!-- .megamenu / end --></div>
-                        </li>
+                        </li>--}}
                         {{--<li class="nav-links__item nav-links__item--with-submenu"><a
                                 href="shop-grid-3-columns-sidebar.html"><span>Shop <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
