@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="d-flex p-4">
-                <product-card-component v-for="product in wishlist_object.products_json"
+                <product-card-component v-for="product in wishlist_object.products"
                                         :key="product.id"
                                         :user="JSON.stringify(user_object)"
                                         :product="JSON.stringify(product)"
@@ -113,10 +113,10 @@ export default {
     computed: {
         total() {
             if(this.selected_product_ids.length === 0)
-                return this.wishlist_object.products_json.map(product => product.PriceWithDiscount)
+                return this.wishlist_object.products.map(product => product.PriceWithDiscount)
                                                          .reduce( (prev_price, current_price) => prev_price + current_price, 0);
             else
-                return this.wishlist_object.products_json.filter( product => this.selected_product_ids.indexOf( product.id ) !== -1 )
+                return this.wishlist_object.products.filter( product => this.selected_product_ids.indexOf( product.id ) !== -1 )
                                                          .map(product => product.PriceWithDiscount)
                                                          .reduce( (prev_price, current_price) => prev_price + current_price, 0);
         }
@@ -153,7 +153,7 @@ export default {
        remove_from_wishlist_callback(product_id)
        {
            axios.post(`/wishlist/${this.wishlist_object.id}/${product_id}`);
-           this.wishlist_object.products_json = this.wishlist_object.products_json.filter( product => product.id !== product_id );
+           this.wishlist_object.products = this.wishlist_object.products.filter( product => product.id !== product_id );
        },
        save_selection(wishlist_id, product_id, selected)
        {
@@ -169,7 +169,7 @@ export default {
            this.all_selected = !this.all_selected;
 
            if(this.all_selected)
-               this.selected_product_ids = this.wishlist_object.products_json.map( product => product.id );
+               this.selected_product_ids = this.wishlist_object.products.map( product => product.id );
             else
                this.selected_product_ids = [];
 

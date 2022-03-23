@@ -10,8 +10,8 @@ class Wishlist extends Model
 {
     use HasFactory;
 
-    protected $appends = ['products_json'];
     public $timestamps = false;
+    protected $with = ['products'];
     protected $guarded = [];
     protected $casts = [
       'is_active' => 'boolean'
@@ -26,11 +26,6 @@ class Wishlist extends Model
     {
         return $this->belongsToMany(Product::class)
                     ->withTimestamps();
-    }
-
-    public function getProductsJsonAttribute()
-    {
-        return $this->products;
     }
 
     public static function createDefault(User $user)

@@ -92,10 +92,9 @@ class WishlistTest extends TestCase
         $wishlist->products()->attach($products);
         $wishlist->refresh();
 
-        $wishlist_json = $wishlist->toJson();
-        $wishlist_json_object = json_decode($wishlist_json);
+        $wishlist_json = $wishlist->load('products')->toJson();
 
-        $this->assertEquals($products[0]->description, $wishlist_json_object->products_json[0]->description);
+        $this->assertStringContainsString($products[0]->description, $wishlist_json);
     }
 
     public function test_wishlist_name_must_be_unique()
