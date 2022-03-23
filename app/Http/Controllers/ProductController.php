@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Discount;
 use App\Models\Photo;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -23,23 +23,10 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:products,name',
-            'description' => 'required',
-            'price' => 'numeric',
-            'payment_info' => 'required',
-            'guarantee_info' => 'required',
-            'category_id' => 'exists:categories,id',
-            'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
-        ]);
-
         //Save basic data
-        $product = Product::create(
-            $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
-            ['category_id' => $request->category_id]
-        );
+        $product = Product::create( $request->validated() );
 
         //Apply discount
         if ($request->discount_applied === 'on')
@@ -77,23 +64,10 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'numeric',
-            'payment_info' => 'required',
-            'guarantee_info' => 'required',
-            'category_id' => 'exists:categories,id',
-            'in_stock' => "in:" . Product::STATUS_IN_STOCK . ',' . Product::STATUS_ENDS . ',' . Product::STATUS_OUT_OF_STOCK
-        ]);
-
         //Update basic data
-        $product->update(
-            $request->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') +
-            ['category_id' => $request->category_id]
-        );
+        $product->update( $request->validated() );
 
         //Apply discount
         $product->discount()->delete(); //delete old discount
