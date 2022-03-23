@@ -11,7 +11,6 @@ class Category extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $withCount = ['products'];
     protected $guarded = [];
 
     public function subCategories()

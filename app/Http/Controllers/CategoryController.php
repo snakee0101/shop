@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function index()
     {
         return view('catalog', [
-            'categories' => Category::topLevelCategories()->get()
+            'categories' => Category::topLevelCategories()->withCount('products')->get()
         ]);
     }
 
