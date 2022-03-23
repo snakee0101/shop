@@ -31,11 +31,11 @@ class CategoryController extends Controller
         ]);
 
         $path = $request->file('image')
-                        ->store('/public/images/');
+            ->store('/public/images/');
 
-        Category::create( $request->only( ['name', 'parent_id'] ) + [
-            'image_url' => Storage::url($path)
-        ] );
+        Category::create($request->only(['name', 'parent_id']) + [
+                'image_url' => Storage::url($path)
+            ]);
 
         session()->flash('message', 'Category was successfully created');
         return back();
@@ -43,17 +43,17 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        if($category->hasSubCategories()) {//if category has subcategories - show their list
+        if ($category->hasSubCategories()) {//if category has subcategories - show their list
             return view('catalog', [
                 'categories' => $category->subCategories()->get(),
                 'is_subcategories_page' => true
             ]);
-        } else {//if not - go to the shop
-            return view('shop', [
-                'category' => $category,
-                'products' => $category->products()->paginate()
-            ]);
         }
+
+        return view('shop', [ //if not - go to the shop
+            'category' => $category,
+            'products' => $category->products()->paginate()
+        ]);
     }
 
 
@@ -74,13 +74,13 @@ class CategoryController extends Controller
 
         $path = '';
 
-        if($request->file('image'))
+        if ($request->file('image'))
             $path = $request->file('image')
-                            ->store('/public/images/');
+                ->store('/public/images/');
 
-        $category->update( $request->only( ['name', 'parent_id'] ) + [
+        $category->update($request->only(['name', 'parent_id']) + [
                 'image_url' => ($path == '') ? $category->image_url : Storage::url($path)  //store an image if it is provided, otherwise leave original image
-        ]);
+            ]);
 
         session()->flash('message', 'Category was successfully updated');
         return back();
