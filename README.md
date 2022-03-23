@@ -39,6 +39,7 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 - Vue
 - Meilisearch (in future)
 - PhpUnit
+- PHP GD extension is required
 
 ## Installation
 
