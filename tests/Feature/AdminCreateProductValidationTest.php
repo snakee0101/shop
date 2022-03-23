@@ -63,4 +63,54 @@ class AdminCreateProductValidationTest extends TestCase
         $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
              ->assertSessionHasErrors('description');
     }
+
+    public function test_product_payment_info_is_required()
+    {
+        $this->basic_data['payment_info'] = '';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+             ->assertSessionHasErrors('payment_info');
+    }
+
+    public function test_product_guarantee_info_is_required()
+    {
+        $this->basic_data['guarantee_info'] = '';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasErrors('guarantee_info');
+    }
+
+    public function test_product_price_is_required()
+    {
+        $this->basic_data['price'] = '';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasErrors('price');
+    }
+
+    public function test_product_price_is_not_a_string()
+    {
+        $this->basic_data['price'] = 'a';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasErrors('price');
+    }
+
+    public function test_product_price_is_not_less_than_1_cent()
+    {
+        $this->basic_data['price'] = '-1';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasErrors('price');
+
+        $this->basic_data['price'] = '0.00';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasErrors('price');
+
+        $this->basic_data['price'] = '0.01';
+
+        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
+            ->assertSessionHasNoErrors();
+    }
 }

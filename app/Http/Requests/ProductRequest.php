@@ -12,7 +12,7 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|unique:products,name',
             'description' => 'required',
-            'price' => 'numeric',
+            'price' => 'numeric|min:0.01',
             'payment_info' => 'required',
             'guarantee_info' => 'required',
             'category_id' => 'exists:categories,id',
