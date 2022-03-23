@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         if ($category->hasSubCategories()) {//if category has subcategories - show their list
             return view('catalog', [
-                'categories' => $category->subCategories()->get(),
+                'categories' => $category->subCategories,
                 'is_subcategories_page' => true
             ]);
         }

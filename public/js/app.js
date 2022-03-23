@@ -5495,11 +5495,11 @@ __webpack_require__.r(__webpack_exports__);
     total: function total() {
       var _this2 = this;
 
-      if (this.selected_product_ids.length === 0) return this.wishlist_object.products_json.map(function (product) {
+      if (this.selected_product_ids.length === 0) return this.wishlist_object.products.map(function (product) {
         return product.PriceWithDiscount;
       }).reduce(function (prev_price, current_price) {
         return prev_price + current_price;
-      }, 0);else return this.wishlist_object.products_json.filter(function (product) {
+      }, 0);else return this.wishlist_object.products.filter(function (product) {
         return _this2.selected_product_ids.indexOf(product.id) !== -1;
       }).map(function (product) {
         return product.PriceWithDiscount;
@@ -5535,7 +5535,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     remove_from_wishlist_callback: function remove_from_wishlist_callback(product_id) {
       axios.post("/wishlist/".concat(this.wishlist_object.id, "/").concat(product_id));
-      this.wishlist_object.products_json = this.wishlist_object.products_json.filter(function (product) {
+      this.wishlist_object.products = this.wishlist_object.products.filter(function (product) {
         return product.id !== product_id;
       });
     },
@@ -5546,7 +5546,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectAll: function selectAll() {
       this.all_selected = !this.all_selected;
-      if (this.all_selected) this.selected_product_ids = this.wishlist_object.products_json.map(function (product) {
+      if (this.all_selected) this.selected_product_ids = this.wishlist_object.products.map(function (product) {
         return product.id;
       });else this.selected_product_ids = [];
       window.events.$emit('toggle_select_all_products_in_a_wishlist', this.wishlist_object.id, this.selected_product_ids);
@@ -27446,7 +27446,7 @@ var render = function () {
       _c(
         "div",
         { staticClass: "d-flex p-4" },
-        _vm._l(_vm.wishlist_object.products_json, function (product) {
+        _vm._l(_vm.wishlist_object.products, function (product) {
           return _c("product-card-component", {
             key: product.id,
             staticClass: "m-2",
