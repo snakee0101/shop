@@ -87,8 +87,8 @@
                                 </div>
                             @endif
                             <form class="product__options">
-                                <div class="form-group product__option"><label
-                                        class="product__option-label">Color</label>
+                                {{--<div class="form-group product__option">
+                                    <label class="product__option-label">Color</label>
                                     <div class="input-radio-color">
                                         <div class="input-radio-color__list"><label
                                                 class="input-radio-color__item input-radio-color__item--white"
@@ -106,7 +106,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group product__option"><label
+                                <div class="form-group product__option">
+                                    <label
                                         class="product__option-label">Material</label>
                                     <div class="input-radio-label">
                                         <div class="input-radio-label__list"><label><input type="radio" name="material">
@@ -115,7 +116,7 @@
                                                                                         disabled="disabled"> <span>Plastic</span></label>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="form-group product__option"><label class="product__option-label"
                                                                                for="product-quantity">Quantity</label>
                                     <div class="product__actions">
