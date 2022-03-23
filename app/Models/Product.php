@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model implements Purchaseable
 {
-    use HasFactory, HasDiscounts, SoftDeletes, IndexPageCollections;
+    use HasFactory, HasDiscounts, SoftDeletes;
 
     protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
