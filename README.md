@@ -37,6 +37,7 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 
 - Laravel
 - Vue
+- MySQL
 - Meilisearch (in future)
 - PhpUnit
 - PHP GD extension is required
