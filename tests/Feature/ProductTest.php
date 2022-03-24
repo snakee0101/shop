@@ -110,6 +110,8 @@ class ProductTest extends TestCase
 
     public function test_product_could_be_created_with_images()
     {
+        $this->actingAs( User::factory()->create() );
+
         Storage::fake();
         $product = Product::factory()->make();
 
@@ -388,6 +390,8 @@ class ProductTest extends TestCase
 
     public function test_product_images_could_be_updated()
     {
+        $this->actingAs( User::factory()->create() );
+
         Storage::fake();
         $product = Product::factory()->create();
 
