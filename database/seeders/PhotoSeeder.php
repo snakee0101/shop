@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Photo;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PhotoSeeder extends Seeder
@@ -14,7 +15,7 @@ class PhotoSeeder extends Seeder
         {
             Photo::factory()->count( random_int(2,5) )
                             ->withObject($product)
-                            ->create();
+                            ->create(['user_id' => User::inRandomOrder()->first()]);
         }
     }
 }
