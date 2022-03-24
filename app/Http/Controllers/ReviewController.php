@@ -30,7 +30,10 @@ class ReviewController extends Controller
 
         //save videos
         foreach($request->whereKeyContains('video') as $video_url)
-            $review->videos()->create( ['url' => $video_url] );
+            $review->videos()->create( [
+                'url' => $video_url,
+                'user_id' => auth()->id()
+            ] );
 
         return back();
     }

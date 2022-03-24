@@ -9,6 +9,7 @@ use App\Models\Discount;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Video;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
@@ -129,6 +130,8 @@ class ProductTest extends TestCase
 
     public function test_product_could_be_created_with_videos()
     {
+        $this->actingAs( User::factory()->create() );
+
         $video_json_data = [
             'video-0' => '{"url":"https://www.youtube.com/embed/UYbJNpC4Jt8","title":"38250"}'
         ];
@@ -323,12 +326,14 @@ class ProductTest extends TestCase
 
     public function test_product_videos_could_be_updated()
     {
+        $this->actingAs( $user = User::factory()->create() );
+
         $product = Product::factory()->create();
         $category = Category::factory()->create();
 
         $video = Video::factory()->withObject($product)->create();
-        $video_1 = Video::factory()->make();
-        $video_2 = Video::factory()->make();
+        $video_1 = Video::factory()->make(['user_id' => $user->id]);
+        $video_2 = Video::factory()->make(['user_id' => $user->id]);
 
         $video_data = [
             'video-1' => $video_1->toJson(),

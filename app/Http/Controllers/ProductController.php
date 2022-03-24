@@ -30,6 +30,8 @@ class ProductController extends Controller
         //save videos
         foreach ($request->whereKeyContains('video') as $encoded_video) {
             $video_object = json_decode($encoded_video);
+            $video_object->user_id = auth()->id();
+
             $product->videos()->create((array)$video_object);
         }
 
@@ -76,6 +78,8 @@ class ProductController extends Controller
 
         foreach ($request->whereKeyContains('video') as $encoded_video) {
             $video_object = json_decode($encoded_video);
+            $video_object->user_id = auth()->id();
+
             $product->videos()->create((array)$video_object);
         }
 

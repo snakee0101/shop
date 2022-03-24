@@ -27,7 +27,10 @@ class QuestionController extends Controller
 
         //save videos
         foreach($request->whereKeyContains('video') as $video_url)
-            $question->videos()->create( ['url' => $video_url] );
+            $question->videos()->create([
+                'url' => $video_url,
+                'user_id' => auth()->id()
+            ]);
 
         return back();
     }
