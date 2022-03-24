@@ -46,11 +46,6 @@ class ProductSetController extends Controller
         return back();
     }
 
-    public function show(ProductSet $productSet)
-    {
-        //
-    }
-
     public function edit(ProductSet $productSet)
     {
         return view('admin.product_sets.edit', [

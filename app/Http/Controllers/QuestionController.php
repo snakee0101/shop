@@ -11,16 +11,6 @@ use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -47,20 +37,5 @@ class QuestionController extends Controller
         return view('product.specific_question', [
             'question' => $question,
         ]);
-    }
-
-    public function edit(Question $question)
-    {
-        //
-    }
-
-    public function update(Request $request, Question $question)
-    {
-        //
-    }
-
-    public function destroy(Question $question)
-    {
-        //
     }
 }

@@ -50,11 +50,6 @@ class CharacteristicController extends Controller
         }
     }
 
-    public function show(Characteristic $characteristic)
-    {
-        //
-    }
-
     public function edit(Characteristic $characteristic)
     {
         return view('admin.characteristics.edit', [

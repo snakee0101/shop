@@ -11,11 +11,6 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         return view('admin.products.create', [
@@ -49,11 +44,6 @@ class ProductController extends Controller
 
         session()->flash('message', 'Product was successfully created');
         return back();
-    }
-
-    public function show(Product $product)
-    {
-        //
     }
 
     public function edit(Product $product)

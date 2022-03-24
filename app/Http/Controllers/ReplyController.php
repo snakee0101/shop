@@ -14,16 +14,6 @@ class ReplyController extends Controller
              ->only('store');
     }
 
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -41,25 +31,5 @@ class ReplyController extends Controller
             $object->author->notify( new ReplyNotification($object) );
 
         return back();
-    }
-
-    public function show(Reply $reply)
-    {
-        //
-    }
-
-    public function edit(Reply $reply)
-    {
-        //
-    }
-
-    public function update(Request $request, Reply $reply)
-    {
-        //
-    }
-
-    public function destroy(Reply $reply)
-    {
-        //
     }
 }
