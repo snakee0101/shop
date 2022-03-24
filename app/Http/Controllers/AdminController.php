@@ -30,8 +30,8 @@ class AdminController extends Controller
 
     public function restore_product($product_id)
     {
-        $product = Product::withTrashed()->find($product_id);
-        $product->restore();
+        Product::withTrashed()->find($product_id)
+                              ->restore();
 
         return back();
     }
