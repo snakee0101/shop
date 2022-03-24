@@ -37,6 +37,7 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 - Newsletter subscription
 - Product color selection
 - product/set quantity check when adding to the cart
+- predefined queries, shown on index page as "filter groups" - "most bought", "most favorited", "most questioned", "most bought in category X", "newest"
 
 ### Technology stack
 
