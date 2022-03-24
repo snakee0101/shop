@@ -209,6 +209,8 @@ class ProductTest extends TestCase
 
     public function test_soft_deleted_product_could_be_restored()
     {
+        $this->actingAs( User::factory()->create() );
+
         $product = Product::factory()->create();
         $product->delete();
 
