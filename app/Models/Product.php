@@ -103,6 +103,11 @@ class Product extends Model implements Purchaseable
         return $this->morphMany(Video::class, 'videos', 'object_type', 'object_id');
     }
 
+    public function product_sets()
+    {
+        return $this->belongsToMany(ProductSet::class, 'product_set_product');
+    }
+
     public function visit()
     {
         try {

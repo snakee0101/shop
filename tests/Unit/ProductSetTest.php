@@ -110,8 +110,8 @@ class ProductSetTest extends TestCase
             'product_id' => $product->id
         ]);
 
-        $this->assertInstanceOf(ProductSet::class, ProductSet::whereContainsProduct($product)->first() );
-        $this->assertCount(1, ProductSet::whereContainsProduct($product)->get() );
-        $this->assertEquals($product_set_with_product->id, ProductSet::whereContainsProduct($product)->first()->id );
+        $this->assertInstanceOf(ProductSet::class, $product->product_sets[0] );
+        $this->assertCount(1, $product->product_sets );
+        $this->assertEquals($product_set_with_product->id, $product->product_sets[0]->id );
     }
 }
