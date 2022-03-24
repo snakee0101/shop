@@ -57,7 +57,8 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 6. change your DB config in .env file
 7. run "php artisan migrate"
 8. run "php artisan db:seed"
-9. run a website - "php artisan serve", "npm run watch"
+9. run "php artisan storage:link"
+10. run a website - "php artisan serve", "npm run watch"
 
 ## Issues
 
