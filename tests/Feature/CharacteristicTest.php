@@ -121,4 +121,27 @@ class CharacteristicTest extends TestCase
         $this->assertStringContainsString($chars[1]->name, $json_response);
         $this->assertStringContainsString($chars[2]->name, $json_response);
     }
+
+    public function test_characteristic_name_must_be_unique_across_one_category()
+    {
+        $category = Category::factory()->create();
+        $category_2 = Category::factory()->create();
+
+
+        $this->post( route('characteristic.store'), [
+            'name' => 'test',
+            'category_id' => $category->id
+        ] )->assertSessionHasNoErrors();
+
+        $this->post( route('characteristic.store'), [
+            'name' => 'test',
+            'category_id' => $category_2->id
+        ] )->assertSessionHasNoErrors();
+
+
+        $this->post( route('characteristic.store'), [
+            'name' => 'test',
+            'category_id' => $category->id
+        ] )->assertSessionHasErrors('name');
+    }
 }

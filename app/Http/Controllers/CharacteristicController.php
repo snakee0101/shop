@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Characteristic;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CharacteristicController extends Controller
 {
@@ -32,7 +33,8 @@ class CharacteristicController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
+                'name' => Rule::unique('characteristics', 'name')
+                              ->where('category_id', $request['category_id']),
                 'category_id' => 'required|exists:categories,id',
             ]);
 
