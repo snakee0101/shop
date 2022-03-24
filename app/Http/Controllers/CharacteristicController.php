@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CharacteristicRequest;
 use App\Models\Category;
 use App\Models\Characteristic;
-use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class CharacteristicController extends Controller
 {
@@ -32,7 +29,7 @@ class CharacteristicController extends Controller
 
     public function store(CharacteristicRequest $request)
     {
-        Characteristic::create( $request->only(['name', 'category_id']) );
+        Characteristic::create( $request->validated() );
 
         return back()->with('successful_message', 'Characteristic is successfully created');
     }
@@ -47,7 +44,7 @@ class CharacteristicController extends Controller
 
     public function update(CharacteristicRequest $request, Characteristic $characteristic)
     {
-         $characteristic->update( $request->only( ['name', 'category_id'] ) );
+         $characteristic->update( $request->validated() );
 
          return back()->with('successful_message', 'Characteristic is successfully updated');
     }
