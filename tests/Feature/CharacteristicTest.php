@@ -144,4 +144,30 @@ class CharacteristicTest extends TestCase
             'category_id' => $category->id
         ] )->assertSessionHasErrors('name');
     }
+
+    public function test_characteristic_name_must_be_unique_across_one_category_while_updating()
+    {
+        $category = Category::factory()->create();
+        $char = Characteristic::factory()->create(['category_id' => $category->id]);
+        $char_2 = Characteristic::factory()->create(['category_id' => $category->id]);
+
+        $category2 = Category::factory()->create();
+        $char_3 = Characteristic::factory()->create(['category_id' => $category2->id]);
+        $char_4 = Characteristic::factory()->create(['category_id' => $category2->id]);
+
+        $this->put( route('characteristic.update', $char), [
+            'name' => 'new name',
+            'category_id' => $category->id
+        ] )->assertSessionHasNoErrors();
+
+        $this->put( route('characteristic.update', $char_3), [
+            'name' => $char->name,
+            'category_id' => $category2->id
+        ] )->assertSessionHasNoErrors();
+
+        $this->put( route('characteristic.update', $char), [
+            'name' => $char_2->name,
+            'category_id' => $category->id
+        ] )->assertSessionHasErrors('name');
+    }
 }

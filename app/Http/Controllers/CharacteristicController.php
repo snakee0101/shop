@@ -33,8 +33,11 @@ class CharacteristicController extends Controller
     {
         try {
             $request->validate([
-                'name' => Rule::unique('characteristics', 'name')
-                              ->where('category_id', $request['category_id']),
+                'name' => [
+                    'required',
+                    Rule::unique('characteristics', 'name')
+                        ->where('category_id', $request['category_id'])
+                ],
                 'category_id' => 'required|exists:categories,id',
             ]);
 
@@ -64,7 +67,12 @@ class CharacteristicController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required',
+                'name' => [
+                    'required',
+                    Rule::unique('characteristics', 'name')
+                       ->where('category_id', $request['category_id'])
+                ],
+                'category_id' => 'required|exists:categories,id',
             ]);
 
             $characteristic->update( $request->only( ['name', 'category_id'] ) );
