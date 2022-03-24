@@ -117,6 +117,7 @@ Route::post('/login-user', [UserController::class, 'login'])->name('login-user')
 
 
 Route::controller(AdminController::class)->prefix('admin-panel')
+                                         ->middleware('authenticated')
                                          ->group(function(){
     Route::get('/', 'products')->name('admin.products.index');
 
