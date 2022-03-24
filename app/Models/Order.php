@@ -19,12 +19,8 @@ class Order extends Model
 
     public function credentials()
     {
-        return $this->hasOne(OrderCredentials::class)->withDefault([
-            'first_name' => $this->owner?->first_name,
-            'last_name' => $this->owner?->last_name,
-            'phone' => $this->owner?->phone,
-            'email' => $this->owner?->email
-        ]);
+        return $this->hasOne(OrderCredentials::class)
+                    ->withDefault( $this->owner?->only(['first_name', 'last_name', 'phone', 'email']) );
     }
 
     public function products()

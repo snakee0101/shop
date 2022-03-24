@@ -115,7 +115,7 @@ class Product extends Model implements Purchaseable
         } catch(\Exception $e) {}
     }
 
-    public function getAllBoughtTogetherProductsAttribute()
+    public function getAllBoughtTogetherProductsAttribute() //TODO: It must be method, not an attribute
     {
         $current_product_id = $this->id;
 
