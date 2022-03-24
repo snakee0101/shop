@@ -13,6 +13,7 @@ class CreateVideosTable extends Migration
             $table->morphs('object');
             $table->string('url');
             $table->string('title')->nullable();
+            $table->foreignId('user_id');
         });
     }
 

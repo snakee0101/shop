@@ -7,7 +7,9 @@ use App\Models\Question;
 use App\Models\Report;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Video;
 use App\Models\Vote;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -49,5 +51,24 @@ class UserTest extends TestCase
         $user = User::find($vote->user_id);
 
         $this->assertInstanceOf(Vote::class, $user->votes()->first() );
+    }
+
+    public function test_user_has_videos()
+    {
+        $user = User::factory()->create();
+
+        $question = Question::factory()->create( ['user_id' => $user->id] );
+        $review = Review::factory()->create( ['user_id' => $user->id] );
+
+        Video::factory()->withObject($question)->create( ['user_id' => $user->id] );
+        Video::factory()->withObject($review)->create( ['user_id' => $user->id] );
+
+        Video::factory()->withObject($review)->create( ); //not by this user
+
+        $res = $user->fresh()->videos()->get();
+
+        $this->assertCount(2, $res);
+        $this->assertInstanceOf(Video::class, $res[0]);
+        $this->assertInstanceOf(Video::class, $res[1]);
     }
 }

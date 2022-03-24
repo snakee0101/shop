@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,8 @@ class VideoFactory extends Factory
     {
         return [
             'url' => $this->faker->url,
-            'title' => $this->faker->sentence
+            'title' => $this->faker->sentence,
+            'user_id' => User::factory()
         ];
     }
 
