@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Order;
 use App\Models\Photo;
 use App\Models\Question;
+use App\Models\Reply;
 use App\Models\Report;
 use App\Models\Review;
 use App\Models\User;
@@ -90,5 +91,22 @@ class UserTest extends TestCase
         $this->assertCount(2, $res);
         $this->assertInstanceOf(Photo::class, $res[0]);
         $this->assertInstanceOf(Photo::class, $res[1]);
+    }
+
+    public function test_user_has_replies()
+    {
+        $user = User::factory()->create();
+
+        $question = Question::factory()->create( );
+        $review = Review::factory()->create( );
+
+        Reply::factory()->withObject($question)->create( ['user_id' => $user->id] );
+        Reply::factory()->withObject($review)->create( ['user_id' => $user->id] );
+
+        $res = $user->fresh()->replies()->get();
+
+        $this->assertCount(2, $res);
+        $this->assertInstanceOf(Reply::class, $res[0]);
+        $this->assertInstanceOf(Reply::class, $res[1]);
     }
 }
