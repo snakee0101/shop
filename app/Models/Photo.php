@@ -58,7 +58,8 @@ class Photo extends Model
 
         $path_2 = '/storage/images/' . $unique_name . '.png';
         $model->photos()->create([
-            'url' => $path_2
+            'url' => $path_2,
+            'user_id' => auth()->id()
         ]);
     }
 }
