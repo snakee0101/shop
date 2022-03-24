@@ -35,7 +35,9 @@ class ComparisonController extends Controller
     {
         return view('comparison.category', [
             'category' => $category,
-            'products' => auth()->user()->comparison->filter( fn($product) => $product->category_id == $category->id )
+            'products' => auth()->user()
+                                ->comparison
+                                ->filter( fn($product) => $product->category_id == $category->id )
         ]);
     }
 
@@ -45,7 +47,8 @@ class ComparisonController extends Controller
 
         return view('comparison.category', [
             'category' => Category::find($category_id),
-            'products' => $comparison_owner->comparison->filter( fn($product) => $product->category_id == $category_id )
+            'products' => $comparison_owner->comparison
+                                           ->filter( fn($product) => $product->category_id == $category_id )
         ]);
     }
 
