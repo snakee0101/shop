@@ -17,7 +17,7 @@
                         <label for="characteristic_name">Characteristic name</label>
                         <input type="text" class="form-control" name="name" id="characteristic_name" placeholder="Enter characteristic name">
                         @error('name')
-                            <p class="text-danger mt-1">Characteristic name is required</p>
+                            <p class="text-danger mt-1">Characteristic with the given name is already exists in this category or the name is empty</p>
                         @enderror
                     </div>
                     <div class="form-group">
@@ -36,9 +36,9 @@
                 </div>
             </form>
 
-            @if( session()->has('message') )
+            @if( session()->has('successful_message') )
                 <div class="alert {{ (session('status') == 'OK') ? 'alert-success' : 'alert-danger' }} " role="alert">
-                    {{ session('message') }}
+                    {{ session('successful_message') }}
                 </div>
             @endif
         </div>

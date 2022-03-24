@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CharacteristicRequest;
 use App\Models\Category;
 use App\Models\Characteristic;
 use Illuminate\Database\QueryException;
@@ -29,30 +30,11 @@ class CharacteristicController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(CharacteristicRequest $request)
     {
-        try {
-            $request->validate([
-                'name' => [
-                    'required',
-                    Rule::unique('characteristics', 'name')
-                        ->where('category_id', $request['category_id'])
-                ],
-                'category_id' => 'required|exists:categories,id',
-            ]);
+        Characteristic::create( $request->only(['name', 'category_id']) );
 
-            Characteristic::create( $request->only(['name', 'category_id']) );
-
-            session()->flash('message', 'Characteristic is successfully created');
-            session()->flash('status', 'OK');
-
-            return back()->withErrors();
-        } catch(QueryException) {
-            session()->flash('message', 'Characteristic with the given name is already exists in this category');
-            session()->flash('status', 'Error');
-
-            return back()->withErrors();
-        }
+        return back()->with('successful_message', 'Characteristic is successfully created');
     }
 
     public function edit(Characteristic $characteristic)
@@ -63,18 +45,9 @@ class CharacteristicController extends Controller
         ]);
     }
 
-    public function update(Request $request, Characteristic $characteristic)
+    public function update(CharacteristicRequest $request, Characteristic $characteristic)
     {
         try {
-            $request->validate([
-                'name' => [
-                    'required',
-                    Rule::unique('characteristics', 'name')
-                       ->where('category_id', $request['category_id'])
-                ],
-                'category_id' => 'required|exists:categories,id',
-            ]);
-
             $characteristic->update( $request->only( ['name', 'category_id'] ) );
 
             session()->flash('message', 'Characteristic is successfully updated');
@@ -82,7 +55,7 @@ class CharacteristicController extends Controller
 
             return back()->withErrors();
         } catch(QueryException) {
-            session()->flash('message', 'Characteristic with the given name is already exists in this category');
+            session()->flash('message', 'Characteristic with the given name is already exists in this category or the name is empty');
             session()->flash('status', 'Error');
 
             return back()->withErrors();
