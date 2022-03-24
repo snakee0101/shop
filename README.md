@@ -33,6 +33,10 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 - ability to ban users after 3 warnings
 - notification system
 - ability to contact admin through form
+- News
+- Newsletter subscription
+- Product color selection
+- product/set quantity check when adding to the cart
 
 ### Technology stack
 
