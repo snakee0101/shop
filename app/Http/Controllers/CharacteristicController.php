@@ -47,19 +47,9 @@ class CharacteristicController extends Controller
 
     public function update(CharacteristicRequest $request, Characteristic $characteristic)
     {
-        try {
-            $characteristic->update( $request->only( ['name', 'category_id'] ) );
+         $characteristic->update( $request->only( ['name', 'category_id'] ) );
 
-            session()->flash('message', 'Characteristic is successfully updated');
-            session()->flash('status', 'OK');
-
-            return back()->withErrors();
-        } catch(QueryException) {
-            session()->flash('message', 'Characteristic with the given name is already exists in this category or the name is empty');
-            session()->flash('status', 'Error');
-
-            return back()->withErrors();
-        }
+         return back()->with('successful_message', 'Characteristic is successfully updated');
     }
 
 
