@@ -12,6 +12,7 @@ class CreatePhotosTable extends Migration
             $table->id();
             $table->morphs('object');
             $table->string('url');
+            $table->foreignId('user_id');
         });
     }
 

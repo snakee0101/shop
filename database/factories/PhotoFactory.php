@@ -17,6 +17,7 @@ class PhotoFactory extends Factory
     {
         return [
             'url' => '/images/products/product-' . random_int(1,15) . '.jpg',
+            'user_id' => User::factory()
         ];
     }
 

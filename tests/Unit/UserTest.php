@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Order;
+use App\Models\Photo;
 use App\Models\Question;
 use App\Models\Report;
 use App\Models\Review;
@@ -70,5 +71,24 @@ class UserTest extends TestCase
         $this->assertCount(2, $res);
         $this->assertInstanceOf(Video::class, $res[0]);
         $this->assertInstanceOf(Video::class, $res[1]);
+    }
+
+    public function test_user_has_photos()
+    {
+        $user = User::factory()->create();
+
+        $question = Question::factory()->create( ['user_id' => $user->id] );
+        $review = Review::factory()->create( ['user_id' => $user->id] );
+
+        Photo::factory()->withObject($question)->create( ['user_id' => $user->id] );
+        Photo::factory()->withObject($review)->create( ['user_id' => $user->id] );
+
+        Photo::factory()->withObject($review)->create( ); //not by this user
+
+        $res = $user->fresh()->photos()->get();
+
+        $this->assertCount(2, $res);
+        $this->assertInstanceOf(Photo::class, $res[0]);
+        $this->assertInstanceOf(Photo::class, $res[1]);
     }
 }
