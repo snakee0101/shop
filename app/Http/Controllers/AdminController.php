@@ -39,7 +39,7 @@ class AdminController extends Controller
     public function list_users()
     {
         return view('admin.users.index', [
-            'users' => User::all()
+            'users' => User::paginate()
         ]);
     }
 
@@ -74,7 +74,7 @@ class AdminController extends Controller
     public function categories_index()
     {
         return view('admin.categories.index', [
-            'categories' => Category::all()
+            'categories' => Category::paginate()
         ]);
     }
 

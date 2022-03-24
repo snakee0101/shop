@@ -39,7 +39,7 @@
                                                 {{ $category->name }}
                                             </td>
                                             <td>
-                                                {{ \App\Models\Category::find($category->parent_id)->name ?? '-' }}
+                                                {{ $category->parentCategory->name }}
                                             </td>
                                             <td>
                                                 <img src="{{ $category->image_url }}" height="100" width="100">
