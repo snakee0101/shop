@@ -39,9 +39,15 @@
 
                 <p class="mt-1 text-success">You may apply only one coupon code per Cart</p>
 
-                @if( session()->has('message') )
-                    <div class="alert {{ session('status') == 'OK' ? 'alert-success' : 'alert-danger'}}" role="alert">
-                        {{ session('message') }}
+                @error("code")
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                @if( session()->has('success_message') )
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success_message') }}
                     </div>
                 @endif
 

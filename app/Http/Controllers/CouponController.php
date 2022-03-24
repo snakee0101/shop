@@ -2,27 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CouponCodeRequest;
 use App\Models\Discount;
-use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
-    public function store(Request $request)
+    public function store(CouponCodeRequest $request)
     {
-        try {
-            Discount::applyCoupon($request->code);
+        Discount::applyCoupon($request->code);
 
-            $data = [
-                'message' => 'Coupon has been applied successfully',
-                'status' => 'OK'
-            ];
-        } catch (\Exception) {
-            $data = [
-                'message' => 'You have applied invalid coupon code',
-                'status' => 'Error'
-            ];
-        } finally {
-            return back()->with($data);
-        }
+        return back()->with('success_message', 'Coupon has been applied successfully');
     }
 }
