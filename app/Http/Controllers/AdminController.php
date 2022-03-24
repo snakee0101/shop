@@ -61,10 +61,9 @@ class AdminController extends Controller
                 'user_id' => $user->id
             ])->get(),
             'videos' => $user->videos,
-            'photos' => Photo::whereHasMorph('object', [Question::class, Review::class],
-                                                        function(Builder $query) use ($user) {
-                                                            $query->where('user_id', $user->id);
-                                                        })->get()
+            'photos' => $user->photos()
+                             ->where('object_type', '!=', Product::class)
+                             ->get()
         ]);
     }
 

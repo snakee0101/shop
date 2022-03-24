@@ -951,7 +951,7 @@
                         <div class="d-inline-block">
                             <img src="{{ $photo->url }}" width="160">
                             <h4 class="ml-2">
-                                <a href="{{ route( mb_strtolower(class_basename( $photo->object )) . '.show', $photo->object) }}" target="__blank">
+                                <a href="{{ route( mb_strtolower(class_basename( $photo->object )) . '.show', $photo->object->id) }}" target="__blank">
                                     {{ class_basename( $photo->object ) }} #{{ $photo->object->id }}
                                 </a>
                             </h4>
