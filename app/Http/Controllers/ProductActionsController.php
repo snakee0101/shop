@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\ProductSet;
 
 class ProductActionsController extends Controller
 {
@@ -13,7 +12,7 @@ class ProductActionsController extends Controller
 
         return view($view, array_merge([
             'product' => $product,
-            'product_sets' => ProductSet::whereContainsProduct($product)->get()
+            'product_sets' => $product->product_sets
         ], $additional));
     }
 

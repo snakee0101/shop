@@ -59,9 +59,4 @@ class ProductSet extends Model implements Purchaseable
     {
         return $this->belongsToMany(Product::class, 'product_set_product');
     }
-
-    public static function whereContainsProduct(Product $product) :Builder
-    {
-        return static::whereRelation('products', 'products.id', $product->id);
-    }
 }
