@@ -11,78 +11,57 @@ use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
-    public function test_category_could_be_created()
+    private UploadedFile $file;
+    private array $data;
+
+    protected function setUp(): void
     {
-        $file = UploadedFile::fake()->image('test.png');
+        parent::setUp();
+        Storage::fake();
 
-        $category = Category::factory()->make();
-
-        $this->assertDatabaseCount('categories', 0);
-
-        $this->post( route('category.store'), [
+        $this->file = UploadedFile::fake()->image('test.png');
+        $this->data = [
             'name' => 'test',
             'parent_id' => null,
-            'image' => $file
-        ] );
+            'image' => $this->file
+        ];
+    }
+
+    public function test_category_could_be_created()
+    {
+        $this->post( route('category.store'), $this->data);
 
         $this->assertDatabaseCount('categories', 1);
     }
 
     public function test_category_could_be_saved_with_files()
     {
-        Storage::fake();
+        $this->post( route('category.store'), $this->data);
 
-        $file = UploadedFile::fake()->image('test.png');
-
-        $category = Category::factory()->make();
-
-        $this->post( route('category.store'), [
-            'name' => 'test',
-            'parent_id' => null,
-            'image' => $file
-        ] );
-
-        $file_url = Storage::files('/public/images')[0];
-        Storage::assertExists($file_url);
+        Storage::assertExists($file_url = Storage::files('/public/images')[0]);
     }
 
     public function test_category_name_is_required()
     {
-        Storage::fake();
+        $this->data['name'] = '';
 
-        $file = UploadedFile::fake()->image('test.png');
-
-        $category = Category::factory()->make();
-
-        $this->post( route('category.store'), [
-            'name' => '',
-            'parent_id' => null,
-            'image' => $file
-        ] )->assertSessionHasErrors('name');
+        $this->post( route('category.store'), $this->data)
+             ->assertSessionHasErrors('name');
     }
 
     public function test_category_image_is_required()
     {
-        Storage::fake();
+        $this->data['image'] = null;
 
-        $file = UploadedFile::fake()->image('test.png');
-
-        $category = Category::factory()->make();
-
-        $this->post( route('category.store'), [
-            'name' => '',
-            'parent_id' => null,
-            'image' => null
-        ] )->assertSessionHasErrors('image');
+        $this->post( route('category.store'), $this->data)
+             ->assertSessionHasErrors('image');
     }
 
     public function test_category_could_be_deleted()
     {
         $category = Category::factory()->create();
 
-        $this->assertDatabaseCount('categories', 1);
         $this->delete( route('category.destroy', $category) );
-
         $this->assertDatabaseCount('categories', 0);
     }
 
@@ -90,13 +69,8 @@ class CategoryTest extends TestCase
     {
         $category = Category::factory()->create();
 
-        $file = UploadedFile::fake()->image('test.png');
-
-        $this->put( route('category.update', $category->id), [
-            'name' => 'new name',
-            'parent_id' => null,
-            'image' => $file
-        ] );
+        $this->data['name'] = 'new name';
+        $this->put( route('category.update', $category->id), $this->data);
 
         $this->assertDatabaseHas('categories', [
             'name' => 'new name',
@@ -110,13 +84,10 @@ class CategoryTest extends TestCase
 
         $this->put( route('category.update', $category->id), [
             'name' => 'new name',
-            'parent_id' => null,
             'image' => null
         ] );
 
         $this->assertDatabaseHas('categories', [
-            'name' => 'new name',
-            'parent_id' => null,
             'image_url' => $category->image_url
         ]);
     }
