@@ -26,12 +26,10 @@ class VisitsTest extends TestCase
 
     public function test_when_authenticated_user_accesses_any_product_controller_page_the_visit_is_saved()
     {
-        $user = User::factory()->create();
+        $this->actingAs( $user = User::factory()->create() );
         $product = Product::factory()->create();
 
         Wishlist::createDefault($user);
-
-        $this->actingAs($user);
 
         $this->visit('product.description', $product, $user);
         $this->visit('product.characteristics', $product, $user);
@@ -60,13 +58,11 @@ class VisitsTest extends TestCase
 
     public function test_all_visits_could_be_removed()
     {
-        $user = User::factory()->create();
+        $this->actingAs( $user = User::factory()->create() );
         $product = Product::factory()->create();
         $product2 = Product::factory()->create();
 
         Wishlist::createDefault($user);
-
-        $this->actingAs($user);
 
         $this->get( route('product.description', $product) )->assertOk();
         $this->get( route('product.description', $product2) )->assertOk();
