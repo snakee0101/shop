@@ -11,10 +11,8 @@ class ReportTest extends TestCase
 {
     public function test_report_has_an_author()
     {
-        $review = Review::factory()->create();
-
         $report = Report::factory()
-                        ->withObject($review)
+                        ->withObject( Review::factory()->create() )
                         ->create();
 
         $this->assertInstanceOf(User::class, $report->author);
@@ -22,10 +20,8 @@ class ReportTest extends TestCase
 
     public function test_report_associated_with_object()
     {
-        $review = Review::factory()->create();
-
         $report = Report::factory()
-                        ->withObject($review)
+                        ->withObject( Review::factory()->create() )
                         ->create();
 
         $this->assertInstanceOf(Review::class, $report->object);
