@@ -17,21 +17,18 @@ class ReviewTest extends TestCase
            'product_id' => $product
        ]);
 
-       $this->assertInstanceOf(Review::class, $product->fresh()->reviews[0]);
+       $this->assertInstanceOf(Review::class, $product->reviews[0]);
     }
 
     public function test_a_review_has_an_author()
     {
-        $review = Review::factory()->create();
-        $this->assertInstanceOf(User::class, $review->author);
+        $this->assertInstanceOf(User::class, Review::factory()->create()->author);
     }
 
     public function test_review_belongs_to_a_product()
     {
-        $product = Product::factory()->create();
-
         $review = Review::factory()->create([
-            'product_id' => $product->id
+            'product_id' => Product::factory()->create()->id
         ]);
 
         $this->assertInstanceOf(Product::class, $review->product);
