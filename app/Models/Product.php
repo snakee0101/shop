@@ -122,8 +122,8 @@ class Product extends Model implements Purchaseable
                                                               ->get();
 
         return $completed_orders_that_contain_current_product->flatMap( fn($order) => $order->products ) //get all products in orders
-                                                                            ->unique( fn($product) => $product->id )   //remove product duplications
-                                                                            ->reject( fn($product) => $product->id == $this->id ); //"bought together" products must not contain current product
+                                                             ->unique( fn($product) => $product->id )   //remove product duplications
+                                                             ->reject( fn($product) => $product->id == $this->id ); //"bought together" products must not contain current product
     }
 
     public function getGroupedBoughtTogetherProducts()
