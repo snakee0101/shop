@@ -15,10 +15,6 @@ class MacrosTest extends TestCase
         $r['secondKey'] = 10;
         $r['stKey'] = 'uiui';
 
-        $result = $r->whereKeyContains('first');
-
-        $this->assertInstanceOf(Collection::class, $result);
-        $this->assertCount(1, $result);
-        $this->assertEquals('value 1', $result['firstKey']);
+        $this->assertEquals( collect( ['firstKey' => 'value 1'] ), $r->whereKeyContains('first'));
     }
 }
