@@ -51,7 +51,7 @@ class DiscountTest extends TestCase
     public function test_discount_could_be_applied_to_a_current_item()
     {
         $product = Product::factory()->create();
-        $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
+        $discount = Discount::factory()->withObject($product)->create( ['discount_classname' => FixedPriceDiscount::class] );
 
         $priceWithDiscount = $product->price - $discount->value;
         $this->assertEquals($priceWithDiscount, $discount->apply());
@@ -60,7 +60,7 @@ class DiscountTest extends TestCase
     public function test_if_discount_is_present_product_price_is_returned_with_discount()
     {
         $product = Product::factory()->create();
-        $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
+        $discount = Discount::factory()->withObject($product)->create( ['discount_classname' => FixedPriceDiscount::class] );
 
         $priceWithDiscount = $product->price - $discount->value;
         $this->assertEquals($priceWithDiscount, $product->priceWithDiscount);
@@ -70,7 +70,7 @@ class DiscountTest extends TestCase
     {
         $product1 = Product::factory()->create();
         $product2 = Product::factory()->create();
-        Discount::factory()->withObject($product1)->create(); //assumed FixedPriceDiscount
+        Discount::factory()->withObject($product1)->create( ['discount_classname' => FixedPriceDiscount::class] );
 
         $product_set = ProductSet::factory()->create();
 
@@ -94,7 +94,7 @@ class DiscountTest extends TestCase
         $product2 = Product::factory()->create();
 
         $product_set = ProductSet::factory()->create();
-        $discount = Discount::factory()->withObject($product_set)->create(); //assumed FixedPriceDiscount
+        $discount = Discount::factory()->withObject($product_set)->create( ['discount_classname' => FixedPriceDiscount::class] );
 
         Discount::factory()->withObject($product1)->create(); //this discount must be ignored!
 
@@ -120,7 +120,7 @@ class DiscountTest extends TestCase
         $product2 = Product::factory()->create();
 
         $product_set = ProductSet::factory()->create();
-        $discount = Discount::factory()->withObject($product1)->create(); //assumed FixedPriceDiscount
+        $discount = Discount::factory()->withObject($product1)->create( ['discount_classname' => FixedPriceDiscount::class] );
 
         DB::table('product_set_product')->insert([
             'product_set_id' => $product_set->id,

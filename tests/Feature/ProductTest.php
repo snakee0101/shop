@@ -274,7 +274,7 @@ class ProductTest extends TestCase
     public function test_if_discount_is_not_applied_it_is_deleted()
     {
         $product = Product::factory()->create();
-        $discount = Discount::factory()->withObject($product)->create(); //assumed FixedPriceDiscount
+        $discount = Discount::factory()->withObject($product)->create( ['discount_classname' => FixedPriceDiscount::class] );
 
         $this->assertDatabaseHas('discounts', [
             'discount_classname' => FixedPriceDiscount::class,
