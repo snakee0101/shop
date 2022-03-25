@@ -12,8 +12,7 @@ class WishlistTest extends TestCase
 {
     public function test_wishlist_belongs_to_a_user()
     {
-        $wishlist = Wishlist::factory()->create();
-        $this->assertInstanceOf(User::class, $wishlist->owner);
+        $this->assertInstanceOf(User::class, Wishlist::factory()->create()->owner);
     }
 
     public function test_user_has_many_wishlists()
@@ -23,7 +22,6 @@ class WishlistTest extends TestCase
                            ->for($user, 'owner')
                            ->create();
 
-        $user->refresh();
         $this->assertInstanceOf(Wishlist::class, $user->wishlists[0]);
         $this->assertCount(2, $user->wishlists);
     }
@@ -37,16 +35,12 @@ class WishlistTest extends TestCase
         $default_wishlist = Wishlist::factory()->for($user, 'owner')
                                  ->create(['is_active' => true]);
 
-        $user->refresh();
-
         $this->assertEquals($default_wishlist->id, $user->default_wishlist->id);
     }
 
     public function test_default_wishlist_for_a_specific_user_could_be_created()
     {
-        $user = User::factory()->create();
-
-        Wishlist::createDefault($user);
+        Wishlist::createDefault($user = User::factory()->create());
 
         $this->assertDatabaseHas('wishlists', [
             'user_id' => $user->id,
@@ -58,60 +52,58 @@ class WishlistTest extends TestCase
     {
         $products = Product::factory()->count(2)->create();
         $wishlist = Wishlist::factory()->create();
+
         DB::table('product_wishlist')->insert([[
             'wishlist_id' => $wishlist->id,
             'product_id' => $products[0]->id,
-            'created_at' => now()
         ], [
             'wishlist_id' => $wishlist->id,
             'product_id' => $products[1]->id,
-            'created_at' => now()
         ]]);
 
-        $wishlist->refresh();
         $this->assertCount(2, $wishlist->products);
         $this->assertInstanceOf(Product::class, $wishlist->products[0]);
     }
 
     public function test_wishlist_product_relation_stores_a_timestamp_when_it_was_created()
     {
-        $product = Product::factory()->create();
         $wishlist = Wishlist::factory()->create();
 
-        $wishlist->products()->attach($product);
-        $wishlist->refresh();
+        $wishlist->products()->attach( $product = Product::factory()->create() );
 
-        $this->assertNotNull(DB::table('product_wishlist')->get()->first()->created_at);
+        $this->assertDatabaseMissing('product_wishlist', ['created_at' => null] );
+        $this->assertDatabaseHas('product_wishlist', ['product_id' => $product->id] );
     }
 
     public function test_wishlist_products_appear_in_json()
     {
-        $products = Product::factory()->count(3)->create();
         $wishlist = Wishlist::factory()->create();
 
-        $wishlist->products()->attach($products);
-        $wishlist->refresh();
+        $wishlist->products()->attach( $products = Product::factory()
+                                                          ->count(2)
+                                                          ->create() );
 
-        $wishlist_json = $wishlist->load('products')->toJson();
-
-        $this->assertStringContainsString($products[0]->description, $wishlist_json);
+        $this->assertStringContainsString($products[0]->description, $wishlist->load('products')->toJson());
     }
 
     public function test_wishlist_name_must_be_unique()
     {
         $this->expectExceptionMessage('UNIQUE constraint failed');
 
-        Wishlist::factory()->create(['name' => 'name 1']);
-        Wishlist::factory()->create(['name' => 'name 1']);
+        Wishlist::factory()->createMany([
+            ['name' => 'name 1'],
+            ['name' => 'name 1']
+        ]);
     }
 
     public function test_when_wishlist_is_deleted_attached_products_are_also_removed_from_pivot_table()
     {
-        $products = Product::factory()->count(3)->create();
         $wishlist = Wishlist::factory()->create();
-        $wishlist->products()->attach($products);
+        $wishlist->products()->attach(
+            Product::factory()->count(2)->create()
+        );
 
-        $this->assertDatabaseCount('product_wishlist', 3);
+        $this->assertDatabaseCount('product_wishlist', 2);
 
         $wishlist->delete();
         $this->assertDatabaseCount('product_wishlist', 0);
