@@ -10,15 +10,20 @@ use Tests\TestCase;
 
 class ComparisonTest extends TestCase
 {
+    private function insert($user, $product)
+    {
+        DB::table('comparison')->insert([
+            'product_id' => $product->id,
+            'user_id' => $user->id
+        ]);
+    }
+
     public function test_a_user_has_product_comparison()
     {
         $user = User::factory()->create();
         $product = Product::factory()->create();
 
-        DB::table('comparison')->insert([
-            'product_id' => $product->id,
-            'user_id' => $user->id
-        ]);
+        $this->insert($user, $product);
 
         $this->assertInstanceOf(Product::class, $user->fresh()->comparison[0]);
     }
@@ -30,28 +35,19 @@ class ComparisonTest extends TestCase
         $user = User::factory()->create();
         $product = Product::factory()->create();
 
-        DB::table('comparison')->insert([
-            'product_id' => $product->id,
-            'user_id' => $user->id
-        ]);
-
-        DB::table('comparison')->insert([
-            'product_id' => $product->id,
-            'user_id' => $user->id
-        ]);
+        $this->insert($user, $product);
+        $this->insert($user, $product);
     }
 
     public function test_product_can_determine_whether_it_is_in_compare_list()
     {
-        $user = User::factory()->create();
         $product = Product::factory()->create();
+        $this->actingAs($user = User::factory()->create());
 
-        $this->actingAs($user);
-
-        $this->assertFalse( $product->fresh()->inComparison );
+        $this->assertFalse( $product->inComparison );
 
         $user->comparison()->attach($product);
-        $this->assertTrue( $product->fresh()->inComparison );
+        $this->assertTrue( $product->inComparison );
     }
 
     public function test_user_knows_its_comparison_link()
