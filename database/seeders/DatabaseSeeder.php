@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
                      ReportSeeder::class,
                      VoteSeeder::class,
                      PhotoSeeder::class,
-                     OrderSeeder::class
+                     OrderSeeder::class,
+                     DiscountSeeder::class,
         ]);
     }
 }

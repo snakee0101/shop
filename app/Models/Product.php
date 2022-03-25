@@ -90,7 +90,7 @@ class Product extends Model implements Purchaseable
 
     public function getReviewStarsAverageAttribute()
     {
-        return round( $this->reviews()->avg('rating') );
+        return round( $this->reviews()->avg('rating') ?? 0 );
     }
 
     public function photos()

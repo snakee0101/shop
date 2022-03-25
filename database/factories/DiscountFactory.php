@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Discounts\FixedPriceDiscount;
+use App\Discounts\PercentDiscount;
 use App\Models\Discount;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -17,8 +18,8 @@ class DiscountFactory extends Factory
     public function definition()
     {
         return [
-            'discount_classname' => FixedPriceDiscount::class,
-            'value' => random_int(10, 40),
+            'discount_classname' => collect([FixedPriceDiscount::class, PercentDiscount::class])->random(1)[0],
+            'value' => random_int(1, 20),
         ];
     }
 
