@@ -62,5 +62,8 @@ Also I have DB Schema (written with Mysql Workbench) * it is located in file "sh
 10. run a website - "php artisan serve", "npm run watch"
 
 ## Issues
-
 For some reason dataTables plugin doesn't work in chrome - so view this site in firefox.
+
+Images in ProductCardComponent (Vue) are loading a lot longer in firefox than in chrome. 
+
+Number of DB queries executed and models loaded are bigger than expected (according to LaravelDebugBar).
