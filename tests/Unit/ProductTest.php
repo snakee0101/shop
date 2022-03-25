@@ -105,7 +105,7 @@ class ProductTest extends TestCase
     public function test_only_right_products_are_returned()
     {
         $data = $this->prepare_order_products();
-        $res = $data['products'][1]->allBoughtTogetherProducts;
+        $res = $data['products'][1]->getAllBoughtTogetherProducts();
 
         $this->assertCount(4, $res);
 
