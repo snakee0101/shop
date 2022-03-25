@@ -117,19 +117,13 @@ class Product extends Model implements Purchaseable
 
     public function getAllBoughtTogetherProducts()
     {
-        $current_product_id = $this->id;
+        $completed_orders_that_contain_current_product = Order::whereStatus('completed')
+                                                              ->whereRelation('products', 'products.id', $this->id)
+                                                              ->get();
 
-        $completed_orders_that_contain_current_product = Order::whereRelation('products', 'products.id', $current_product_id)
-                                                              ->whereStatus('completed')->get();
-
-        $all_order_products = $completed_orders_that_contain_current_product->flatMap( fn($order) => $order->products );
-
-
-        $unique_products = $all_order_products->unique( fn($product) => $product->id );
-
-        $products_that_dont_contain_current_product = $unique_products->reject( fn($product) => $product->id == $this->id );
-
-        return $products_that_dont_contain_current_product;
+        return $completed_orders_that_contain_current_product->flatMap( fn($order) => $order->products ) //get all products in orders
+                                                                            ->unique( fn($product) => $product->id )   //remove product duplications
+                                                                            ->reject( fn($product) => $product->id == $this->id ); //"bought together" products must not contain current product
     }
 
     public function getGroupedBoughtTogetherProducts()

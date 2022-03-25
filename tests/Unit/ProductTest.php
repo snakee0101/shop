@@ -102,6 +102,15 @@ class ProductTest extends TestCase
         return compact('products', 'order_1', 'order_2', 'order_3', 'order_4');
     }
 
+    public function test_bought_together_products_must_be_unique()
+    {
+        $data = $this->prepare_order_products();
+        $data['order_1']->products()->attach( $data['products'][3], ['quantity' => 1] );
+
+        $res = $data['products'][1]->getAllBoughtTogetherProducts();
+        $this->assertCount(4, $res);
+    }
+
     public function test_only_right_products_are_returned()
     {
         $data = $this->prepare_order_products();
