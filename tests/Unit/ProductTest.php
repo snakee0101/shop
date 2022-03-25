@@ -118,7 +118,7 @@ class ProductTest extends TestCase
     public function test_grouped_bought_together_products_can_be_returned()
     {
         $data = $this->prepare_order_products();
-        $res = $data['products'][1]->groupedBoughtTogetherProducts;
+        $res = $data['products'][1]->getGroupedBoughtTogetherProducts();
 
         $this->assertEquals( $res[ $data['products'][2]->category_id ][0]->id, $data['products'][2]->id );
     }

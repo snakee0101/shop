@@ -48,7 +48,7 @@ class ProductActionsController extends Controller
     public function buy_together(Product $product)
     {
         return $this->product_view($product, 'product.buy_together', [
-            'bought_together_data' => $product->groupedBoughtTogetherProducts
+            'bought_together_data' => $product->getGroupedBoughtTogetherProducts()
         ]);
     }
 }

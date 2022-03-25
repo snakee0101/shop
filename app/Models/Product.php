@@ -115,7 +115,7 @@ class Product extends Model implements Purchaseable
         } catch(\Exception $e) {}
     }
 
-    public function getAllBoughtTogetherProductsAttribute() //TODO: It must be method, not an attribute
+    public function getAllBoughtTogetherProducts()
     {
         $current_product_id = $this->id;
 
@@ -132,9 +132,9 @@ class Product extends Model implements Purchaseable
         return $products_that_dont_contain_current_product;
     }
 
-    public function getGroupedBoughtTogetherProductsAttribute()
+    public function getGroupedBoughtTogetherProducts()
     {
-        $products = $this->allBoughtTogetherProducts;
+        $products = $this->getAllBoughtTogetherProducts();
 
         return $products->groupBy( function($product) {
             return $product->category_id;
