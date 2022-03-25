@@ -13,6 +13,17 @@ use Tests\TestCase;
 
 class CartTest extends TestCase
 {
+    private function fill_product_set($product_set, array $products)
+    {
+        foreach ($products as $product)
+        {
+            DB::table('product_set_product')->insert([
+                'product_set_id' => $product_set->id,
+                'product_id' => $product->id
+            ]);
+        }
+    }
+
     public function test_a_product_could_be_added_to_the_cart()
     {
         $this->assertTrue( \Cart::getContent()->isEmpty() );
@@ -28,34 +39,26 @@ class CartTest extends TestCase
 
     public function test_a_product_set_could_be_added_to_the_cart()
     {
-        $this->assertTrue( \Cart::getContent()->isEmpty() );
+        $this->assertTrue( \Cart::isEmpty() );
 
         $product_set = ProductSet::factory()->create();
 
         $product_1 = Product::factory()->create(['price' => 50]);
         $product_2 = Product::factory()->create(['price' => 100]);
 
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_1->id
-        ]);
-
-        DB::table('product_set_product')->insert([
-            'product_set_id' => $product_set->id,
-            'product_id' => $product_2->id
-        ]);
+        $this->fill_product_set($product_set, [$product_1, $product_2]);
 
         $this->post( route('cart.add', 1), [
             'object_id' => $product_set->id,
             'object_type' => $product_set::class
         ] )->assertOk();
 
-        $this->assertFalse( \Cart::getContent()->isEmpty() );
+        $this->assertFalse( \Cart::isEmpty() );
     }
 
     public function test_products_could_not_be_duplicated_when_added()
     {
-        $this->assertTrue( \Cart::getContent()->isEmpty() );
+        $this->assertTrue( \Cart::isEmpty() );
 
         $product = Product::factory()->create();
 
@@ -95,11 +98,11 @@ class CartTest extends TestCase
             'associatedModel' => $product2
         ));
 
-        $this->assertTrue( $product->fresh()->in_cart );
+        $this->assertTrue( $product->in_cart );
 
         $this->delete( route('cart.destroy', 1010101) );
-        $this->assertFalse( $product->fresh()->in_cart );
-        $this->assertTrue( $product2->fresh()->in_cart );
+        $this->assertFalse( $product->in_cart );
+        $this->assertTrue( $product2->in_cart );
     }
 
     public function test_quantity_of_a_product_could_be_updated()
