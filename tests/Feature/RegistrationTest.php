@@ -25,7 +25,7 @@ class RegistrationTest extends TestCase
         ];
     }
 
-    private function register(array $invalid_data) :TestResponse
+    private function register(array $invalid_data): TestResponse
     {
         return $this->post('/register-user', array_merge($this->data, $invalid_data))
             ->assertSessionHasErrorsIn('register', array_key_first($invalid_data)); //key of array's first item (for example, first_name) is a request parameter name
@@ -33,23 +33,23 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
-        $response = $this->post('/register-user', $this->data);
+        $this->post('/register-user', $this->data)
+            ->assertRedirect(route('account'));
 
         $this->assertAuthenticated();
-        $response->assertRedirect( route('account') );
     }
 
     public function test_after_registration_comparison_access_token_is_attached_to_the_user()
     {
-        $response = $this->post('/register-user', $this->data);
+        $this->post('/register-user', $this->data);
 
-        $this->assertNotNull( User::first()->comparison_access_token );
+        $this->assertNotNull(User::first()->comparison_access_token);
     }
 
     public function test_user_password_is_hashed_on_registration()
     {
-        $response = $this->post('/register-user', $this->data);
-        $this->assertTrue( Hash::check('password', User::first()->password) );
+        $this->post('/register-user', $this->data);
+        $this->assertTrue(Hash::check('password', User::first()->password));
     }
 
     public function test_first_name_is_validated_on_registration()
@@ -92,16 +92,14 @@ class RegistrationTest extends TestCase
         $this->post('/register-user', $this->data);
         $this->assertDatabaseCount('users', 1);
 
-        $other_data_is_unique_except_email = [
+        $this->post('/register-user', [
             'first_name' => 'Testing',
             'last_name' => 'Testing',
             'phone' => '+380640543743',
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password'
-        ];
-        $this->post('/register-user', $other_data_is_unique_except_email)
-             ->assertSessionHasErrorsIn('register','email');
+        ])->assertSessionHasErrorsIn('register', 'email');
     }
 
     public function test_phone_must_be_unique()
@@ -109,26 +107,22 @@ class RegistrationTest extends TestCase
         $this->post('/register-user', $this->data);
         $this->assertDatabaseCount('users', 1);
 
-        $other_data_is_unique_except_phone = [
+        $this->post('/register-user', [
             'first_name' => 'Testing',
             'last_name' => 'Testing',
             'phone' => '+380608143743',
             'email' => 'testing@example.com',
             'password' => 'password',
             'password_confirmation' => 'password'
-        ];
-        $this->post('/register-user', $other_data_is_unique_except_phone)
-            ->assertSessionHasErrorsIn('register','phone');
+        ])->assertSessionHasErrorsIn('register', 'phone');
     }
 
     public function test_a_user_can_log_in()
     {
-        $user = User::factory()->create();
-
         $this->post('/login-user', [
-            'login_email' => $user->email,
+            'login_email' => User::factory()->create()->email,
             'login_password' => 'password',
-        ])->assertRedirect( route('account') );
+        ])->assertRedirect(route('account'));
 
         $this->assertAuthenticated();
     }
