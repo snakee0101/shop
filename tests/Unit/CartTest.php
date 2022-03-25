@@ -9,32 +9,27 @@ use Tests\TestCase;
 
 class CartTest extends TestCase
 {
-    public function test_product_can_check_whether_it_in_cart()
+    private function add_to_cart($item)
     {
-        $product = Product::factory()->create();
-        $product_set = ProductSet::factory()->create();
-
         \Cart::add(array(
             'id' => 1001,
             'name' => 'product set',
             'price' => 1000,
             'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product_set
+            'associatedModel' => $item
         ));
+    }
 
-        $this->assertFalse( $product->in_cart );
+    public function test_product_can_check_whether_it_in_cart()
+    {
+        $product = Product::factory()->create();
+        $product_set = ProductSet::factory()->create();
 
-        \Cart::add(array(
-            'id' => 1010101,
-            'name' => 'product name',
-            'price' => 1000,
-            'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
+        $this->add_to_cart($product_set);
+        $this->assertFalse($product->in_cart);
 
-        $this->assertTrue( $product->fresh()->in_cart );
+        $this->add_to_cart($product);
+        $this->assertTrue($product->in_cart);
     }
 
     public function test_product_set_can_check_whether_it_in_cart()
@@ -42,26 +37,10 @@ class CartTest extends TestCase
         $product = Product::factory()->create();
         $product_set = ProductSet::factory()->create();
 
-        \Cart::add(array(
-            'id' => 1010101,
-            'name' => 'product name',
-            'price' => 1000,
-            'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product
-        ));
+        $this->add_to_cart($product);
+        $this->assertFalse($product_set->in_cart);
 
-        $this->assertFalse( $product_set->in_cart );
-
-        \Cart::add(array(
-            'id' => 1001,
-            'name' => 'product set',
-            'price' => 1000,
-            'quantity' => 1,
-            'attributes' => array(),
-            'associatedModel' => $product_set
-        ));
-
-        $this->assertTrue( $product_set->fresh()->in_cart );
+        $this->add_to_cart($product_set);
+        $this->assertTrue($product_set->in_cart);
     }
 }
