@@ -35,7 +35,9 @@
                                 </button>
                             </form>
 
-                            {{ $product->name }}
+                            <a href="{{ route('product.description', $product) }}" target="__blank">
+                                {{ $product->name }}
+                            </a>
                         </th>
                     @endforeach
                 </tr>
