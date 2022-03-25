@@ -8,11 +8,24 @@ use App\Models\ProductSet;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
     private array $credentials, $valid_data, $address, $post_office;
+
+    private function add_to_cart($item, $quantity)
+    {
+        \Cart::add([
+            'id' => \random_int(1, 10000),
+            'name' => Str::uuid(),
+            'price' => $item->price,
+            'quantity' => $quantity,
+            'attributes' => [],
+            'associatedModel' => $item
+        ]);
+    }
 
     protected function setUp(): void
     {
@@ -46,14 +59,7 @@ class OrderTest extends TestCase
         //add product to cart - the form request performs a check
         $product = Product::factory()->create();
 
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name',
-            'price' => $product->price,
-            'quantity' => 2,
-            'attributes' => [],
-            'associatedModel' => $product
-        ]);
+        $this->add_to_cart($product, 2);
     }
 
     public function test_if_cart_is_empty_order_will_not_be_performed()
@@ -122,24 +128,8 @@ class OrderTest extends TestCase
         ]);
         $this->assertInstanceOf(Product::class, $product_set->fresh()->products()->first());
 
-
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name',
-            'price' => $product->price,
-            'quantity' => 2,
-            'attributes' => [],
-            'associatedModel' => $product
-        ]);
-
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name 2',
-            'price' => $product_set->price,
-            'quantity' => 1,
-            'attributes' => [],
-            'associatedModel' => $product_set
-        ]);
+        $this->add_to_cart($product, 2);
+        $this->add_to_cart($product_set, 1);
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
@@ -170,24 +160,8 @@ class OrderTest extends TestCase
         ]);
         $this->assertInstanceOf(Product::class, $product_set->fresh()->products()->first());
 
-
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name',
-            'price' => $product->price,
-            'quantity' => 2,
-            'attributes' => [],
-            'associatedModel' => $product
-        ]);
-
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name 2',
-            'price' => $product_set->price,
-            'quantity' => 1,
-            'attributes' => [],
-            'associatedModel' => $product_set
-        ]);
+        $this->add_to_cart($product, 2);
+        $this->add_to_cart($product_set, 1);
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasNoErrors();
@@ -208,14 +182,7 @@ class OrderTest extends TestCase
         $this->credentials['first_name'] = '';
 
         $product = Product::factory()->create();
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name',
-            'price' => $product->price,
-            'quantity' => 2,
-            'attributes' => [],
-            'associatedModel' => $product
-        ]);
+        $this->add_to_cart($product, 2);
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
 
@@ -226,14 +193,7 @@ class OrderTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        \Cart::add([
-            'id' => random_int(1,100),
-            'name' => 'name',
-            'price' => $product->price,
-            'quantity' => 2,
-            'attributes' => [],
-            'associatedModel' => $product
-        ]);
+        $this->add_to_cart($product, 2);
 
         Schema::dropIfExists('orders'); //Simulate failed transaction
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
