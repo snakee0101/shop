@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Category;
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -49,6 +50,8 @@ class ComparisonTest extends TestCase
     {
         $user = User::factory()->create();
         $product = Product::factory()->create();
+
+        Photo::factory()->withObject($product)->create();
 
         DB::table('comparison')->insert([
             'product_id' => $product->id,
