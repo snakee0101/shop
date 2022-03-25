@@ -35,18 +35,18 @@ class Order extends Model
                     ->withPivot('quantity');
     }
 
-    public function getProductSubtotalAttribute()
+    public function getProductSubtotal()
     {
         return $this->products->sum( fn($product) => $product->priceWithDiscount * $product->pivot->quantity );
     }
 
-    public function getProductSetSubtotalAttribute()
+    public function getProductSetSubtotal()
     {
         return $this->product_sets->sum( fn($product_set) => $product_set->priceWithDiscount * $product_set->pivot->quantity );
     }
 
-    public function getTotalAttribute()
+    public function getTotal()
     {
-        return $this->product_subtotal + $this->product_set_subtotal;
+        return $this->getProductSubtotal() + $this->getProductSetSubtotal();
     }
 }

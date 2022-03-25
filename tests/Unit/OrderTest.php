@@ -110,7 +110,7 @@ class OrderTest extends TestCase
 
         $this->assertEquals($product_1->priceWithDiscount + $product_2->priceWithDiscount
                                                                   + $product->priceWithDiscount*2,
-                                     $order->fresh()->total);
+                                     $order->fresh()->getTotal());
     }
 
     public function test_order_calculates_product_subtotal()
@@ -128,7 +128,7 @@ class OrderTest extends TestCase
         $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertEquals($product->priceWithDiscount * 2,
-            $order->fresh()->product_subtotal);
+            $order->fresh()->getProductSubtotal());
     }
 
     public function test_order_calculates_product_set_subtotal()
@@ -146,7 +146,7 @@ class OrderTest extends TestCase
         $order = $this->create_order_with_items([ [$product, 2], [$product_set, 1] ]);
 
         $this->assertEquals($product_set->priceWithDiscount,
-            $order->fresh()->product_set_subtotal);
+            $order->fresh()->getProductSetSubtotal());
     }
 
     public function test_order_has_credentials()

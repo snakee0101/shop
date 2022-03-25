@@ -338,7 +338,7 @@
                     </div>
                 </div>
                 <p style="font-size: 2em">
-                    Subtotal: <span class="font-weight-bold text-danger">${{ $order->product_subtotal }}</span>
+                    Subtotal: <span class="font-weight-bold text-danger">${{ $order->getProductSubtotal() }}</span>
                 </p>
             </div>
         </div>
@@ -498,7 +498,7 @@
                     </div>
                 </div>
                 <p style="font-size: 2em">
-                    Subtotal: <span class="font-weight-bold text-danger">${{ $order->product_set_subtotal }}</span>
+                    Subtotal: <span class="font-weight-bold text-danger">${{ $order->getProductSetSubtotal() }}</span>
                 </p>
             </div>
         </div>
@@ -510,13 +510,13 @@
             </div>
             <div class="card-body pb-0">
                 <p style="font-size: 1.5em">
-                    Products subtotal: <span class="font-weight-bold">${{ $order->product_subtotal }}</span>
+                    Products subtotal: <span class="font-weight-bold">${{ $order->getProductSubtotal() }}</span>
                 </p>
                 <p style="font-size: 1.5em">
-                    Product sets subtotal: <span class="font-weight-bold">${{ $order->product_set_subtotal }}</span>
+                    Product sets subtotal: <span class="font-weight-bold">${{ $order->getProductSetSubtotal() }}</span>
                 </p>
                 <p style="font-size: 2em" class="font-weight-bold">
-                    Total: <span class="text-danger">${{ $order->total }}</span>
+                    Total: <span class="text-danger">${{ $order->getTotal() }}</span>
                 </p>
             </div>
         </div>
