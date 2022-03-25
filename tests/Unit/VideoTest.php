@@ -13,25 +13,25 @@ class VideoTest extends TestCase
     public function test_review_has_videos()
     {
         $review = Review::factory()->create();
-        $video = Video::factory()->withObject($review)->create();
+        Video::factory()->withObject($review)->create();
 
-        $this->assertInstanceOf(Video::class, $review->fresh()->videos()->first());
+        $this->assertInstanceOf(Video::class, $review->videos()->first());
     }
 
     public function test_question_has_videos()
     {
         $question = Question::factory()->create();
-        $video = Video::factory()->withObject($question)->create();
+        Video::factory()->withObject($question)->create();
 
-        $this->assertInstanceOf(Video::class, $question->fresh()->videos()->first());
+        $this->assertInstanceOf(Video::class, $question->videos()->first());
     }
 
     public function test_product_has_videos()
     {
         $product = Product::factory()->create();
-        $video = Video::factory()->withObject($product)->create();
+        Video::factory()->withObject($product)->create();
 
-        $this->assertInstanceOf(Video::class, $product->fresh()->videos()->first());
+        $this->assertInstanceOf(Video::class, $product->videos()->first());
     }
 
     public function test_video_can_access_object_it_attached_to()
