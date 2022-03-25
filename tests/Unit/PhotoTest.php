@@ -54,10 +54,8 @@ class PhotoTest extends TestCase
 
     public function test_photo_can_access_object_it_attached_to()
     {
-        $product = Product::factory()->create();
-        $photo = Photo::factory()->withObject($product)->create([
-            'url' => Storage::url('/images/testfile.png'),
-        ]);
+        $photo = Photo::factory()->withObject( Product::factory()->create() )
+                                 ->create( ['url' => Storage::url('/images/testfile.png')] );
 
         $this->assertInstanceOf(Product::class, $photo->object);
     }
