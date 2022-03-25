@@ -11,27 +11,22 @@ class QuestionTest extends TestCase
 {
     public function test_a_product_has_questions()
     {
-        $product = Product::factory()->create();
-
         Question::factory()->create([
-            'product_id' => $product
+            'product_id' => $product = Product::factory()->create()
         ]);
 
-        $this->assertInstanceOf(Question::class, $product->fresh()->questions[0]);
+        $this->assertInstanceOf(Question::class, $product->questions[0]);
     }
 
     public function test_a_question_has_an_author()
     {
-        $q = Question::factory()->create();
-        $this->assertInstanceOf(User::class, $q->author);
+        $this->assertInstanceOf(User::class, Question::factory()->make()->author);
     }
 
     public function test_question_belongs_to_a_product()
     {
-        $product = Product::factory()->create();
-
         $question = Question::factory()->create([
-            'product_id' => $product->id
+            'product_id' => Product::factory()->create()
         ]);
 
         $this->assertInstanceOf(Product::class, $question->product);
