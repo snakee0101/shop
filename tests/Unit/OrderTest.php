@@ -160,20 +160,15 @@ class OrderTest extends TestCase
     {
         $order = Order::factory()->for(User::factory(), 'owner')->create();
 
-        $this->assertEquals($order->credentials->first_name, $order->owner->first_name);
-        $this->assertEquals($order->credentials->last_name, $order->owner->last_name);
-        $this->assertEquals($order->credentials->phone, $order->owner->phone);
-        $this->assertEquals($order->credentials->email, $order->owner->email);
+        $this->assertEquals($order->credentials->toArray(),
+                      $order->owner->only(['first_name', 'last_name', 'phone', 'email']) + ['order_id' => $order->id]);
     }
 
     public function test_when_order_is_deleted_its_credentials_are_also_deleted()
     {
         $credentials = OrderCredentials::factory()->create();
-        $order = Order::find($credentials->order_id);
 
-        $this->assertDatabaseCount('order_credentials', 1);
-
-        $order->delete();
+        Order::find($credentials->order_id)->delete();
 
         $this->assertDatabaseCount('order_credentials', 0);
     }
