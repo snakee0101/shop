@@ -21,38 +21,42 @@ class UserTest extends TestCase
     {
         Review::factory()->create();
 
-        $this->assertInstanceOf(Review::class, User::first()->reviews()->first() );
+        $this->assertInstanceOf(Review::class, User::first()->reviews[0] );
     }
 
     public function test_user_has_questions()
     {
         Question::factory()->create();
 
-        $this->assertInstanceOf(Question::class, User::first()->questions()->first() );
+        $this->assertInstanceOf(Question::class, User::first()->questions[0] );
     }
 
     public function test_user_has_orders()
     {
-        Order::factory()->withUser( User::factory()->create() )->create();
+        Order::factory()->withUser( User::factory()->create() )
+                        ->create();
 
-        $this->assertInstanceOf(Order::class, User::first()->orders()->first() );
+        $this->assertInstanceOf(Order::class, User::first()->orders[0] );
     }
 
     public function test_user_has_reports()
     {
-        $report = Report::factory()->withObject( Review::factory()->create() )->create();
+        $report = Report::factory()->withObject( Review::factory()->create() )
+                                   ->create();
+
         $user = User::find($report->user_id);
 
-        $this->assertInstanceOf(Report::class, $user->reports()->first() );
+        $this->assertInstanceOf(Report::class, $user->reports[0] );
     }
 
     public function test_user_has_votes()
     {
-        $vote = Vote::factory()->withObject( Review::factory()->create() )->create();
+        $vote = Vote::factory()->withObject( Review::factory()->create() )
+                               ->create();
 
         $user = User::find($vote->user_id);
 
-        $this->assertInstanceOf(Vote::class, $user->votes()->first() );
+        $this->assertInstanceOf(Vote::class, $user->votes[0] );
     }
 
     public function test_user_has_videos()
@@ -67,11 +71,9 @@ class UserTest extends TestCase
 
         Video::factory()->withObject($review)->create( ); //not by this user
 
-        $res = $user->fresh()->videos()->get();
-
-        $this->assertCount(2, $res);
-        $this->assertInstanceOf(Video::class, $res[0]);
-        $this->assertInstanceOf(Video::class, $res[1]);
+        $this->assertCount(2, $user->videos);
+        $this->assertInstanceOf(Video::class, $user->videos[0]);
+        $this->assertInstanceOf(Video::class, $user->videos[1]);
     }
 
     public function test_user_has_photos()
@@ -86,11 +88,9 @@ class UserTest extends TestCase
 
         Photo::factory()->withObject($review)->create( ); //not by this user
 
-        $res = $user->fresh()->photos()->get();
-
-        $this->assertCount(2, $res);
-        $this->assertInstanceOf(Photo::class, $res[0]);
-        $this->assertInstanceOf(Photo::class, $res[1]);
+        $this->assertCount(2, $user->photos);
+        $this->assertInstanceOf(Photo::class, $user->photos[0]);
+        $this->assertInstanceOf(Photo::class, $user->photos[1]);
     }
 
     public function test_user_has_replies()
@@ -103,10 +103,8 @@ class UserTest extends TestCase
         Reply::factory()->withObject($question)->create( ['user_id' => $user->id] );
         Reply::factory()->withObject($review)->create( ['user_id' => $user->id] );
 
-        $res = $user->fresh()->replies()->get();
-
-        $this->assertCount(2, $res);
-        $this->assertInstanceOf(Reply::class, $res[0]);
-        $this->assertInstanceOf(Reply::class, $res[1]);
+        $this->assertCount(2, $user->replies);
+        $this->assertInstanceOf(Reply::class, $user->replies[0]);
+        $this->assertInstanceOf(Reply::class, $user->replies[1]);
     }
 }
