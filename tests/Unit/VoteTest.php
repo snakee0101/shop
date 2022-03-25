@@ -10,64 +10,64 @@ use Tests\TestCase;
 
 class VoteTest extends TestCase
 {
+    private function voteFor($object, $count = 1, $vote = +1)
+    {
+        Vote::factory()->count($count)
+            ->withObject($object)
+            ->create(['value' => $vote]);
+    }
+
+    private function voteForWithAuthor($object, $user, $count = 1, $vote = +1)
+    {
+        return Vote::factory()->count($count)
+                              ->withObject($object)
+                              ->create(['value' => $vote, 'user_id' => $user->id]);
+    }
+
     public function test_review_has_many_votes()
     {
         $review = Review::factory()->create();
 
-        Vote::factory()->count(2)
-                       ->withObject($review)
-                       ->create();
+        $this->voteFor($review, 2);
 
-        $this->assertInstanceOf(Vote::class, $review->fresh()->votes()->first());
-        $this->assertCount(2, $review->fresh()->votes);
+        $this->assertInstanceOf(Vote::class, $review->votes[0]);
+        $this->assertCount(2, $review->votes);
     }
 
     public function test_question_has_many_votes()
     {
         $question = Question::factory()->create();
 
-        Vote::factory()->count(2)
-                       ->withObject($question)
-                       ->create();
+        $this->voteFor($question, 2);
 
-        $this->assertInstanceOf(Vote::class, $question->fresh()->votes()->first());
-        $this->assertCount(2, $question->fresh()->votes);
+        $this->assertInstanceOf(Vote::class, $question->votes[0]);
+        $this->assertCount(2, $question->votes);
     }
 
     public function test_review_knows_its_votes_statistics()
     {
         $review = Review::factory()->create();
 
-        Vote::factory()->count(3)
-            ->withObject($review)
-            ->create(['value' => +1]);
-
-        Vote::factory()->count(2)
-            ->withObject($review)
-            ->create(['value' => -1]);
+        $this->voteFor($review, 3);
+        $this->voteFor($review, 2, -1);
 
         $this->assertEquals([
             'for_count' => 3,
             'against_count' => 2
-        ], $review->fresh()->vote_statistics);
+        ], $review->vote_statistics);
     }
 
     function test_question_knows_its_votes_statistics()
     {
         $question = Question::factory()->create();
 
-        Vote::factory()->count(3)
-            ->withObject($question)
-            ->create(['value' => +1]);
-
-        Vote::factory()->count(2)
-            ->withObject($question)
-            ->create(['value' => -1]);
+        $this->voteFor($question, 3);
+        $this->voteFor($question, 2, -1);
 
         $this->assertEquals([
             'for_count' => 3,
             'against_count' => 2
-        ], $question->fresh()->vote_statistics);
+        ], $question->vote_statistics);
     }
 
     public function test_review_knows_whether_is_it_voted()
@@ -75,12 +75,11 @@ class VoteTest extends TestCase
         $review = Review::factory()->create();
         $this->actingAs($user = User::factory()->create());
 
-        $this->assertFalse( $review->fresh()->is_voted );
+        $this->assertFalse( $review->is_voted );
 
-        Vote::factory()->withObject($review)
-            ->create(['user_id' => $user->id]);
+        $this->voteForWithAuthor($review, $user);
 
-        $this->assertTrue( $review->fresh()->is_voted );
+        $this->assertTrue( $review->is_voted );
     }
 
     public function test_question_knows_whether_is_it_voted()
@@ -88,12 +87,11 @@ class VoteTest extends TestCase
         $question = Question::factory()->create();
         $this->actingAs($user = User::factory()->create());
 
-        $this->assertFalse( $question->fresh()->is_voted );
+        $this->assertFalse( $question->is_voted );
 
-        Vote::factory()->withObject($question)
-            ->create(['user_id' => $user->id]);
+        $this->voteForWithAuthor($question, $user);
 
-        $this->assertTrue( $question->fresh()->is_voted );
+        $this->assertTrue( $question->is_voted );
     }
 
     public function test_review_knows_its_vote()
@@ -101,19 +99,18 @@ class VoteTest extends TestCase
         $review = Review::factory()->create();
         $this->actingAs($user = User::factory()->create());
 
-        $this->assertFalse( $review->fresh()->is_voted );
+        $this->assertFalse( $review->is_voted );
 
-        $vote = Vote::factory()->withObject($review)
-            ->create(['user_id' => $user->id, 'value' => -1]);
+        $vote = $this->voteForWithAuthor($review, $user, 1, -1)
+                     ->first();
 
-        $this->assertEquals(-1, $review->fresh()->vote);
+        $this->assertEquals(-1, $review->vote);
 
-        Vote::destroy($vote->id);
+        $vote->delete();
 
-        Vote::factory()->withObject($review)
-            ->create(['user_id' => $user->id, 'value' => +1]);
+        $this->voteForWithAuthor($review, $user, 1, +1);
 
-        $this->assertEquals(+1, $review->fresh()->vote);
+        $this->assertEquals(+1, $review->vote);
 
     }
 
@@ -122,19 +119,18 @@ class VoteTest extends TestCase
         $question = Question::factory()->create();
         $this->actingAs($user = User::factory()->create());
 
-        $this->assertFalse( $question->fresh()->is_voted );
+        $this->assertFalse( $question->is_voted );
 
-        $vote = Vote::factory()->withObject($question)
-            ->create(['user_id' => $user->id, 'value' => -1]);
+        $vote = $this->voteForWithAuthor($question, $user, 1, -1)
+                     ->first();
 
-        $this->assertEquals(-1, $question->fresh()->vote);
+        $this->assertEquals(-1, $question->vote);
 
-        Vote::destroy($vote->id);
+        $vote->delete();
 
-        Vote::factory()->withObject($question)
-            ->create(['user_id' => $user->id, 'value' => +1]);
+        $this->voteForWithAuthor($question, $user, 1, +1);
 
-        $this->assertEquals(+1, $question->fresh()->vote);
+        $this->assertEquals(+1, $question->vote);
 
     }
 
@@ -143,8 +139,8 @@ class VoteTest extends TestCase
         $user = User::factory()->create();
 
         $question = Question::factory()->create();
-        $vote = Vote::factory()->withObject($question)
-            ->create(['user_id' => $user->id, 'value' => -1]);
+        $vote = $this->voteForWithAuthor($question, $user, 1, -1)
+                     ->first();
 
         $this->assertInstanceOf(Question::class, $vote->voted_object);
     }
