@@ -23,6 +23,8 @@
                     <th scope="col"></th>
                     @foreach($products as $product)
                         <th scope="col">
+                            <img src="{{ $product->photos[0]->url }}" style="width: 150px">
+                            <br>
                             <form action="{{ route('comparison.destroy', $product) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
@@ -35,7 +37,7 @@
                                 </button>
                             </form>
 
-                            <a href="{{ route('product.description', $product) }}" target="__blank">
+                            <a href="{{ route('product.description', $product) }}" target="__blank" class="ml-3">
                                 {{ $product->name }}
                             </a>
                         </th>
