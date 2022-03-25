@@ -232,72 +232,44 @@ class OrderTest extends TestCase
             ->assertSessionHasNoErrors();
     }
 
+    private function validation_test_1($credentials_field, $field_value, bool $expect_error)
+    {
+        $method = $expect_error ? 'assertSessionHasErrors' : 'assertSessionHasNoErrors';
+        $argument = $expect_error ? $credentials_field : null;
+
+        $this->credentials[$credentials_field] = $field_value;
+        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
+             ->$method($argument);
+    }
+
     public function test_first_name_contains_letters_and_some_symbols()
     {
-        $this->credentials['first_name'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('first_name');
-
-        $this->credentials['first_name'] = 541;
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-             ->assertSessionHasErrors('first_name');
-
-        $this->credentials['first_name'] = 'Test name';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
-
-        $this->credentials['first_name'] = "Name'name-name";
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
+        $this->validation_test_1('first_name', '', true);
+        $this->validation_test_1('first_name', 541, true);
+        $this->validation_test_1('first_name', 'Test name', false);
+        $this->validation_test_1('first_name', "Name'name-name", false);
     }
 
     public function test_last_name_contains_only_letters()
     {
-        $this->credentials['last_name'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('last_name');
-
-        $this->credentials['last_name'] = 541;
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('last_name');
-
-        $this->credentials['last_name'] = 'Test name';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
-
-        $this->credentials['last_name'] = "Name'name-name";
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
+        $this->validation_test_1('last_name', '', true);
+        $this->validation_test_1('last_name', 541, true);
+        $this->validation_test_1('last_name', 'Test name', false);
+        $this->validation_test_1('last_name', "Name'name-name", false);
     }
 
     public function test_phone_must_be_valid()
     {
-        $this->credentials['phone'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('phone');
-
-        $this->credentials['phone'] = '+35094760244';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('phone');
+        $this->validation_test_1('phone', '', true);
+        $this->validation_test_1('phone', '+35094760244', true);
     }
 
     public function test_email_must_be_valid()
     {
-        $this->credentials['email'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('email');
-
-        $this->credentials['email'] = 'test@';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('email');
-
-        $this->credentials['email'] = 'test';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('email');
-
-        $this->credentials['email'] = '@test';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('email');
+        $this->validation_test_1('email', '', true);
+        $this->validation_test_1('email', 'test@', true);
+        $this->validation_test_1('email', 'test', true);
+        $this->validation_test_1('email', '@test.gmail.com', true);
     }
 
     public function test_address_is_required()
@@ -324,9 +296,7 @@ class OrderTest extends TestCase
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('post_office_address');
 
-        $this->credentials['apartment'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
+        $this->validation_test_1('apartment', '', false);
     }
 
     public function test_address_must_not_be_present_with_post_office_address()
@@ -335,64 +305,37 @@ class OrderTest extends TestCase
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
             ->assertSessionHasErrors('post_office_address');
 
-        $this->credentials['address'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasNoErrors();
+        $this->validation_test_1('address', '', false);
     }
 
     public function test_post_office_address_is_required()
     {
-        $this->credentials['post_office_address'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('post_office_address');
+        $this->validation_test_1('post_office_address', '', true);
     }
 
     public function test_city_is_required()
     {
-        $this->credentials['city'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('city');
+        $this->validation_test_1('city', '', true);
     }
 
     public function test_state_is_required()
     {
-        $this->credentials['state'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('state');
+        $this->validation_test_1('state', '', true);
     }
 
     public function test_postcode_consists_of_five_digits()
     {
-        $this->credentials['postcode'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('postcode');
-
-        $this->credentials['postcode'] = '123456';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('postcode');
-
-        $this->credentials['postcode'] = '1234';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('postcode');
-
-        $this->credentials['postcode'] = '12F34';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('postcode');
+        $this->validation_test_1('postcode', '', true);
+        $this->validation_test_1('postcode', '123456', true);
+        $this->validation_test_1('postcode', '1234', true);
+        $this->validation_test_1('postcode', '12F34', true);
     }
 
     public function test_shipping_date_must_be_in_valid_format()
     {
-        $this->credentials['shipping_date'] = '';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('shipping_date');
-
-        $this->credentials['shipping_date'] = '10:10:10 2021-10-10';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('shipping_date');
-
-        $this->credentials['shipping_date'] = '15 Oct. 2012, 10:10:10';
-        $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data )
-            ->assertSessionHasErrors('shipping_date');
+        $this->validation_test_1('shipping_date', '', true);
+        $this->validation_test_1('shipping_date', '10:10:10 2021-10-10', true);
+        $this->validation_test_1('shipping_date', '15 Oct. 2012, 10:10:10', true);
     }
 
     public function test_when_user_if_logged_in_credentials_are_not_checked()
@@ -438,23 +381,12 @@ class OrderTest extends TestCase
     {
         $order = Order::factory()->create();
 
-        $data = [
-            'is_paid' => 'No',
-            'status' => 'sent',
-            'country' => 'USA',
-            'address' => 'New Street, 123b',
-            'apartment' => '54',
-            'post_office_address' => null,
-            'city' => 'New York',
-            'state' => 'New York',
-            'postcode' => 12345,
-            'shipping_date' => '2022-10-10 10:10:10'
-        ];
+        $data = Order::factory()->raw();
+        $data['shipping_date'] = $data['shipping_date']->format('Y-m-d H:i:s');
 
         $this->put( route('order.update', $order), $data)
              ->assertRedirect();
 
-        $data['is_paid'] = false;
         $this->assertDatabaseHas('orders', $data);
     }
 }
