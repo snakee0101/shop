@@ -31,6 +31,17 @@ class ProductTest extends TestCase
         ];
     }
 
+    private function getDiscountData(bool $is_applied = true, bool $with_coupon_code = false, $active_until_date = null) :array
+    {
+        return [
+            'discount_applied' => $is_applied ? 'on' : null,
+            'discount_classname' => FixedPriceDiscount::class,
+            'discount_value' => 10,
+            'discount_active_until' => $active_until_date,
+            'with_coupon_code' => $with_coupon_code ? 'on' : null
+        ];
+    }
+
     public function test_product_could_be_created_with_basic_data() //basic data: name, description, price, payment_info, guarantee_info, category, stock_status
     {
         $product = Product::factory()->make();
@@ -48,11 +59,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->make();
 
-        $discount_data = [
-            'discount_applied' => 'on',
-            'discount_classname' => FixedPriceDiscount::class,
-            'discount_value' => 10,
-        ];
+        $discount_data = $this->getDiscountData();
 
         $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
@@ -70,10 +77,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->make();
 
-        $discount_data = [
-            'discount_classname' => FixedPriceDiscount::class,
-            'discount_value' => 10,
-        ];
+        $discount_data = $this->getDiscountData(is_applied: false);
 
         $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
@@ -87,12 +91,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->make();
 
-        $discount_data = [
-            'discount_applied' => 'on',
-            'discount_classname' => FixedPriceDiscount::class,
-            'discount_value' => 10,
-            'discount_active_until' => '2021-10-10'
-        ];
+        $discount_data = $this->getDiscountData(active_until_date: '2021-10-10');
 
         $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
@@ -106,12 +105,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->make();
 
-        $discount_data = [
-            'discount_applied' => 'on',
-            'discount_classname' => FixedPriceDiscount::class,
-            'discount_value' => 10,
-            'with_coupon_code' => 'on'
-        ];
+        $discount_data = $this->getDiscountData(with_coupon_code: true);
 
         $this->post( route('product.store'),
             $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
@@ -249,12 +243,8 @@ class ProductTest extends TestCase
 
         $new_data = $this->getNewData( Category::factory()->create() );
 
-        $discount_data = [
-            'discount_applied' => 'on',
-            'discount_classname' => FixedPriceDiscount::class,
-            'discount_value' => 5,
-            'with_coupon_code' => 'on'
-        ];
+        $discount_data = $this->getDiscountData(with_coupon_code: true);
+        $discount_data['discount_value'] = 5;
 
         $this->put( route('product.update', $product), $new_data + $discount_data);
 
