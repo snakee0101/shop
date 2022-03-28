@@ -79,7 +79,7 @@ class VoteTest extends TestCase
 
         $this->voteForWithAuthor($review, $user);
 
-        $this->assertTrue( $review->is_voted );
+        $this->assertTrue( $review->fresh()->is_voted );
     }
 
     public function test_question_knows_whether_is_it_voted()
@@ -91,7 +91,7 @@ class VoteTest extends TestCase
 
         $this->voteForWithAuthor($question, $user);
 
-        $this->assertTrue( $question->is_voted );
+        $this->assertTrue( $question->fresh()->is_voted );
     }
 
     public function test_review_knows_its_vote()
@@ -104,13 +104,13 @@ class VoteTest extends TestCase
         $vote = $this->voteForWithAuthor($review, $user, 1, -1)
                      ->first();
 
-        $this->assertEquals(-1, $review->vote);
+        $this->assertEquals(-1, $review->fresh()->vote);
 
         $vote->delete();
 
         $this->voteForWithAuthor($review, $user, 1, +1);
 
-        $this->assertEquals(+1, $review->vote);
+        $this->assertEquals(+1, $review->fresh()->vote);
 
     }
 
@@ -124,13 +124,13 @@ class VoteTest extends TestCase
         $vote = $this->voteForWithAuthor($question, $user, 1, -1)
                      ->first();
 
-        $this->assertEquals(-1, $question->vote);
+        $this->assertEquals(-1, $question->fresh()->vote);
 
         $vote->delete();
 
         $this->voteForWithAuthor($question, $user, 1, +1);
 
-        $this->assertEquals(+1, $question->vote);
+        $this->assertEquals(+1, $question->fresh()->vote);
 
     }
 

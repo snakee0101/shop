@@ -12,7 +12,9 @@ class WishlistController extends Controller
     public function index()
     {
         return view('wishlist', [
-            'wishlists' => auth()->user()->wishlists
+            'wishlists' => auth()->user()->wishlists()
+                                         ->with('products.photos')
+                                         ->get()
         ]);
     }
 

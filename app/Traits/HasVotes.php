@@ -25,9 +25,8 @@ trait HasVotes
 
     public function getIsVotedAttribute()
     {
-        return $this->votes()
-                    ->where('user_id', auth()->id())
-                    ->exists();
+        return $this->votes
+                    ->contains( fn($vote) => $vote->user_id == auth()->id() );
     }
 
     public function getVoteAttribute()
