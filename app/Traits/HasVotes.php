@@ -14,10 +14,10 @@ trait HasVotes
     public function getVoteStatisticsAttribute()
     {
         return [
-            'for_count' => $this->votes()
+            'for_count' => $this->votes
                                 ->where('value', +1)
                                 ->count(),
-            'against_count' => $this->votes()
+            'against_count' => $this->votes
                                     ->where('value', -1)
                                     ->count()
         ];
@@ -31,7 +31,9 @@ trait HasVotes
 
     public function getVoteAttribute()
     {
-        return ($this->is_voted) ? $this->votes()->firstWhere('user_id', auth()->id())->value
+        return ($this->is_voted) ? $this->votes
+                                        ->firstWhere('user_id', auth()->id())
+                                        ->value
                                  : 0;
     }
 }
