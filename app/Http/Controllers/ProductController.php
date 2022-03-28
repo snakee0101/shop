@@ -24,7 +24,7 @@ class ProductController extends Controller
         $product = Product::create( $request->validated() );
 
         //Apply discount
-        if ($request->discount_applied === 'on')
+        if ( $request->boolean('discount_applied') )
             Discount::attachTo($product, $request);
 
         //save videos
@@ -64,7 +64,7 @@ class ProductController extends Controller
         //Apply discount
         $product->discount()->delete(); //delete old discount
 
-        if ($request->discount_applied === 'on')
+        if ( $request->boolean('discount_applied') )
             Discount::attachTo($product, $request);
 
         //Attach characteristics

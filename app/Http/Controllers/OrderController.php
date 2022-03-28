@@ -90,7 +90,7 @@ class OrderController extends Controller
             'shipping_date' => 'required|date_format:Y-m-d H:i:s'
         ]);
 
-        $is_paid = ['is_paid' => \request('is_paid') == 'Yes'];
+        $is_paid = ['is_paid' => $request->boolean('is_paid')];
 
         $order->update( request(['status', 'country',
             'address', 'apartment', 'post_office_address', 'city',

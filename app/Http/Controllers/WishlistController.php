@@ -24,7 +24,7 @@ class WishlistController extends Controller
         auth()->user()->wishlists()->create([
             'name' => $request->name,
             'access_token' => Str::uuid(),
-            'is_active' => (bool)$request->default
+            'is_active' => $request->boolean('default')
         ]);
     }
 

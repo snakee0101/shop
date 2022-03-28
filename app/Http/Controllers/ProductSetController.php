@@ -38,7 +38,7 @@ class ProductSetController extends Controller
                     ->attach([ $request['product-1'], $request['product-2'] ]);
 
         //Apply discount
-        if ($request->discount_applied === 'on')
+        if ( $request->boolean('discount_applied') )
             Discount::attachTo($product_set, $request);
 
         session()->flash('message', 'Product Set has been successfully created');
@@ -68,7 +68,7 @@ class ProductSetController extends Controller
         //Apply discount
         $productSet->discount()->delete();
 
-        if ($request->discount_applied === 'on')
+        if ( $request->boolean('discount_applied') )
             Discount::attachTo($productSet, $request);
 
         return back();
