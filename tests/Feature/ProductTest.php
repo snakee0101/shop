@@ -18,6 +18,19 @@ use Tests\TestCase;
 
 class ProductTest extends TestCase
 {
+    private function getNewData($category) :array
+    {
+        return [
+            'name' => 'new name',
+            'description' => 'new descr',
+            'price' => 105.20,
+            'payment_info' => 'new payment info',
+            'guarantee_info' => 'new guarantee info',
+            'category_id' => $category->id,
+            'in_stock' => Product::STATUS_ENDS
+        ];
+    }
+
     public function test_product_could_be_created_with_basic_data() //basic data: name, description, price, payment_info, guarantee_info, category, stock_status
     {
         $product = Product::factory()->make();
@@ -225,17 +238,7 @@ class ProductTest extends TestCase
 
         $category = Category::factory()->create();
 
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
-
-        $this->put( route('product.update', $product), $new_data);
+        $this->put( route('product.update', $product), $new_data = $this->getNewData($category));
 
         $this->assertDatabaseHas('products', $new_data);
     }
@@ -244,17 +247,7 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->create();
 
-        $category = Category::factory()->create();
-
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
+        $new_data = $this->getNewData( Category::factory()->create() );
 
         $discount_data = [
             'discount_applied' => 'on',
@@ -281,17 +274,7 @@ class ProductTest extends TestCase
             'value' => $discount->value,
         ]);
 
-        $category = Category::factory()->create();
-
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
+        $new_data = $this->getNewData( Category::factory()->create() );
 
         $this->put( route('product.update', $product), $new_data);
         $this->assertDatabaseCount('discounts', 0);
@@ -311,15 +294,7 @@ class ProductTest extends TestCase
             'char-' . $chars[2]->id => 'value 3',
         ];
 
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
+        $new_data = $this->getNewData($category);
 
         $this->put( route('product.update', $product), $new_data + $char_data);
 
@@ -333,7 +308,6 @@ class ProductTest extends TestCase
         $this->actingAs( $user = User::factory()->create() );
 
         $product = Product::factory()->create();
-        $category = Category::factory()->create();
 
         $video = Video::factory()->withObject($product)->create();
         $video_1 = Video::factory()->make(['user_id' => $user->id]);
@@ -344,15 +318,7 @@ class ProductTest extends TestCase
             'video-2' => $video_2->toJson()
         ];
 
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
+        $new_data = $this->getNewData($category = Category::factory()->create());
 
         $this->put( route('product.update', $product), $new_data + $video_data);
 
@@ -370,20 +336,13 @@ class ProductTest extends TestCase
         Storage::assertExists('/images/testfile.png');
 
         $product = Product::factory()->create();
-        $photo = Photo::factory()->withObject($product)->create([
+
+        Photo::factory()->withObject($product)->create([
             'url' => Storage::url('/images/testfile.png')
         ]);
         $category = Category::factory()->create();
 
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
+        $new_data = $this->getNewData($category);
 
         $this->put( route('product.update', $product), $new_data);
 
@@ -397,17 +356,7 @@ class ProductTest extends TestCase
         Storage::fake();
         $product = Product::factory()->create();
 
-        $category = Category::factory()->create();
-
-        $new_data = [
-            'name' => 'new name',
-            'description' => 'new descr',
-            'price' => 105.20,
-            'payment_info' => 'new payment info',
-            'guarantee_info' => 'new guarantee info',
-            'category_id' => $category->id,
-            'in_stock' => Product::STATUS_ENDS
-        ];
+        $new_data = $this->getNewData( Category::factory()->create() );
 
         $images = [
             'image-1' => base64_encode('data')
