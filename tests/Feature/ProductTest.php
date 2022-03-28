@@ -80,8 +80,7 @@ class ProductTest extends TestCase
         $discount_data = $this->getDiscountData(is_applied: false);
 
         $this->post( route('product.store'),
-            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
-            + $discount_data
+            $product->toArray() + ['category_id' => $product->category_id] + $discount_data
         )->assertRedirect();
 
         $this->assertDatabaseCount('discounts', 0);
@@ -94,7 +93,7 @@ class ProductTest extends TestCase
         $discount_data = $this->getDiscountData(active_until_date: '2021-10-10');
 
         $this->post( route('product.store'),
-            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            $product->toArray() + ['category_id' => $product->category_id]
             + $discount_data
         )->assertRedirect();
 
@@ -108,7 +107,7 @@ class ProductTest extends TestCase
         $discount_data = $this->getDiscountData(with_coupon_code: true);
 
         $this->post( route('product.store'),
-            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            $product->toArray() + ['category_id' => $product->category_id]
             + $discount_data
         )->assertRedirect();
 
@@ -152,12 +151,9 @@ class ProductTest extends TestCase
             + ['category_id' => $product->category_id] + $video_json_data
         )->assertRedirect();
 
-        $this->assertDatabaseHas('products', [
-            'name' => $product->name
-        ]);
-
         $this->assertDatabaseHas('videos', [
             'url' => "https://www.youtube.com/embed/UYbJNpC4Jt8",
+            'object_type' => Product::class,
             'title' => "38250"
         ]);
     }
@@ -166,36 +162,26 @@ class ProductTest extends TestCase
     {
         $product = Product::factory()->make();
         $category = Category::factory()->create();
-        $chars = Characteristic::factory()->count(3)
+        $chars = Characteristic::factory()->count(2)
                                           ->create(['category_id' => $category->id]);
 
         $char_data = [
             'char-' . $chars[0]->id => 'value 1',
             'char-' . $chars[1]->id => 'value 2',
-            'char-' . $chars[2]->id => 'value 3',
         ];
 
         $this->post( route('product.store'),
-            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock')
-            + ['category_id' => $category->id] + $char_data
+            $product->toArray() + ['category_id' => $category->id] + $char_data
         )->assertRedirect();
 
         $this->assertDatabaseHas('characteristic_product', [
-            'product_id' => Product::first()->id,
             'characteristic_id' => $chars[0]->id,
             'value' => 'value 1'
         ]);
 
         $this->assertDatabaseHas('characteristic_product', [
-            'product_id' => Product::first()->id,
             'characteristic_id' => $chars[1]->id,
             'value' => 'value 2'
-        ]);
-
-        $this->assertDatabaseHas('characteristic_product', [
-            'product_id' => Product::first()->id,
-            'characteristic_id' => $chars[2]->id,
-            'value' => 'value 3'
         ]);
     }
 
@@ -275,22 +261,18 @@ class ProductTest extends TestCase
         $product = Product::factory()->create();
 
         $category = Category::factory()->create();
-        $chars = Characteristic::factory()->count(3)
+        $chars = Characteristic::factory()->count(2)
             ->create(['category_id' => $category->id]);
-
-        $char_data = [
-            'char-' . $chars[0]->id => 'value 1',
-            'char-' . $chars[1]->id => 'value 2',
-            'char-' . $chars[2]->id => 'value 3',
-        ];
 
         $new_data = $this->getNewData($category);
 
-        $this->put( route('product.update', $product), $new_data + $char_data);
+        $this->put( route('product.update', $product), $new_data + [
+            'char-' . $chars[0]->id => 'value 1',
+            'char-' . $chars[1]->id => 'value 2',
+        ]);
 
         $this->assertEquals('value 1', $product->fresh()->characteristics[0]->pivot->value);
         $this->assertEquals('value 2', $product->fresh()->characteristics[1]->pivot->value);
-        $this->assertEquals('value 3', $product->fresh()->characteristics[2]->pivot->value);
     }
 
     public function test_product_videos_could_be_updated()
@@ -303,19 +285,17 @@ class ProductTest extends TestCase
         $video_1 = Video::factory()->make(['user_id' => $user->id]);
         $video_2 = Video::factory()->make(['user_id' => $user->id]);
 
-        $video_data = [
-            'video-1' => $video_1->toJson(),
-            'video-2' => $video_2->toJson()
-        ];
-
         $new_data = $this->getNewData($category = Category::factory()->create());
 
-        $this->put( route('product.update', $product), $new_data + $video_data);
+        $this->put( route('product.update', $product), $new_data + [
+            'video-1' => $video_1->toJson(),
+            'video-2' => $video_2->toJson()
+        ]);
 
-        $this->assertDatabaseHas('videos', $video_1->toArray());
-        $this->assertDatabaseHas('videos', $video_2->toArray());
+        $this->assertDatabaseHas('videos', $video_1->only('url'));
+        $this->assertDatabaseHas('videos', $video_2->only('url'));
 
-        $this->assertDatabaseMissing('videos', $video->toArray());
+        $this->assertDatabaseMissing('videos', $video->only('url'));
     }
 
     public function test_when_product_is_created_all_old_images_are_deleted()
@@ -348,11 +328,9 @@ class ProductTest extends TestCase
 
         $new_data = $this->getNewData( Category::factory()->create() );
 
-        $images = [
+        $this->put( route('product.update', $product), $new_data + [
             'image-1' => base64_encode('data')
-        ];
-
-        $this->put( route('product.update', $product), $new_data + $images);
+        ]);
 
         $this->assertInstanceOf(Photo::class, $product->fresh()->photos()->first());
     }
