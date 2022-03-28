@@ -23,18 +23,16 @@ class OrderRequest extends FormRequest
     /**
      * Don't proceed to validation if the Cart is empty.
      */
+    protected function prepareForValidation()
+    {
+        $this->performEmptyCartCheck($this->validator);
+    }
+
     protected function failedValidation(Validator $validator)
     {
-        $this->performEmptyCartCheck($validator);
-
         throw (new ValidationException($validator))
             ->errorBag($this->errorBag)
             ->redirectTo($this->getRedirectUrl());
-    }
-
-    protected function passedValidation()
-    {
-        $this->performEmptyCartCheck();
     }
 
     public function rules()

@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
@@ -64,6 +65,9 @@ class OrderTest extends TestCase
 
     public function test_if_cart_is_empty_order_will_not_be_performed()
     {
+        $this->withoutExceptionHandling();
+        $this->expectException(ValidationException::class);
+
         \Cart::clear();
 
         $this->post( route('order.store'), $this->credentials + $this->post_office + $this->valid_data );
