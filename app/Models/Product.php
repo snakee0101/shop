@@ -47,9 +47,8 @@ class Product extends Model implements Purchaseable
 
     public function inWishlist(Wishlist $wishlist) :bool
     {
-        return $wishlist->products()
-                        ->where('products.id', $this->id)
-                        ->exists();
+        return $wishlist->products
+                        ->contains('id', $this->id);
     }
 
     public function getInComparisonAttribute() :bool
