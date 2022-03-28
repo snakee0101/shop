@@ -12,7 +12,7 @@ class Review extends Model
 
     protected $guarded = [];
     protected $appends = ['is_voted', 'vote', 'vote_statistics'];
-    protected $with = ['votes'];
+    protected $with = ['votes', 'photos', 'videos', 'replies', 'author'];
 
     public function author()
     {
