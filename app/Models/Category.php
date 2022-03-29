@@ -45,14 +45,4 @@ class Category extends Model
     {
         return $this->hasMany(Characteristic::class);
     }
-
-    public function breadcrumbsMenu()
-    {
-        $categories_list_reversed = [$category = $this]; //category 3 > category 2 > category 1
-
-        while($category->parent_id != null)
-            $categories_list_reversed[] = $category = $category->parentCategory; //recursively search for categories
-
-        return array_reverse($categories_list_reversed); //category 1 > category 2 > category 3
-    }
 }
