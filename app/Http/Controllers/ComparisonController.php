@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CharacteristicDiffAction;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -33,11 +34,14 @@ class ComparisonController extends Controller
 
     public function show(Category $category)
     {
+        $products = auth()->user()
+            ->comparison
+            ->filter( fn($product) => $product->category_id == $category->id );
+
         return view('comparison.category', [
             'category' => $category,
-            'products' => auth()->user()
-                                ->comparison
-                                ->filter( fn($product) => $product->category_id == $category->id )
+            'products' => $products,
+            'characteristic_diff' => (new CharacteristicDiffAction)->execute($products),
         ]);
     }
 
@@ -45,10 +49,13 @@ class ComparisonController extends Controller
     {
         $comparison_owner = User::firstWhere('comparison_access_token', $access_token);
 
+        $products = $comparison_owner->comparison
+                                      ->filter( fn($product) => $product->category_id == $category_id );
+
         return view('comparison.category', [
             'category' => Category::find($category_id),
-            'products' => $comparison_owner->comparison
-                                           ->filter( fn($product) => $product->category_id == $category_id )
+            'products' => $products,
+            'characteristic_diff' => (new CharacteristicDiffAction)->execute($products),
         ]);
     }
 

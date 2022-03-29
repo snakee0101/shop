@@ -58,7 +58,7 @@
                         </td>
                     @endforeach
                 </tr>
-                @foreach(\App\Models\Characteristic::diff($products) as $char)
+                @foreach($characteristic_diff as $char)
                     <tr>
                         <th scope="row">{{ $char->name }}</th>
                         @foreach($products as $product)

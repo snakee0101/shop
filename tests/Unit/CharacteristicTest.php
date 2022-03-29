@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Actions\CharacteristicDiffAction;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Product;
@@ -73,7 +74,7 @@ class CharacteristicTest extends TestCase
         DB::table('characteristic_product')->insert(['product_id' => $product2->id, 'characteristic_id' => $char2->id, 'value' => 'same value']);
         DB::table('characteristic_product')->insert(['product_id' => $product3->id, 'characteristic_id' => $char2->id, 'value' => 'same value']);
 
-        $this->assertCount(1, Characteristic::diff(Product::all()));
+        $this->assertCount(1, (new CharacteristicDiffAction)->execute(Product::all()) );
     }
 
     public function test_characteristics_diff_returns_valid_characteristics_even_for_one_product()
@@ -86,7 +87,7 @@ class CharacteristicTest extends TestCase
         DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char1->id, 'value' => 'unique']);
         DB::table('characteristic_product')->insert(['product_id' => $product1->id, 'characteristic_id' => $char2->id, 'value' => 'same value']);
 
-        $this->assertNotEmpty(Characteristic::diff(Product::all()));
+        $this->assertNotEmpty( (new CharacteristicDiffAction)->execute(Product::all()) );
     }
 
     public function test_when_characteristics_are_deleted_all_products_are_detached()
