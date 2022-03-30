@@ -45,16 +45,14 @@ class ComparisonController extends Controller
         ]);
     }
 
-    public function showPublic($access_token, $category_id, CharacteristicDiffAction $diff)
+    public function showPublic($access_token, Category $category, CharacteristicDiffAction $diff)
     {
         $comparison_owner = User::firstWhere('comparison_access_token', $access_token);
 
         $products = $comparison_owner->comparison
-                                      ->filter( fn($product) => $product->category_id == $category_id );
+                                      ->filter( fn($product) => $product->category_id == $category->id );
 
-        return view('comparison.category', [
-            'category' => Category::find($category_id),
-            'products' => $products,
+        return view('comparison.category', compact('category', 'products') + [
             'characteristic_diff' => $diff->execute($products),
         ]);
     }

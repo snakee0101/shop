@@ -71,7 +71,7 @@ Route::controller(ComparisonController::class)->middleware('authenticated')->pre
     Route::delete('{product}', 'destroy')->name('destroy');
 });
 
-Route::get('/comparison/public/{access_token}/{category_id}', [ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
+Route::get('/comparison/public/{access_token}/{category}', [ComparisonController::class, 'showPublic'])->name('comparison.showPublic');
 
 
 Route::resource('category', CategoryController::class);
