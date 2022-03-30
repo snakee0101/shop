@@ -32,7 +32,7 @@ class ComparisonController extends Controller
         return $product->fresh()->in_comparison;
     }
 
-    public function show(Category $category)
+    public function show(Category $category, CharacteristicDiffAction $diff)
     {
         $products = auth()->user()
             ->comparison
@@ -41,11 +41,11 @@ class ComparisonController extends Controller
         return view('comparison.category', [
             'category' => $category,
             'products' => $products,
-            'characteristic_diff' => (new CharacteristicDiffAction)->execute($products),
+            'characteristic_diff' => $diff->execute($products),
         ]);
     }
 
-    public function showPublic($access_token, $category_id)
+    public function showPublic($access_token, $category_id, CharacteristicDiffAction $diff)
     {
         $comparison_owner = User::firstWhere('comparison_access_token', $access_token);
 
@@ -55,7 +55,7 @@ class ComparisonController extends Controller
         return view('comparison.category', [
             'category' => Category::find($category_id),
             'products' => $products,
-            'characteristic_diff' => (new CharacteristicDiffAction)->execute($products),
+            'characteristic_diff' => $diff->execute($products),
         ]);
     }
 

@@ -8,7 +8,7 @@
                     <div class="page-header__breadcrumb">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                @foreach((new \App\Actions\BreadcrumbsMenuAction)->execute($product->category) as $category)
+                                @foreach(app(\App\Actions\BreadcrumbsMenuAction::class)->execute($product->category) as $category)
                                     @if($loop->last)
                                         <li class="breadcrumb-item active" aria-current="page">{{ $category->name }}</li>
                                     @else
