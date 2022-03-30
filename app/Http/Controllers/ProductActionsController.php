@@ -12,7 +12,8 @@ class ProductActionsController extends Controller
 
         return view($view, array_merge([
             'product' => $product,
-            'product_sets' => $product->product_sets
+            'product_sets' => $product->product_sets,
+            'breadcrumbs_menu' => app(\App\Actions\BreadcrumbsMenuAction::class)->execute($product->category)
         ], $additional));
     }
 
