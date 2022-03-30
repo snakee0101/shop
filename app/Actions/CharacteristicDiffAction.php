@@ -29,11 +29,11 @@ class CharacteristicDiffAction
             $number_of_characteristics_in_row = $char_values->count();
             $number_of_duplicates_in_row = $char_values->duplicates()->count() + 1;
 
-            return $number_of_characteristics_in_row === $number_of_duplicates_in_row;
+            return $number_of_characteristics_in_row === $number_of_duplicates_in_row;  //TODO: return $char_values->unique()->isEmpty()  //if unique is empty - then row consists of duplicates
         });  //removed characteristics that have the same value across all products (for example, this will be removed 1 => [5, 5, 5], but this will not - 2 => [4, 4, 3] )
 
         $unique_characteristics_model_ids = $unique_chars->keys(); //extracted characteristics model ids
 
-        return $unique_characteristics_model_ids->map( fn($id) => Characteristic::find($id) ); //wrapped char. ids into char. models
+        return Characteristic::find($unique_characteristics_model_ids);
     }
 }
