@@ -62,7 +62,7 @@
                     <tr>
                         <th scope="row">{{ $char->name }}</th>
                         @foreach($products as $product)
-                            <td>{{ $product->characteristics()->firstWhere('name', $char->name)->pivot->value }}</td>
+                            <td>{{ $product->characteristics->firstWhere('name', $char->name)->pivot->value }}</td>
                         @endforeach
                     </tr>
                 @endforeach
