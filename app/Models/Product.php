@@ -17,7 +17,7 @@ class Product extends Model implements Purchaseable
     protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
-    protected $with = ['discount', 'photos'];
+    protected $with = ['photos'];
     protected $guarded = [];
 
     protected $casts = [
