@@ -45,12 +45,6 @@ class Product extends Model implements Purchaseable
         return $this->belongsTo(Category::class);
     }
 
-    public function inWishlist(Wishlist $wishlist) :bool
-    {
-        return $wishlist->products()->where('products.id', $this->id)
-                                    ->exists();
-    }
-
     public function getInComparisonAttribute() :bool
     {
         return auth()->check() && auth()->user()->comparison()
@@ -58,10 +52,12 @@ class Product extends Model implements Purchaseable
                     ->exists();
     }
 
-
     public function getInDefaultWishlistAttribute()
     {
-        return auth()->check() && $this->inWishlist( auth()->user()->default_wishlist );
+        return auth()->check() && auth()->user()->default_wishlist
+                                                ->products()
+                                                ->where('products.id', $this->id)
+                                                ->exists();
     }
 
     public function getInCartAttribute() :bool
