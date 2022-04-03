@@ -11,7 +11,6 @@ class Wishlist extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $with = ['products'];
     protected $guarded = [];
     protected $casts = [
       'is_active' => 'boolean'
