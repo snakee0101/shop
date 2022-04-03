@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex p-4">
+            <div class="d-flex p-4 flex-wrap">
                 <product-card-component v-for="product in wishlist_object.products"
                                         :key="product.id"
                                         :user="JSON.stringify(user_object)"
