@@ -26,7 +26,7 @@
                     <div class="product-card__rating">
                         <div class="rating">
                             <div class="rating__body">
-                                <template v-for="n in product_object.ReviewStarsAverage">
+                                <template v-for="n in Math.round(product_object.reviews_avg_rating)">
                                     <svg class="rating__star rating__star--active"
                                          width="13px" height="12px">
                                         <g class="rating__fill">
@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                 </template>
-                                <template v-for="n in (5 - product_object.ReviewStarsAverage)">
+                                <template v-for="n in (5 - Math.round(product_object.reviews_avg_rating))">
                                     <svg class="rating__star" width="13px" height="12px">
                                         <g class="rating__fill">
                                             <use

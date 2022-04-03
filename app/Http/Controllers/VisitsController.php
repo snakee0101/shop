@@ -11,6 +11,7 @@ class VisitsController extends Controller
     {
         return view('account', [
             'visited_products' => auth()->user()->visited_products()
+                                                ->withAvg('reviews', 'rating')
                                                 ->orderByDesc('pivot_created_at')->get()
         ]);
     }

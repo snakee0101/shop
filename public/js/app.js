@@ -25958,48 +25958,51 @@ var render = function () {
                   "div",
                   { staticClass: "rating__body" },
                   [
-                    _vm._l(_vm.product_object.ReviewStarsAverage, function (n) {
-                      return [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "rating__star rating__star--active",
-                            attrs: { width: "13px", height: "12px" },
-                          },
-                          [
-                            _c("g", { staticClass: "rating__fill" }, [
-                              _c("use", {
-                                attrs: {
-                                  "xlink:href":
-                                    "/images/sprite.svg#star-normal",
-                                },
-                              }),
-                            ]),
-                            _vm._v(" "),
-                            _c("g", { staticClass: "rating__stroke" }, [
-                              _c("use", {
-                                attrs: {
-                                  "xlink:href":
-                                    "/images/sprite.svg#star-normal-stroke",
-                                },
-                              }),
-                            ]),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "rating__star rating__star--only-edge rating__star--active",
-                          },
-                          [_vm._m(1, true), _vm._v(" "), _vm._m(2, true)]
-                        ),
-                      ]
-                    }),
+                    _vm._l(
+                      Math.round(_vm.product_object.reviews_avg_rating),
+                      function (n) {
+                        return [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "rating__star rating__star--active",
+                              attrs: { width: "13px", height: "12px" },
+                            },
+                            [
+                              _c("g", { staticClass: "rating__fill" }, [
+                                _c("use", {
+                                  attrs: {
+                                    "xlink:href":
+                                      "/images/sprite.svg#star-normal",
+                                  },
+                                }),
+                              ]),
+                              _vm._v(" "),
+                              _c("g", { staticClass: "rating__stroke" }, [
+                                _c("use", {
+                                  attrs: {
+                                    "xlink:href":
+                                      "/images/sprite.svg#star-normal-stroke",
+                                  },
+                                }),
+                              ]),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "rating__star rating__star--only-edge rating__star--active",
+                            },
+                            [_vm._m(1, true), _vm._v(" "), _vm._m(2, true)]
+                          ),
+                        ]
+                      }
+                    ),
                     _vm._v(" "),
                     _vm._l(
-                      5 - _vm.product_object.ReviewStarsAverage,
+                      5 - Math.round(_vm.product_object.reviews_avg_rating),
                       function (n) {
                         return [
                           _c(

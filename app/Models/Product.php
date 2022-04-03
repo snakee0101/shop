@@ -14,7 +14,7 @@ class Product extends Model implements Purchaseable
 {
     use HasFactory, HasDiscounts, SoftDeletes;
 
-    protected $appends = ['inDefaultWishlist', 'inCart', 'ReviewStarsAverage', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
+    protected $appends = ['inDefaultWishlist', 'inCart', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
     protected $withCount = ['reviews'];
     protected $with = ['photos'];
@@ -85,11 +85,6 @@ class Product extends Model implements Purchaseable
     public function questions()
     {
         return $this->hasMany(Question::class);
-    }
-
-    public function getReviewStarsAverageAttribute()
-    {
-        return round( $this->reviews()->avg('rating') ?? 0 );
     }
 
     public function photos()

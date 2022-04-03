@@ -52,7 +52,9 @@ class CategoryController extends Controller
 
         return view('shop', [ //if not - go to the shop
             'category' => $category,
-            'products' => $category->products()->paginate()
+            'products' => $category->products()
+                                   ->withAvg('reviews', 'rating')
+                                   ->paginate()
         ]);
     }
 

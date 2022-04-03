@@ -14,6 +14,9 @@ class WishlistController extends Controller
         return view('wishlist', [
             'wishlists' => auth()->user()->wishlists()
                                          ->with('products.photos')
+                                         ->with('products', function($q) {
+                                             $q->withAvg('reviews', 'rating');
+                                         })
                                          ->get()
         ]);
     }

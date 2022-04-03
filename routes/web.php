@@ -22,7 +22,7 @@ use App\Http\Controllers\CategoryController;
 
 
 Route::get('/', function () {
-    $filtering_group_1_products = Product::limit(10)->get();
+    $filtering_group_1_products = Product::limit(10)->get()->loadAvg('reviews', 'rating');
 
     return view('index-2', [
         'filtering_group_1_products' => $filtering_group_1_products
