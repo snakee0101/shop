@@ -19,17 +19,6 @@ class ProductTest extends TestCase
         $this->assertStringContainsString('ObjectType', $product->toJson());
     }
 
-    public function test_product_can_determine_whether_it_is_in_a_wishlist()
-    {
-        $wishlist = Wishlist::factory()->create();
-        $products = Product::factory()->count(2)->create();
-
-        $wishlist->products()->attach($products[0]);
-
-        $this->assertTrue( $products[0]->inWishlist($wishlist) );
-        $this->assertFalse( $products[1]->inWishlist($wishlist) );
-    }
-
     public function test_product_can_determine_whether_it_is_in_a_default_wishlist()
     {
         $this->actingAs( $user = User::factory()->create() );
@@ -66,9 +55,11 @@ class ProductTest extends TestCase
             ['product_id' => $product2, 'rating' => 3],
             ['product_id' => $product2, 'rating' => 4]
         ]);
+        $product->loadAvg('reviews', 'rating');
+        $product2->loadAvg('reviews', 'rating');
 
-        $this->assertEquals(4, $product->review_stars_average);
-        $this->assertEquals(3, $product2->review_stars_average);
+        $this->assertEquals(4, round($product->reviews_avg_rating));
+        $this->assertEquals(3, round($product2->reviews_avg_rating));
     }
 
     //product_gets_other_products_in_completed_orders_that_contain_current_product
