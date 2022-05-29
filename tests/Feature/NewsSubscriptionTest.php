@@ -8,10 +8,13 @@ use Tests\TestCase;
 
 class NewsSubscriptionTest extends TestCase
 {
-    public function test_example()
+    public function test_user_could_be_subscribed()
     {
-        $response = $this->get('/');
+        $this->post( route('news.subscribe', 'new@email.com') )
+             ->assertStatus(200);
 
-        $response->assertStatus(200);
+        $this->assertDatabaseHas('news_subscribers', [
+            'email' => 'new@email.com'
+        ]);
     }
 }

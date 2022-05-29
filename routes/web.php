@@ -9,6 +9,7 @@ use App\Http\Controllers\{AdminController,
     CharacteristicController,
     ComparisonController,
     CouponController,
+    NewsSubscriptionController,
     ProductController,
     ProductSetController,
     VisitsController,
@@ -130,6 +131,9 @@ Route::controller(AdminController::class)->prefix('admin-panel')
 
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
 });
+
+Route::post('/news/subscribe/{email}', [NewsSubscriptionController::class, 'store'])->name('news.subscribe');
+Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, 'destroy'])->name('news.unsubscribe');
 
 
 Route::fallback(fn() => view('404'));

@@ -66,8 +66,7 @@
                     <div class="col-12 col-md-12 col-lg-4">
                         <div class="site-footer__widget footer-newsletter"><h5 class="footer-newsletter__title">
                                 Newsletter</h5>
-                            <div class="footer-newsletter__text">Praesent pellentesque volutpat ex, vitae auctor
-                                lorem pulvinar mollis felis at lacinia.
+                            <div class="footer-newsletter__text">Provide your email to subscribe to newsletter
                             </div>
                             <form action="#" class="footer-newsletter__form"><label class="sr-only"
                                                                                     for="footer-newsletter-address">Email
