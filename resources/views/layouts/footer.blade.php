@@ -79,11 +79,13 @@
                                                            placeholder="Email Address...">
                                 <button class="footer-newsletter__form-button btn btn-primary">Subscribe</button>
                             </form>
-                            @error('email')
-                                <div class="footer-newsletter__text footer-newsletter__text--social text-danger">
-                                    Email is required
-                                </div>
-                            @enderror
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <div class="footer-newsletter__text footer-newsletter__text--social text-danger">
+                                        {{ $error }}
+                                    </div>
+                                @endforeach
+                            @endif
                             <div class="footer-newsletter__text footer-newsletter__text--social">Follow us on social
                                 networks
                             </div>

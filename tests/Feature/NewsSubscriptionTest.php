@@ -20,15 +20,19 @@ class NewsSubscriptionTest extends TestCase
         ]);
     }
 
-    public function test_if_subscriber_email_is_exists_exception_is_raised()
+    public function test_if_subscriber_email_is_empty_validation_fails()
     {
-        $this->withoutExceptionHandling()
-             ->expectExceptionMessage('UNIQUE');
+        $this->post( route('news.subscribe'), [
+            'email' => ''
+        ] )->assertSessionHasErrors('email');
+    }
 
+    public function test_if_subscriber_email_is_exists_validation_fails()
+    {
         NewsSubscriber::factory()->create(['email' => 'new@email.com']);
 
         $this->post( route('news.subscribe'), [
             'email' => 'new@email.com'
-        ] )->assertRedirect();
+        ] )->assertSessionHasErrors('email');
     }
 }

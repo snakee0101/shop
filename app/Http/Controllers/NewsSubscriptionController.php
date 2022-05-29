@@ -10,7 +10,10 @@ class NewsSubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required'
+            'email' => 'required|unique:news_subscribers,email'
+        ], [
+            'email.required' => 'Email is required',
+            'email.unique' => 'User with this email is already subscribed'
         ]);
 
         NewsSubscriber::create([
