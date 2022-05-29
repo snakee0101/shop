@@ -5465,6 +5465,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "WishlistComponent",
   props: ['wishlist', 'wishlists', 'user', 'url'],
@@ -5513,16 +5521,10 @@ __webpack_require__.r(__webpack_exports__);
       window.events.$emit('add_all_to_cart', this.wishlist_object.id);
     },
     move_to_wishlist: function move_to_wishlist() {
-      if (this.wishlist_id_to_move_to === 0) {
-        alert('No wishlist is selected');
-      } else {
-        if (this.selected_product_ids.length === 0) {
-          alert('No products are selected');
-        } else {
-          this.selected_product_ids.map(this.move_to_wishlist_callback);
-          location.reload();
-        }
-      }
+      if (this.wishlist_id_to_move_to === 0) return alert('No wishlist is selected');
+      if (this.selected_product_ids.length === 0) return alert('No products are selected');
+      this.selected_product_ids.map(this.move_to_wishlist_callback);
+      location.reload();
     },
     move_to_wishlist_callback: function move_to_wishlist_callback(product_id) {
       axios.post("wishlist/".concat(this.wishlist_object.id, "/").concat(product_id, "/move"), {
@@ -5540,15 +5542,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     save_selection: function save_selection(wishlist_id, product_id, selected) {
-      if (wishlist_id == this.wishlist_object.id) {
-        if (selected) this.selected_product_ids.push(product_id);else this.selected_product_ids.splice(this.selected_product_ids.indexOf(product_id), 1);
-      }
+      if (wishlist_id != this.wishlist_object.id) return;
+      if (selected) return this.selected_product_ids.push(product_id);
+      this.selected_product_ids.splice(this.selected_product_ids.indexOf(product_id), 1);
     },
     selectAll: function selectAll() {
       this.all_selected = !this.all_selected;
-      if (this.all_selected) this.selected_product_ids = this.wishlist_object.products.map(function (product) {
+      this.selected_product_ids = this.all_selected ? this.wishlist_object.products.map(function (product) {
         return product.id;
-      });else this.selected_product_ids = [];
+      }) : [];
       window.events.$emit('toggle_select_all_products_in_a_wishlist', this.wishlist_object.id, this.selected_product_ids);
     },
     setDefault: function setDefault() {
@@ -5561,15 +5563,12 @@ __webpack_require__.r(__webpack_exports__);
       this.is_renaming = true;
     },
     confirm_rename: function confirm_rename() {
-      if (this.new_name === '') {
-        alert('new wishlist name is required');
-      } else {
-        axios.put("/wishlist/".concat(this.wishlist_object.id), {
-          'name': this.new_name
-        }).then(this.rename_wishlist)["catch"](function (error) {
-          return alert('wishlist with this name is already exists');
-        });
-      }
+      if (this.new_name === '') return alert('new wishlist name is required');
+      axios.put("/wishlist/".concat(this.wishlist_object.id), {
+        'name': this.new_name
+      }).then(this.rename_wishlist)["catch"](function (error) {
+        return alert('wishlist with this name is already exists');
+      });
     },
     rename_wishlist: function rename_wishlist() {
       this.wishlist_object.name = this.new_name;
@@ -27412,7 +27411,7 @@ var render = function () {
                       "#move_wishlist_modal_" + _vm.wishlist_object.id,
                   },
                 },
-                [_vm._v("Move")]
+                [_vm._v("Move\n                ")]
               ),
               _vm._v(" "),
               _c(
@@ -27448,7 +27447,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "d-flex p-4" },
+        { staticClass: "d-flex p-4 flex-wrap" },
         _vm._l(_vm.wishlist_object.products, function (product) {
           return _c("product-card-component", {
             key: product.id,
