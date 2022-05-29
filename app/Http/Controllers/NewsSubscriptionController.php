@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class NewsSubscriptionController extends Controller
 {
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'required'
+        ]);
+
         NewsSubscriber::create([
             'email' => request('email')
         ]);
