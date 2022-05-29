@@ -132,7 +132,7 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
 });
 
-Route::post('/news/subscribe/{email}', [NewsSubscriptionController::class, 'store'])->name('news.subscribe');
+Route::post('/news/subscribe', [NewsSubscriptionController::class, 'store'])->name('news.subscribe');
 Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, 'destroy'])->name('news.unsubscribe');
 
 

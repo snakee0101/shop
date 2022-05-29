@@ -11,8 +11,9 @@ class NewsSubscriptionTest extends TestCase
 {
     public function test_user_could_be_subscribed()
     {
-        $this->post( route('news.subscribe', 'new@email.com') )
-             ->assertStatus(200);
+        $this->post( route('news.subscribe'), [
+            'email' => 'new@email.com'
+        ])->assertRedirect();
 
         $this->assertDatabaseHas('news_subscribers', [
             'email' => 'new@email.com'
@@ -26,7 +27,8 @@ class NewsSubscriptionTest extends TestCase
 
         NewsSubscriber::factory()->create(['email' => 'new@email.com']);
 
-        $this->post( route('news.subscribe', 'new@email.com') )
-            ->assertStatus(200);
+        $this->post( route('news.subscribe'), [
+            'email' => 'new@email.com'
+        ] )->assertRedirect();
     }
 }

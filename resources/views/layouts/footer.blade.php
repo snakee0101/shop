@@ -68,9 +68,12 @@
                                 Newsletter</h5>
                             <div class="footer-newsletter__text">Provide your email to subscribe to newsletter
                             </div>
-                            <form action="#" class="footer-newsletter__form"><label class="sr-only"
+                            <form action="{{ route('news.subscribe') }}" class="footer-newsletter__form" method="post">
+                                @csrf
+                                <label class="sr-only"
                                                                                     for="footer-newsletter-address">Email
                                     Address</label> <input type="text"
+                                                           name="email"
                                                            class="footer-newsletter__form-input form-control"
                                                            id="footer-newsletter-address"
                                                            placeholder="Email Address...">

@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class NewsSubscriptionController extends Controller
 {
-    public function store($email)
+    public function store()
     {
-        NewsSubscriber::create( compact('email') );
+        NewsSubscriber::create([
+            'email' => request('email')
+        ]);
+
+        return back();
     }
 
     public function destroy($email)
