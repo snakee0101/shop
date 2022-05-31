@@ -351,6 +351,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.contacts.index') }}"
+                           class="nav-link  {{ Route::currentRouteName() == 'admin.contacts.index' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Contact Form Messages
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

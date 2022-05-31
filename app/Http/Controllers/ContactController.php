@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        return view('admin.contacts.index', [
+            'contacts' => ContactFormMessage::paginate()
+        ]);
+    }
+
     public function show()
     {
         return view('contact-us');
