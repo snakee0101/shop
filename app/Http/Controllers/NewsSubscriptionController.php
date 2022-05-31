@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmNewsSubscriptionMail;
 use App\Models\NewsSubscriber;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class NewsSubscriptionController extends Controller
 {
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             'email' => 'required|email|unique:news_subscribers,email'
@@ -17,9 +21,13 @@ class NewsSubscriptionController extends Controller
             'email.email' => 'Please enter a valid email',
         ]);
 
-        NewsSubscriber::create([
+        //Send a confirmation email
+       Mail::to( $request->email )
+            ->send(new ConfirmNewsSubscriptionMail( $request->email ));
+
+        /*NewsSubscriber::create([
             'email' => request('email')
-        ]);
+        ]);*/
 
         return back();
     }
