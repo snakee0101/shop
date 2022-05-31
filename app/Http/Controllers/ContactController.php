@@ -10,4 +10,9 @@ class ContactController extends Controller
     {
         return view('contact-us');
     }
+
+    public function store(Request $request)
+    {
+        dd($request);
+    }
 }
