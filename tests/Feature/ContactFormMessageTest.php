@@ -39,4 +39,12 @@ class ContactFormMessageTest extends TestCase
         $this->post( route('contacts.store'),  $data)
              ->assertSessionHasErrors('message');
     }
+
+    public function test_email_must_be_valid()
+    {
+        $data = ContactFormMessage::factory()->raw();
+        $data['email'] = 'not.an.email';
+        $this->post( route('contacts.store'),  $data)
+            ->assertSessionHasErrors('email');
+    }
 }
