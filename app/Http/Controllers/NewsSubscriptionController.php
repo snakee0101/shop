@@ -24,7 +24,7 @@ class NewsSubscriptionController extends Controller
         Mail::to($request->email)
             ->send(new ConfirmNewsSubscriptionMail($request->email));
 
-        return back();
+        return redirect('/#newsletter_footer')->with('confirmation_message', 'Check your inbox for confirmation message');
     }
 
     public function store(Request $request, $email)
@@ -34,7 +34,7 @@ class NewsSubscriptionController extends Controller
                 'email' => $email
             ]);
 
-        return redirect('/');
+        return redirect('/')->with('confirmation_message', 'Your newsletter subscription has been confirmed');
     }
 
     public function destroy($email)

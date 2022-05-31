@@ -63,7 +63,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-12 col-md-12 col-lg-4">
+                    <div class="col-12 col-md-12 col-lg-4" id="newsletter_footer">
                         <div class="site-footer__widget footer-newsletter"><h5 class="footer-newsletter__title">
                                 Newsletter</h5>
                             <div class="footer-newsletter__text">Provide your email to subscribe to newsletter
@@ -85,6 +85,11 @@
                                         {{ $error }}
                                     </div>
                                 @endforeach
+                            @endif
+                            @if(session()->has('confirmation_message'))
+                                <div class="footer-newsletter__text footer-newsletter__text--social text-success">
+                                    {{ session()->get('confirmation_message') }}
+                                </div>
                             @endif
                             <div class="footer-newsletter__text footer-newsletter__text--social">Follow us on social
                                 networks

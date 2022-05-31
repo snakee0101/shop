@@ -16,7 +16,7 @@ class ConfirmNewsSubscriptionMail extends Mailable
 
     public function __construct($email)
     {
-        $this->url = Url::signedRoute('news.confirm_subscription', ['email' => $email]);
+        $this->url = Url::signedRoute('news.confirm_subscription', ['email' => $email]) . "#newsletter_footer";
     }
 
     public function build()
