@@ -16,4 +16,27 @@ class ContactFormMessageTest extends TestCase
         $this->post( route('contacts.store'),  $data);
         $this->assertDatabaseHas('contact_form_messages', $data);
     }
+
+    public function test_all_fields_are_required()
+    {
+        $data = ContactFormMessage::factory()->raw();
+        $data['name'] = '';
+        $this->post( route('contacts.store'),  $data)
+             ->assertSessionHasErrors('name');
+
+        $data = ContactFormMessage::factory()->raw();
+        $data['email'] = '';
+        $this->post( route('contacts.store'),  $data)
+             ->assertSessionHasErrors('email');
+
+        $data = ContactFormMessage::factory()->raw();
+        $data['subject'] = '';
+        $this->post( route('contacts.store'),  $data)
+             ->assertSessionHasErrors('subject');
+
+        $data = ContactFormMessage::factory()->raw();
+        $data['message'] = '';
+        $this->post( route('contacts.store'),  $data)
+             ->assertSessionHasErrors('message');
+    }
 }

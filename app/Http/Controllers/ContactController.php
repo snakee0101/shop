@@ -14,6 +14,13 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required'
+        ]);
+
         ContactFormMessage::create( $request->only(['name', 'email', 'subject', 'message']) );
 
         return back()->with('success', 'Your message was successfully sent');
