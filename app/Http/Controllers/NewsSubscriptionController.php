@@ -21,15 +21,20 @@ class NewsSubscriptionController extends Controller
             'email.email' => 'Please enter a valid email',
         ]);
 
-        //Send a confirmation email
-       Mail::to( $request->email )
-            ->send(new ConfirmNewsSubscriptionMail( $request->email ));
-
-        /*NewsSubscriber::create([
-            'email' => request('email')
-        ]);*/
+        Mail::to($request->email)
+            ->send(new ConfirmNewsSubscriptionMail($request->email));
 
         return back();
+    }
+
+    public function store(Request $request, $email)
+    {
+        if ($request->hasValidSignature())
+            NewsSubscriber::create([
+                'email' => $email
+            ]);
+
+        return redirect('/');
     }
 
     public function destroy($email)

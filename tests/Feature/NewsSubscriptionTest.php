@@ -24,11 +24,22 @@ class NewsSubscriptionTest extends TestCase
         Mail::assertSent(ConfirmNewsSubscriptionMail::class);
     }
 
-    /*public function test_user_could_be_subscribed()
+    public function test_user_could_be_subscribed_if_it_confirms_email()
     {
+        Mail::fake();
+
         $this->post( route('news.subscribe'), [
             'email' => 'new@email.com'
         ])->assertRedirect();
+
+        $url = '';
+
+        Mail::assertSent(function (ConfirmNewsSubscriptionMail $mail) use (&$url) {
+            $url = $mail->url;
+            return true;
+        });
+
+        $this->get($url);
 
         $this->assertDatabaseHas('news_subscribers', [
             'email' => 'new@email.com'
@@ -49,5 +60,5 @@ class NewsSubscriptionTest extends TestCase
         $this->post( route('news.subscribe'), [
             'email' => 'new@email.com'
         ] )->assertSessionHasErrors('email');
-    }*/
+    }
 }

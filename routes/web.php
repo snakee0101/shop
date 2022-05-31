@@ -133,7 +133,7 @@ Route::controller(AdminController::class)->prefix('admin-panel')
 });
 
 Route::post('/news/subscribe', [NewsSubscriptionController::class, 'create'])->name('news.subscribe');
-Route::get('/news/confirm_subscription', [NewsSubscriptionController::class, 'create'])->name('news.confirm_subscription');
+Route::get('/news/confirm_subscription/{email}', [NewsSubscriptionController::class, 'store'])->name('news.confirm_subscription');
 Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, 'destroy'])->name('news.unsubscribe');
 
 
