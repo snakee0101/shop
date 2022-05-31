@@ -54,16 +54,39 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6"><label for="form-name">Your Name</label>
                                                 <input type="text" id="form-name" class="form-control"
-                                                       placeholder="Your Name" name="name"></div>
+                                                       placeholder="Your Name" name="name" value="{{ old('name') }}">
+                                                @error('name')
+                                                    <div class="footer-newsletter__text footer-newsletter__text--social text-danger mt-0">
+                                                        Name is required
+                                                    </div>
+                                                @enderror
+                                            </div>
                                             <div class="form-group col-md-6"><label for="form-email">Email</label>
                                                 <input type="email" id="form-email" class="form-control"
-                                                       placeholder="Email Address" name="email"></div>
+                                                       placeholder="Email Address" name="email" value="{{ old('email') }}">
+                                                @error('email')
+                                                    <div class="footer-newsletter__text footer-newsletter__text--social text-danger mt-0">
+                                                        Provide a valid email
+                                                    </div>
+                                                @enderror
+                                            </div>
                                         </div>
                                         <div class="form-group"><label for="form-subject">Subject</label> <input
                                                 type="text" id="form-subject" class="form-control"
-                                                placeholder="Subject" name="subject"></div>
+                                                placeholder="Subject" name="subject"  value="{{ old('subject') }}">
+                                            @error('subject')
+                                                <div class="footer-newsletter__text footer-newsletter__text--social text-danger mt-0">
+                                                    Subject is required
+                                                </div>
+                                            @enderror
+                                        </div>
                                         <div class="form-group"><label for="form-message">Message</label> <textarea
-                                                id="form-message" class="form-control" rows="4" name="message"></textarea></div>
+                                                id="form-message" class="form-control" rows="4" name="message">{{ old('message') }}</textarea>
+                                        @error('message')
+                                            <div class="footer-newsletter__text footer-newsletter__text--social text-danger mt-0">
+                                                Message must consist of at least 20 characters
+                                            </div>
+                                        @enderror</div>
                                         <button type="submit" class="btn btn-primary">Send Message</button>
                                     </form>
 
