@@ -8,6 +8,7 @@ use App\Http\Controllers\{AdminController,
     AdminOrderActionsController,
     CharacteristicController,
     ComparisonController,
+    ContactController,
     CouponController,
     NewsSubscriptionController,
     ProductController,
@@ -49,8 +50,6 @@ Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(f
 });
 
 Route::post('/coupon', [CouponController::class, 'store'])->name('coupon.store');
-
-Route::view('/contacts', 'contact-us')->name('contacts');
 
 Route::controller(AdminOrderActionsController::class)->name('order.actions.')->prefix('/order/{order}/')
                                                                              ->group(function (){
@@ -132,9 +131,16 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
 });
 
+
+//News subscription
 Route::post('/news/subscribe', [NewsSubscriptionController::class, 'create'])->name('news.subscribe');
 Route::get('/news/confirm_subscription/{email}', [NewsSubscriptionController::class, 'store'])->name('news.confirm_subscription');
 Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, 'destroy'])->name('news.unsubscribe');
+
+
+//Contacts
+Route::get('/contacts', [ContactController::class, 'show'])->name('contacts');
+
 
 
 Route::fallback(fn() => view('404'));
