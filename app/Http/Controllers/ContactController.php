@@ -18,7 +18,7 @@ class ContactController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'subject' => 'required',
-            'message' => 'required'
+            'message' => 'required|min:20'
         ]);
 
         ContactFormMessage::create( $request->only(['name', 'email', 'subject', 'message']) );

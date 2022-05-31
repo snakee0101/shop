@@ -47,4 +47,16 @@ class ContactFormMessageTest extends TestCase
         $this->post( route('contacts.store'),  $data)
             ->assertSessionHasErrors('email');
     }
+
+    public function test_message_must_consist_of_at_least_20_symbols()
+    {
+        $data = ContactFormMessage::factory()->raw();
+        $data['message'] = '123456789O123456789';
+        $this->post( route('contacts.store'),  $data)
+            ->assertSessionHasErrors('message');
+
+        $data['message'] = '123456789O1234567890';
+        $this->post( route('contacts.store'),  $data)
+            ->assertSessionHasNoErrors();
+    }
 }
