@@ -16,6 +16,6 @@ class ContactController extends Controller
     {
         ContactFormMessage::create( $request->only(['name', 'email', 'subject', 'message']) );
 
-        return back();
+        return back()->with('success', 'Your message was successfully sent');
     }
 }

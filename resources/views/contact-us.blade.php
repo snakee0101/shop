@@ -66,6 +66,12 @@
                                                 id="form-message" class="form-control" rows="4" name="message"></textarea></div>
                                         <button type="submit" class="btn btn-primary">Send Message</button>
                                     </form>
+
+                                    @if(session()->has('success'))
+                                        <div class="footer-newsletter__text footer-newsletter__text--social text-success">
+                                            {{ session()->get('success') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
