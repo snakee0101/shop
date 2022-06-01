@@ -6,8 +6,14 @@
 
     <div class="container">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex">
                 <h3 class="card-title font-weight-bold">Contact Form Message #{{ $message->id }}</h3>
+                <form action="{{ route('contacts.destroy', $message) }}" method="post" class="d-inline ml-auto">
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                </form>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

@@ -59,4 +59,12 @@ class ContactFormMessageTest extends TestCase
         $this->post( route('contacts.store'),  $data)
             ->assertSessionHasNoErrors();
     }
+
+    public function test_message_could_be_deleted()
+    {
+        $message = ContactFormMessage::factory()->create();
+        $this->delete( route('contacts.destroy', $message) );
+
+        $this->assertDatabaseCount('contact_form_messages', 0);
+    }
 }

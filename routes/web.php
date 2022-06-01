@@ -141,6 +141,7 @@ Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, '
 //Contacts
 Route::get('/contacts', [ContactController::class, 'show'])->name('contacts');
 Route::get('/contacts/edit/{contact_form_message}', [ContactController::class, 'edit'])->name('contacts.edit');
+Route::delete('/contacts/delete/{contact_form_message}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 Route::get('/contacts/index', [ContactController::class, 'index'])->name('admin.contacts.index');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 

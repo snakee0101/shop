@@ -39,4 +39,12 @@ class ContactController extends Controller
 
         return back()->with('success', 'Your message was successfully sent');
     }
+
+    public function destroy(ContactFormMessage $contact_form_message)
+    {
+        $contact_form_message->delete();
+
+        return redirect()->route('admin.contacts.index');
+    }
+
 }
