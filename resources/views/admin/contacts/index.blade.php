@@ -47,7 +47,7 @@
                                                 {{ $message->created_at }}
                                             </td>
                                             <td>
-                                                <a href="">
+                                                <a href="{{ route('contacts.edit', $message) }}">
                                                     Details
                                                 </a>
                                             </td>

@@ -14,6 +14,13 @@ class ContactController extends Controller
         ]);
     }
 
+    public function edit(ContactFormMessage $contact_form_message)
+    {
+        return view('admin.contacts.show', [
+            'message' => $contact_form_message
+        ]);
+    }
+
     public function show()
     {
         return view('contact-us');

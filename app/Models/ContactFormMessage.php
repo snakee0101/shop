@@ -10,4 +10,9 @@ class ContactFormMessage extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function formatted()
+    {
+        return nl2br($this->message);
+    }
 }
