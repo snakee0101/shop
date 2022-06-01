@@ -67,4 +67,14 @@ class ContactFormMessageTest extends TestCase
 
         $this->assertDatabaseCount('contact_form_messages', 0);
     }
+
+    public function test_when_message_is_opened_it_is_considered_as_read()
+    {
+        $message = ContactFormMessage::factory()->create();
+        $this->get( route('contacts.edit', $message) );
+
+        $this->assertDatabaseHas('contact_form_messages', [
+            'is_read' => true
+        ]);
+    }
 }

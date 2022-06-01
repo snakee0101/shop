@@ -16,6 +16,8 @@ class ContactController extends Controller
 
     public function edit(ContactFormMessage $contact_form_message)
     {
+        $contact_form_message->update([ 'is_read' => true ]);
+
         return view('admin.contacts.show', [
             'message' => $contact_form_message
         ]);
