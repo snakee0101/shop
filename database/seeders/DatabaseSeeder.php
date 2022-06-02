@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
                      PhotoSeeder::class,
                      OrderSeeder::class,
                      DiscountSeeder::class,
+                     ContactFormMessageSeeder::class,
         ]);
     }
 }
