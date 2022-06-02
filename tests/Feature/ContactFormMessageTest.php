@@ -95,4 +95,16 @@ class ContactFormMessageTest extends TestCase
             'object_type' => ContactFormMessage::class
         ]);
     }
+
+    public function test_when_admin_replies_a_message_replied_status_is_changed()
+    {
+        $this->actingAs( $user = User::factory()->create() );
+
+        $message = ContactFormMessage::factory()->create();
+        $this->post( route('contacts.reply', $message), [
+            'text' => 'test 12345'
+        ] );
+
+        $this->assertTrue($message->fresh()->is_replied);
+    }
 }

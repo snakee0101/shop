@@ -10,6 +10,9 @@ class ContactFormMessage extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $casts = [
+        'is_replied' => 'bool'
+    ];
 
     public function formatted()
     {

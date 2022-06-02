@@ -52,6 +52,8 @@ class ContactController extends Controller
             'object_type' => ContactFormMessage::class
         ]);
 
+        $contact_form_message->update([ 'is_replied' => true ]);
+
         return back();
     }
 
