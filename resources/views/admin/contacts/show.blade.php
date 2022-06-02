@@ -100,6 +100,21 @@
                 </div>
                 <!-- /.card-body -->
             </div>
+        @else
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <h3 class="card-title font-weight-bold">Admin reply</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div id="example1_wrapper">
+                        <div class="row">
+                            {!! $message->reply->text !!}
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
         @endunless
     </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\ContactFormMessage;
+use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -106,5 +107,17 @@ class ContactFormMessageTest extends TestCase
         ] );
 
         $this->assertTrue($message->fresh()->is_replied);
+    }
+
+    public function test_contact_form_message_has_reply_relation()
+    {
+        $this->actingAs( $user = User::factory()->create() );
+
+        $message = ContactFormMessage::factory()->create();
+        $this->post( route('contacts.reply', $message), [
+            'text' => 'test 12345'
+        ] );
+
+        $this->assertInstanceOf(Reply::class, $message->fresh()->reply);
     }
 }

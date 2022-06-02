@@ -18,4 +18,9 @@ class ContactFormMessage extends Model
     {
         return nl2br($this->message);
     }
+
+    public function reply()
+    {
+        return $this->morphOne(Reply::class, 'object');
+    }
 }
