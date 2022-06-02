@@ -38,7 +38,10 @@ class WishlistProductController extends Controller
     {
         $wishlist->products()->detach( $product );
 
-        Wishlist::find( request('move_to') )
-                ->products()->attach( $product );
+        $wishlist_2 = Wishlist::find( request('move_to') );
+        $wishlist_2->products()->attach( $product );
+
+        $wishlist->touch();
+        $wishlist_2->touch();
     }
 }

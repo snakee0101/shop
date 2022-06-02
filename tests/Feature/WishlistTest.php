@@ -76,9 +76,25 @@ class WishlistTest extends TestCase
         $this->assertEquals(now()->format('Y-m-d'), $wishlist->fresh()->updated_at->format('Y-m-d'));
     }
 
-    public function test_when_product_is_moved_wishlist_timestamp_is_updated()
+    public function test_when_product_is_moved_wishlist_timestamps_of_both_wishlists_are_updated()
     {
+        $this->withoutExceptionHandling();
 
+        $user = User::factory()->has(Wishlist::factory()->count(2), 'wishlists')->create();
+        $product = Product::factory()->create();
+        $user->wishlists[0]->products()->attach($product);
+
+        $user->wishlists[0]->update( ['updated_at' => now()->subWeek()] );
+        $user->wishlists[1]->update( ['updated_at' => now()->subWeek()] );
+
+
+        $this->actingAs($user);
+        $this->post( route('wishlist.move', [$user->wishlists[0], $product]), [
+            'move_to' => $user->wishlists[1]->id,
+        ] );
+
+        $this->assertEquals(now()->format('Y-m-d'), $user->wishlists[0]->fresh()->updated_at->format('Y-m-d'));
+        $this->assertEquals(now()->format('Y-m-d'), $user->wishlists[1]->fresh()->updated_at->format('Y-m-d'));
     }
 
     public function test_wishlist_could_be_selected_as_default()
