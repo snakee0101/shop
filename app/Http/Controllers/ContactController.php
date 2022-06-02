@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactFormMessage;
+use App\Models\Reply;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -40,6 +41,18 @@ class ContactController extends Controller
         ContactFormMessage::create( $validated );
 
         return back()->with('success', 'Your message was successfully sent');
+    }
+
+    public function store_reply(Request $request, ContactFormMessage $contact_form_message)
+    {
+        Reply::create([
+            'user_id' => auth()->id(),
+            'text' => $request->text,
+            'object_id' => $contact_form_message->id,
+            'object_type' => ContactFormMessage::class
+        ]);
+
+        return back();
     }
 
     public function destroy(ContactFormMessage $contact_form_message)

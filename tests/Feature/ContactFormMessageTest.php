@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\ContactFormMessage;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -75,6 +76,23 @@ class ContactFormMessageTest extends TestCase
 
         $this->assertDatabaseHas('contact_form_messages', [
             'is_read' => true
+        ]);
+    }
+
+    public function test_admin_can_reply_a_contact_form_message()
+    {
+        $this->actingAs( $user = User::factory()->create() );
+
+        $message = ContactFormMessage::factory()->create();
+        $this->post( route('contacts.reply', $message), [
+            'text' => 'test 12345'
+        ] );
+
+        $this->assertDatabaseHas('replies', [
+            'user_id' => $user->id,
+            'text' => 'test 12345',
+            'object_id' => $message->id,
+            'object_type' => ContactFormMessage::class
         ]);
     }
 }
