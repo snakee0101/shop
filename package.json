@@ -21,6 +21,7 @@
         "@fortawesome/fontawesome-free": "^5.15.4",
         "admin-lte": "^3.1.0",
         "laravel-mix": "^6.0.25",
+        "moment": "^2.29.3",
         "postcss-nested": "^5.0.6",
         "vue": "^2.6.14",
         "vue-loader": "^15.9.6",

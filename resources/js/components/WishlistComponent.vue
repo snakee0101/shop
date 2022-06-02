@@ -46,7 +46,10 @@
             </div>
         </div>
         <div class="card-body p-0">
-            <div class="d-flex align-content-center mb-3 p-4">
+            <p class="m-4">
+                Last update: {{ updated_at }}
+            </p>
+            <div class="d-flex align-content-center mb-3 px-4 pb-0 pt-0">
                 <div class="d-inline-block flex-grow-1" v-if="user_object.id">
                     <button class="btn btn-success" @click="selectAll()"
                             v-text="all_selected ? 'Deselect All' : 'Select All'"></button>
@@ -96,6 +99,8 @@
 </template>
 
 <script>
+let moment = require('moment');
+
 export default {
     name: "WishlistComponent",
     props: ['wishlist', 'wishlists', 'user', 'url'],
@@ -127,6 +132,10 @@ export default {
                 return this.wishlist_object.products.filter(product => this.selected_product_ids.indexOf(product.id) !== -1)
                     .map(product => product.PriceWithDiscount)
                     .reduce((prev_price, current_price) => prev_price + current_price, 0);
+        },
+        updated_at()
+        {
+            return moment(this.wishlist_object.updated_at).format("YYYY-MM-DD")
         }
     },
     methods: {
