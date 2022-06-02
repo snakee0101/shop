@@ -76,5 +76,27 @@
             </div>
             <!-- /.card-body -->
         </div>
+
+        <div class="card">
+            <div class="card-header bg-danger">
+                <h3 class="card-title font-weight-bold">Reply a message</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div id="example1_wrapper">
+                    <div class="row">
+                        <form action="">
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Your reply</label>
+                                <textarea class="form-control" id="message" name="message" rows="10" cols="100"></textarea>
+                            </div>
+
+                            <button class="btn btn-warning">Leave a reply</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
     </div>
 @endsection
