@@ -41,6 +41,46 @@ class WishlistTest extends TestCase
         $this->assertNotEmpty( $wishlist->products );
     }
 
+    public function test_when_product_is_added_wishlist_timestamp_is_updated()
+    {
+        $wishlist = Wishlist::factory()->create([
+            'updated_at' => now()->subWeek()
+        ]);
+
+        $product = Product::factory()->create();
+        $this->post( route('wishlist_product.toggle', [$wishlist, $product]) );
+
+        $this->assertEquals(now()->format('Y-m-d'), $wishlist->fresh()->updated_at->format('Y-m-d'));
+    }
+
+    public function test_when_product_is_deleted_wishlist_timestamp_is_updated()
+    {
+        $product = Product::factory()->create();
+        $wishlist = Wishlist::factory()->create();
+
+        $wishlist->products()->attach($product);
+        $this->assertNotEmpty( $wishlist->fresh()->products );
+
+        $this->actingAs($wishlist->owner);
+
+        $this->post( route('wishlist_product.toggle', [$wishlist, $product]) );
+        $wishlist->refresh();
+        $this->assertEmpty( $wishlist->products );
+
+        $wishlist->update([
+            'updated_at' => now()->subWeek()
+        ]);
+
+        $this->post( route('wishlist_product.toggle', [$wishlist, $product]) );
+        $wishlist->refresh();
+        $this->assertEquals(now()->format('Y-m-d'), $wishlist->fresh()->updated_at->format('Y-m-d'));
+    }
+
+    public function test_when_product_is_moved_wishlist_timestamp_is_updated()
+    {
+
+    }
+
     public function test_wishlist_could_be_selected_as_default()
     {
         $users = User::factory()->count(2)

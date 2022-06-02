@@ -11,6 +11,8 @@ class WishlistProductController extends Controller
     public function toggle(Request $request, Wishlist $wishlist, Product $product)
     {
         $wishlist->products()->toggle($product);
+
+        $wishlist->touch();
     }
 
     public function toggle_default(Request $request, Product $product)

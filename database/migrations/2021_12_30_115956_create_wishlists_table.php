@@ -21,6 +21,7 @@ class CreateWishlistsTable extends Migration
                   ->on('users');
             $table->string('access_token');  //token is used in wishlist URL as an ID
             $table->boolean('is_active')->default(false);
+            $table->timestamps();
         });
     }
 
