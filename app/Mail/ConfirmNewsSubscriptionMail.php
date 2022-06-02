@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
 
-class ConfirmNewsSubscriptionMail extends Mailable
+class ConfirmNewsSubscriptionMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

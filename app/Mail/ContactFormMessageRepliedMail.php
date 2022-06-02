@@ -4,10 +4,11 @@ namespace App\Mail;
 
 use App\Models\ContactFormMessage;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactFormMessageRepliedMail extends Mailable
+class ContactFormMessageRepliedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
