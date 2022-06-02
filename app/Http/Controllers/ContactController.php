@@ -47,7 +47,7 @@ class ContactController extends Controller
     {
         Reply::create([
             'user_id' => auth()->id(),
-            'text' => $request->text,
+            'text' => nl2br($request->text),
             'object_id' => $contact_form_message->id,
             'object_type' => ContactFormMessage::class
         ]);

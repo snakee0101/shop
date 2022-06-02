@@ -85,10 +85,11 @@
             <div class="card-body">
                 <div id="example1_wrapper">
                     <div class="row">
-                        <form action="">
+                        <form action="{{ route('contacts.reply', $message) }}" method="post">
+                            @csrf
                             <div class="mb-3">
                                 <label for="message" class="form-label">Your reply</label>
-                                <textarea class="form-control" id="message" name="message" rows="10" cols="100"></textarea>
+                                <textarea class="form-control" id="message" name="text" rows="10" cols="100"></textarea>
                             </div>
 
                             <button class="btn btn-warning">Leave a reply</button>
