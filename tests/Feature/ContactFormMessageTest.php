@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Mail\ContactFormMessageRepliedMail;
 use App\Models\ContactFormMessage;
 use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class ContactFormMessageTest extends TestCase
@@ -119,5 +121,21 @@ class ContactFormMessageTest extends TestCase
         ] );
 
         $this->assertInstanceOf(Reply::class, $message->fresh()->reply);
+    }
+
+    public function test_when_contact_form_message_is_replied_mail_is_sent_to_the_user()
+    {
+        Mail::fake();
+
+        $this->actingAs( $user = User::factory()->create() );
+
+        $message = ContactFormMessage::factory()->create();
+        $this->post( route('contacts.reply', $message), [
+            'text' => 'test 12345'
+        ] );
+
+        Mail::assertSent(ContactFormMessageRepliedMail::class, function($mail) use ($message) {
+            return $mail->contact_form_message->is($message);
+        });
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormMessageRepliedMail;
 use App\Models\ContactFormMessage;
 use App\Models\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -45,14 +47,19 @@ class ContactController extends Controller
 
     public function store_reply(Request $request, ContactFormMessage $contact_form_message)
     {
+        $text = nl2br($request->text);
+
         Reply::create([
             'user_id' => auth()->id(),
-            'text' => nl2br($request->text),
+            'text' => $text,
             'object_id' => $contact_form_message->id,
             'object_type' => ContactFormMessage::class
         ]);
 
         $contact_form_message->update([ 'is_replied' => true ]);
+
+        Mail::to($contact_form_message->email)
+            ->send(new ContactFormMessageRepliedMail($contact_form_message, $text));
 
         return back();
     }
