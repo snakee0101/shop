@@ -34,6 +34,11 @@ class Product extends Model implements Purchaseable
         return __CLASS__;
     }
 
+    public function badge()
+    {
+        return $this->hasOne(Badge::class);
+    }
+
     public function orders()
     {
         return $this->morphToMany(Order::class, 'item', 'order_item')

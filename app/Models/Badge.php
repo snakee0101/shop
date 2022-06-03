@@ -9,4 +9,9 @@ class Badge extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function style()
+    {
+        return $this->hasOne(BadgeStyle::class, 'id');
+    }
 }
