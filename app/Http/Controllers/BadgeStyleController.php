@@ -21,7 +21,9 @@ class BadgeStyleController extends Controller
 
     public function store(Request $request)
     {
+        BadgeStyle::create( $request->only(['text_color', 'background_color']) );
 
+        return back();
     }
 
     public function show(BadgeStyle $badgeStyle)

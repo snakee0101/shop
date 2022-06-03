@@ -41,4 +41,17 @@ class BadgeTest extends TestCase
 
         $this->assertDatabaseCount('badges', 0);
     }
+
+    public function test_a_badge_style_could_be_created()
+    {
+        $this->post( route('badge_style.store'), [
+            'background_color' => '#fff',
+            'text_color' => '#000'
+        ] )->assertRedirect();
+
+        $this->assertDatabaseHas('badge_styles', [
+            'background_color' => '#fff',
+            'text_color' => '#000'
+        ]);
+    }
 }
