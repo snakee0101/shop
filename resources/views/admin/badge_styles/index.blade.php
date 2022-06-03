@@ -25,6 +25,8 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Text Color
                                     </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Badge Example
+                                    </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Actions
                                     </th>
                                 </tr>
@@ -37,6 +39,9 @@
                                             </td>
                                             <td>
                                                 {{ $style->text_color }}
+                                            </td>
+                                            <td>
+                                                <span class="badge text-lg" style="color: {{ $style->text_color }}; background: {{ $style->background_color }}">New</span>
                                             </td>
                                             <td>
                                                 <form action="{{ route('badge_style.destroy', $style) }}" method="post" class="d-inline">
