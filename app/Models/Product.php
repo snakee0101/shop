@@ -36,7 +36,7 @@ class Product extends Model implements Purchaseable
 
     public function badge()
     {
-        return $this->hasOne(Badge::class);
+        return $this->hasOne(Badge::class)->with('style');
     }
 
     public function orders()

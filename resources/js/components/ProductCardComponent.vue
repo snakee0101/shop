@@ -16,8 +16,8 @@
                     </button>
                 </div>
                 <favorite-button-component :user="user_object" :product="product_object" v-else></favorite-button-component>
-                <div class="product-card__badges-list">
-                    <div class="product-card__badge product-card__badge--hot">Badge</div>
+                <div class="product-card__badges-list" v-if="product_object.badge">
+                    <div class="product-card__badge" :style="badge_style">{{ product_object.badge.text }}</div>
                 </div>
                 <div class="product-card__image"><a :href=" '/product/' + product_object.id "><img
                     :src="product_object.photos[0].url" alt=""></a></div>
@@ -116,12 +116,18 @@
                     STATUS_IN_STOCK: 'In Stock',
                     STATUS_ENDS: 'Ends',
                     STATUS_OUT_OF_STOCK: 'Out Of Stock'
-                }
+                },
+                badge_style: {}
             };
         },
         created() {
             window.events.$on('toggle_select_all_products_in_a_wishlist', this.toggleSelectAll);
             window.events.$on('add_all_to_cart', this.addToCart);
+
+            this.badge_style = {
+                'background': this.product_object.badge.style.background_color,
+                'color' : this.product_object.badge.style.text_color
+            };
         },
         methods: {
             addToCart(wishlist_id)

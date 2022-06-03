@@ -4963,12 +4963,17 @@ __webpack_require__.r(__webpack_exports__);
         STATUS_IN_STOCK: 'In Stock',
         STATUS_ENDS: 'Ends',
         STATUS_OUT_OF_STOCK: 'Out Of Stock'
-      }
+      },
+      badge_style: {}
     };
   },
   created: function created() {
     window.events.$on('toggle_select_all_products_in_a_wishlist', this.toggleSelectAll);
     window.events.$on('add_all_to_cart', this.addToCart);
+    this.badge_style = {
+      'background': this.product_object.badge.style.background_color,
+      'color': this.product_object.badge.style.text_color
+    };
   },
   methods: {
     addToCart: function addToCart(wishlist_id) {
@@ -47530,7 +47535,18 @@ var render = function () {
                 attrs: { user: _vm.user_object, product: _vm.product_object },
               }),
           _vm._v(" "),
-          _vm._m(0),
+          _vm.product_object.badge
+            ? _c("div", { staticClass: "product-card__badges-list" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "product-card__badge",
+                    style: _vm.badge_style,
+                  },
+                  [_vm._v(_vm._s(_vm.product_object.badge.text))]
+                ),
+              ])
+            : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "product-card__image" }, [
             _c("a", { attrs: { href: "/product/" + _vm.product_object.id } }, [
@@ -47592,7 +47608,7 @@ var render = function () {
                               staticClass:
                                 "rating__star rating__star--only-edge rating__star--active",
                             },
-                            [_vm._m(1, true), _vm._v(" "), _vm._m(2, true)]
+                            [_vm._m(0, true), _vm._v(" "), _vm._m(1, true)]
                           ),
                         ]
                       }
@@ -47635,7 +47651,7 @@ var render = function () {
                               staticClass:
                                 "rating__star rating__star--only-edge",
                             },
-                            [_vm._m(3, true), _vm._v(" "), _vm._m(4, true)]
+                            [_vm._m(2, true), _vm._v(" "), _vm._m(3, true)]
                           ),
                         ]
                       }
@@ -47733,18 +47749,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product-card__badges-list" }, [
-      _c(
-        "div",
-        { staticClass: "product-card__badge product-card__badge--hot" },
-        [_vm._v("Badge")]
-      ),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

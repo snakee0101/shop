@@ -13,6 +13,6 @@ class Badge extends Model
 
     public function style()
     {
-        return $this->hasOne(BadgeStyle::class, 'id');
+        return $this->hasOne(BadgeStyle::class, 'id', 'badge_style_id');
     }
 }
