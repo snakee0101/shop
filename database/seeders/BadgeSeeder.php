@@ -13,7 +13,7 @@ class BadgeSeeder extends Seeder
     {
         $badge_styles = BadgeStyle::factory()->count(5)->create();
 
-        $products = Product::inRandomOrder()->take(50);
+        $products = Product::all()->random(50);
 
         $products->each(function($product) use ($badge_styles) {
             Badge::factory()->create([
