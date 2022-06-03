@@ -24,4 +24,21 @@ class BadgeTest extends TestCase
 
         $this->assertInstanceOf(BadgeStyle::class, Product::first()->badge->style);
     }
+
+    public function test_when_badge_style_is_deleted_all_associated_badges_are_automatically_removed()
+    {
+        Badge::factory()->create();
+        BadgeStyle::first()->delete();
+
+        $this->assertDatabaseCount('badges', 0);
+    }
+
+    public function test_when_product_is_deleted_associated_badge_is_automatically_removed()
+    {
+        Badge::factory()->create();
+        $p = Product::first();
+        $p->forceDelete();
+
+        $this->assertDatabaseCount('badges', 0);
+    }
 }
