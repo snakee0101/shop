@@ -6,6 +6,8 @@ use App\Http\Controllers\{QuestionController, ReviewController, ReplyController}
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\{AdminController,
     AdminOrderActionsController,
+    BadgeController,
+    BadgeStyleController,
     CharacteristicController,
     ComparisonController,
     ContactController,
@@ -146,6 +148,10 @@ Route::delete('/contacts/delete/{contact_form_message}', [ContactController::cla
 Route::get('/contacts/index', [ContactController::class, 'index'])->name('admin.contacts.index');
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 
+
+//Badges
+Route::resource('badge', BadgeController::class);
+Route::resource('badge_style', BadgeStyleController::class);
 
 
 Route::fallback(fn() => view('404'));

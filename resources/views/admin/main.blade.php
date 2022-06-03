@@ -360,6 +360,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item {{ Route::currentRouteName() == 'badge_style.index' || Route::currentRouteName() == 'badge_style.create' ? 'menu-open' : '' }}">
+                        <a href="{{ route('badge_style.index') }}"
+                           class="nav-link {{ Route::currentRouteName() == 'badge_style.index' || Route::currentRouteName() == 'badge_style.create' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Badge styles
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('badge_style.index') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'badge_style.index' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All Badge styles</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('badge_style.create') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'badge_style.create' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create Badge style</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
