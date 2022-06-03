@@ -9,6 +9,7 @@ class Badge extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $with = ['style'];
 
     public function style()
     {
