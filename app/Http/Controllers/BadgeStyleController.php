@@ -43,6 +43,8 @@ class BadgeStyleController extends Controller
 
     public function destroy(BadgeStyle $badgeStyle)
     {
+        $badgeStyle->delete();
 
+        return back();
     }
 }

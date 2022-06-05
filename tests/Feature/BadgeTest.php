@@ -54,4 +54,15 @@ class BadgeTest extends TestCase
             'text_color' => '#000'
         ]);
     }
+
+    public function test_badge_style_could_be_deleted()
+    {
+        Badge::factory()->create();
+
+        $style = BadgeStyle::first();
+        $this->assertDatabaseCount('badge_styles', 1);
+
+        $this->delete( route('badge_style.destroy', $style) );
+        $this->assertDatabaseCount('badge_styles', 0);
+    }
 }
