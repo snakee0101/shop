@@ -10,6 +10,8 @@ class Badge extends Model
     use HasFactory;
     public $timestamps = false;
     protected $with = ['style'];
+    protected $guarded = [];
+
 
     public function style()
     {

@@ -81,4 +81,56 @@ class BadgeTest extends TestCase
             'text_color' => '#fffee1'
         ]);
     }
+
+    public function test_badge_could_be_assigned_to_a_product()
+    {
+        $product = Product::factory()->make();
+
+        $badge_style = BadgeStyle::factory()->create();
+
+        $badge_data = [
+            'badge_applied' => 'on',
+            'badge_text' => 'test',
+            'badge_style_id' => $badge_style->id
+        ];
+
+        $this->post( route('product.store'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            + $badge_data
+        )->assertRedirect();
+
+        $this->assertDatabaseHas('products', [
+            'name' => $product->name
+        ]);
+
+        $this->assertDatabaseHas('badges', [
+            'text' => $badge_data['badge_text'],
+            'product_id' => Product::first()->id,
+            'badge_style_id' => $badge_style->id,
+        ]);
+    }
+
+    public function test_if_checkbox_is_unchecked_badge_must_not_be_created()
+    {
+        $product = Product::factory()->make();
+
+        $badge_style = BadgeStyle::factory()->create();
+
+        $badge_data = [
+            'badge_applied' => 'off',
+            'badge_text' => 'test',
+            'badge_style_id' => $badge_style->id
+        ];
+
+        $this->post( route('product.store'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            + $badge_data
+        )->assertRedirect();
+
+        $this->assertDatabaseHas('products', [
+            'name' => $product->name
+        ]);
+
+        $this->assertDatabaseCount('badges', 0);
+    }
 }

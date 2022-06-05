@@ -138,7 +138,7 @@
                         <div class="col-sm-10">
                             @foreach($badge_styles as $style)
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="badge_radio_{{ $style->id }}">
+                                    <input class="form-check-input" type="radio" name="badge_style_id" id="badge_radio_{{ $style->id }}" value="{{ $style->id }}">
                                     <label class="form-check-label" for="badge_radio_{{ $style->id }}">
                                         <span class="badge text-lg" style="color: {{ $style->text_color }}; background: {{ $style->background_color }}">Badge</span>
                                     </label>

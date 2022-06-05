@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Badge;
 use App\Models\BadgeStyle;
 use App\Models\Category;
 use App\Models\Characteristic;
@@ -45,6 +46,13 @@ class ProductController extends Controller
         //Attach characteristics
         foreach($request->whereKeyContains('char-') as $char_name => $char_value)
             Characteristic::attachTo($product, $char_name, $char_value);
+
+        //Apply badges
+        if ( $request->boolean('badge_applied') )
+            $product->badge()->create([
+                'text' => $request->badge_text,
+                'badge_style_id' => $request->badge_style_id,
+            ]);
 
         session()->flash('message', 'Product was successfully created');
         return back();
