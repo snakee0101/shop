@@ -1,0 +1,36 @@
+<template>
+    <div>
+        <div className="form-group">
+            <label htmlFor="characteristic_name">Background Color</label>
+            <input type="color" name="background_color" v-model="badge_style.background">
+        </div>
+        <div className="form-group">
+            <label htmlFor="characteristic_name">Text Color</label>
+            <input type="color" name="text_color" v-model="badge_style.color">
+        </div>
+        <div class="mt-4">
+            <p>Badge sample</p>
+            <p class="text-center">
+                <span class="badge text-lg" :style="badge_style">New</span>
+            </p>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    name: "BadgeStyleEditComponent",
+    data() {
+      return {
+          badge_style: {
+              background: '#000000',
+              color: '#ffffff',
+          }
+      };
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

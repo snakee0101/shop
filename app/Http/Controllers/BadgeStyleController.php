@@ -16,7 +16,7 @@ class BadgeStyleController extends Controller
 
     public function create()
     {
-
+        return view('admin.badge_styles.create');
     }
 
     public function store(Request $request)

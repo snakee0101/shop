@@ -21,6 +21,7 @@ Vue.component('admin-category-selector-component', require('./components/AdminCa
 Vue.component('admin-characteristic-table-component', require('./components/AdminCharacteristicTableComponent').default);
 Vue.component('gallery-viewer-component', require('./components/GalleryViewerComponent').default);
 Vue.component('report-component', require('./components/ReportComponent').default);
+Vue.component('badge-style-edit-component', require('./components/BadgeStyleEditComponent').default);
 
 
 window.events = new Vue();
