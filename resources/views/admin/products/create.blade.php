@@ -115,6 +115,42 @@
         </div>
 
         <div class="container row mt-4">
+            <div class="card card-dark col p-0 m-auto">
+                <div class="card-header">
+                    <h3 class="card-title">Badge</h3>
+                    <div class="form-check d-inline ml-4">
+                        <input class="form-check-input" type="checkbox" id="badge_applied" name="badge_applied">
+                        <label class="form-check-label" for="badge_applied">
+                            Apply badge
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-3">
+                        <label for="badge_text" class="col-sm-2 col-form-label">Badge text</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="badge_text"
+                                   id="badge_text" placeholder="Enter a badge text">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <label for="badge_text" class="col-sm-2 col-form-label">Select badge style</label>
+                        <div class="col-sm-10">
+                            @foreach($badge_styles as $style)
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="badge_radio_{{ $style->id }}">
+                                    <label class="form-check-label" for="badge_radio_{{ $style->id }}">
+                                        <span class="badge text-lg" style="color: {{ $style->text_color }}; background: {{ $style->background_color }}">Badge</span>
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container row mt-4">
             <div class="card card-warning col p-0 m-auto">
                 <div class="card-header">
                     <h3 class="card-title">Discount</h3>

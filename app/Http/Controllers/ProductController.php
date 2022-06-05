@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\BadgeStyle;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Discount;
@@ -14,7 +15,8 @@ class ProductController extends Controller
     public function create()
     {
         return view('admin.products.create', [
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'badge_styles' => BadgeStyle::all()
         ]);
     }
 
