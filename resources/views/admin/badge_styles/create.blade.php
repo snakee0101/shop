@@ -22,7 +22,7 @@
             </form>
 
             @if( session()->has('successful_message') )
-                <div class="alert {{ (session('status') == 'OK') ? 'alert-success' : 'alert-danger' }} " role="alert">
+                <div class="alert alert-success" role="alert">
                     {{ session('successful_message') }}
                 </div>
             @endif

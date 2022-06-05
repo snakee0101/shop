@@ -23,7 +23,7 @@ class BadgeStyleController extends Controller
     {
         BadgeStyle::create( $request->only(['text_color', 'background_color']) );
 
-        return back();
+        return back()->with('successful_message', 'Badge style is successfully created');
     }
 
     public function show(BadgeStyle $badgeStyle)
