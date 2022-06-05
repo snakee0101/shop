@@ -62,6 +62,7 @@ class ProductController extends Controller
     {
         return view('admin.products.edit', [
             'product' => $product,
+            'badge_styles' => BadgeStyle::all(),
             'categories' => Category::all()
         ]);
     }

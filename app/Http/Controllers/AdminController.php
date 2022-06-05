@@ -24,7 +24,7 @@ class AdminController extends Controller
     public function products()
     {
         return view('admin.products.index', [
-            'products' => Product::withTrashed()->paginate()
+            'products' => Product::withTrashed()->get()
         ]);
     }
 
