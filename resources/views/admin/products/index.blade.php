@@ -47,6 +47,10 @@
                                             {{ $product->id }}
                                         </td>
                                         <td class="dtr-control sorting_1">
+                                            @if($product->badge)
+                                                <span class="badge" style="color: {{ $product->badge->style->text_color }}; background: {{ $product->badge->style->background_color }}">New</span>
+                                            @endif
+                                            <br>
                                             {{ $product->name }}
                                         </td>
                                         <td class="dtr-control sorting_1">
