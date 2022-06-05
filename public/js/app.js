@@ -4243,11 +4243,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "BadgeStyleEditComponent",
+  props: ['background', 'textColor'],
   data: function data() {
+    var _this$background, _this$textColor;
+
     return {
       badge_style: {
-        background: '#000000',
-        color: '#ffffff'
+        background: (_this$background = this.background) !== null && _this$background !== void 0 ? _this$background : '#000000',
+        color: (_this$textColor = this.textColor) !== null && _this$textColor !== void 0 ? _this$textColor : '#ffffff'
       }
     };
   }
@@ -46520,8 +46523,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { attrs: { className: "form-group" } }, [
-      _c("label", { attrs: { htmlFor: "characteristic_name" } }, [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "characteristic_name" } }, [
         _vm._v("Background Color"),
       ]),
       _vm._v(" "),
@@ -46547,8 +46550,8 @@ var render = function () {
       }),
     ]),
     _vm._v(" "),
-    _c("div", { attrs: { className: "form-group" } }, [
-      _c("label", { attrs: { htmlFor: "characteristic_name" } }, [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "characteristic_name" } }, [
         _vm._v("Text Color"),
       ]),
       _vm._v(" "),

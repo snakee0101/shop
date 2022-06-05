@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div className="form-group">
-            <label htmlFor="characteristic_name">Background Color</label>
+        <div class="form-group">
+            <label for="characteristic_name">Background Color</label>
             <input type="color" name="background_color" v-model="badge_style.background">
         </div>
-        <div className="form-group">
-            <label htmlFor="characteristic_name">Text Color</label>
+        <div class="form-group">
+            <label for="characteristic_name">Text Color</label>
             <input type="color" name="text_color" v-model="badge_style.color">
         </div>
         <div class="mt-4">
@@ -20,11 +20,12 @@
 <script>
 export default {
     name: "BadgeStyleEditComponent",
+    props: ['background', 'textColor'],
     data() {
       return {
           badge_style: {
-              background: '#000000',
-              color: '#ffffff',
+              background: this.background ?? '#000000',
+              color: this.textColor ?? '#ffffff',
           }
       };
     }

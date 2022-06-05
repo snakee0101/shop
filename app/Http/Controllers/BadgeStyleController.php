@@ -33,7 +33,9 @@ class BadgeStyleController extends Controller
 
     public function edit(BadgeStyle $badgeStyle)
     {
-
+        return view('admin.badge_styles.edit', [
+           'badgeStyle' => $badgeStyle
+        ]);
     }
 
     public function update(Request $request, BadgeStyle $badgeStyle)
