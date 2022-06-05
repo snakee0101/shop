@@ -40,7 +40,9 @@ class BadgeStyleController extends Controller
 
     public function update(Request $request, BadgeStyle $badgeStyle)
     {
+        $badgeStyle->update( $request->only('background_color', 'text_color') );
 
+        return back()->with('successful_message', 'Badge style is successfully updated');
     }
 
     public function destroy(BadgeStyle $badgeStyle)

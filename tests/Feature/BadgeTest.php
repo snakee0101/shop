@@ -65,4 +65,20 @@ class BadgeTest extends TestCase
         $this->delete( route('badge_style.destroy', $style) );
         $this->assertDatabaseCount('badge_styles', 0);
     }
+
+    public function test_badge_style_could_be_updated()
+    {
+        Badge::factory()->create();
+
+        $style = BadgeStyle::first();
+        $this->put( route('badge_style.update', $style), [
+            'background_color' => '#cccbbb',
+            'text_color' => '#fffee1'
+        ] )->assertRedirect();
+
+        $this->assertDatabaseHas('badge_styles', [
+            'background_color' => '#cccbbb',
+            'text_color' => '#fffee1'
+        ]);
+    }
 }
