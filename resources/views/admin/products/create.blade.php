@@ -133,6 +133,12 @@
                                    id="badge_text" placeholder="Enter a badge text">
                         </div>
                     </div>
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="badge_discount_as_a_caption" name="badge_discount_as_a_caption">
+                        <label class="form-check-label" for="badge_discount_as_a_caption">
+                            Use discount value as a caption instead
+                        </label>
+                    </div>
                     <div class="row mt-3">
                         <label for="badge_text" class="col-sm-2 col-form-label">Select badge style</label>
                         <div class="col-sm-10">

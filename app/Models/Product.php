@@ -39,6 +39,17 @@ class Product extends Model implements Purchaseable
         return $this->hasOne(Badge::class)->with('style');
     }
 
+    public function is_badge_text_corresponds_to_discount_value()
+    {
+        if ($this->discount) {
+            $discount_unit = ($this->discount->discount_classname == \App\Discounts\FixedPriceDiscount::class) ? '$' : '%';
+
+            return str_contains($this->badge->text, $this->discount->value) && str_ends_with($this->badge->text, $discount_unit);
+        } else {
+            return false;
+        }
+    }
+
     public function orders()
     {
         return $this->morphToMany(Order::class, 'item', 'order_item')

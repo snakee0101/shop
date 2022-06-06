@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Discounts\FixedPriceDiscount;
 use App\Http\Requests\ProductRequest;
 use App\Models\Badge;
 use App\Models\BadgeStyle;
@@ -49,11 +50,18 @@ class ProductController extends Controller
             Characteristic::attachTo($product, $char_name, $char_value);
 
         //Apply badges
-        if ( $request->boolean('badge_applied') )
-            $product->badge()->create([
-                'text' => $request->badge_text,
-                'badge_style_id' => $request->badge_style_id,
-            ]);
+        if ( $request->boolean('badge_applied') ) {
+            if( $request->boolean('badge_discount_as_a_caption') )
+                $product->badge()->create([
+                    'text' => "-{$request->discount_value}" . (($request->discount_classname == FixedPriceDiscount::class) ? '$' : '%'),
+                    'badge_style_id' => $request->badge_style_id,
+                ]);
+            else
+                $product->badge()->create([
+                    'text' => $request->badge_text,
+                    'badge_style_id' => $request->badge_style_id,
+                ]);
+        }
 
         session()->flash('message', 'Product was successfully created');
         return back();
@@ -104,11 +112,19 @@ class ProductController extends Controller
         //Delete badge
         $product->badge()->delete();
 
-        if ( $request->boolean('badge_applied') )  //if badge is applied - create it again
-            $product->badge()->create([
-                'text' => $request->badge_text,
-                'badge_style_id' => $request->badge_style_id
-            ]);
+        //if badge is applied - create it again
+        if ( $request->boolean('badge_applied') ) {
+            if( $request->boolean('badge_discount_as_a_caption') )
+                $product->badge()->create([
+                    'text' => "-{$request->discount_value}" . (($request->discount_classname == FixedPriceDiscount::class) ? '$' : '%'),
+                    'badge_style_id' => $request->badge_style_id,
+                ]);
+            else
+                $product->badge()->create([
+                    'text' => $request->badge_text,
+                    'badge_style_id' => $request->badge_style_id,
+                ]);
+        }
 
         return back();
     }

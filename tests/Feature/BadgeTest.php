@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Discounts\FixedPriceDiscount;
+use App\Discounts\PercentDiscount;
 use App\Models\Badge;
 use App\Models\BadgeStyle;
+use App\Models\Discount;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -153,5 +156,65 @@ class BadgeTest extends TestCase
             + $badge_data)->assertRedirect();
 
         $this->assertDatabaseCount('badges', 0);
+    }
+
+    public function test_discount_value_could_be_used_as_a_badge_caption_when_creating_product()
+    {
+        $product = Product::factory()->make();
+        $badge_style = BadgeStyle::factory()->create();
+
+        $badge_data = [
+            'badge_applied' => 'on',
+            'badge_discount_as_a_caption' => 'on',
+            'badge_style_id' => $badge_style->id
+        ];
+
+        $discount_data = [
+            'discount_applied' => 'on',
+            'discount_classname' => FixedPriceDiscount::class,
+            'discount_value' => 10,
+        ];
+
+        $this->post( route('product.store'),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            + $badge_data + $discount_data
+        )->assertRedirect();
+
+        $this->assertDatabaseHas('badges', [
+            'text' => '-10$'
+        ]);
+    }
+
+    public function test_discount_value_could_be_used_as_a_badge_caption_when_editing_product()
+    {
+        $badge = Badge::factory()->create();
+        $product = Product::first();
+        $badge_style = BadgeStyle::factory()->create();
+
+        Discount::factory()->withObject($product)
+                ->create(['discount_classname' => FixedPriceDiscount::class,
+                          'value' => 5]);
+        $product->refresh();
+
+        $badge_data = [
+            'badge_applied' => 'on',
+            'badge_discount_as_a_caption' => 'on',
+            'badge_style_id' => $badge_style->id
+        ];
+
+        $discount_data = [
+            'discount_applied' => 'on',
+            'discount_classname' => PercentDiscount::class,
+            'discount_value' => 15,
+        ];
+
+        $this->put( route('product.update', $product),
+            $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            + $badge_data + $discount_data
+        )->assertRedirect();
+
+        $this->assertDatabaseHas('badges', [
+            'text' => '-15%'
+        ]);
     }
 }
