@@ -5,8 +5,10 @@ namespace Tests\Feature;
 use App\Models\Badge;
 use App\Models\BadgeStyle;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 class BadgeTest extends TestCase
@@ -130,6 +132,25 @@ class BadgeTest extends TestCase
         $this->assertDatabaseHas('products', [
             'name' => $product->name
         ]);
+
+        $this->assertDatabaseCount('badges', 0);
+    }
+
+    public function test_if_badge_checkbox_on_product_edit_page_is_unchecked_badge_must_be_deleted()
+    {
+        Badge::factory()->create();
+
+        $product = Product::first();
+        $badge_style = BadgeStyle::first();
+
+        $badge_data = [
+            'badge_applied' => 'off',
+            'badge_text' => 'test',
+            'badge_style_id' => $badge_style->id
+        ];
+
+        $this->put( route('product.update', $product), $product->only('name', 'description', 'price', 'payment_info', 'guarantee_info', 'in_stock') + ['category_id' => $product->category_id]
+            + $badge_data)->assertRedirect();
 
         $this->assertDatabaseCount('badges', 0);
     }

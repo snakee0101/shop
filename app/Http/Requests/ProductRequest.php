@@ -10,7 +10,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:products,name',
+            'name' => 'required',
             'description' => 'required',
             'price' => 'numeric|min:0.01',
             'payment_info' => 'required',

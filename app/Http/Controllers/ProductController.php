@@ -10,6 +10,7 @@ use App\Models\Characteristic;
 use App\Models\Discount;
 use App\Models\Photo;
 use App\Models\Product;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -99,6 +100,15 @@ class ProductController extends Controller
 
         foreach($request->whereKeyContains('image') as $encoded_image)
             Photo::store($encoded_image, $product);
+
+        //Delete badge
+        $product->badge()->delete();
+
+        if ( $request->boolean('badge_applied') )  //if badge is applied - create it again
+            $product->badge()->create([
+                'text' => $request->badge_text,
+                'badge_style_id' => $request->badge_style_id
+            ]);
 
         return back();
     }
