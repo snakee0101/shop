@@ -11,7 +11,7 @@ class CreateNewsCategoriesTable extends Migration
         Schema::create('news_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('parent_id');
+            $table->foreignId('parent_id')->nullable();
         });
     }
 

@@ -3,18 +3,16 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class TagFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+    use WithFaker;
+
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word
         ];
     }
 }
