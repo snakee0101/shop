@@ -10,4 +10,9 @@ class NewsCategory extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }
