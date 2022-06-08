@@ -27,7 +27,9 @@ class DatabaseSeeder extends Seeder
                      OrderSeeder::class,
                      DiscountSeeder::class,
                      ContactFormMessageSeeder::class,
-                     BadgeSeeder::class
+                     BadgeSeeder::class,
+                     TagSeeder::class,
+                     NewsCategorySeeder::class
         ]);
     }
 }
