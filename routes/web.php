@@ -12,6 +12,7 @@ use App\Http\Controllers\{AdminController,
     ComparisonController,
     ContactController,
     CouponController,
+    NewsController,
     NewsSubscriptionController,
     ProductController,
     ProductSetController,
@@ -141,7 +142,7 @@ Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, '
 
 
 //News
-Route::view('/news', 'blog-list');
+Route::resource('news', NewsController::class);
 
 
 //Contacts

@@ -380,6 +380,9 @@
                         <li class="nav-links__item nav-links__item--with-submenu"><a
                                 href="{{ route('category.index') }}"><span>Catalog</span></a>
                         </li>
+                        <li class="nav-links__item nav-links__item--with-submenu"><a
+                                href="{{ route('news.index') }}"><span>News</span></a>
+                        </li>
                         {{--<li class="nav-links__item nav-links__item--with-submenu">
                             <a href="#"><span>Megamenu <svg
                                         class="nav-links__arrow" width="9px" height="6px"><use
