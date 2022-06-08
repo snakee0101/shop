@@ -11,6 +11,6 @@ class NewsTest extends TestCase
 {
     public function test_example()
     {
-        
+
     }
 }
