@@ -19,7 +19,7 @@ class NewsSeeder extends Seeder
 
             $news->each(function ($news_article) {  //for each article assign 3 random tags
                 $tags = Tag::inRandomOrder()->get();
-                
+
                 DB::table('news_tag')->insert([
                     ['news_id' => $news_article->id, 'tag_id' => $tags[0]->id],
                     ['news_id' => $news_article->id, 'tag_id' => $tags[4]->id],
