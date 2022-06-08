@@ -17,16 +17,15 @@ class NewsSeeder extends Seeder
                 'news_category_id' => $category->id,
             ]);
 
-
             $news->each(function ($news_article) {  //for each article assign 3 random tags
-                Tag::inRandomOrder()->take(3)->each(function (Tag $tag) use ($news_article) {
-                    DB::table('news_tag')->insert([
-                        'news_id' => $news_article->id,
-                        'tag_id' => $tag->id
-                    ]);
-                });
+                $tags = Tag::inRandomOrder()->get();
+                
+                DB::table('news_tag')->insert([
+                    ['news_id' => $news_article->id, 'tag_id' => $tags[0]->id],
+                    ['news_id' => $news_article->id, 'tag_id' => $tags[4]->id],
+                    ['news_id' => $news_article->id, 'tag_id' => $tags[7]->id],
+                ]);
             });
-
         });
     }
 }
