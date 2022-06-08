@@ -140,6 +140,10 @@ Route::get('/news/confirm_subscription/{email}', [NewsSubscriptionController::cl
 Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, 'destroy'])->name('news.unsubscribe');
 
 
+//News
+Route::view('/news', 'blog-list');
+
+
 //Contacts
 Route::get('/contacts', [ContactController::class, 'show'])->name('contacts');
 Route::post('/contacts/reply/{contact_form_message}', [ContactController::class, 'store_reply'])->name('contacts.reply');
