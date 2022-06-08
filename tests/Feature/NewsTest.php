@@ -51,6 +51,17 @@ class NewsTest extends TestCase
 
     public function test_tag_has_many_news()
     {
+        $news_collection = News::factory()->count(3)->create();
 
+        $tag = Tag::factory()->create();
+
+        DB::table('news_tag')->insert([
+            ['news_id' => $news_collection[0]->id, 'tag_id' => $tag->id],
+            ['news_id' => $news_collection[1]->id, 'tag_id' => $tag->id],
+            ['news_id' => $news_collection[2]->id, 'tag_id' => $tag->id],
+        ]);
+
+        $this->assertCount(3, $news = $tag->news);
+        $this->assertInstanceOf(News::class, $news[0]);
     }
 }
