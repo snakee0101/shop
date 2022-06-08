@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Tag;
@@ -31,6 +32,16 @@ class NewsTest extends TestCase
 
         $this->assertInstanceOf(News::class, $category->news()->first());
         $this->assertCount(3, $category->news);
+    }
+
+    public function test_category_has_parent_category()
+    {
+        $parent_category = NewsCategory::factory()->create();
+
+        $category = NewsCategory::factory()
+                                ->withParentNewsCategory($parent_category)->create();
+
+        $this->assertInstanceOf(NewsCategory::class, $category->parent_category);
     }
 
     public function test_news_has_many_tags()

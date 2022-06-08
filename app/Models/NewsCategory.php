@@ -15,4 +15,9 @@ class NewsCategory extends Model
     {
         return $this->hasMany(News::class);
     }
+
+    public function parent_category()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
 }
