@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
                      ContactFormMessageSeeder::class,
                      BadgeSeeder::class,
                      TagSeeder::class,
-                     NewsCategorySeeder::class
+                     NewsCategorySeeder::class,
+                     NewsSeeder::class,
         ]);
     }
 }

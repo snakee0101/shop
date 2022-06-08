@@ -16,7 +16,8 @@ class NewsFactory extends Factory
             'caption' => $this->faker->sentence,
             'content' => implode( "<br>", $this->faker->paragraphs() ),
             'news_category_id' => NewsCategory::factory(),
-            'main_image_url' => "/images/products/product-" . random_int(1, 15) . ".jpg"
+            'main_image_url' => "/images/products/product-" . random_int(1, 15) . ".jpg",
+            'created_at' => random_int(now()->subMonth()->timestamp, now()->timestamp)
         ];
     }
 }
