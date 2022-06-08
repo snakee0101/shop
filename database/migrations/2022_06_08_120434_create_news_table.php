@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNewsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->string('caption');
+            $table->text('content');
+            $table->foreignId('news_category_id');
+            $table->string('main_image_url');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('news');
