@@ -24,4 +24,31 @@ class LikeTest extends TestCase
         $news->refresh();
         $this->assertInstanceOf(User::class, $news->liked_users()->first());
     }
+
+    public function test_news_has_is_liked_attribute_to_check_whether_it_is_liked_by_current_user()
+    {
+        $user = User::factory()->create();
+        $news = News::factory()->create();
+
+        DB::table('likes')->insert([
+            'news_id' => $news->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertFalse($news->isLiked);
+
+        //new user - it hasn't made like yet
+        $this->actingAs( $new_user = User::factory()->create() );
+        $this->assertFalse($news->isLiked);
+
+        //new user likes an article
+        DB::table('likes')->insert([
+            'news_id' => $news->id,
+            'user_id' => $new_user->id
+        ]);
+
+        $this->assertTrue($news->fresh()->is_liked);
+
+        $this->assertStringContainsString('"is_liked":true', $news->toJson());
+    }
 }

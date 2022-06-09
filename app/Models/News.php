@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class News extends Model
 {
     use HasFactory;
+    protected $appends = ['is_liked'];  //JSON representation of this model must contain is_liked attribute - it is for vue component that checks whether current user liked an article
 
     public function category()
     {
@@ -28,5 +29,11 @@ class News extends Model
     public function liked_users()
     {
         return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function getIsLikedAttribute()
+    {
+        return $this->liked_users()->where('user_id', auth()->id())
+                                   ->exists();
     }
 }
