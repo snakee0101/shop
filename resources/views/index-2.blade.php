@@ -198,16 +198,16 @@
                         @foreach($latest_news as $news)
                             <div class="post-card">
                                 <div class="post-card__image">
-                                    <a href="#">
+                                    <a href="{{ route('news.show', $news) }}">
                                         <img src="{{ $news->main_image_url }}" alt="">
                                     </a>
                                 </div>
                                 <div class="post-card__info">
-                                    <div class="post-card__category"><a href="#">Special Offers</a></div>
-                                    <div class="post-card__name"><a href="#">{{ $news->caption }}</a></div>
+                                    <div class="post-card__category"><a href="{{ route('news.show', $news) }}">Special Offers</a></div>
+                                    <div class="post-card__name"><a href="{{ route('news.show', $news) }}">{{ $news->caption }}</a></div>
                                     <div class="post-card__date" style="color: #f00">{{ $news->created_at->format('M d, Y') }}</div>
                                     <div class="post-card__content">{!! $news->excerpt() !!}</div>
-                                    <div class="post-card__read-more"><a href="#" class="btn btn-secondary btn-sm">Read
+                                    <div class="post-card__read-more"><a href="{{ route('news.show', $news) }}" class="btn btn-secondary btn-sm">Read
                                             More</a></div>
                                 </div>
                             </div>

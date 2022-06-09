@@ -46,7 +46,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
+        return 'this page shows the news #' . $news->id;
     }
 
     /**
