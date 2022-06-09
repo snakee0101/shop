@@ -51,18 +51,18 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="post__share-links share-links">
-                                <ul class="share-links__list">
-                                    <li class="share-links__item share-links__item--type--like"><a href="#">Like</a>
-                                    </li>
-                                    <li class="share-links__item share-links__item--type--tweet"><a
-                                            href="#">Tweet</a></li>
-                                    <li class="share-links__item share-links__item--type--pin"><a href="#">Pin
-                                            It</a></li>
-                                    <li class="share-links__item share-links__item--type--counter"><a
-                                            href="#">4K</a></li>
-                                </ul>
-                            </div>
+                            @auth
+                                <div class="post__share-links share-links">
+                                    <ul class="share-links__list">
+                                        <li class="share-links__item share-links__item--type--like">
+                                            <like-button-component news_id="{{ $news->id }}"
+                                                                   is_liked="{{ (int)$news->is_liked }}">
+
+                                            </like-button-component>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endauth
                         </div>
                     </div>
                 </div>

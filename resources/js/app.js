@@ -22,6 +22,7 @@ Vue.component('admin-characteristic-table-component', require('./components/Admi
 Vue.component('gallery-viewer-component', require('./components/GalleryViewerComponent').default);
 Vue.component('report-component', require('./components/ReportComponent').default);
 Vue.component('badge-style-edit-component', require('./components/BadgeStyleEditComponent').default);
+Vue.component('like-button-component', require('./components/LikeButtonComponent').default);
 
 
 window.events = new Vue();
