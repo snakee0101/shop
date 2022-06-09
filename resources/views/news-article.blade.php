@@ -28,76 +28,26 @@
             <div class="col-12 col-lg-8">
                 <div class="block post post--layout--classic">
                     <div class="post__header post-header post-header--layout--classic">
-                        <div class="mb-3">
-                            Tags: 
-                            @foreach($news->tags as $tag)
-                                <a href="{{ route('news.index', ['tag' => $tag->id])  }}" class="badge badge-warning ml-2" style="font-size: 1em">{{ $tag->name }}</a>
-                            @endforeach
-                        </div>
                         <h1 class="post-header__title">{{ $news->caption }}</h1>
                         <div class="post-header__meta">
                             <div class="post-header__meta-item" style="color: #f00">{{ $news->created_at->format('M d, Y') }}</div>
                         </div>
                     </div>
-                    <div class="post__featured"><a href="#"><img src="/images/posts/post-featured.jpg" alt=""></a>
+                    <div class="post__featured"><a href="#"><img src="{{ $news->main_image_url }}" alt=""></a>
                     </div>
-                    <div class="post__content typography"><p>Vestibulum sagittis justo sit amet nisl semper, et
-                            pulvinar elit maximus. Morbi interdum velit quis magna placerat lobortis eget pharetra
-                            magna. Nulla tristique sollicitudin turpis, eget maximus risus faucibus non. Nulla
-                            vestibulum ipsum risus, vitae maximus nunc bibendum quis.</p>
-                        <p>raesent eu consequat nibh. Quisque <i>ullamcorper</i>, augue eu fringilla sodales, leo
-                            metus volutpat risus, at suscipit ipsum diam eget sem. Maecenas dictum elit in enim
-                            molestie, <a href="#">vel sollicitudin erat ultricies</a>. Sed risus tellus, molestie
-                            finibus dui quis, suscipit consequat ex.</p>
-                        <blockquote><p>Sed a dictum elit. In iaculis porttitor luctus. Maecenas ultricies dolor et
-                                semper placerat. Proin at lectus felis.</p>
-                            <p><cite>John Mcarthy</cite></p></blockquote>
-                        <p>Vivamus in nisi at turpis rhoncus feugiat. Mauris scelerisque non ante et ultrices. Donec
-                            sit amet sem lobortis, ullamcorper felis at, finibus sem. Curabitur tincidunt neque
-                            nunc.</p>
-                        <h3>Nam Eget Blandit Diam</h3>
-                        <p>Quisque semper magna eget libero maximus, a sollicitudin nunc hendrerit. Cras efficitur,
-                            ante vitae fringilla rutrum, mi tortor dapibus metus, in egestas metus erat sit amet
-                            orci. Ut faucibus non ante dapibus efficitur. Nam eget blandit diam, imperdiet
-                            condimentum neque. Donec risus nisi, aliquet a commodo ac, elementum vitae leo.</p>
-                        <p>Vestibulum sagittis justo sit amet nisl semper, et pulvinar elit maximus. Morbi interdum
-                            velit quis magna placerat lobortis eget pharetra magna.</p>
-                        <p><strong>Nulla fringilla:</strong> <a href="#">Donec aliquet at felis et dignissim</a></p>
-                        <figure><a href="#"><img src="/images/posts/post-featured.jpg" alt=""></a>
-                            <figcaption>Nunc viverra, dui nec commodo dignissim, libero arcu.</figcaption>
-                        </figure>
-                        <p>Vestibulum non varius lectus. Cras vel elit id ligula laoreet imperdiet. Mauris quis
-                            laoreet velit. Suspendisse sed velit nec ante facilisis pharetra.</p>
-                        <p>Phasellus ut elit vestibulum, dignissim mi non, suscipit ex. Praesent eu consequat nibh.
-                            Quisque ullamcorper, augue eu fringilla sodales, leo metus volutpat risus, <a href="#">at
-                                suscipit ipsum diam eget sem</a>. Maecenas dictum elit in enim molestie, vel
-                            sollicitudin erat ultricies. Sed risus tellus, molestie finibus dui quis, suscipit
-                            consequat ex.</p>
-                        <hr>
-                        <h2>Nunc Dapibus Varius Ligula</h2>
-                        <p>Maecenas ultrices arcu ut feugiat semper. Praesent dictum tincidunt justo, ac tincidunt
-                            ante fermentum at. Vestibulum non varius lectus. Cras vel elit id ligula laoreet
-                            imperdiet. Mauris quis laoreet velit. Suspendisse sed velit nec ante facilisis pharetra.
-                            Duis vitae fermentum elit. Integer ac mattis elit.</p>
-                        <p>Mauris scelerisque non ante et ultrices. Donec sit amet sem lobortis:</p>
-                        <ol>
-                            <li>Duis <strong>finibus imperdiet ultricies</strong>. Donec vel pretium turpis. In
-                                auctor euismod posuere.
-                            </li>
-                            <li>Praesent dictum tincidunt justo, ac tincidunt ante fermentum at. Vestibulum non
-                                varius lectus. Cras vel elit id ligula laoreet imperdiet.
-                            </li>
-                            <li><strong>In iaculis porttitor luctus</strong>. Maecenas ultricies dolor et semper
-                                placerat. Proin at lectus felis. Quisque dapibus auctor justo id dictum.
-                            </li>
-                        </ol>
-                        <p>Ut faucibus non ante dapibus efficitur. Nam eget blandit diam, imperdiet condimentum
-                            neque. Donec risus nisi, aliquet a commodo ac, elementum vitae leo.</p></div>
+                    <div class="post__content typography">
+                        {!! $news->content !!}
+                    </div>
                     <div class="post__footer">
                         <div class="post__tags-share-links">
                             <div class="post__tags tags">
-                                <div class="tags__list"><a href="#">Promotion</a> <a href="#">Power Tool</a> <a
-                                        href="#">Wrench</a> <a href="#">Electrodes</a></div>
+                                <div class="tags__list">
+                                    @foreach($news->tags as $tag)
+                                        <a href="{{ route('news.index', ['tag' => $tag->id])  }}">
+                                            {{ $tag->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="post__share-links share-links">
                                 <ul class="share-links__list">
