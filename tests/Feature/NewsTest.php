@@ -41,7 +41,7 @@ class NewsTest extends TestCase
         $category = NewsCategory::factory()
                                 ->withParentNewsCategory($parent_category)->create();
 
-        $this->assertInstanceOf(NewsCategory::class, $category->parent_category);
+        $this->assertInstanceOf(NewsCategory::class, $category->parentCategory);
     }
 
     public function test_news_has_many_tags()
