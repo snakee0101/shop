@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class NewsTest extends TestCase
         $parent_category = NewsCategory::factory()->create();
 
         $category = NewsCategory::factory()
-                                ->withParentNewsCategory($parent_category)->create();
+            ->withParentNewsCategory($parent_category)->create();
 
         $this->assertInstanceOf(NewsCategory::class, $category->parentCategory);
     }
@@ -81,7 +82,7 @@ class NewsTest extends TestCase
         $parent_category = NewsCategory::factory()->create();
 
         $category = NewsCategory::factory()
-                                ->withParentNewsCategory($parent_category)->create();
+            ->withParentNewsCategory($parent_category)->create();
 
         $category->refresh();
 
@@ -93,7 +94,7 @@ class NewsTest extends TestCase
         $parent_category = NewsCategory::factory()->create();
 
         NewsCategory::factory()->withParentNewsCategory($parent_category)
-                               ->create();
+            ->create();
 
         $this->assertTrue($parent_category->hasSubCategories());
 
@@ -102,10 +103,29 @@ class NewsTest extends TestCase
 
     public function test_top_level_categories_list_could_be_retrieved()
     {
-        NewsCategory::factory()->withParentNewsCategory( $top_level_category = NewsCategory::factory()->create() )
+        NewsCategory::factory()->withParentNewsCategory($top_level_category = NewsCategory::factory()->create())
             ->create();
 
-        $this->assertEquals( NewsCategory::topLevelCategories()->first()->id, $top_level_category->id );
+        $this->assertEquals(NewsCategory::topLevelCategories()->first()->id, $top_level_category->id);
     }
 
+    public function test_news_could_be_sorted_by_likes_count_descending()
+    {
+        $news_collection = News::factory()->count(3)->create();
+
+        DB::table('likes')->insert(['news_id' => $news_collection[2]->id, 'user_id' => User::factory()->create()->id]);
+
+        DB::table('likes')->insert([['news_id' => $news_collection[0]->id, 'user_id' => User::factory()->create()->id],
+            ['news_id' => $news_collection[0]->id, 'user_id' => User::factory()->create()->id]]);
+
+        DB::table('likes')->insert([['news_id' => $news_collection[1]->id, 'user_id' => User::factory()->create()->id],
+            ['news_id' => $news_collection[1]->id, 'user_id' => User::factory()->create()->id],
+            ['news_id' => $news_collection[1]->id, 'user_id' => User::factory()->create()->id]]);
+
+        $data = News::popular()->get();
+
+        $this->assertEquals($news_collection[1]->id, $data[0]->id);
+        $this->assertEquals($news_collection[0]->id, $data[1]->id);
+        $this->assertEquals($news_collection[2]->id, $data[2]->id);
+    }
 }

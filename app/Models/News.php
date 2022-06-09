@@ -36,4 +36,10 @@ class News extends Model
         return $this->liked_users()->where('user_id', auth()->id())
                                    ->exists();
     }
+
+    public function scopePopular()
+    {
+        return static::withCount('liked_users')
+                     ->orderBy('liked_users_count', 'desc');
+    }
 }
