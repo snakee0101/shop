@@ -75,4 +75,37 @@ class NewsTest extends TestCase
         $this->assertCount(3, $news = $tag->news);
         $this->assertInstanceOf(News::class, $news[0]);
     }
+
+    public function test_news_category_could_have_subcategories()
+    {
+        $parent_category = NewsCategory::factory()->create();
+
+        $category = NewsCategory::factory()
+                                ->withParentNewsCategory($parent_category)->create();
+
+        $category->refresh();
+
+        $this->assertInstanceOf(NewsCategory::class, $parent_category->subCategories()->first());
+    }
+
+    public function test_category_could_check_whether_it_has_subcategories()
+    {
+        $parent_category = NewsCategory::factory()->create();
+
+        NewsCategory::factory()->withParentNewsCategory($parent_category)
+                               ->create();
+
+        $this->assertTrue($parent_category->hasSubCategories());
+
+        $this->assertFalse(NewsCategory::factory()->create()->hasSubCategories());
+    }
+
+    public function test_top_level_categories_list_could_be_retrieved()
+    {
+        NewsCategory::factory()->withParentNewsCategory( $top_level_category = NewsCategory::factory()->create() )
+            ->create();
+
+        $this->assertEquals( NewsCategory::topLevelCategories()->first()->id, $top_level_category->id );
+    }
+
 }
