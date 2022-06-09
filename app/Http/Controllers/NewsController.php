@@ -26,6 +26,7 @@ class NewsController extends Controller
     {
         return view('news-article', [
             'news' => $news,
+            'popular_news' => News::popular()->limit(6)->get(),
             'breadcrumbs_menu' => app(\App\Actions\BreadcrumbsMenuAction::class)->execute($news->category)
         ]);
     }
