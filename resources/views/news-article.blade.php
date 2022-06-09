@@ -28,12 +28,15 @@
             <div class="col-12 col-lg-8">
                 <div class="block post post--layout--classic">
                     <div class="post__header post-header post-header--layout--classic">
-                        <div class="post-header__categories"><a href="#">Latest news</a></div>
-                        <h1 class="post-header__title">Morbi Interdum Velit Quis Magna Placerat Lobortis Eget</h1>
+                        <div class="mb-3">
+                            Tags: 
+                            @foreach($news->tags as $tag)
+                                <a href="{{ route('news.index', ['tag' => $tag->id])  }}" class="badge badge-warning ml-2" style="font-size: 1em">{{ $tag->name }}</a>
+                            @endforeach
+                        </div>
+                        <h1 class="post-header__title">{{ $news->caption }}</h1>
                         <div class="post-header__meta">
-                            <div class="post-header__meta-item">By <a href="#">Jessica Moore</a></div>
-                            <div class="post-header__meta-item"><a href="#">November 30, 2018</a></div>
-                            <div class="post-header__meta-item"><a href="#">4 Comments</a></div>
+                            <div class="post-header__meta-item" style="color: #f00">{{ $news->created_at->format('M d, Y') }}</div>
                         </div>
                     </div>
                     <div class="post__featured"><a href="#"><img src="/images/posts/post-featured.jpg" alt=""></a>
