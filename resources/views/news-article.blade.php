@@ -64,197 +64,12 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="post-author">
-                            <div class="post-author__avatar"><a href="#"><img src="/images/avatars/avatar-1.jpg"
-                                                                              alt=""></a></div>
-                            <div class="post-author__info">
-                                <div class="post-author__name"><a href="#">Jessica Moore</a></div>
-                                <div class="post-author__about">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                    elit. Curabitur suscipit suscipit mi, non tempor nulla finibus eget. Lorem ipsum
-                                    dolor sit amet, consectetur adipiscing elit.
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <section class="post__section"><h4 class="post__section-title">Related Posts</h4>
-                        <div class="related-posts">
-                            <div class="related-posts__list">
-                                <div class="related-posts__item post-card post-card--layout--related">
-                                    <div class="post-card__image"><a href="#"><img src="/images/posts/post-1.jpg"
-                                                                                   alt=""></a></div>
-                                    <div class="post-card__info">
-                                        <div class="post-card__name"><a href="#">Philosophy That Addresses Topics
-                                                Such As Goodness</a></div>
-                                        <div class="post-card__date">October 19, 2019</div>
-                                    </div>
-                                </div>
-                                <div class="related-posts__item post-card post-card--layout--related">
-                                    <div class="post-card__image"><a href="#"><img src="/images/posts/post-2.jpg"
-                                                                                   alt=""></a></div>
-                                    <div class="post-card__info">
-                                        <div class="post-card__name"><a href="#">Logic Is The Study Of Reasoning And
-                                                Argument Part 2</a></div>
-                                        <div class="post-card__date">September 5, 2019</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="post__section"><h4 class="post__section-title">Comments (4)</h4>
-                        <ol class="comments-list comments-list--level--0">
-                            <li class="comments-list__item">
-                                <div class="comment">
-                                    <div class="comment__avatar"><a href="#"><img src="/images/avatars/avatar-1.jpg"
-                                                                                  alt=""></a></div>
-                                    <div class="comment__content">
-                                        <div class="comment__header">
-                                            <div class="comment__author"><a href="#">Jessica Moore</a></div>
-                                            <div class="comment__reply">
-                                                <button type="button" class="btn btn-xs btn-light">Reply</button>
-                                            </div>
-                                        </div>
-                                        <div class="comment__text">Aliquam ullamcorper elementum sagittis. Etiam
-                                            lacus lacus, mollis in mattis in, vehicula eu nulla. Nulla nec tellus
-                                            pellentesque.
-                                        </div>
-                                        <div class="comment__date">November 30, 2018</div>
-                                    </div>
-                                </div>
-                                <div class="comment-list__children">
-                                    <ol class="comments-list comments-list--level--1">
-                                        <li class="comments-list__item">
-                                            <div class="comment">
-                                                <div class="comment__avatar"><a href="#"><img
-                                                            src="/images/avatars/avatar-2.jpg" alt=""></a></div>
-                                                <div class="comment__content">
-                                                    <div class="comment__header">
-                                                        <div class="comment__author"><a href="#">Adam Taylor</a>
-                                                        </div>
-                                                        <div class="comment__reply">
-                                                            <button type="button" class="btn btn-xs btn-light">
-                                                                Reply
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment__text">Ut vitae finibus nisl, suscipit
-                                                        porttitor urna. Integer efficitur efficitur velit non
-                                                        pulvinar. Aliquam blandit volutpat arcu vel tristique.
-                                                        Integer commodo ligula id augue tincidunt faucibus.
-                                                    </div>
-                                                    <div class="comment__date">December 4, 2018</div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="comments-list__item">
-                                            <div class="comment">
-                                                <div class="comment__avatar"><a href="#"><img
-                                                            src="/images/avatars/avatar-3.jpg" alt=""></a></div>
-                                                <div class="comment__content">
-                                                    <div class="comment__header">
-                                                        <div class="comment__author"><a href="#">Helena Garcia</a>
-                                                        </div>
-                                                        <div class="comment__reply">
-                                                            <button type="button" class="btn btn-xs btn-light">
-                                                                Reply
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment__text">Suspendisse dignissim luctus metus
-                                                        vitae aliquam. Vestibulum sem odio, ullamcorper a imperdiet
-                                                        a, tincidunt sed lacus. Sed magna felis, consequat a erat
-                                                        ut, rutrum finibus odio.
-                                                    </div>
-                                                    <div class="comment__date">December 12, 2018</div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </li>
-                            <li class="comments-list__item">
-                                <div class="comment">
-                                    <div class="comment__avatar"><a href="#"><img src="/images/avatars/avatar-4.jpg"
-                                                                                  alt=""></a></div>
-                                    <div class="comment__content">
-                                        <div class="comment__header">
-                                            <div class="comment__author"><a href="#">Ryan Ford</a></div>
-                                            <div class="comment__reply">
-                                                <button type="button" class="btn btn-xs btn-light">Reply</button>
-                                            </div>
-                                        </div>
-                                        <div class="comment__text">Nullam at varius sapien. Sed sit amet condimentum
-                                            elit.
-                                        </div>
-                                        <div class="comment__date">December 5, 2018</div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                    </section>
-                    <section class="post__section"><h4 class="post__section-title">Write A Comment</h4>
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-4"><label for="comment-first-name">First Name</label>
-                                    <input type="text" class="form-control" id="comment-first-name"
-                                           placeholder="First Name"></div>
-                                <div class="form-group col-md-4"><label for="comment-last-name">Last Name</label>
-                                    <input type="text" class="form-control" id="comment-last-name"
-                                           placeholder="Last Name"></div>
-                                <div class="form-group col-md-4"><label for="comment-email">Email Address</label>
-                                    <input type="email" class="form-control" id="comment-email"
-                                           placeholder="Email Address"></div>
-                            </div>
-                            <div class="form-group"><label for="comment-content">Comment</label> <textarea
-                                    class="form-control" id="comment-content" rows="6"></textarea></div>
-                            <div class="form-group mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg">Post Comment</button>
-                            </div>
-                        </form>
-                    </section>
                 </div>
             </div>
             <div class="col-12 col-lg-4">
                 <div class="block block-sidebar block-sidebar--position--end">
-                    <div class="block-sidebar__item">
-                        <div class="widget-search">
-                            <form class="widget-search__body"><input class="widget-search__input"
-                                                                     placeholder="Blog search..." type="text"
-                                                                     autocomplete="off" spellcheck="false">
-                                <button class="widget-search__button" type="submit">
-                                    <svg width="20px" height="20px">
-                                        <use xlink:href="/images/sprite.svg#search-20"></use>
-                                    </svg>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="block-sidebar__item">
-                        <div class="widget-aboutus widget"><h4 class="widget__title">About Blog</h4>
-                            <div class="widget-aboutus__text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                elit. Sed tincidunt, erat in malesuada aliquam, est erat faucibus purus, eget
-                                viverra nulla sem vitae neque. Quisque id sodales libero.
-                            </div>
-                            <div class="widget-aboutus__socials">
-                                <ul>
-                                    <li><a class="widget-aboutus__link widget-aboutus__link--rss"
-                                           href="https://themeforest.net/user/kos9" target="_blank"><i
-                                                class="widget-social__icon fas fa-rss"></i></a></li>
-                                    <li><a class="widget-aboutus__link widget-aboutus__link--youtube"
-                                           href="https://themeforest.net/user/kos9" target="_blank"><i
-                                                class="widget-aboutus__icon fab fa-youtube"></i></a></li>
-                                    <li><a class="widget-aboutus__link widget-aboutus__link--facebook"
-                                           href="https://themeforest.net/user/kos9" target="_blank"><i
-                                                class="widget-aboutus__icon fab fa-facebook-f"></i></a></li>
-                                    <li><a class="widget-aboutus__link widget-aboutus__link--twitter"
-                                           href="https://themeforest.net/user/kos9" target="_blank"><i
-                                                class="widget-aboutus__icon fab fa-twitter"></i></a></li>
-                                    <li><a class="widget-aboutus__link widget-aboutus__link--instagram"
-                                           href="https://themeforest.net/user/kos9" target="_blank"><i
-                                                class="widget-aboutus__icon fab fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="block-sidebar__item">
                         <div class="widget-categories widget-categories--location--blog widget"><h4
                                 class="widget__title">Categories</h4>
@@ -332,8 +147,35 @@
                         </div>
                     </div>
                     <div class="block-sidebar__item">
-                        <div class="widget-posts widget"><h4 class="widget__title">Latest Posts</h4>
+                        <div class="widget-posts widget"><h4 class="widget__title">Popular Posts</h4>
                             <div class="widget-posts__list">
+                                <div class="widget-posts__item">
+                                    <div class="widget-posts__image"><a href="#"><img
+                                                src="/images/posts/post-1-thumbnail.jpg" alt=""></a></div>
+                                    <div class="widget-posts__info">
+                                        <div class="widget-posts__name"><a href="#">Philosophy That Addresses Topics
+                                                Such As Goodness</a></div>
+                                        <div class="widget-posts__date">October 19, 2019</div>
+                                    </div>
+                                </div>
+                                <div class="widget-posts__item">
+                                    <div class="widget-posts__image"><a href="#"><img
+                                                src="/images/posts/post-2-thumbnail.jpg" alt=""></a></div>
+                                    <div class="widget-posts__info">
+                                        <div class="widget-posts__name"><a href="#">Logic Is The Study Of Reasoning
+                                                And Argument Part 2</a></div>
+                                        <div class="widget-posts__date">September 5, 2019</div>
+                                    </div>
+                                </div>
+                                <div class="widget-posts__item">
+                                    <div class="widget-posts__image"><a href="#"><img
+                                                src="/images/posts/post-3-thumbnail.jpg" alt=""></a></div>
+                                    <div class="widget-posts__info">
+                                        <div class="widget-posts__name"><a href="#">Some Philosophers Specialize In
+                                                One Or More Historical Periods</a></div>
+                                        <div class="widget-posts__date">August 12, 2019</div>
+                                    </div>
+                                </div>
                                 <div class="widget-posts__item">
                                     <div class="widget-posts__image"><a href="#"><img
                                                 src="/images/posts/post-1-thumbnail.jpg" alt=""></a></div>
@@ -380,56 +222,11 @@
                         </div>
                     </div>
                     <div class="block-sidebar__item">
-                        <div class="widget-comments widget"><h4 class="widget__title">Latest Comments</h4>
-                            <ul class="widget-comments__list">
-                                <li class="widget-comments__item">
-                                    <div class="widget-comments__author"><a href="#">Emma Williams</a></div>
-                                    <div class="widget-comments__content">In one general sense, philosophy is
-                                        associated with wisdom, intellectual culture and a search for knowledge...
-                                    </div>
-                                    <div class="widget-comments__meta">
-                                        <div class="widget-comments__date">3 minutes ago</div>
-                                        <div class="widget-comments__name">On <a href="#"
-                                                                                 title="Nullam at varius sapien sed sit amet condimentum elit">Nullam
-                                                at varius sapien sed sit amet condimentum elit</a></div>
-                                    </div>
-                                </li>
-                                <li class="widget-comments__item">
-                                    <div class="widget-comments__author"><a href="#">Airic Ford</a></div>
-                                    <div class="widget-comments__content">In one general sense, philosophy is
-                                        associated with wisdom, intellectual culture and a search for knowledge...
-                                    </div>
-                                    <div class="widget-comments__meta">
-                                        <div class="widget-comments__date">25 minutes ago</div>
-                                        <div class="widget-comments__name">On <a href="#"
-                                                                                 title="Integer efficitur efficitur velit non pulvinar pellentesque dictum viverra">Integer
-                                                efficitur efficitur velit non pulvinar pellentesque dictum viverra</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="widget-comments__item">
-                                    <div class="widget-comments__author"><a href="#">Loyd Walker</a></div>
-                                    <div class="widget-comments__content">In one general sense, philosophy is
-                                        associated with wisdom, intellectual culture and a search for knowledge...
-                                    </div>
-                                    <div class="widget-comments__meta">
-                                        <div class="widget-comments__date">2 hours ago</div>
-                                        <div class="widget-comments__name">On <a href="#"
-                                                                                 title="Curabitur quam augue vestibulum in mauris fermentum pellentesque libero">Curabitur
-                                                quam augue vestibulum in mauris fermentum pellentesque libero</a></div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="block-sidebar__item">
-                        <div class="widget-tags widget"><h4 class="widget__title">Tags Cloud</h4>
+                        <div class="widget-tags widget"><h4 class="widget__title">Popular Tags</h4>
                             <div class="tags tags--lg">
-                                <div class="tags__list"><a href="#">Promotion</a> <a href="#">Power Tool</a> <a
-                                        href="#">New Arrivals</a> <a href="#">Screwdriver</a> <a href="#">Wrench</a>
-                                    <a href="#">Mounts</a> <a href="#">Electrodes</a> <a href="#">Chainsaws</a> <a
-                                        href="#">Manometers</a> <a href="#">Nails</a> <a href="#">Air Guns</a>
-                                    <a href="#">Cutting Discs</a></div>
+                                <div class="tags__list">
+                                    <a href="#">Promotion</a>
+                                </div>
                             </div>
                         </div>
                     </div>
