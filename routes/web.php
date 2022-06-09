@@ -13,6 +13,7 @@ use App\Http\Controllers\{AdminController,
     ComparisonController,
     ContactController,
     CouponController,
+    LikesController,
     NewsController,
     NewsSubscriptionController,
     ProductController,
@@ -143,7 +144,7 @@ Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, '
 
 //News
 Route::resource('news', NewsController::class);
-
+Route::post('/like', LikesController::class)->name('like');
 
 //Contacts
 Route::get('/contacts', [ContactController::class, 'show'])->name('contacts');

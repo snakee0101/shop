@@ -51,4 +51,24 @@ class LikeTest extends TestCase
 
         $this->assertStringContainsString('"is_liked":true', $news->toJson());
     }
+
+    public function test_authenticated_user_can_toggle_like_on_an_article()
+    {
+        $news = News::factory()->create();
+        $this->actingAs( User::factory()->create() );
+
+        $this->post( route('like'), [
+            'news_id' => $news->id
+        ] );
+
+        $news->refresh();
+        $this->assertTrue( $news->isLiked );
+
+        $this->post( route('like'), [
+            'news_id' => $news->id
+        ] );
+
+        $news->refresh();
+        $this->assertFalse( $news->isLiked );
+    }
 }
