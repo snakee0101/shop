@@ -25,7 +25,8 @@ class NewsController extends Controller
     public function show(News $news)
     {
         return view('news-article', [
-            'news' => $news
+            'news' => $news,
+            'breadcrumbs_menu' => app(\App\Actions\BreadcrumbsMenuAction::class)->execute($news->category)
         ]);
     }
 

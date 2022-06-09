@@ -7,17 +7,19 @@
             <div class="page-header__breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('index-2') }}">Home</a>
-                            <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                            </svg>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#">Breadcrumb</a>
-                            <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                            </svg>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Post</li>
+                        @foreach($breadcrumbs_menu as $category)
+                            @if($loop->last)
+                                <li class="breadcrumb-item" aria-current="page">
+                                    <a href="{{ route('news.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                </li>
+                            @else
+                                <li class="breadcrumb-item"><a href="{{ route('news.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                                    <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                        <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                    </svg>
+                                </li>
+                            @endif
+                        @endforeach
                     </ol>
                 </nav>
             </div>
