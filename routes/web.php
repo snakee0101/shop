@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{AddToCartController, CartController, OrderController};
+use App\Models\News;
 use App\Http\Controllers\{ProductActionsController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
 use App\Http\Controllers\ReportController;
@@ -27,10 +28,9 @@ use App\Http\Controllers\CategoryController;
 
 
 Route::get('/', function () {
-    $filtering_group_1_products = Product::limit(10)->get()->loadAvg('reviews', 'rating');
-
     return view('index-2', [
-        'filtering_group_1_products' => $filtering_group_1_products
+        'filtering_group_1_products' => Product::limit(10)->get()->loadAvg('reviews', 'rating'),
+        'latest_news' => News::latest()->limit(10)->get()
     ]);
 })->name('index-2');
 
