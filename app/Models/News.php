@@ -24,4 +24,9 @@ class News extends Model
     {
         return Str::limit($this->content);
     }
+
+    public function liked_users()
+    {
+        return $this->belongsToMany(User::class, 'likes');
+    }
 }
