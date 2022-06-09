@@ -2,11 +2,11 @@
 
 namespace App\Actions;
 
-use App\Models\Category;
+use App\Contracts\Categorizable;
 
 class BreadcrumbsMenuAction
 {
-    public function execute(Category $category) :array
+    public function execute(Categorizable $category) :array
     {
         $categories_list_reversed = [$category]; //category 3 > category 2 > category 1
 
