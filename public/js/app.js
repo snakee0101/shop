@@ -4681,12 +4681,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LikeButtonComponent",
-  props: ['news_id', 'is_liked'],
+  props: ['news_id', 'is_liked', 'likes_count'],
   data: function data() {
     return {
-      data_is_liked: this.is_liked != 0
+      data_is_liked: this.is_liked != 0,
+      data_likes_count: Number(this.likes_count)
     };
   },
   methods: {
@@ -4697,6 +4700,8 @@ __webpack_require__.r(__webpack_exports__);
         news_id: this.news_id
       }).then(function () {
         return _this.data_is_liked = !_this.data_is_liked;
+      }).then(function () {
+        return _this.data_is_liked ? _this.data_likes_count++ : _this.data_likes_count--;
       });
     }
   }
@@ -47329,6 +47334,10 @@ var render = function () {
       },
     },
     [
+      _c("span", { staticClass: "mr-1" }, [
+        _vm._v(_vm._s(_vm.data_likes_count)),
+      ]),
+      _vm._v(" "),
       _vm.data_is_liked
         ? _c(
             "svg",

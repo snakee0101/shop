@@ -56,7 +56,8 @@
                                     <ul class="share-links__list">
                                         <li class="share-links__item share-links__item--type--like">
                                             <like-button-component news_id="{{ $news->id }}"
-                                                                   is_liked="{{ (int)$news->is_liked }}">
+                                                                   is_liked="{{ (int)$news->is_liked }}"
+                                                                   likes_count="{{ $news->liked_users()->count() }}">
 
                                             </like-button-component>
                                         </li>
