@@ -14,4 +14,10 @@ class Tag extends Model
     {
         return $this->belongsToMany(News::class);
     }
+
+    public function scopePopular()
+    {
+        return static::withCount('news')
+                     ->orderBy('news_count', 'desc');
+    }
 }
