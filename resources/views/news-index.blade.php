@@ -34,9 +34,9 @@
                                 @foreach($news as $news_article)
                                     <div class="posts-list__item">
                                         <div class="post-card post-card--layout--list post-card--size--nl">
-                                            <div class="post-card__image">
+                                            <div class="post-card__image" style="width: 250px">
                                                 <a href="{{ route('news.show', $news_article) }}">
-                                                    <img src="{{ $news_article->main_image_url }}" alt="" style="width: 350px">
+                                                    <img src="{{ $news_article->main_image_url }}" alt="">
                                                 </a>
                                             </div>
                                             <div class="post-card__info">
