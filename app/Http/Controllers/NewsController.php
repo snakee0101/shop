@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\NewsCategory;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class NewsController extends Controller
     {
         return view('news-article', [
             'news' => $news,
+            'all_news_categories' => NewsCategory::topLevelCategories()->get(),
             'popular_news' => News::popular()->limit(6)->get(),
             'popular_tags' => Tag::popular()->limit(20)->get(),
             'breadcrumbs_menu' => app(\App\Actions\BreadcrumbsMenuAction::class)->execute($news->category)

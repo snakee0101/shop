@@ -70,80 +70,27 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="block block-sidebar block-sidebar--position--end">
-
                     <div class="block-sidebar__item">
                         <div class="widget-categories widget-categories--location--blog widget"><h4
                                 class="widget__title">Categories</h4>
                             <ul class="widget-categories__list" data-collapse
                                 data-collapse-opened-class="widget-categories__item--open">
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Latest News</a></div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Special Offers </a>
-                                        <button class="widget-categories__expander" type="button"
-                                                data-collapse-trigger></button>
-                                    </div>
-                                    <div class="widget-categories__subs" data-collapse-content>
-                                        <ul>
-                                            <li><a href="#">Spring Sales</a></li>
-                                            <li><a href="#">Summer Sales</a></li>
-                                            <li><a href="#">Autumn Sales</a></li>
-                                            <li><a href="#">Christmas Sales</a></li>
-                                            <li><a href="#">Other Sales</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            New Arrivals</a></div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Reviews</a></div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Drills and Mixers</a></div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Cordless Screwdrivers</a></div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Screwdrivers</a></div>
-                                </li>
-                                <li class="widget-categories__item" data-collapse-item>
-                                    <div class="widget-categories__row"><a href="#">
-                                            <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                            </svg>
-                                            Wrenches</a></div>
-                                </li>
+                                @foreach($all_news_categories as $news_category)
+                                    @if( $news_category->hasSubcategories() )
+                                        @include('partials.categories_list_item', ['subCategories' => $news_category->subCategories, 'category' => $news_category])
+                                    @else
+                                        <li class="widget-categories__item" data-collapse-item>
+                                            <div class="widget-categories__row">
+                                                <a href="{{ route('news.index', ['category' => $news_category->id])  }}">
+                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
+                                                        <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
+                                                    </svg>
+                                                    {{ $news_category->name }}
+                                                </a>
+                                            </div>
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
