@@ -12,6 +12,7 @@ class NewsController extends Controller
     public function index()
     {
         return view('news-index', [
+            'news' => News::latest()->get(),
             'all_news_categories' => NewsCategory::topLevelCategories()->get(),
             'popular_news' => News::popular()->limit(6)->get(),
             'popular_tags' => Tag::popular()->limit(20)->get(),
