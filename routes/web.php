@@ -110,6 +110,8 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 Route::prefix('account')->group(function () {
     Route::view('/', 'account')->name('account');
     Route::get('/visited_products', [VisitsController::class, 'show'])->name('account.visited_products');
+
+    Route::get('/favorite_news', [UserController::class, 'favorite_news'])->name('account.favorite_news');
 });
 
 Route::delete('/visit/{product}', [VisitsController::class, 'destroy'])->name('visit.destroy');

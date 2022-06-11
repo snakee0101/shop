@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\News;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Hash;
@@ -32,5 +33,14 @@ class UserController extends Controller
         );
 
         return redirect()->route('account');
+    }
+
+    public function favorite_news()
+    {
+        return view('account', [
+            'news' => News::whereHas('liked_users', function ($q) {
+                $q->where('users.id', auth()->id());
+            })->latest()->paginate()
+        ]);
     }
 }

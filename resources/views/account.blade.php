@@ -125,6 +125,7 @@
                                     <ul class="nav flex-sm-column justify-content-center">
                                         <a href="{{ route('account') }}" class="nav-link {{ is_route_active('account') ? 'bg-warning' : ''}}">My Orders</a>
                                         <a href="{{ route('account.visited_products') }}" class="nav-link {{ is_route_active('account.visited_products') ? 'bg-warning' : ''}}">Visited products</a>
+                                        <a href="{{ route('account.favorite_news') }}" class="nav-link {{ is_route_active('account.favorite_news') ? 'bg-warning' : ''}}">Favorite News</a>
                                         <a href="#" class="nav-link {{ false ? 'bg-warning' : ''}}">Notifications</a>
                                         <a href="#" class="nav-link {{ false ? 'bg-warning' : ''}}">My Reviews</a>
                                         <a href="#" class="nav-link {{ false ? 'bg-warning' : ''}}">My Correspondence</a>
@@ -134,6 +135,8 @@
                             <main class="col">
                                 @if(is_route_active('account.visited_products'))
                                     @include('account.visited_products')
+                                @elseif(is_route_active('account.favorite_news'))
+                                    @include('account.favorite_news')
                                 @endif
                             </main>
                         </div>
