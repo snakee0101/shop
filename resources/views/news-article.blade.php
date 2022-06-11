@@ -70,98 +70,10 @@
             </div>
             <div class="col-12 col-lg-4">
                 <div class="block block-sidebar block-sidebar--position--end">
-                    <div class="block-sidebar__item">
-                        <div class="widget-categories widget-categories--location--blog widget"><h4
-                                class="widget__title">Categories</h4>
-                            <ul class="widget-categories__list" data-collapse
-                                data-collapse-opened-class="widget-categories__item--open">
-                                @foreach($all_news_categories as $news_category)
-                                    @if( $news_category->hasSubcategories() )
-                                        @include('partials.categories_list_item', ['subCategories' => $news_category->subCategories, 'category' => $news_category])
-                                    @else
-                                        <li class="widget-categories__item" data-collapse-item>
-                                            <div class="widget-categories__row">
-                                                <a href="{{ route('news.index', ['category' => $news_category->id])  }}">
-                                                    <svg class="widget-categories__arrow" width="6px" height="9px">
-                                                        <use xlink:href="/images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                                    </svg>
-                                                    {{ $news_category->name }}
-                                                </a>
-                                            </div>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="block-sidebar__item">
-                        <div class="widget-posts widget"><h4 class="widget__title">Popular News</h4>
-                            <div class="widget-posts__list">
-                                @foreach($popular_news as $popular_news_article)
-                                    <div class="widget-posts__item">
-                                        <div class="widget-posts__image">
-                                            <a href="{{ route('news.show', $popular_news_article) }}">
-                                                <img src="{{ $popular_news_article->main_image_url }}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="widget-posts__info">
-                                            <div class="widget-posts__name">
-                                                <a href="{{ route('news.show', $popular_news_article) }}">
-                                                    {{ $popular_news_article->caption }}
-                                                </a>
-                                            </div>
-                                            <div class="widget-posts__date d-flex">
-                                                <span>{{ $popular_news_article->created_at->format('M d, Y') }}</span>
-                                                <span class="ml-auto" style="color: rgb(20, 130, 4); font-weight: bold">
-                                                    {{ $popular_news_article->liked_users()->count() }}
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                                                      <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block-sidebar__item">
-                        <div class="widget-newsletter widget"><h4 class="widget-newsletter__title">Our
-                                Newsletter</h4>
-                            <div class="widget-newsletter__text">Provide your email to subscribe to newsletter
-                            </div>
-                            <form class="widget-newsletter__form" action="{{ route('news.subscribe') }}" method="post">
-                                @csrf
-                                <label for="widget-newsletter-email" class="sr-only">EmailAddress</label>
-                                <input id="widget-newsletter-email" type="text" class="form-control" placeholder="Email Address" name="email">
-
-                                <button type="submit" class="btn btn-primary mt-3">Subscribe</button>
-                            </form>
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <div class="footer-newsletter__text footer-newsletter__text--social text-danger">
-                                        {{ $error }}
-                                    </div>
-                                @endforeach
-                            @endif
-                            @if(session()->has('confirmation_message'))
-                                <div class="footer-newsletter__text footer-newsletter__text--social text-success">
-                                    {{ session()->get('confirmation_message') }}
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="block-sidebar__item">
-                        <div class="widget-tags widget"><h4 class="widget__title">Popular Tags</h4>
-                            <div class="tags tags--lg">
-                                <div class="tags__list">
-                                    @foreach($popular_tags as $popular_tag)
-                                        <a href="{{ route('news.index', ['tag' => $popular_tag->id])  }}">{{ $popular_tag->name }}</a>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('partials.news.categories', ['all_news_categories' => $all_news_categories])
+                    @include('partials.news.popular_news', ['popular_news' => $popular_news])
+                    @include('partials.news.newsletter_subscription')
+                    @include('partials.news.popular_tags', ['popular_tags' => $popular_tags])
                 </div>
             </div>
         </div>
