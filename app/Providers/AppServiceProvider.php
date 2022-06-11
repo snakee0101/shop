@@ -6,6 +6,7 @@ use App\Contracts\Purchaseable;
 use App\Http\Controllers\AddToCartController;
 use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         Request::macro('whereKeyContains', function ($str) {
             return $this->collect()
                         ->filter( fn($value, $key) => str_contains($key, $str) );

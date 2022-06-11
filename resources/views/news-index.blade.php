@@ -45,12 +45,14 @@
                                                         {{ $news_article->category->name }}
                                                     </a>
                                                 </div>
-                                                <div class="post-card__name">
+                                                <div class="post-card__date" style="color: #f00">{{ $news_article->created_at->format('M d, Y') }}</div>
+
+                                                <div class="post-card__name w-100">
                                                     <a href="{{ route('news.show', $news_article) }}">
                                                         {{ $news_article->caption }}
                                                     </a>
                                                 </div>
-                                                <div class="post-card__date" style="color: #f00">{{ $news_article->created_at->format('M d, Y') }}</div>
+
                                                 <div class="post-card__content">
                                                     {!! $news_article->excerpt() !!}
                                                 </div>
@@ -64,26 +66,7 @@
                             </div>
                         </div>
                         <div class="posts-view__pagination">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link page-link--with-arrow" href="#"
-                                                                  aria-label="Previous">
-                                        <svg class="page-link__arrow page-link__arrow--left" aria-hidden="true"
-                                             width="8px" height="13px">
-                                            <use xlink:href="/images/sprite.svg#arrow-rounded-left-8x13"></use>
-                                        </svg>
-                                    </a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link page-link--with-arrow" href="#"
-                                                         aria-label="Next">
-                                        <svg class="page-link__arrow page-link__arrow--right" aria-hidden="true"
-                                             width="8px" height="13px">
-                                            <use xlink:href="/images/sprite.svg#arrow-rounded-right-8x13"></use>
-                                        </svg>
-                                    </a></li>
-                            </ul>
+                            {{ $news->links() }}
                         </div>
                     </div>
                 </div>
