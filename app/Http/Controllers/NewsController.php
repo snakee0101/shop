@@ -21,7 +21,10 @@ class NewsController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.news.create', [
+            'news_categories' => NewsCategory::get(),
+            'tags' => Tag::get(),
+        ]);
     }
 
     public function store(Request $request)

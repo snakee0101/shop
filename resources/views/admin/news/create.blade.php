@@ -1,32 +1,50 @@
 @extends('admin.main')
 
 @section('content')
-    <p class="m-3 font-weight-bold"><a href="{{ route('characteristic.index') }}" class="text-danger">&lt; Back to all characteristics</a></p>
+    <p class="m-3 font-weight-bold"><a href="{{ route('admin.news.index') }}" class="text-danger">&lt; Back to all news</a></p>
 
     <div class="container row">
-        <div class="card card-primary col-5 p-0 m-auto">
+        <div class="card card-primary col-10 p-0 m-auto">
             <div class="card-header">
-                <h3 class="card-title">Create characteristic</h3>
+                <h3 class="card-title">Create news</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ route('characteristic.store') }}" method="post">
+            <form action="{{ route('news.store') }}" method="post">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="characteristic_name">Characteristic name</label>
-                        <input type="text" class="form-control" name="name" id="characteristic_name" placeholder="Enter characteristic name">
-                        @error('name')
-                            <p class="text-danger mt-1">Characteristic with the given name is already exists in this category or the name is empty</p>
+                        <label for="caption">Caption</label>
+                        <input type="text" class="form-control" name="caption" id="caption" placeholder="Enter News article caption">
+                        @error('caption')
+                            <p class="text-danger mt-1">Caption must not be empty</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Characteristic category</label>
-                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="category_id" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                            @foreach($categories as $category)
+                        <label>News category</label>
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="news_category_id" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            @foreach($news_categories as $category)
                                 <option data-select2-id="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select main image</label>
+                        <input type="file" name="main_image">
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="tags" data-select2-id="1" tabindex="-1" aria-hidden="true" multiple>
+                            @foreach($tags as $tag)
+                                <option data-select2-id="{{ $tag->id }}" value="{{ $tag->id }}">{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Content</label>
+                        <textarea name="content" rows="20" cols="20" class="form-control">
+
+                        </textarea>
                     </div>
                 </div>
                 <!-- /.card-body -->

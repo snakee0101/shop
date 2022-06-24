@@ -46,3 +46,7 @@
     word-wrap: break-word;
 }
 
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    padding: 0px 0px 1px 27px;
+}
+
