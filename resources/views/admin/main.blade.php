@@ -386,6 +386,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item {{ Route::currentRouteName() == 'admin.news.index' || Route::currentRouteName() == 'news.create' ? 'menu-open' : '' }}">
+                        <a href="{{ route('admin.news.index') }}"
+                           class="nav-link {{ Route::currentRouteName() == 'admin.news.index' || Route::currentRouteName() == 'news.create' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                News
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.news.index') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'admin.news.index' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>All News</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('news.create') }}"
+                                   class="nav-link {{ Route::currentRouteName() == 'news.create' ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Create News</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

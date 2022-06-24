@@ -133,6 +133,7 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/category/index', 'categories_index')->name('admin.categories.index');
 
     Route::get('/statistics', 'statistics')->name('admin.statistics');
+    Route::get('/news', 'news')->name('admin.news.index');
 
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
 });

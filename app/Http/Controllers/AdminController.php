@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Discount;
+use App\Models\News;
 use App\Models\Order;
 use App\Models\Photo;
 use App\Models\Product;
@@ -25,6 +26,13 @@ class AdminController extends Controller
     {
         return view('admin.products.index', [
             'products' => Product::withTrashed()->get()
+        ]);
+    }
+
+    public function news()
+    {
+        return view('admin.news.index', [
+            'news' => News::all()
         ]);
     }
 
