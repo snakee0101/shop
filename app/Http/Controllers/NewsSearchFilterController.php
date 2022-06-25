@@ -8,6 +8,6 @@ class NewsSearchFilterController extends Controller
     {
         session()->forget($filter);
 
-        return back();
+        return redirect()->route('news.index');
     }
 }
