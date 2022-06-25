@@ -11,6 +11,15 @@ class NewsController extends Controller
 {
     public function index()
     {
+        if( request('category') )
+            session([ 'news_search_category_id' => request('category') ]);
+
+        if( request('tag') )
+            session([ 'news_search_tag_id' => request('tag') ]);
+
+        if( request('search') )
+            session([ 'news_search_text' => request('search') ]);
+
         return view('news-index', [
             'news' => News::latest()->paginate(),
             'all_news_categories' => NewsCategory::topLevelCategories()->get(),
