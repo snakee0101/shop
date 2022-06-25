@@ -15,6 +15,7 @@ use App\Http\Controllers\{AdminController,
     CouponController,
     LikesController,
     NewsController,
+    NewsSearchFilterController,
     NewsSubscriptionController,
     ProductController,
     ProductSetController,
@@ -148,6 +149,8 @@ Route::delete('/news/unsubscribe/{email}', [NewsSubscriptionController::class, '
 //News
 Route::resource('news', NewsController::class);
 Route::post('/like', LikesController::class)->name('like');
+Route::get('/news/clear_search/{filter}', [NewsSearchFilterController::class, 'clear'])->name('news.search.clear');
+
 
 //Contacts
 Route::get('/contacts', [ContactController::class, 'show'])->name('contacts');
