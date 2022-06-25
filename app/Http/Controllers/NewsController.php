@@ -18,7 +18,7 @@ class NewsController extends Controller
             session([ 'news_search_tag_id' => request('tag') ]);
 
         if( request('search') )
-            session([ 'news_search_text' => request('search') ]);
+            session([ 'news_search_query' => request('search') ]);
 
         return view('news-index', [
             'news' => News::latest()->paginate(),
