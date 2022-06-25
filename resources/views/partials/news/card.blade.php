@@ -19,6 +19,16 @@
                 </a>
             </div>
 
+            <div class="post__tags tags mt-2">
+                <div class="tags__list">
+                    @foreach($news_article->tags as $tag)
+                        <a href="{{ route('news.index', ['tag' => $tag->id])  }}">
+                            {{ $tag->name }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
             <div class="post-card__content">
                 {!! $news_article->excerpt() !!}
             </div>

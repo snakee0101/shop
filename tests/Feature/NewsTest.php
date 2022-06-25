@@ -128,4 +128,9 @@ class NewsTest extends TestCase
         $this->assertEquals($news_collection[0]->id, $data[1]->id);
         $this->assertEquals($news_collection[2]->id, $data[2]->id);
     }
+
+    public function test_a_news_could_be_created()
+    {
+
+    }
 }
