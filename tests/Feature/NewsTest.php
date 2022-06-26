@@ -133,17 +133,20 @@ class NewsTest extends TestCase
 
     public function test_a_news_with_basic_data_could_be_created()
     {
-        $image = UploadedFile::fake();
-        $image->image('main_image');
+        Storage::fake();
 
         $tags = Tag::factory()->count(3)->create();
 
         $data = News::factory()->raw();
 
+        $image = UploadedFile::fake()->image('main_image');
+        $data['main_image'] = $image;
+
         $this->post( route('news.store'),  $data)
-             ->assertSuccessful();
+             ->assertRedirect();
 
         unset($data['main_image_url']);
+        unset($data['main_image']);
         unset($data['created_at']);
 
         $this->assertDatabaseHas('news', $data);
@@ -151,18 +154,21 @@ class NewsTest extends TestCase
 
     public function test_news_could_be_created_with_tags()
     {
-        $image = UploadedFile::fake();
-        $image->image('main_image');
+        Storage::fake();
 
         $tags = Tag::factory()->count(3)->create();
 
         $data = News::factory()->raw();
         $data['tags'] = $tags->pluck('id')->toArray();
 
+        $image = UploadedFile::fake()->image('main_image');
+        $data['main_image'] = $image;
+
         $this->post( route('news.store'),  $data)
             ->assertRedirect();
 
         unset($data['main_image_url']);
+        unset($data['main_image']);
         unset($data['created_at']);
         unset($data['tags']);
 
