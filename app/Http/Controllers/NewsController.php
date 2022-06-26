@@ -6,6 +6,7 @@ use App\Models\News;
 use App\Models\NewsCategory;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -53,10 +54,13 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
+        $path = $request->file('main_image')
+                        ->store('/public/images/');
+
         $news = News::create([
             'caption' => $request->caption,
             'news_category_id' => $request->news_category_id,
-            'main_image_url' => '',
+            'main_image_url' => Storage::url( $path ),
             'content' => $request['content']
         ]);
 

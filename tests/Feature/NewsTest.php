@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class NewsTest extends TestCase
@@ -169,5 +170,30 @@ class NewsTest extends TestCase
         $this->assertDatabaseHas('news_tag', [ 'news_id' => News::first()->id, 'tag_id' => $tags[0]->id ]);
         $this->assertDatabaseHas('news_tag', [ 'news_id' => News::first()->id, 'tag_id' => $tags[1]->id ]);
         $this->assertDatabaseHas('news_tag', [ 'news_id' => News::first()->id, 'tag_id' => $tags[2]->id ]);
+    }
+
+    public function test_news_main_image_is_saved_when_article_is_created()
+    {
+        Storage::fake();
+
+        $image = UploadedFile::fake()->image('main_image');
+
+        $tags = Tag::factory()->count(3)->create();
+
+        $data = News::factory()->raw();
+        $data['tags'] = $tags->pluck('id')->toArray();
+
+        $data['main_image'] = $image;
+        $this->post( route('news.store'),  $data)
+            ->assertRedirect();
+
+        unset($data['main_image_url']);
+        unset($data['main_image']);
+        unset($data['created_at']);
+        unset($data['tags']);
+
+        $this->assertDatabaseHas('news', $data);
+
+       $this->assertNotEmpty( Storage::allFiles( '/public/images' ) );
     }
 }
