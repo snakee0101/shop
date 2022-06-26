@@ -53,7 +53,12 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        //
+        News::create([
+            'caption' => $request->caption,
+            'news_category_id' => $request->news_category_id,
+            'main_image_url' => '',
+            'content' => $request['content']
+        ]);
     }
 
     public function show(News $news)

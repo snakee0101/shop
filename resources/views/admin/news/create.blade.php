@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label>Tags</label>
-                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="tags" data-select2-id="1" tabindex="-1" aria-hidden="true" multiple>
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="tags[]" data-select2-id="1" tabindex="-1" aria-hidden="true" multiple>
                             @foreach($tags as $tag)
                                 <option data-select2-id="{{ $tag->id }}" value="{{ $tag->id }}">{{ $tag->name }}</option>
                             @endforeach

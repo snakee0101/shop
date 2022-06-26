@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
@@ -129,8 +130,27 @@ class NewsTest extends TestCase
         $this->assertEquals($news_collection[2]->id, $data[2]->id);
     }
 
-    public function test_a_news_could_be_created()
+    public function test_a_news_with_basic_data_could_be_created()
     {
+        $image = UploadedFile::fake();
+        $image->image('main_image');
 
+        $tags = Tag::factory()->count(3)->create();
+
+        $data = [
+            'caption' => 'text',
+            'news_category_id' => NewsCategory::factory()->create()->id,
+            'main_image' => $image,
+            'tags' => $tags->pluck('id')->toArray(),
+            'content' => '<b>content with HTML</b>'
+        ];
+
+        $this->post( route('news.store'),  $data)
+             ->assertSuccessful();
+
+        unset($data['main_image']);
+        unset($data['tags']);
+
+        $this->assertDatabaseHas('news', $data);
     }
 }

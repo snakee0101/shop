@@ -12,6 +12,7 @@ class News extends Model
     use HasFactory, Searchable;
 
     protected $appends = ['is_liked'];  //JSON representation of this model must contain is_liked attribute - it is for vue component that checks whether current user liked an article
+    protected $guarded = [];
 
     public function toSearchableArray()
     {
