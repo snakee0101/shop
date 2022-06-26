@@ -5,11 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class News extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
+
     protected $appends = ['is_liked'];  //JSON representation of this model must contain is_liked attribute - it is for vue component that checks whether current user liked an article
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'caption' => $this->caption,
+            'content' => strip_tags( $this->content ),
+            'category_id' => $this->news_category_id,
+            'tags' => $this->tags->pluck('id')->toArray()
+        ];
+    }
 
     public function category()
     {
