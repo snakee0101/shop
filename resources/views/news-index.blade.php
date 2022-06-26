@@ -72,7 +72,7 @@
                         <div class="widget-search">
                             <form class="widget-search__body" action="{{ route('news.index') }}">
                                 <input class="widget-search__input" name="search"
-                                                                     placeholder="Blog search..." type="text"
+                                                                     placeholder="Search..." type="text"
                                                                      autocomplete="off" spellcheck="false">
                                 <button class="widget-search__button" type="submit">
                                     <svg width="20px" height="20px">

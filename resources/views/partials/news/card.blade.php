@@ -19,7 +19,7 @@
                 </a>
             </div>
 
-            <div class="post__tags tags mt-2">
+            <div class="post__tags tags mt-2 w-100">
                 <div class="tags__list">
                     @foreach($news_article->tags as $tag)
                         <a href="{{ route('news.index', ['tag' => $tag->id])  }}">
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="post-card__content">
+            <div class="post-card__content w-100">
                 {!! $news_article->excerpt() !!}
             </div>
             <div class="post-card__read-more">
