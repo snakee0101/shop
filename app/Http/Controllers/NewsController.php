@@ -11,22 +11,32 @@ class NewsController extends Controller
 {
     public function index()
     {
-        if( request('category') )
+        if( request()->has('category') )
             session([ 'news_search_category_id' => request('category') ]);
 
-        if( request('tag') )
+        if( request()->has('tag') )
             session([ 'news_search_tag_id' => request('tag') ]);
 
-        if( request('search') )
+        if( request()->has('search') )
             session([ 'news_search_query' => request('search') ]);
 
+        $filtered = News::search(session('news_search_query'), function(\MeiliSearch\Endpoints\Indexes $engine, $query, array $options) {
+            $engine->updateSearchableAttributes(['content', 'caption']);
+
+            if( session()->has('news_search_category_id') )
+                $options['filters'] = 'category_id=' . session('news_search_category_id');
+
+            if( session()->has('news_search_tag_id') )
+            {
+                $engine->updateAttributesForFaceting(['tags']);
+                $options['facetFilters'] = ['tags:' . session('news_search_tag_id')];
+            }
+
+            return $engine->search($query, $options);
+        })->paginate();
+
         return view('news-index', [
-            'news' => News::search(request('search'), function(\MeiliSearch\Endpoints\Indexes $engine, $query, array $options) {
-                if( session()->has('news_search_category_id') )
-                    $options['filters'] = 'category_id=' . session('news_search_category_id');
-                
-                return $engine->search($query, $options);
-            })->paginate(),
+            'news' => $filtered,
             'all_news_categories' => NewsCategory::topLevelCategories()->get(),
             'popular_news' => News::popular()->limit(6)->get(),
             'popular_tags' => Tag::popular()->limit(20)->get(),
