@@ -20,7 +20,7 @@ class NewsController extends Controller
         if( request()->has('search') )
             session([ 'news_search_query' => request('search') ]);
 
-        $filtered = News::search(session('news_search_query'), function(\MeiliSearch\Endpoints\Indexes $engine, $query, array $options) {
+        $filtered = News::search( mb_strtolower( session('news_search_query') ), function(\MeiliSearch\Endpoints\Indexes $engine, $query, array $options) {
             $engine->updateSearchableAttributes(['content', 'caption']);
 
             if( session()->has('news_search_category_id') )

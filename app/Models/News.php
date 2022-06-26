@@ -23,7 +23,7 @@ class News extends Model
         return [
             'id' => $this->id,
             'caption' => $this->caption,
-            'content' => strip_tags( $this->content ),
+            'content' => mb_strtolower( strip_tags( $this->content ) ),
             'category_id' => $this->news_category_id,
             'tags' => $string_tags_array
         ];
