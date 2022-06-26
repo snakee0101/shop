@@ -137,20 +137,37 @@ class NewsTest extends TestCase
 
         $tags = Tag::factory()->count(3)->create();
 
-        $data = [
-            'caption' => 'text',
-            'news_category_id' => NewsCategory::factory()->create()->id,
-            'main_image' => $image,
-            'tags' => $tags->pluck('id')->toArray(),
-            'content' => '<b>content with HTML</b>'
-        ];
+        $data = News::factory()->raw();
 
         $this->post( route('news.store'),  $data)
              ->assertSuccessful();
 
-        unset($data['main_image']);
+        unset($data['main_image_url']);
+        unset($data['created_at']);
+
+        $this->assertDatabaseHas('news', $data);
+    }
+
+    public function test_news_could_be_created_with_tags()
+    {
+        $image = UploadedFile::fake();
+        $image->image('main_image');
+
+        $tags = Tag::factory()->count(3)->create();
+
+        $data = News::factory()->raw();
+        $data['tags'] = $tags->pluck('id')->toArray();
+
+        $this->post( route('news.store'),  $data)
+            ->assertRedirect();
+
+        unset($data['main_image_url']);
+        unset($data['created_at']);
         unset($data['tags']);
 
         $this->assertDatabaseHas('news', $data);
+        $this->assertDatabaseHas('news_tag', [ 'news_id' => News::first()->id, 'tag_id' => $tags[0]->id ]);
+        $this->assertDatabaseHas('news_tag', [ 'news_id' => News::first()->id, 'tag_id' => $tags[1]->id ]);
+        $this->assertDatabaseHas('news_tag', [ 'news_id' => News::first()->id, 'tag_id' => $tags[2]->id ]);
     }
 }
