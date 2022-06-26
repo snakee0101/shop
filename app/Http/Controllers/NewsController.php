@@ -21,7 +21,12 @@ class NewsController extends Controller
             session([ 'news_search_query' => request('search') ]);
 
         return view('news-index', [
-            'news' => News::latest()->paginate(),
+            'news' => News::search(request('search'), function(\MeiliSearch\Endpoints\Indexes $engine, $query, array $options) {
+                if( session()->has('news_search_category_id') )
+                    $options['filters'] = 'category_id=' . session('news_search_category_id');
+                
+                return $engine->search($query, $options);
+            })->paginate(),
             'all_news_categories' => NewsCategory::topLevelCategories()->get(),
             'popular_news' => News::popular()->limit(6)->get(),
             'popular_tags' => Tag::popular()->limit(20)->get(),

@@ -15,12 +15,17 @@ class News extends Model
 
     public function toSearchableArray()
     {
+        $tags_array = $this->tags->pluck('id')->toArray();
+        $string_tags_array = array_map(function ($item){
+            return (string)$item;
+        }, $tags_array);
+
         return [
             'id' => $this->id,
             'caption' => $this->caption,
             'content' => strip_tags( $this->content ),
             'category_id' => $this->news_category_id,
-            'tags' => $this->tags->pluck('id')->toArray()
+            'tags' => $string_tags_array
         ];
     }
 
