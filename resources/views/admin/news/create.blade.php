@@ -42,9 +42,9 @@
                     </div>
                     <div class="form-group">
                         <label>Content</label>
-                        <textarea name="content" rows="20" cols="20" class="form-control">
 
-                        </textarea>
+                        <input id="x" type="hidden" name="content">
+                        <trix-editor input="x"></trix-editor>
                     </div>
                 </div>
                 <!-- /.card-body -->

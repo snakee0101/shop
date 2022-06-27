@@ -22,8 +22,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Data tables -->
     <link href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet" />
 
+    <!-- Trix editor -->
+
     <script src="{{ asset('js/app.js') }}"></script>
     <link href="/css/app.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
