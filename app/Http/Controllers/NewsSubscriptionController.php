@@ -42,6 +42,8 @@ class NewsSubscriptionController extends Controller
         NewsSubscriber::where('email', $email)
                       ->delete();
 
+        //TODO: Check for valid signature
+
         return redirect('/')->with('confirmation_message', 'You have unsubscribed from newsletter');
     }
 }

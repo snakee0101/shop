@@ -88,6 +88,29 @@ class NewsSubscriptionTest extends TestCase
         });
     }
 
+    public function test_newsletter_email_contains_signed_unsubscribe_link()
+    {
+        $this->withoutExceptionHandling();
+
+        $subscriber = NewsSubscriber::factory()->create();
+
+        Storage::fake();
+        Mail::fake();
+
+        $tags = Tag::factory()->count(3)->create();
+
+        $data = News::factory()->raw();
+
+        $image = UploadedFile::fake()->image('main_image');
+        $data['main_image'] = $image;
+
+        $this->post( route('news.store'),  $data);
+
+        Mail::assertQueued(NewsletterMail::class, function(NewsletterMail $mail) use ($subscriber) {
+            return str_contains($mail->unsubscribe_url, '/news/unsubscribe/' . $subscriber->email . '?expires=');
+        });
+    }
+
     public function test_newsletter_could_be_unsubscribed_from()
     {
         $subscriber = NewsSubscriber::factory()->create();

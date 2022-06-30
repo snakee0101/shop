@@ -11,3 +11,5 @@
 @component('mail::button', ['url' => $news_article_url])
     Go to news article
 @endcomponent
+
+<p>If you don't want to receive this email - click <a href="{{ $unsubscribe_url }}" style="color: #f00">Unsubscribe from newsletter</a></p>
