@@ -2,17 +2,19 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\Advertisement;
+use Carbon\Carbon;
+use Tests\TestCase;
 
 class AdvertisementTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    public function test_start_date_and_end_date_are_carbon_instances()
     {
-        $this->assertTrue(true);
+        Advertisement::factory()->create();
+
+        $ad = Advertisement::first();
+
+        $this->assertInstanceOf(Carbon::class, $ad->start_date);
+        $this->assertInstanceOf(Carbon::class, $ad->end_date);
     }
 }

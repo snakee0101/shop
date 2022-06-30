@@ -6,24 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAdvertisementsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('advertisements', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('caption');
+            $table->string('description');
+            $table->string('image_url_square');
+            $table->string('image_url_rectangle');
+            $table->foreignId('category_id')->nullable();
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('advertisements');

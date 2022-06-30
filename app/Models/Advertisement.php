@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Advertisement extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $dates = ['start_date', 'end_date'];
 }
