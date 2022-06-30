@@ -23,4 +23,9 @@ class Category extends Model implements Categorizable
     {
         return $this->hasMany(Characteristic::class);
     }
+
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisement::class);
+    }
 }

@@ -29,6 +29,17 @@ class AdvertisementTest extends TestCase
         $this->assertInstanceOf(Category::class, $ad_2->category()->first());
     }
 
+    public function test_category_has_many_advertisements()
+    {
+        $ads = Advertisement::factory()
+                            ->withCategory( $category = Category::factory()->create() )
+                            ->count(2)
+                            ->create();
+
+        $this->assertInstanceOf(Advertisement::class, $category->advertisements()->first() );
+        $this->assertCount(2, $category->advertisements );
+    }
+
     public function test_advertisement_has_products()
     {
 
