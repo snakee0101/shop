@@ -39,10 +39,11 @@ class NewsSubscriptionController extends Controller
 
     public function destroy($email)
     {
+        if(! request()->hasValidSignature())
+            abort(410, 'The URL signature is invalid');
+
         NewsSubscriber::where('email', $email)
                       ->delete();
-
-        //TODO: Check for valid signature
 
         return redirect('/')->with('confirmation_message', 'You have unsubscribed from newsletter');
     }

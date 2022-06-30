@@ -13,6 +13,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
 
 class NewsSubscriptionTest extends TestCase
@@ -115,7 +116,11 @@ class NewsSubscriptionTest extends TestCase
     {
         $subscriber = NewsSubscriber::factory()->create();
 
-        $this->get( route('news.unsubscribe', $subscriber->email) );
+        $this->get( route('news.unsubscribe', $subscriber->email) )
+             ->assertStatus(410);
+
+        $this->get( URL::signedRoute('news.unsubscribe', ['email' => $subscriber->email], now()->addHour()) )
+            ->assertRedirect();
 
         $this->assertDatabaseCount('news_subscribers', 0);
     }
