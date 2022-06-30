@@ -87,4 +87,13 @@ class NewsSubscriptionTest extends TestCase
            return $mail->to[0]['address'] === $subscriber->email;
         });
     }
+
+    public function test_newsletter_could_be_unsubscribed_from()
+    {
+        $subscriber = NewsSubscriber::factory()->create();
+
+        $this->get( route('news.unsubscribe', $subscriber->email) );
+
+        $this->assertDatabaseCount('news_subscribers', 0);
+    }
 }

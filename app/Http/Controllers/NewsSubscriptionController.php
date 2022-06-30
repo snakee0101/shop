@@ -39,6 +39,9 @@ class NewsSubscriptionController extends Controller
 
     public function destroy($email)
     {
+        NewsSubscriber::where('email', $email)
+                      ->delete();
 
+        return redirect('/')->with('confirmation_message', 'You have unsubscribed from newsletter');
     }
 }
