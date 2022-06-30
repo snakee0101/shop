@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsletterMail;
 use App\Models\News;
 use App\Models\NewsCategory;
+use App\Models\NewsSubscriber;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
@@ -65,6 +68,14 @@ class NewsController extends Controller
         ]);
 
         $news->tags()->attach( $request->tags );
+
+        //notify subscribers
+        $subscribers_mail_list = NewsSubscriber::all()->pluck('email');
+
+        $subscribers_mail_list->each(function($recipients_email) use ($news) {
+            Mail::to($recipients_email)
+                ->send( (new NewsletterMail($news, $recipients_email)) );
+        });
 
         return back();
     }

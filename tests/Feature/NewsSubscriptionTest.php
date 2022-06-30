@@ -3,11 +3,16 @@
 namespace Tests\Feature;
 
 use App\Mail\ConfirmNewsSubscriptionMail;
+use App\Mail\NewsletterMail;
+use App\Models\News;
 use App\Models\NewsSubscriber;
+use App\Models\Tag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class NewsSubscriptionTest extends TestCase
@@ -60,5 +65,26 @@ class NewsSubscriptionTest extends TestCase
         $this->post( route('news.subscribe'), [
             'email' => 'new@email.com'
         ] )->assertSessionHasErrors('email');
+    }
+
+    public function test_when_news_is_created_subscribers_are_notified()
+    {
+        $subscriber = NewsSubscriber::factory()->create();
+
+        Storage::fake();
+        Mail::fake();
+
+        $tags = Tag::factory()->count(3)->create();
+
+        $data = News::factory()->raw();
+
+        $image = UploadedFile::fake()->image('main_image');
+        $data['main_image'] = $image;
+
+        $this->post( route('news.store'),  $data);
+
+        Mail::assertQueued(NewsletterMail::class, function(NewsletterMail $mail) use ($subscriber) {
+           return $mail->to[0]['address'] === $subscriber->email;
+        });
     }
 }
