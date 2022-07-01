@@ -15,8 +15,8 @@ class CreateAdvertisementsTable extends Migration
             $table->string('image_url_square');
             $table->string('image_url_rectangle');
             $table->foreignId('category_id')->nullable();
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
         });
     }
 
