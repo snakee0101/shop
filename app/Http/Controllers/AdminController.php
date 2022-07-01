@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\Category;
 use App\Models\Characteristic;
 use App\Models\Discount;
@@ -48,6 +49,13 @@ class AdminController extends Controller
     {
         return view('admin.users.index', [
             'users' => User::paginate()
+        ]);
+    }
+
+    public function list_advertisements()
+    {
+        return view('admin.advertisements.index', [
+            'advertisements' => Advertisement::all()
         ]);
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\{QuestionController, ReviewController, ReplyController}
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\{AdminController,
     AdminOrderActionsController,
+    AdvertisementController,
     BadgeController,
     BadgeStyleController,
     CharacteristicController,
@@ -89,6 +90,7 @@ Route::resource('vote', VoteController::class);
 Route::resource('report', ReportController::class);
 Route::resource('order', OrderController::class);
 Route::resource('characteristic', CharacteristicController::class);
+Route::resource('advertisement', AdvertisementController::class);
 
 
 Route::controller(ProductActionsController::class)->name('product.')->prefix('/product/{product}')
@@ -137,7 +139,9 @@ Route::controller(AdminController::class)->prefix('admin-panel')
     Route::get('/news', 'news')->name('admin.news.index');
 
     Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
-});
+
+    Route::get('/advertisements', 'list_advertisements')->name('admin.advertisements.index');
+    });
 
 
 //News subscription
