@@ -48,3 +48,18 @@
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
     padding: 0px 0px 1px 27px;
 }
+
+.block-slideshow .owl-carousel .owl-dot {
+    width: 20px;
+    height: 20px;
+}
+
+.owl-carousel .block-slideshow__slide-image {
+    background-position: right;
+    background-size: contain;
+}
+
+.owl-carousel .block-slideshow__slide-title,
+.owl-carousel .block-slideshow__slide-text {
+    max-width: 500px;
+}
