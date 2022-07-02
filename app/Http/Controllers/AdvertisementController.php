@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
@@ -16,7 +17,8 @@ class AdvertisementController extends Controller
     public function create()
     {
         return view('admin.advertisements.create', [
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'products' => Product::all(),
         ]);
     }
 
@@ -29,6 +31,8 @@ class AdvertisementController extends Controller
                 'image_url_rectangle' => $request->file('image_rectangle')
                                                   ->store('/public/images'),
             ]);
+
+        $ad->products()->attach( $request->products );
 
         return back();
     }

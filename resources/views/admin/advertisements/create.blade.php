@@ -58,6 +58,14 @@
                             <p class="text-danger mt-1">End date must not be empty</p>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label>Add products to the ad</label>
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="products[]" data-select2-id="1" tabindex="-1" aria-hidden="true" multiple>
+                            @foreach($products as $product)
+                                <option data-select2-id="{{ $product->id }}" value="{{ $product->id }}">{{ $product->name }} #{{ $product->id }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <!-- /.card-body -->
 

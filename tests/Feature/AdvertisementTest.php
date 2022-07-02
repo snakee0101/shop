@@ -79,4 +79,28 @@ class AdvertisementTest extends TestCase
         Storage::assertExists(Advertisement::first()->image_url_square);
         Storage::assertExists(Advertisement::first()->image_url_rectangle);
     }
+
+    public function test_advertisement_could_be_created_with_products_attached()
+    {
+        Storage::fake();
+
+        $ad_data = Advertisement::factory()->withCategory(Category::factory()->create())->raw([
+            'image_url_square' => null
+        ]);
+
+        $ad_data_without_urls = array_diff_key($ad_data, ['image_url_square' => null, 'image_url_rectangle' => null]);
+        $ad_data_without_urls['image_rectangle'] = UploadedFile::fake()->image('img_1.jpg');
+        $ad_data_without_urls['image_square'] = UploadedFile::fake()->image('img_2.jpg');
+
+        $ad_data_without_urls['products'] = Product::factory()->count(2)
+                                                              ->create()
+                                                              ->pluck('id')
+                                                              ->toArray();
+
+        $this->post(route('advertisement.store'), $ad_data_without_urls)
+            ->assertRedirect();
+
+        $this->assertDatabaseCount('advertisements', 1);
+        $this->assertDatabaseCount('advertisement_product', 2);
+    }
 }
