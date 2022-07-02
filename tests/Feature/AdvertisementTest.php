@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Advertisement;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Storage;
@@ -28,5 +29,23 @@ class AdvertisementTest extends TestCase
 
         Storage::assertMissing('/public/images/test1.jpg');
         Storage::assertMissing('/public/images/test2.jpg');
+    }
+
+    public function test_when_advertisement_is_deleted_products_are_detached()
+    {
+        Storage::fake();
+
+        $ad = Advertisement::factory()->create();
+
+        $ad->products()->attach( Product::factory()
+                                        ->count(2)
+                                        ->create() );
+
+        $this->assertDatabaseCount('advertisement_product', 2);
+
+        $this->delete( route('advertisement.destroy', $ad) )
+             ->assertRedirect();
+
+        $this->assertDatabaseCount('advertisement_product', 0);
     }
 }
