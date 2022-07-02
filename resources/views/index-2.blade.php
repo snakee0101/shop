@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="site__body"><!-- .block-slideshow -->
-        @include('partials.ads_slider', ['ads' => $ads])
+        @includeWhen( $ads->isNotEmpty() , 'partials.ads_slider', ['ads' => $ads])
         <!-- .block-banner -->
         <!-- .block-categories -->
         <div class="block block--highlighted block-categories block-categories--layout--compact">

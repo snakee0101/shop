@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,12 @@ class CategoryController extends Controller
     public function index()
     {
         return view('catalog', [
-            'categories' => Category::topLevelCategories()->withCount('products')->get()
+            'categories' => Category::topLevelCategories()->withCount('products')->get(),
+            'ads' => Advertisement::latest('start_date')
+                                ->uncategorized()
+                                ->notExpired()
+                                ->limit(10)
+                                ->get()
         ]);
     }
 
@@ -43,10 +49,16 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+        $ads = Advertisement::where('category_id', $category->id)
+                            ->notExpired()
+                            ->limit(10)
+                            ->get();
+
         if ($category->hasSubCategories()) {//if category has subcategories - show their list
             return view('catalog', [
                 'categories' => $category->subCategories,
-                'is_subcategories_page' => true
+                'is_subcategories_page' => true,
+                'ads' => $ads
             ]);
         }
 
@@ -54,7 +66,8 @@ class CategoryController extends Controller
             'category' => $category,
             'products' => $category->products()
                                    ->withAvg('reviews', 'rating')
-                                   ->paginate()
+                                   ->paginate(),
+            'ads' => $ads
         ]);
     }
 

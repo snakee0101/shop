@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('body')
+    @includeWhen( $ads->isNotEmpty(), 'partials.ads_slider', ['ads' => $ads])
+
     <div class="container">
         <h2 class="m-4">{{ $category->name }}</h2>
         <div class="shop-layout shop-layout--sidebar--start">

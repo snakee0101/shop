@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('body')
+    @includeWhen( $ads->isNotEmpty(), 'partials.ads_slider', ['ads' => $ads])
+
     <div class="block block--highlighted block-categories block-categories--layout--compact">
         <div class="container">
             <div class="block-header"><h3 class="block-header__title">Select a category</h3>
