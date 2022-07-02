@@ -39,6 +39,8 @@ class AdvertisementController extends Controller
 
     public function destroy(Advertisement $advertisement)
     {
-        //
+        $advertisement->delete();
+
+        return back();
     }
 }
