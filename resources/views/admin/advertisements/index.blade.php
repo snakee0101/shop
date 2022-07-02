@@ -48,7 +48,7 @@
                                               {{ $ad->id }}
                                             </td>
                                             <td class="dtr-control sorting_1" tabindex="0">
-                                              <img src="{{ $ad->image_url_rectangle }}" style="width: 150px; height: 150px">
+                                              <img src="{{ Storage::url($ad->image_url_rectangle) }}" style="width: 150px; height: 150px">
                                             </td>
                                             <td>
                                               {{ Str::limit($ad->caption, 100) }}
@@ -57,7 +57,7 @@
                                               {{ Str::limit($ad->description, 100) }}
                                             </td>
                                             <td>
-                                              {{ $ad->category->name }}
+                                              {{ $ad->category?->name }}
                                             </td>
                                             <td class="{{ now()->greaterThan( $ad->end_date ) ? 'font-weight-bold' : '' }}">
                                               {{ $ad->end_date->format('Y-m-d') }}
