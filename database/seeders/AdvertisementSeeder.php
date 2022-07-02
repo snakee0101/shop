@@ -14,12 +14,18 @@ class AdvertisementSeeder extends Seeder
     {
         $ads = new Collection();
 
-        for($i = 0; $i < 21; $i++)
+        for($i = 0; $i < 17; $i++)
         {
             $ad = Advertisement::factory()
                 ->withCategory( Category::inRandomOrder()->first() )
                 ->create();
 
+            $ads->add($ad);
+        }
+
+        for($i = 0; $i < 4; $i++)
+        {
+            $ad = Advertisement::factory()->create();
             $ads->add($ad);
         }
 
