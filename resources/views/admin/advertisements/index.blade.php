@@ -2,15 +2,15 @@
 
 @section('content')
     <p class="m-3">
-        <a href="{{ route('news.create') }}">
-            <button class="btn btn-success">+ Create News</button>
+        <a href="{{ route('advertisement.create') }}">
+            <button class="btn btn-success">+ Create Ad</button>
         </a>
     </p>
 
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title font-weight-bold">All News</h3>
+                <h3 class="card-title font-weight-bold">All Ads</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -29,46 +29,51 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Caption
                                     </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Description
+                                    </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Category
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Content
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Ends on
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Tags
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Starts on
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Actions
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($news as $news_article)
-                                        <tr>
+                                    @foreach($advertisements as $ad)
+                                        <tr class="{{ now()->greaterThan( $ad->end_date ) ? 'bg-secondary' : '' }}">
                                             <td class="dtr-control sorting_1" tabindex="0">
-                                              {{ $news_article->id }}
+                                              {{ $ad->id }}
                                             </td>
                                             <td class="dtr-control sorting_1" tabindex="0">
-                                              <img src="{{ $news_article->main_image_url }}" style="width: 150px; height: 150px">
+                                              <img src="{{ $ad->image_url_rectangle }}" style="width: 150px; height: 150px">
                                             </td>
                                             <td>
-                                              {{ $news_article->caption }}
+                                              {{ Str::limit($ad->caption, 100) }}
                                             </td>
                                             <td>
-                                              {{ $news_article->category->name }}
+                                              {{ Str::limit($ad->description, 100) }}
                                             </td>
                                             <td>
-                                              {!! Str::limit($news_article->content, 300) !!}
+                                              {{ $ad->category->name }}
+                                            </td>
+                                            <td class="{{ now()->greaterThan( $ad->end_date ) ? 'font-weight-bold' : '' }}">
+                                              {{ $ad->end_date->format('Y-m-d') }}
                                             </td>
                                             <td>
-                                              {{ $news_article->tags->implode('name', ', ') }}
+                                              {{ $ad->start_date->format('Y-m-d') }}
                                             </td>
                                             <td>
-                                                <form action="{{ route('news.destroy', $news_article) }}" method="post" class="d-inline">
+                                                <form action="{{ route('advertisement.destroy', $ad) }}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
 
                                                     <button class="btn btn-danger">Delete</button>
                                                 </form>
 
-                                                <a href="{{ route('news.edit', $news_article) }}">
+                                                <a href="{{ route('advertisement.edit', $ad) }}">
                                                     <button class="btn btn-warning">Edit</button>
                                                 </a>
                                             </td>
