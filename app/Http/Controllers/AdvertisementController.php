@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
@@ -14,7 +15,9 @@ class AdvertisementController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.advertisements.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     public function store(Request $request)
