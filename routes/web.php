@@ -33,7 +33,11 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('index-2', [
-        'ads' => Advertisement::latest('start_date')->limit(10)->get(),
+        'ads' => Advertisement::latest('start_date')
+                            ->uncategorized()
+                            ->notExpired()
+                            ->limit(10)
+                            ->get(),
         'filtering_group_1_products' => Product::limit(10)->get()->loadAvg('reviews', 'rating'),
         'latest_news' => News::latest()->limit(10)->get()
     ]);

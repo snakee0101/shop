@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -32,5 +33,15 @@ class Advertisement extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function scopeUncategorized(Builder $query)
+    {
+        return $query->whereNull('category_id');
+    }
+
+    public function scopeNotExpired(Builder $query)
+    {
+        return $query->whereDate('end_date', '>', now());
     }
 }
