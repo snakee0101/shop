@@ -11,6 +11,7 @@ class Advertisement extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $guarded = [];
     protected $dates = ['start_date', 'end_date'];
 
     protected static function boot()

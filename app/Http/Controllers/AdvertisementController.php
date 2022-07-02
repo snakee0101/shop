@@ -22,7 +22,15 @@ class AdvertisementController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $ad = Advertisement::create(
+            $request->only(['caption', 'description', 'start_date', 'end_date', 'category_id']) + [
+                'image_url_square' => $request->file('image_square')
+                                              ->store('/public/images'),
+                'image_url_rectangle' => $request->file('image_rectangle')
+                                                  ->store('/public/images'),
+            ]);
+
+        return back();
     }
 
     public function show(Advertisement $advertisement)
