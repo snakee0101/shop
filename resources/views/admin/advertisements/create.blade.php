@@ -31,6 +31,7 @@
                     <div class="form-group">
                         <label>Category</label>
                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="category_id" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="" value=""> - No Category -</option>
                             @foreach($categories as $category)
                                 <option data-select2-id="{{ $category->id }}" value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach

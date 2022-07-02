@@ -7,9 +7,9 @@
                         @foreach($ads as $ad)
                             <a class="block-slideshow__slide" href="{{ route('advertisement.show', $ad) }}">
                                 <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
-                                     style="background-image: url('{{ asset($ad->image_url_rectangle) }}')"></div>
+                                     style="background-image: url('{{ Storage::url($ad->image_url_rectangle) }}')"></div>
                                 <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile"
-                                     style="background-image: url('{{ asset($ad->image_url_square) }}')"></div>
+                                     style="background-image: url('{{ Storage::url($ad->image_url_square) }}')"></div>
                                 <div class="block-slideshow__slide-content">
                                     <div class="block-slideshow__slide-title">
                                         {{ $ad->caption }}
