@@ -44,7 +44,11 @@ class AdvertisementController extends Controller
 
     public function edit(Advertisement $advertisement)
     {
-        //
+        return view('admin.advertisements.edit', [
+            'ad' => $advertisement,
+            'categories' => Category::all(),
+            'products' => Product::all(),
+        ]);
     }
 
     public function update(Request $request, Advertisement $advertisement)

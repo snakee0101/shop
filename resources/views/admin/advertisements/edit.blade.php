@@ -1,32 +1,71 @@
 @extends('admin.main')
 
 @section('content')
-    <p class="m-3 font-weight-bold"><a href="{{ route('characteristic.index') }}" class="text-danger">&lt; Back to all characteristics</a></p>
+    <p class="m-3 font-weight-bold"><a href="{{ route('admin.advertisements.index') }}" class="text-danger">&lt; Back to all ads</a></p>
 
     <div class="container row">
-        <div class="card card-primary col-5 p-0 m-auto">
+        <div class="card card-primary col-10 p-0 m-auto">
             <div class="card-header">
-                <h3 class="card-title">Edit characteristic {{ $char->name }}</h3>
+                <h3 class="card-title">Edit advertisement #{{ $ad->id }}</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="{{ route('characteristic.update', $char) }}" method="post">
+            <form action="{{ route('advertisement.update', $ad) }}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="characteristic_name">Characteristic name</label>
-                        <input type="text" class="form-control" name="name" id="characteristic_name" placeholder="Enter characteristic name" value="{{ $char->name }}">
-                        @error('name')
-                            <p class="text-danger mt-1">Characteristic with the given name is already exists in this category or the name is empty</p>
+                        <label for="caption">Caption</label>
+                        <input type="text" class="form-control" name="caption" id="caption" placeholder="Enter ad caption" value="{{ $ad->caption }}">
+                        @error('caption')
+                        <p class="text-danger mt-1">Caption must not be empty</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Characteristic category</label>
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" placeholder="Enter ad description" rows="6">{{ $ad->description }}</textarea>
+                        @error('description')
+                        <p class="text-danger mt-1">Description must not be empty</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="category_id" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <option data-select2-id="" value="" {{ $category->id ?? 'selected' }}> - No Category -</option>
                             @foreach($categories as $category)
-                                <option data-select2-id="{{ $category->id }}" value="{{ $category->id }}"
-                                {{ ($category->id == $char->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option data-select2-id="{{ $category->id }}" value="{{ $category->id }}" {{ $category->id === $ad->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <img src="{{ Storage::url($ad->image_url_rectangle) }}" style="width: 150px; height: 150px">
+                        <label>Select rectangle image</label>
+                        <input type="file" name="image_rectangle">
+                    </div>
+                    <div class="form-group">
+                        <img src="{{ Storage::url($ad->image_url_square) }}" style="width: 150px; height: 150px">
+                        <label>Select square image</label>
+                        <input type="file" name="image_square">
+                    </div>
+                    <div class="form-group">
+                        <label for="start_date">Start date</label>
+                        <input type="date" class="form-control" name="start_date" id="start_date" value="{{ $ad->start_date->format('Y-m-d') }}">
+                        @error('start_date')
+                        <p class="text-danger mt-1">Start date must not be empty</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="end_date">End date</label>
+                        <input type="date" class="form-control" name="end_date" id="end_date" value="{{ $ad->end_date->format('Y-m-d') }}">
+                        @error('end_date')
+                        <p class="text-danger mt-1">End date must not be empty</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Add products to the ad</label>
+                        <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="products[]" data-select2-id="1" tabindex="-1" aria-hidden="true" multiple>
+                            @foreach($products as $product)
+                                <option data-select2-id="{{ $product->id }}" value="{{ $product->id }}" {{ $ad->products->contains($product) ? 'selected' : '' }}>{{ $product->name }} #{{ $product->id }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -35,10 +74,6 @@
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-
-                    <a href="" class="ml-3">
-                        <button type="button" class="btn btn-secondary">Cancel</button>
-                    </a>
                 </div>
             </form>
 
