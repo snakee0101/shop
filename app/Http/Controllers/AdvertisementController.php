@@ -12,7 +12,9 @@ class AdvertisementController extends Controller
 {
     public function index()
     {
-        //
+        return view('ads', [
+            'ads' => Advertisement::paginate()
+        ]);
     }
 
     public function create()
