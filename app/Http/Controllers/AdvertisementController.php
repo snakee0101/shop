@@ -13,7 +13,7 @@ class AdvertisementController extends Controller
     public function index()
     {
         return view('ads', [
-            'ads' => Advertisement::oldest('end_date')->paginate()
+            'ads' => Advertisement::notExpired()->oldest('end_date')->paginate()
         ]);
     }
 
