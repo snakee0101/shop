@@ -103,4 +103,37 @@ class AdvertisementTest extends TestCase
         $this->assertDatabaseCount('advertisements', 1);
         $this->assertDatabaseCount('advertisement_product', 2);
     }
+
+    public function test_basic_ad_data_could_be_changed()
+    {
+        Storage::fake();
+        Storage::put('/public/images/test.png', 12233);
+
+        $ad = Advertisement::factory()
+                           ->withCategory(Category::factory()->create())
+                           ->create();
+
+        $data = [
+            'caption' => 'new caption',
+            'description' => 'new description',
+            'category_id' => Category::factory()->create()->id,
+            'start_date' => now()->addDays(5)->format('Y-m-d H:i:s'),
+            'end_date' => now()->addDays(10)->format('Y-m-d H:i:s')
+        ];
+
+        $this->put( route('advertisement.update', $ad), $data )
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('advertisements', $data);
+    }
+
+    public function test_products_attached_to_ad_could_be_changed()
+    {
+
+    }
+
+    public function test_images_attached_to_ad_could_be_changed()
+    {
+
+    }
 }

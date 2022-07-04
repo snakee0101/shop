@@ -53,7 +53,9 @@ class AdvertisementController extends Controller
 
     public function update(Request $request, Advertisement $advertisement)
     {
-        //
+        $advertisement->update( $request->only( ['caption', 'description', 'start_date', 'end_date', 'category_id'] ) );
+
+        return back();
     }
 
     public function destroy(Advertisement $advertisement)
