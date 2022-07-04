@@ -36,6 +36,8 @@ class AdvertisementTest extends TestCase
     public function test_when_advertisement_is_deleted_products_are_detached()
     {
         Storage::fake();
+        Storage::put('/public/images/test1.jpg', 12345);
+        Storage::put('/public/images/test2.jpg', 12345);
 
         $ad = Advertisement::factory()->create();
 
@@ -54,6 +56,8 @@ class AdvertisementTest extends TestCase
     public function test_advertisement_could_be_created_with_images()
     {
         Storage::fake();
+        Storage::put('/public/images/test1.jpg', 12345);
+        Storage::put('/public/images/test2.jpg', 12345);
 
         $ad_data = Advertisement::factory()->withCategory(Category::factory()->create())->raw([
             'image_url_square' => null
@@ -83,6 +87,8 @@ class AdvertisementTest extends TestCase
     public function test_advertisement_could_be_created_with_products_attached()
     {
         Storage::fake();
+        Storage::put('/public/images/test1.jpg', 12345);
+        Storage::put('/public/images/test2.jpg', 12345);
 
         $ad_data = Advertisement::factory()->withCategory(Category::factory()->create())->raw([
             'image_url_square' => null
@@ -161,6 +167,40 @@ class AdvertisementTest extends TestCase
 
     public function test_images_attached_to_ad_could_be_changed()
     {
+        Storage::fake();
 
+        Storage::put('/public/images/test.png', 12233);
+        Storage::put('/public/images/test2.png', 12233);
+
+        $ad = Advertisement::factory()
+            ->withCategory(Category::factory()->create())
+            ->create([
+                'image_url_square' => 'public/images/test.png',
+                'image_url_rectangle' => 'public/images/test2.png',
+            ]);
+
+        //if the image is null - nothing happens
+        $this->put( route('advertisement.update', $ad), ['caption' => 12345] )
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('advertisements', [
+            'image_url_square' => 'public/images/test.png',
+            'image_url_rectangle' => 'public/images/test2.png',
+        ]);
+
+        //if not - images are reattached (old are deleted and new are saved)
+        $data = [
+            'image_square' => UploadedFile::fake()->image('img_1.jpg', 40, 40),
+            'image_rectangle' => UploadedFile::fake()->image('img_2.jpg', 40, 40),
+        ];
+
+        $this->put( route('advertisement.update', $ad), $data )
+            ->assertRedirect();
+
+        Storage::assertMissing('public/images/test.png');
+        Storage::assertMissing('public/images/test2.png');
+
+        $files = Storage::allFiles('public/images');
+        $this->assertCount(2, $files);
     }
 }
