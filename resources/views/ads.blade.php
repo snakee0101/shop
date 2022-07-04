@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('body')
-    <div class="container">
+    <div class="container" style="max-width: 95%">
         <h2 class="m-4">Advertisements</h2>
         <div class="shop-layout shop-layout--sidebar--start">
             <div class="shop-layout__sidebar">
@@ -562,26 +562,22 @@
                              data-with-features="false">
                             <div class="products-list__body">
                                 @foreach($ads as $ad)
-                                    <div class="card p-2">
-                                        <div class="product-card" style="max-width: 300px">
-                                            <div class="product-card__image">
-                                                <a href="#">
-                                                    <img src="" alt="">
+                                    <div class="card m-2" style="width: 18rem; border: 1px solid #888;">
+                                        <a href="{{ route('advertisement.show', $ad) }}">
+                                            <img src="{{ Storage::url($ad->image_url_square) }}" alt="" class="w-100">
+                                        </a>
+                                        <div class="card-body d-flex p-4">
+                                            <div style="word-break: break-all">
+                                                <p style="font-size: 0.9em">{{ $ad->start_date->format('d M Y') }} - {{ $ad->end_date->format('d M Y') }}</p>
+                                                <a href="{{ route('advertisement.show', $ad) }}" style="color: #00f">
+                                                    {{ $ad->description }}
                                                 </a>
                                             </div>
-                                            <div class="product-card__info break-all mb-3">
-                                                <div class="product-card__name d-flex">
-                                                    <div style="word-break: break-all">
-                                                        <p>date 12-41-4141 554</p>
-                                                        <a href="#" style="color: #00f">
-                                                            NMameyuntyutyuntynutyuntyunytuntyuntyuntynutyuntynutyuntuynuytnyunt1471274207yuntun
-                                                        </a>
-                                                    </div>
-                                                    <div class="d-flex flex-column align-items-center ml-2">
-                                                        <p style="font-weightL bold; font-size: 3em" class="text-center">3</p>
-                                                        <p class="text-center">days left</p>
-                                                    </div>
-                                                </div>
+                                            <div class="d-flex flex-column align-items-center ml-2">
+                                                <p style="font-weightL bold; font-size: 3em; line-height: 1em" class="text-center m-0">
+                                                    {{ $ad->end_date->diffInDays( now() ) }}
+                                                </p>
+                                                <p class="text-center">days left</p>
                                             </div>
                                         </div>
                                     </div>
