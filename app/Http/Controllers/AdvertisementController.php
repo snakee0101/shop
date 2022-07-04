@@ -42,7 +42,10 @@ class AdvertisementController extends Controller
 
     public function show(Advertisement $advertisement)
     {
-        //
+        return view('ad', [
+            'ad' => $advertisement,
+            'products' => $advertisement->products()->withAvg('reviews', 'rating')->paginate()
+        ]);
     }
 
     public function edit(Advertisement $advertisement)

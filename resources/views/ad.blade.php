@@ -1,8 +1,22 @@
 @extends('layouts.main')
 
 @section('body')
-    <div class="container" style="max-width: 95%">
-        <h2 class="m-4">Advertisements</h2>
+    <div class="container">
+        <p class="m-3 font-weight-bold"><a href="{{ route('advertisement.index') }}" class="text-danger">&lt; Back to all ads</a></p>
+
+        <div class="d-flex justify-content-start my-4">
+            <img src="{{ Storage::url($ad->image_url_square) }}" alt="" style="width: 50%">
+            <div class="ml-5">
+                <h2 class="m-4">Sale: {{ $ad->caption }}</h2>
+                <p>
+                    {{ $ad->description }}
+                </p>
+                <p class="font-weight-bold">
+                    Expires: {{ $ad->end_date->diffInDays( now() ) }} days left
+                </p>
+            </div>
+        </div>
+
         <div class="shop-layout shop-layout--sidebar--start">
             <div class="shop-layout__sidebar">
                 <div class="block block-sidebar">
@@ -558,34 +572,37 @@
             <div class="shop-layout__content">
                 <div class="block">
                     <div class="products-view">
+                        <div class="products-view__options">
+                            <div class="view-options">
+                                <div class="view-options__divider"></div>
+                                <div class="view-options__control"><label for="">Sort By</label>
+                                    <div><select class="form-control form-control-sm" name="" id="">
+                                            <option value="">Cheap to expensive</option>
+                                            <option value="">Expensive to cheap</option>
+                                            <option value="">Popular</option>
+                                            <option value="">New</option>
+                                            <option value="">Sale</option>
+                                            <option value="">Rating</option>
+                                        </select></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="products-view__list products-list" data-layout="grid-4-full"
                              data-with-features="false">
                             <div class="products-list__body">
-                                @foreach($ads as $ad)
-                                    <div class="card m-2" style="width: 18rem; border: 1px solid #888;">
-                                        <a href="{{ route('advertisement.show', $ad) }}">
-                                            <img src="{{ Storage::url($ad->image_url_square) }}" alt="" class="w-100">
-                                        </a>
-                                        <div class="card-body d-flex p-4">
-                                            <div style="word-break: break-all">
-                                                <p style="font-size: 0.9em">{{ $ad->start_date->format('d M Y') }} - {{ $ad->end_date->format('d M Y') }}</p>
-                                                <a href="{{ route('advertisement.show', $ad) }}" style="color: #00f">
-                                                    {{ $ad->caption }}
-                                                </a>
-                                            </div>
-                                            <div class="d-flex flex-column align-items-center ml-2">
-                                                <p style="font-weightL bold; font-size: 3em; line-height: 1em" class="text-center m-0">
-                                                    {{ $ad->end_date->diffInDays( now() ) }}
-                                                </p>
-                                                <p class="text-center">days left</p>
-                                            </div>
-                                        </div>
+                                @foreach($products as $product)
+                                    <div class="products-list__item">
+                                        <product-card-component product="{{ $product }}"
+                                                                user="{{ auth()->user() }}"
+                                                                :key="{{ $product->id }}">
+
+                                        </product-card-component>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                         <div class="products-view__pagination">
-                            @include('partials.pagination', ['paginator' => $ads])
+                            @include('partials.pagination', ['paginator' => $products])
                         </div>
                     </div>
                 </div>
