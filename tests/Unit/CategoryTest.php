@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\Characteristic;
+use App\Models\Order;
 use App\Models\Product;
 use Tests\TestCase;
 use App\Models\Category;
@@ -81,4 +82,39 @@ class CategoryTest extends TestCase
 
         $this->assertDatabaseCount('characteristics', 0);
     }
+
+
+    private function prepare_order_products()
+    {
+        //these products must be returned
+        $order_1 = Order::factory()->withStatus('completed')->create();
+        $order_1->products()->attach( Product::factory()->count(3)->create(['category_id' => Category::factory()->create() ]), ['quantity' => 2]);
+
+        //these products are not allowed (only completed orders are allowed)
+        $order_2 = Order::factory()->withStatus('on hold')->create();
+        $order_2->products()->attach( Product::factory()->count(3)->create(['category_id' => Category::factory()->create() ]), ['quantity' => 1]);
+
+
+        //these products must be returned
+        $order_3 = Order::factory()->withStatus('completed')->create();
+        $order_3->products()->attach( Product::factory()->count(3)->create([ 'category_id' => Category::factory()->create() ]), ['quantity' => 1]);
+
+        //these products must be returned
+        $order_4 = Order::factory()->withStatus('completed')->create();
+        $order_4->products()->attach( Product::factory()->count(3)->create(), ['quantity' => 1]);
+
+        //these products are not allowed (they are more than 3 month old)
+        $order_5 = Order::factory()->withStatus('completed')->create([ 'created_at' => now()->subMonths(4) ]);
+        $order_5->products()->attach( Product::factory()->count(3)->create(), ['quantity' => 2]);
+
+
+        return [$order_1, $order_2, $order_3, $order_4, $order_5];
+    }
+
+    /*public function test_popular_categories_could_be_retrieved()
+    {
+        $orders = $this->prepare_order_products();
+
+        $popularity_data = Category::popular();
+    }*/
 }

@@ -50,6 +50,9 @@ class Order extends Model
         return $this->getProductSubtotal() + $this->getProductSetSubtotal();
     }
 
+    /*
+     * select only orders completed less than 3 months ago
+     * */
     public static function recent()
     {
         return static::where('status', 'completed')
