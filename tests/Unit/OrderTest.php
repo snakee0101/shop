@@ -186,4 +186,26 @@ class OrderTest extends TestCase
 
         $this->assertDatabaseCount('order_item', 0);
     }
+
+    protected function prepare_orders()
+    {
+        $order_1 = Order::factory()->withStatus('completed')->create(); //This order must be returned
+        $order_2 = Order::factory()->withStatus('completed')->create([ 'created_at' => now()->subMonths(2) ]); //This order must be returned
+
+        $order_3 = Order::factory()->withStatus('on hold')->create(); //This order is not allowed (only completed orders are allowed)
+        $order_4 = Order::factory()->withStatus('completed')->create([ 'created_at' => now()->subMonths(4) ]);  //This order is not allowed (they are more than 3 month old)
+
+        return [$order_1, $order_2, $order_3, $order_4];
+    }
+
+    public function test_recent_orders_could_be_retrieved()
+    {
+        $prepared_orders = $this->prepare_orders();
+        $orders = Order::recent()->get();
+
+        $this->assertCount(2, $orders);
+
+        $this->assertEquals($orders[0]->id, $prepared_orders[0]->id);
+        $this->assertEquals($orders[1]->id, $prepared_orders[1]->id);
+    }
 }

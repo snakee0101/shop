@@ -49,4 +49,10 @@ class Order extends Model
     {
         return $this->getProductSubtotal() + $this->getProductSetSubtotal();
     }
+
+    public static function recent()
+    {
+        return static::where('status', 'completed')
+                     ->whereDate('created_at', '>', now()->subMonths(3));
+    }
 }
