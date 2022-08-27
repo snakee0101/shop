@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{AddToCartController, CartController, OrderController};
 use App\Models\Advertisement;
+use App\Models\Category;
 use App\Models\News;
 use App\Http\Controllers\{ProductActionsController, UserController, VoteController};
 use App\Http\Controllers\{QuestionController, ReviewController, ReplyController};
@@ -39,7 +40,8 @@ Route::get('/', function () {
                             ->limit(10)
                             ->get(),
         'filtering_group_1_products' => Product::limit(10)->get()->loadAvg('reviews', 'rating'),
-        'latest_news' => News::latest()->limit(10)->get()
+        'latest_news' => News::latest()->limit(10)->get(),
+        'popular_categories' => Category::popular()
     ]);
 })->name('index-2');
 
