@@ -5,7 +5,8 @@
             </a></h1></div>
     <div class="site-header__search">
         <div class="search">
-            <form class="search__form" action="#"><input class="search__input" name="search"
+            <form class="search__form" action="#">
+                <input class="search__input" name="search" id="search"
                                                          placeholder="Search over 10,000 products"
                                                          aria-label="Site search" type="text"
                                                          autocomplete="off">
