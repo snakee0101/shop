@@ -58,7 +58,10 @@ window.onload = function(){
     ];
 
     $( "#search" ).autocomplete({
-        source: availableTags
+        source: '/search_products',
+        select: function( event, ui ) {
+            location.assign("/product/"  + ui.item.id);
+        }
     });
 };
 

@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Product extends Model implements Purchaseable
 {
-    use HasFactory, HasDiscounts, SoftDeletes;
+    use HasFactory, HasDiscounts, SoftDeletes, Searchable;
 
     protected $appends = ['inDefaultWishlist', 'inCart', 'inComparison', 'ObjectType', 'PriceWithDiscount'];
     protected $perPage = 48;
@@ -28,6 +29,13 @@ class Product extends Model implements Purchaseable
     public const STATUS_IN_STOCK = 'In Stock';
     public const STATUS_ENDS = 'Ends';
     public const STATUS_OUT_OF_STOCK = 'Out Of Stock';
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name
+        ];
+    }
 
     public function getObjectTypeAttribute()
     {

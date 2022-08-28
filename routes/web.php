@@ -178,6 +178,22 @@ Route::resource('badge', BadgeController::class);
 Route::resource('badge_style', BadgeStyleController::class);
 
 
+Route::get('/search_products', function() {
+     $product_search_results = Product::search( request('term') )
+                                      ->take(8)
+                                      ->raw();
+
+     $processed = [];
+     foreach ($product_search_results['hits'] as $product)  //reformat according to autocomplete plugin requirements
+     {
+         $processed[] = new class($product['id'], $product['name'], $product['name']){
+             public function __construct(public $id, public $label, public $value) {}
+         };
+     }
+
+     return $processed;
+});
+
 Route::fallback(fn() => view('404'));
 
 require __DIR__.'/auth.php';
