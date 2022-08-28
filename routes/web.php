@@ -179,12 +179,13 @@ Route::resource('badge_style', BadgeStyleController::class);
 
 
 Route::get('/search_products', function() {
-     $product_search_results = Product::search( request('term') )
+     $search_term = request('term');
+     $product_search_results = Product::where('name', 'LIKE', "%$search_term%")
                                       ->take(8)
-                                      ->raw();
+                                      ->get();
 
      $processed = [];
-     foreach ($product_search_results['hits'] as $product)  //reformat according to autocomplete plugin requirements
+     foreach ($product_search_results as $product)  //reformat according to autocomplete plugin requirements
      {
          $processed[] = new class($product['id'], $product['name'], $product['name']){
              public function __construct(public $id, public $label, public $value) {}

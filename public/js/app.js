@@ -7379,7 +7379,6 @@ window.onload = function () {
   var app = new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
     el: '#app'
   });
-  var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
   $("#search").autocomplete({
     source: '/search_products',
     select: function select(event, ui) {
