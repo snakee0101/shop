@@ -30,7 +30,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 
-
+//WATCH OTHER ROUTES IN routes/admin.php
 
 Route::get('/', function () {
     return view('index-2', [
@@ -64,18 +64,6 @@ Route::controller(CartController::class)->prefix('cart')->name('cart.')->group(f
 });
 
 Route::post('/coupon', [CouponController::class, 'store'])->name('coupon.store');
-
-Route::controller(AdminOrderActionsController::class)->name('order.actions.')->prefix('/order/{order}/')
-                                                                             ->group(function (){
-   Route::delete('/delete_product/{product}', 'delete_product')->name('delete_product');
-   Route::delete('/delete_product_set/{product_set}', 'delete_product_set')->name('delete_product_set');
-
-   Route::post('/change_quantity/product/{product}', 'change_product_quantity')->name('change_product_quantity');
-   Route::post('/change_quantity/product_set/{product_set}', 'change_product_set_quantity')->name('change_product_set_quantity');
-
-   Route::post('/add_product', 'add_product')->name('add_product');
-   Route::post('/add_product_set', 'add_product_set')->name('add_product_set');
-});
 
 Route::controller(ComparisonController::class)->middleware('authenticated')->prefix('comparison')
                                               ->name('comparison.')->group(function () {
@@ -131,25 +119,6 @@ Route::post('/visit/clearAll', [VisitsController::class, 'clearAll'])->name('vis
 
 Route::post('/register-user', [UserController::class, 'register'])->name('register-user');
 Route::post('/login-user', [UserController::class, 'login'])->name('login-user');
-
-
-Route::controller(AdminController::class)->prefix('admin-panel')
-                                         ->middleware('authenticated')
-                                         ->group(function(){
-    Route::get('/', 'products')->name('admin.products.index');
-
-    Route::get('/users', 'list_users')->name('admin.users.index');
-    Route::get('/users/{user}', 'show_user')->name('admin.users.show');
-
-    Route::get('/category/index', 'categories_index')->name('admin.categories.index');
-
-    Route::get('/statistics', 'statistics')->name('admin.statistics');
-    Route::get('/news', 'news')->name('admin.news.index');
-
-    Route::post('/product/restore/{product_id}', 'restore_product')->name('admin.product.restore');
-
-    Route::get('/advertisements', 'list_advertisements')->name('admin.advertisements.index');
-    });
 
 
 //News subscription
