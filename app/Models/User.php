@@ -22,6 +22,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function setPasswordAttribute($value)      //User Model
+    {
+        $this->attributes['password'] = \Hash::make($value);
+    }
+
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class);
