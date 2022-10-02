@@ -24,10 +24,9 @@
                     </button>
                     <div class="topbar-dropdown__body"><!-- .menu -->
                         <ul class="menu menu--layout--topbar">
-                            <li><a href="#">€ Euro</a></li>
-                            <li><a href="#">£ Pound Sterling</a></li>
-                            <li><a href="#">$ US Dollar</a></li>
-                            <li><a href="#">₽ Russian Ruble</a></li>
+                            @foreach( config('region.currencies') as $currency => $symbol)
+                                <li><a href="#">{{ $symbol }} {{ $currency }}</a></li>
+                            @endforeach
                         </ul><!-- .menu / end --></div>
                 </div>
             </div>
