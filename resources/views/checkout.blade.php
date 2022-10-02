@@ -81,17 +81,13 @@
 
                             <div class="card mb-lg-0">
                                 <div class="card-body"><h3 class="card-title">Shipping details</h3>
-                                    <div class="form-group"><label for="checkout-country">Country</label> <select
-                                            id="checkout-country" class="form-control" name="country">
-                                            <option value="United States">United States</option>
-                                            <option value="Russia">Russia</option>
-                                            <option value="Italy">Italy</option>
-                                            <option value="France">France</option>
-                                            <option value="Ukraine">Ukraine</option>
-                                            <option value="Germany">Germany</option>
-                                            <option value="Australia">Australia</option>
-                                        </select></div>
-
+                                    <div class="form-group"><label for="checkout-country">Country</label>
+                                        <select id="checkout-country" class="form-control" name="country">
+                                            @foreach( config('region.country_codes') as $country => $code )
+                                                <option value="{{ $code }}">{{ $country}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-group border-top border-dark"><label for="checkout-street-address">Address</label>
                                         <input type="text" class="form-control" id="checkout-street-address"
                                                name="address" placeholder="Street Address" value="{{ old('address') }}">
