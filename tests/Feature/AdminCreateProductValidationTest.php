@@ -48,77 +48,31 @@ class AdminCreateProductValidationTest extends TestCase
         ];
     }
 
-    public function test_product_name_is_required()
+    public function field_values()
     {
-        $this->basic_data['name'] = '';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-             ->assertSessionHasErrors('name');
+        return [
+            'product name is required' => ['name', ''],
+            'product description is required' => ['description', ''],
+            'product payment info is required' => ['payment_info', ''],
+            'product guarantee info is required' => ['guarantee_info', ''],
+            'product price is required' => ['price', ''],
+            'product price is not a string' => ['price', 'a'],
+            'product price cant be negative' => ['price', '-1'],
+            'product price cant be zero' => ['price', '0.00'],
+            'product price must be greater than zero' => ['price', '0.01', false],
+            'product category must be selected' => ['category_id', '']
+        ];
     }
-
-    public function test_product_description_is_required()
+    /**
+     * @dataProvider field_values
+     */
+    public function test_fields_of_product_creation_form($field_name, $field_value, bool $check_for_errors = true)
     {
-        $this->basic_data['description'] = '';
+        $this->basic_data[$field_name] = $field_value;
 
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-             ->assertSessionHasErrors('description');
-    }
+        $res = $this->post( route('product.store'), $this->basic_data + $this->characteristics_data );
 
-    public function test_product_payment_info_is_required()
-    {
-        $this->basic_data['payment_info'] = '';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-             ->assertSessionHasErrors('payment_info');
-    }
-
-    public function test_product_guarantee_info_is_required()
-    {
-        $this->basic_data['guarantee_info'] = '';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasErrors('guarantee_info');
-    }
-
-    public function test_product_price_is_required()
-    {
-        $this->basic_data['price'] = '';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasErrors('price');
-    }
-
-    public function test_product_price_is_not_a_string()
-    {
-        $this->basic_data['price'] = 'a';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasErrors('price');
-    }
-
-    public function test_product_price_is_not_less_than_1_cent()
-    {
-        $this->basic_data['price'] = '-1';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasErrors('price');
-
-        $this->basic_data['price'] = '0.00';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasErrors('price');
-
-        $this->basic_data['price'] = '0.01';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasNoErrors();
-    }
-
-    public function test_product_category_must_be_selected()
-    {
-        $this->basic_data['category_id'] = '';
-
-        $this->post( route('product.store'), $this->basic_data + $this->characteristics_data )
-            ->assertSessionHasErrors('category_id');
+        $check_for_errors ? $res->assertSessionHasErrors($field_name)
+                          : $res->assertSessionHasNoErrors();
     }
 }
