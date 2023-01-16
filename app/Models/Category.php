@@ -29,7 +29,7 @@ class Category extends Model implements Categorizable
         return $this->hasMany(Advertisement::class);
     }
 
-    public static function popular($limit = 6) :array
+    public static function popular($limit = 6)
     {
         $statistics = []; //[category_id => total number of category occurrences in all orders]
 
@@ -41,7 +41,6 @@ class Category extends Model implements Categorizable
         });
 
         return collect($statistics)->sortByDesc( fn($occurrences) => $occurrences )
-                                   ->slice(0, $limit)
-                                   ->toArray();   //select only first $count categories and order them by descending of occurrences count
+                                   ->slice(0, $limit);   //select only first $count categories and order them by descending of occurrences count
     }
 }
