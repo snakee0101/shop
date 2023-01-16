@@ -136,7 +136,7 @@
                         </div>
                     </div>
                     <div class="form-check mt-2">
-                        <input class="form-check-input" type="checkbox" id="badge_discount_as_a_caption" name="badge_discount_as_a_caption" {{ $product->is_badge_text_corresponds_to_discount_value() ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" id="badge_discount_as_a_caption" name="badge_discount_as_a_caption" {{ $product->discount && $product->badge && $product->is_badge_text_corresponds_to_discount_value() ? 'checked' : '' }}>
                         <label class="form-check-label" for="badge_discount_as_a_caption">
                             Use discount value as a caption instead
                         </label>
