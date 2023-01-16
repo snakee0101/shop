@@ -49,11 +49,9 @@ class ContactController extends Controller
     {
         $text = nl2br($request->text);
 
-        Reply::create([
+        $contact_form_message->reply()->create([
             'user_id' => auth()->id(),
             'text' => $text,
-            'object_id' => $contact_form_message->id,
-            'object_type' => ContactFormMessage::class
         ]);
 
         $contact_form_message->update([ 'is_replied' => true ]);

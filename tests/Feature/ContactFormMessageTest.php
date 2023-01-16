@@ -13,6 +13,13 @@ use Tests\TestCase;
 
 class ContactFormMessageTest extends TestCase
 {
+    protected function setUp() :void
+    {
+        parent::setUp();
+
+        Mail::fake();
+    }
+
     public function test_if_data_is_valid_contact_form_message_is_created()
     {
         $data = ContactFormMessage::factory()->raw();
