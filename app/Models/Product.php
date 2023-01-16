@@ -123,7 +123,7 @@ class Product extends Model implements Purchaseable
     {
         try {
             auth()->user()?->visited_products()->attach($this);  //invalid visits must be ignored
-        } catch(\Exception $e) {}
+        } catch(\Illuminate\Database\QueryException $e) {}  //Integrity constraint violation: 19 UNIQUE constraint failed - duplicated visits are just ignored
     }
 
     public function getAllBoughtTogetherProducts()
