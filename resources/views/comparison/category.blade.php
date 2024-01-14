@@ -41,7 +41,7 @@
                                 {{ $product->name }}
                             </a>
                         </th>
-                    @endforeach
+                    <?php endforeach;?>
                 </tr>
                 </thead>
                 <tbody>
