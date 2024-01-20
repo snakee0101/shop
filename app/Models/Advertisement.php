@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * Advertisements are bound to specific category and
+ * contain products, that must be added manually
+ */
+
 class Advertisement extends Model
 {
     use HasFactory;
@@ -20,8 +25,8 @@ class Advertisement extends Model
         parent::boot();
 
         static::deleting(function (self $ad) {
-            Storage::delete( $ad->image_url_square );
-            Storage::delete( $ad->image_url_rectangle );
+            Storage::delete($ad->image_url_square);
+            Storage::delete($ad->image_url_rectangle);
         });
     }
 
